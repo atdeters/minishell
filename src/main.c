@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/25 17:03:54 by adeters          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:50:53 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	main(void)
 	while (true)
 	{
 		data.input = get_input(&data);
+		if (!ft_strncmp(data.input, "clear", 5))
+			printf("\e[1;1H\e[2J");
 		free(data.input);
 	}
 }
