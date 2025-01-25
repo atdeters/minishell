@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/25 17:09:37 by adeters          ###   ########.fr       */
+/*   Updated: 2025/01/25 20:00:34 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ typedef struct s_data
 }				t_data;
 
 //// FUNCTION-FILES
+// builtin_clear.c
+void	clear(void);
+
 // builtin_pwd.c
 void	pwd(void);
 int		get_pwd(char buff[PATH_MAX], bool clean);
