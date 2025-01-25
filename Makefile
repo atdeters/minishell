@@ -1,8 +1,8 @@
 NAME = minishell
 
+DEFINES = # -D PROMPT='"hello"' # -D SHOW_FOLDER=false
 COMP = cc
 CFLAGS = -Wall -Wextra -Werror -g
-DEFINES = # -D PROMPT='"hello"' # -D SHOW_FOLDER=false
 LDFLAGS = -lreadline
 
 SRC_FILES = main.c builtin_pwd.c init.c input.c errors.c

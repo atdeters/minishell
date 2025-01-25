@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/25 17:04:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/01/25 17:09:37 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdio.h>
 # include <linux/limits.h>
 # include <unistd.h>
-# include <string.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <readline/readline.h>
@@ -25,6 +24,7 @@
 
 //// HEADERFILES
 # include "config.h"
+# include "./libft/libft.h"
 
 //// ENUMS
 enum e_errors
@@ -61,7 +61,7 @@ void	pwd(void);
 int		get_pwd(char buff[PATH_MAX], bool clean);
 
 // errors.c
-int		p_err(t_data *data);
+int		p_err(int code);
 
 // init.c
 int		init_shell(t_data *data);
