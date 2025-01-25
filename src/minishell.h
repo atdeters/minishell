@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/25 16:50:46 by adeters          ###   ########.fr       */
+/*   Updated: 2025/01/25 17:04:30 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 # include "config.h"
 
 //// ENUMS
+enum e_errors
+{
+	/**
+	 * @brief Minishell failed to initialize
+	 */
+	INIT = 1,
+};
 
 //// STRUCTS
 typedef struct s_data
@@ -41,12 +48,20 @@ typedef struct s_data
 	 * Initialized to 0.
 	 */
 	int		exit_status;
+	/**
+	 * @brief Integer that can be set to a specific error code
+	 * in case something fails
+	 */
+	int		error;
 }				t_data;
 
 //// FUNCTION-FILES
 // builtin_pwd.c
 void	pwd(void);
 int		get_pwd(char buff[PATH_MAX], bool clean);
+
+// errors.c
+int		p_err(t_data *data);
 
 // init.c
 int		init_shell(t_data *data);
