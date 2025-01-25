@@ -1,4 +1,4 @@
-NAME = minishell
+NAME = mini
 
 DEFINES = # -D PROMPT='"hello"' # -D SHOW_FOLDER=false
 COMP = cc
