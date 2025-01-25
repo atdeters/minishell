@@ -1,23 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
+/*   Updated: 2025/01/25 16:50:46 by adeters          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
 //// LIBRARIES
-#include <stdio.h>
-#include <linux/limits.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <stdio.h>
+# include <linux/limits.h>
+# include <unistd.h>
+# include <string.h>
+# include <stdbool.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 //// HEADERFILES
-#include "config.h"
+# include "config.h"
 
 //// ENUMS
 
 //// STRUCTS
-typedef struct	s_data
+typedef struct s_data
 {
 	/**
 	 * @brief Input that has been read from the terminal

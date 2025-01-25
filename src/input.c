@@ -6,13 +6,13 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/25 16:20:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/01/25 16:50:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char *get_input(t_data *data)
+char	*get_input(t_data *data)
 {
 	char	cwd[PATH_MAX];
 	char	*input;
