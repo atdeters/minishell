@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/28 17:09:33 by adeters          ###   ########.fr       */
+/*   Updated: 2025/01/28 17:13:47 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(void)
 
 	if (init_shell(&data))
 		return (p_err(INIT));
+	
 	while (true)
 	{
 		data.input = get_input(&data);
