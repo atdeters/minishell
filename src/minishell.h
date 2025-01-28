@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/25 20:00:34 by adeters          ###   ########.fr       */
+/*   Updated: 2025/01/28 16:05:43 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ enum e_errors
 };
 
 //// STRUCTS
+
+typedef struct s_env_lst
+{
+	char	*filed;
+	char	*value;
+	t_env_lst *next;
+}	t_env_lst;
+
+
 typedef struct s_data
 {
 	/**
@@ -53,6 +62,13 @@ typedef struct s_data
 	 * in case something fails
 	 */
 	int		error;
+	
+	t_env_lst	*env_lst;
+
+	//return after parsing
+	char		**prompt;
+
+	
 }				t_data;
 
 //// FUNCTION-FILES
