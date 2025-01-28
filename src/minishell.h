@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/28 16:05:43 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/01/28 17:35:03 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,12 @@ typedef struct s_data
 	 * in case something fails
 	 */
 	int		error;
-	
+	/**
+	 * @brief If the pwd is a git repository, this one shows the branch
+	 * If the pwd is not a git repository it with be NULL
+	 */
+	char	*branch;
 	t_env_lst	*env_lst;
-
 	//return after parsing
 	char		**prompt;
 
