@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:59:25 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/01/29 14:02:12 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:28:45 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,25 @@ static void	transfer_into_node(char *str, t_data *data, int j)
 	char		*value;
 	t_env_lst	*node;
 
-		field = ft_substr(str, 0, j);
-		if (!field)
-			error_exit(NULL, NULL, data->env_lst, 1);
-		value = ft_substr(str, j + 1, ft_strlen(str) - j);
-		if (!value)
-			error_exit(field, NULL, data->env_lst, 1);
-		node = ft_env_lstnew(field, value);
-		if (!node)
-			error_exit(field, value, data->env_lst, 1);
-		if (!data->env_lst)
-			data->env_lst = node;
-		else
-			ft_env_lstadd_back(&data->env_lst, node);
+	field = ft_substr(str, 0, j);
+	if (!field)
+		error_exit(NULL, NULL, data->env_lst, 1);
+	value = ft_substr(str, j + 1, ft_strlen(str) - j);
+	if (!value)
+		error_exit(field, NULL, data->env_lst, 1);
+	node = ft_env_lstnew(field, value);
+	if (!node)
+		error_exit(field, value, data->env_lst, 1);
+	if (!data->env_lst)
+		data->env_lst = node;
+	else
+		ft_env_lstadd_back(&data->env_lst, node);
 }
 
 void	parse_env(t_data *data, char **env)
 {
-	int			i;
-	int			j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (env[i])
@@ -58,7 +58,7 @@ void	parse_env(t_data *data, char **env)
 			if (env[i][j] == '=')
 			{
 				transfer_into_node(env[i], data, j);
-				break;
+				break ;
 			}
 			j++;
 		}

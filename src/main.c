@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/29 14:14:14 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/01/29 14:27:32 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,10 @@ int	main(void)
 			clear();
 		free(data.input);
 	}
+	// while (1)
+	// {
+	// 	char *line = readline("minishell>");
+	// 	printf("Recieved:\n");
+	// 	printf("%s\n", line);
+	// }
 }
