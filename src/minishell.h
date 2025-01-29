@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/28 17:35:03 by adeters          ###   ########.fr       */
+/*   Updated: 2025/01/29 14:14:29 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_env_lst
 {
 	char	*filed;
 	char	*value;
-	t_env_lst *next;
+	struct s_env_lst *next;
 }	t_env_lst;
 
 
@@ -90,5 +90,15 @@ int		init_shell(t_data *data);
 
 // input.c
 char	*get_input(t_data *data);
+
+//env_lst_funcs
+t_env_lst	*ft_env_lstnew(char *f, char *v);
+t_env_lst	*ft_env_lstlast(t_env_lst *lst);
+void	ft_env_lstadd_back(t_env_lst **lst, t_env_lst *new);
+void	ft_env_lstdelone(t_env_lst *lst);
+void	ft_env_lstclear(t_env_lst **lst);
+
+//env_parser
+void	parse_env(t_data *data, char **env);
 
 #endif
