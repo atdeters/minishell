@@ -14,7 +14,7 @@
 # define MINISHELL_H
 
 //// LIBRARIES
-# include <linux/limits.h>
+# include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdbool.h>
