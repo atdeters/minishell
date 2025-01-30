@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/30 16:39:08 by adeters          ###   ########.fr       */
+/*   Updated: 2025/01/30 16:56:21 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,36 @@ int	p_folder(void)
 	return (0);
 }
 
+int	get_branch(void)
+{
+	char	cwd[PATH_MAX];
+	int		level;
+	int		i;
+
+	level = 0;
+	i = 0;
+	get_pwd(cwd, false);
+	while (cwd[i])
+	{
+		if (cwd[i] == '/')
+			level++;
+		i++;
+	}
+	char *ad = "/sgoinfre/adeters/minishell/.git/HEAD";
+	if (access(ad, F_OK) == 0)
+		printf("found the file here\n");
+	return (1);
+}
+
 // not working yet
 int	p_git(void)
 {
-	printf("%sgit:(", GIT_COLOR);
-	printf("%s%s", GIT_COLOR_BRANCH, "main");
-	printf("%s)", GIT_COLOR);
+	if (get_branch())
+	{
+		printf("%sgit:(", GIT_COLOR);
+		printf("%s%s", GIT_COLOR_BRANCH, "main");
+		printf("%s) ", GIT_COLOR);
+	}
 	return (0);
 }
 
