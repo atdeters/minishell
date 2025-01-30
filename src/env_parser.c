@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:59:25 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/01/29 14:28:45 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:01:30 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ static void	transfer_into_node(char *str, t_data *data, int j)
 
 	field = ft_substr(str, 0, j);
 	if (!field)
-		error_exit(NULL, NULL, data->env_lst, 1);
+		error_exit_env(NULL, NULL, data->env_lst, 1);
 	value = ft_substr(str, j + 1, ft_strlen(str) - j);
 	if (!value)
-		error_exit(field, NULL, data->env_lst, 1);
+		error_exit_env(field, NULL, data->env_lst, 1);
 	node = ft_env_lstnew(field, value);
 	if (!node)
-		error_exit(field, value, data->env_lst, 1);
+		error_exit_env(field, value, data->env_lst, 1);
 	if (!data->env_lst)
 		data->env_lst = node;
 	else
