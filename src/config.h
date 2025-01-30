@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:38 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/30 16:36:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/01/30 16:44:22 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define CWD_COLOR "\033[1;36m"
 # define RESET "\033[0m"
 
-# define GIT_COLOR "\033[1;36m"
+# define GIT_COLOR "\033[1;34m"
 # define GIT_COLOR_BRANCH "\033[1;91m"
 
 # ifndef PROMPT
