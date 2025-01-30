@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/30 16:25:20 by adeters          ###   ########.fr       */
+/*   Updated: 2025/01/30 16:39:08 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,24 @@ int	p_folder(void)
 	return (0);
 }
 
+// not working yet
+int	p_git(void)
+{
+	printf("%sgit:(", GIT_COLOR);
+	printf("%s%s", GIT_COLOR_BRANCH, "main");
+	printf("%s)", GIT_COLOR);
+	return (0);
+}
+
 char	*get_input(t_data *data)
 {
 	char	*input;
 
 	p_prompt(data);
 	if (SHOW_FOLDER && p_folder())
-		return (NULL);
+		return (NULL); // Set data->error properly
+	if (SHOW_GIT && p_git())
+		return (NULL); // Set data->error properly
 	input = readline(RESET);
 	return (input);
 }
