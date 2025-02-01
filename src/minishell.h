@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 16:20:48 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 16:57:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,13 @@ int						init_shell(t_data *data);
 
 // input.c
 char					*get_input(t_data *data);
+
+// p_prompts.c
+void					p_prompt(t_data *data);
+void					p_branch(char *line);
+int						p_folder(void);
+int						p_git(void);
+int						p_git2(char *path);
 
 // env_lst_funcs
 t_env_lst				*ft_env_lstnew(char *f, char *v);
