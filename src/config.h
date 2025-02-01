@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:38 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 20:11:34 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 20:46:36 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
  * break the program!
  */
 # ifndef PROMPT
-#  define PROMPT "->"
+#  define PROMPT "vash>"
 // #  define PROMPT "➜"
 # endif
 
