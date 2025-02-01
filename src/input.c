@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/30 16:56:21 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 16:43:54 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,69 @@ int	p_folder(void)
 	return (0);
 }
 
-int	get_branch(void)
+void	p_branch(char *line)
 {
-	char	cwd[PATH_MAX];
-	int		level;
-	int		i;
+	char	*branch;
 
-	level = 0;
-	i = 0;
-	get_pwd(cwd, false);
-	while (cwd[i])
-	{
-		if (cwd[i] == '/')
-			level++;
-		i++;
-	}
-	char *ad = "/sgoinfre/adeters/minishell/.git/HEAD";
-	if (access(ad, F_OK) == 0)
-		printf("found the file here\n");
-	return (1);
+	branch = ft_strrchr(line, '/') + 1;
+	branch = rid_of_nl(branch);
+	printf("%sgit:(", GIT_COLOR);
+	printf("%s%s", GIT_COLOR_BRANCH, branch);
+	printf("%s) ", GIT_COLOR);
 }
 
-// not working yet
+int	p_git2(char *path)
+{
+	int		fd;
+	char	*line;
+	char	*file;
+
+	file = (allo_strcat(path, "/.git/HEAD"));
+	if (!file)
+		return (1); // Set error
+	fd = open(file, O_RDONLY);
+	free(file);
+	if (fd < 0)
+		return (1); // Set error
+	line = get_next_line(fd);
+	if (!line)
+		return (close(fd), 1);
+	while (line)
+	{
+		if (ft_strncmp(line, "ref:", 4) == 0)
+			return (p_branch(line), free(line), close(fd), 0);
+		free(line);
+		line = get_next_line(fd);
+	}
+	return (close(fd), 1);
+}
+
 int	p_git(void)
 {
-	if (get_branch())
+	char	path_buff[PATH_MAX];
+	char	path_buff_cur[PATH_MAX];
+	char	*git_dir;
+	bool	close_flag;
+	
+	close_flag = false;
+	git_dir = ".git/HEAD";
+	if (get_pwd(path_buff, false) || get_pwd(path_buff_cur, false))
+		return (1); // Set error correctly
+	while (access(git_dir, R_OK) != 0)
 	{
-		printf("%sgit:(", GIT_COLOR);
-		printf("%s%s", GIT_COLOR_BRANCH, "main");
-		printf("%s) ", GIT_COLOR);
+		chdir("..");
+		if (get_pwd(path_buff_cur, false))
+			return (chdir(path_buff), 1); // Set error correctly
+		if (count_slash(path_buff_cur) == 1)
+		{
+			if (close_flag)
+				return (chdir(path_buff), 1);
+			close_flag = true;
+		}
 	}
-	return (0);
+	if (p_git2(path_buff_cur))
+		return (chdir(path_buff), 1); // Set error correctly 
+	return (chdir(path_buff), 0);
 }
 
 char	*get_input(t_data *data)
@@ -69,8 +101,8 @@ char	*get_input(t_data *data)
 	p_prompt(data);
 	if (SHOW_FOLDER && p_folder())
 		return (NULL); // Set data->error properly
-	if (SHOW_GIT && p_git())
-		return (NULL); // Set data->error properly
+	if (SHOW_GIT)
+		p_git(); // No error handling for now
 	input = readline(RESET);
 	return (input);
 }
