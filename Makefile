@@ -1,6 +1,7 @@
 NAME = mini
 
-DEFINES = # -D PROMPT='"hello"' # -D SHOW_FOLDER=false
+# Getting rid of these prompts well be easier on the resources
+DEFINES = -D PROMPT='"vash>"' -D SHOW_FOLDER=true -D SHOW_GIT=true
 COMP = cc
 CFLAGS = -Wall -Wextra -g # -Werror
 LDFLAGS = -lreadline
