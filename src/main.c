@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/30 16:24:59 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 16:44:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@ int	main(void)
 
 	if (init_shell(&data))
 		return (p_err(INIT));
-	
 	while (true)
 	{
 		data.input = get_input(&data);
 		// Should use vova's prompt (because stuff like "cl"ea"r")
-		if (!ft_strncmp(data.input, "clear", 5))
+		if (data.input && !ft_strncmp(data.input, "clear", 5))
 			clear();
 		free(data.input);
 	}

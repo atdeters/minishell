@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/30 17:01:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 16:20:48 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,27 @@ void					clear(void);
 // builtin_pwd.c
 void					pwd(void);
 int						get_pwd(char buff[PATH_MAX], bool clean);
+char					*allo_strcat(const char *s1, const char *s2);
+/**
+ * @brief Removes the newline character (`\n`) from the end of a string,
+ * if present.
+ *        This allows `count_lines` to function
+ * correctly regardless of whether the
+ *        map file ends with a newline character.
+ *
+ * @param str The string from which to remove
+ * the newline character.
+ *
+ * @return A pointer to the modified string with any
+ * trailing newline replaced by `\0`.
+ */
+char					*rid_of_nl(char *str);
 
 // errors.c
 int						p_err(int code);
+
+// helpers1.c
+int						count_slash(char *path);
 
 // init.c
 int						init_shell(t_data *data);
