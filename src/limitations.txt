@@ -1,0 +1,1 @@
+- Prompt must be \001\001charakter\002\002 to work if it is a unicode character
