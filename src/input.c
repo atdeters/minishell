@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 19:33:31 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 19:42:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ char	*get_input(t_data *data)
 	if (SHOW_GIT)
 		add_git(rl_prompt);
 	ft_strcat(rl_prompt, RESET);
-	// printf("%s", RESET);
 
 	input = readline(rl_prompt);
 	return (input);
