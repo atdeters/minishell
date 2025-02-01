@@ -1,7 +1,8 @@
 NAME = mini
 
-# Getting rid of these prompts well be easier on the resources
+# Getting rid of these add-ons will be easier for the resources to handle
 DEFINES = -D PROMPT='"vash>"' -D SHOW_FOLDER=true -D SHOW_GIT=true
+
 COMP = cc
 CFLAGS = -Wall -Wextra -g # -Werror
 LDFLAGS = -lreadline
