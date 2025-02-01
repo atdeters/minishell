@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:54:44 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 20:32:34 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 21:03:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	add_prompt(t_data *data, char *rl_prompt)
 	else
 		start_ansi(rl_prompt, SUCC_COLOR);
 	ft_strcat(rl_prompt, PROMPT);
-	ft_strcat(rl_prompt, " ");
+	ft_strcat(rl_prompt, "  ");
 }
 
 int	add_folder(char *rl_prompt)

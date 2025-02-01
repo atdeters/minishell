@@ -1,7 +1,8 @@
 NAME = mini
 
 # Getting rid of these add-ons will be easier for the resources to handle
-DEFINES = -D PROMPT='"vash>"' -D SHOW_FOLDER=true -D SHOW_GIT=true
+# Unicode Charaters need two of the limiting Sequences
+DEFINES = -D PROMPT='"\001\001➜\002\002"' -D SHOW_FOLDER=true -D SHOW_GIT=true
 
 COMP = cc
 CFLAGS = -Wall -Wextra -g # -Werror
