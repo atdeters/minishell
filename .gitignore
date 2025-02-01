@@ -1,6 +1,3 @@
-# Weird temporary files that sometimes appear
-.nfs*
-
 # Object and archive files
 *.o
 *.a
