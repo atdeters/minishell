@@ -5,7 +5,8 @@ COMP = cc
 CFLAGS = -Wall -Wextra -g # -Werror
 LDFLAGS = -lreadline
 
-SRC_FILES = main.c builtin_clear.c builtin_pwd.c init.c input.c errors.c env_lst_func.c env_parser.c helpers1.c
+SRC_FILES = main.c builtin_clear.c builtin_pwd.c init.c input.c errors.c\
+env_lst_func.c env_parser.c helpers1.c p_prompts.c
 SRCS = $(addprefix src/, $(SRC_FILES))
 
 OFOLDER = objs
