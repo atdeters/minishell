@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 16:54:59 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 19:33:31 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 char	*get_input(t_data *data)
 {
 	char	*input;
+	char	rl_prompt[PATH_MAX + RL_PROMPT_MAX];
 
-	p_prompt(data);
+	ft_bzero(rl_prompt, sizeof(rl_prompt));
+	add_prompt(data, rl_prompt);
 	if (SHOW_FOLDER)
-		p_folder();
+		add_folder(rl_prompt);
 	if (SHOW_GIT)
-		p_git();
-	input = readline(RESET);
+		add_git(rl_prompt);
+	ft_strcat(rl_prompt, RESET);
+	// printf("%s", RESET);
+
+	input = readline(rl_prompt);
 	return (input);
 }

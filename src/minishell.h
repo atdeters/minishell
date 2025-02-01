@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 16:57:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 19:29:28 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINISHELL_H
 
 //// LIBRARIES
-# include <linux/limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdbool.h>
@@ -69,6 +68,11 @@ typedef struct s_data
 	t_env_lst			*env_lst;
 	// return after parsing
 	char				**prompt;
+	/**
+	 * Length of the succ_color_string
+	 */
+	int					succ_color_len;
+	int					fail_color_len;
 
 }						t_data;
 
@@ -79,6 +83,16 @@ void					clear(void);
 // builtin_pwd.c
 void					pwd(void);
 int						get_pwd(char buff[PATH_MAX], bool clean);
+
+// errors.c
+int						p_err(int code);
+
+// helpers1.c
+int						count_slash(char *path);
+/**
+ * Unsafe version of a strlcat. Just protect before the use if needed.
+ */
+int						ft_strcat(char *dst, const char *src);
 char					*allo_strcat(const char *s1, const char *s2);
 /**
  * @brief Removes the newline character (`\n`) from the end of a string,
@@ -95,12 +109,6 @@ char					*allo_strcat(const char *s1, const char *s2);
  */
 char					*rid_of_nl(char *str);
 
-// errors.c
-int						p_err(int code);
-
-// helpers1.c
-int						count_slash(char *path);
-
 // init.c
 int						init_shell(t_data *data);
 
@@ -108,11 +116,11 @@ int						init_shell(t_data *data);
 char					*get_input(t_data *data);
 
 // p_prompts.c
-void					p_prompt(t_data *data);
-void					p_branch(char *line);
-int						p_folder(void);
-int						p_git(void);
-int						p_git2(char *path);
+void					add_prompt(t_data *data, char *rl_prompt);
+int						add_folder(char *rl_prompt);
+int						add_git(char *rl_prompt);
+int						add_git2(char *path, char *rl_prompt);
+void					add_branch(char *line, char *rl_prompt);
 
 // env_lst_funcs
 t_env_lst				*ft_env_lstnew(char *f, char *v);
