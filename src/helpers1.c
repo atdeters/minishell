@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:19:25 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 19:10:41 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 20:14:54 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,24 @@ char	*rid_of_nl(char *str)
 		i++;
 	}
 	return (str);
+}
+
+int	ft_strcpy(char *dest, const char *src)
+{
+	int	i;
+	int	y;
+
+	if (!dest || !src)
+		return (-1);
+	i = 0;
+	y = 0;
+	while (src[y])
+		y++;
+	while (i < y)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (y);
 }

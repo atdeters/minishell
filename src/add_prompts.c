@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_prompts.c                                        :+:      :+:    :+:   */
+/*   add_prompts.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:54:44 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 19:32:48 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 20:29:31 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	add_prompt(t_data *data, char *rl_prompt)
 {
 	if (data->exit_status)
-		ft_strlcpy(rl_prompt, FAIL_COLOR, data->fail_color_len + 1);
+		start_ansi(rl_prompt, FAIL_COLOR);
 	else
-		ft_strlcpy(rl_prompt, SUCC_COLOR, data->succ_color_len + 1);
+		start_ansi(rl_prompt, SUCC_COLOR);
 	ft_strcat(rl_prompt, PROMPT);
 	ft_strcat(rl_prompt, " ");
 }
@@ -28,7 +28,7 @@ int	add_folder(char *rl_prompt)
 
 	if (SHOW_FOLDER && get_pwd(cwd, true))
 		return (1);
-	ft_strcat(rl_prompt, CWD_COLOR);
+	add_ansi(rl_prompt, CWD_COLOR);
 	ft_strcat(rl_prompt, cwd);
 	ft_strcat(rl_prompt, " ");
 	return (0);
@@ -94,10 +94,10 @@ void	add_branch(char *line, char *rl_prompt)
 
 	branch = ft_strrchr(line, '/') + 1;
 	branch = rid_of_nl(branch);
-	ft_strcat(rl_prompt, GIT_COLOR);
+	add_ansi(rl_prompt, GIT_COLOR);
 	ft_strcat(rl_prompt, "git:(");
-	ft_strcat(rl_prompt, GIT_COLOR_BRANCH);
+	add_ansi(rl_prompt, GIT_COLOR_BRANCH);
 	ft_strcat(rl_prompt, branch);
-	ft_strcat(rl_prompt, GIT_COLOR);
+	add_ansi(rl_prompt, GIT_COLOR);
 	ft_strcat(rl_prompt, ") ");
 }

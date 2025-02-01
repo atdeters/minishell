@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 19:29:28 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 20:18:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,21 @@ typedef struct s_data
 	t_env_lst			*env_lst;
 	// return after parsing
 	char				**prompt;
-	/**
-	 * Length of the succ_color_string
-	 */
-	int					succ_color_len;
-	int					fail_color_len;
 
 }						t_data;
 
 //// FUNCTION-FILES
+// add_ansi.c
+void					start_ansi(char *rl_prompt, char *color);
+void					add_ansi(char *rl_prompt, char *color);
+
+// add_prompts.c
+void					add_prompt(t_data *data, char *rl_prompt);
+int						add_folder(char *rl_prompt);
+int						add_git(char *rl_prompt);
+int						add_git2(char *path, char *rl_prompt);
+void					add_branch(char *line, char *rl_prompt);
+
 // builtin_clear.c
 void					clear(void);
 
@@ -108,19 +114,13 @@ char					*allo_strcat(const char *s1, const char *s2);
  * trailing newline replaced by `\0`.
  */
 char					*rid_of_nl(char *str);
+int						ft_strcpy(char *dest, const char *src);
 
 // init.c
 int						init_shell(t_data *data);
 
 // input.c
 char					*get_input(t_data *data);
-
-// p_prompts.c
-void					add_prompt(t_data *data, char *rl_prompt);
-int						add_folder(char *rl_prompt);
-int						add_git(char *rl_prompt);
-int						add_git2(char *path, char *rl_prompt);
-void					add_branch(char *line, char *rl_prompt);
 
 // env_lst_funcs
 t_env_lst				*ft_env_lstnew(char *f, char *v);
