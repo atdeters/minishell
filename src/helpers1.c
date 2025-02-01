@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:19:25 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 16:20:55 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 19:10:41 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,29 @@ int	count_slash(char *path)
 		i++;
 	}
 	return (counter);
+}
+
+int	ft_strcat(char *dst, const char *src)
+{
+	int		i;
+	int		src_len;
+	size_t	k;
+
+	if (!dst || !src)
+		return (-1);
+	i = 0;
+	src_len = 0;
+	k = 0;
+	while (dst[i])
+		i++;
+	while (src[src_len])
+		src_len++;
+	while (src[k])
+	{
+		dst[i + k] = src[k];
+		k++;
+	}
+	return (i + src_len);
 }
 
 char	*allo_strcat(const char *s1, const char *s2)
