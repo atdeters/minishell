@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 20:18:12 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/01 20:34:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,13 @@ int						ft_strcpy(char *dest, const char *src);
 int						init_shell(t_data *data);
 
 // input.c
+/**
+ * The functions in here a built in a way, that the program does not
+ * stop if anything fails in between but it will still have no leaks 
+ * or segmentation faulty. The prompt will display incorrectly, but
+ * the program is still going to run properly so there is no need to 
+ * terminate it.
+ */
 char					*get_input(t_data *data);
 
 // env_lst_funcs
