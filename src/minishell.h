@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/10 18:21:21 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/10 18:27:48 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ char					*get_pwd_alloc(bool clean);
 
 // errors.c
 int						p_err(int code);
+
+// get_git.c
+char					*get_git_alloc(void);
 
 // helpers1.c
 int						count_slash(char *path);

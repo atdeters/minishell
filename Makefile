@@ -9,7 +9,7 @@ CFLAGS = -Wall -Wextra -g # -Werror
 LDFLAGS = -lreadline
 
 SRC_FILES = main.c builtin_clear.c builtin_pwd.c init.c input.c errors.c\
-env_lst_func.c env_parser.c helpers1.c add_prompts.c add_ansi.c
+env_lst_func.c env_parser.c helpers1.c add_prompts.c add_ansi.c get_git.c
 SRCS = $(addprefix src/, $(SRC_FILES))
 
 OFOLDER = objs
