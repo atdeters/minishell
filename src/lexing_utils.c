@@ -1,15 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexing_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/10 19:53:53 by vsenniko          #+#    #+#             */
+/*   Updated: 2025/02/10 19:59:50 by vsenniko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lexing.h"
 
-int	ft_is_space(char ch)
+t_token	*create_token(int type, char *value)
 {
-	if (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\v' || ch == '\f' || ch == '\r')
-		return (1);
-	return (0);
-}
-
-t_token	*create_token(token_type type, char *value)
-{
-	t_token *token;
+	t_token	*token;
 
 	token = malloc(sizeof(t_token));
 	if (!token)

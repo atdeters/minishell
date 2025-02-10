@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexing_utils_2.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
+/*   Updated: 2025/02/10 19:54:28 by vsenniko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lexing.h"
 
 int	handle_special_char(char *input, t_token **current, int *i)
@@ -87,9 +99,8 @@ int	handle_double_quotes(int *i, char *input, t_token **current)
 		return (0);
 	}
 	(*i)++;
-	return handle_nested_double_quotes(i, input, current);
+	return (handle_nested_double_quotes(i, input, current));
 }
-
 
 int	handle_word(int *i, char *input, t_token **current)
 {
@@ -97,8 +108,9 @@ int	handle_word(int *i, char *input, t_token **current)
 	char	*word;
 
 	start = *i;
-	while (input[*i] && !ft_is_space(input[*i]) && input[*i] != '\'' && input[*i] != '"'
-		&& input[*i] != '$' && input[*i] != '|' && input[*i] != '<' && input[*i] != '>')
+	while (input[*i] && !ft_is_space(input[*i]) && input[*i] != '\''
+		&& input[*i] != '"' && input[*i] != '$' && input[*i] != '|'
+		&& input[*i] != '<' && input[*i] != '>')
 		(*i)++;
 	word = ft_substr(input, start, (*i) - start);
 	if (!word)

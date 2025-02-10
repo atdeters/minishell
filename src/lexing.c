@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexing.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/10 19:54:11 by vsenniko          #+#    #+#             */
+/*   Updated: 2025/02/10 19:54:39 by vsenniko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lexing.h"
 
 static int	process_token(char *input, t_token **current, int *i)
 {
-	if (input[*i] == '$' || input[*i] == '|' || input[*i] == '<' || input[*i] == '>')
+	if (input[*i] == '$' || input[*i] == '|' || input[*i] == '<'
+		|| input[*i] == '>')
 	{
 		if (!handle_special_char(input, current, i))
 			return (0);
@@ -27,7 +40,7 @@ static int	process_token(char *input, t_token **current, int *i)
 
 int	lexing(char *input, t_token **list)
 {
-	t_token *current;
+	t_token	*current;
 	int		i;
 
 	i = 0;
@@ -45,4 +58,3 @@ int	lexing(char *input, t_token **list)
 	}
 	return (1);
 }
-
