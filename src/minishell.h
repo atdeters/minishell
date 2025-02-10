@@ -24,6 +24,7 @@
 //// HEADERFILES
 # include "./libft/libft.h"
 # include "config.h"
+# include "lexing/lexing.h"
 
 //// ENUMS
 enum					e_errors
