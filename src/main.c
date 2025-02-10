@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 19:39:27 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/10 16:34:17 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(void)
 		data.input = get_input(&data);
 		if (data.input && !ft_strncmp(data.input, "clear", 5))
 			clear();
+		else if (data.input && !ft_strncmp(data.input, "pwd", 3))
+			pwd();
 		free(data.input);
 	}
 }
