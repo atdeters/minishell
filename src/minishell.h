@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/10 18:27:48 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/10 18:52:51 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 //// HEADERFILES
 # include "./libft/libft.h"
 # include "config.h"
-# include "lexing/lexing.h"
+# include "lexing.h"
 
 //// ENUMS
 enum					e_errors
