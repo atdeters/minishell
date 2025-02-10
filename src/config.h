@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:38 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 20:46:36 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/10 18:23:38 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,28 @@
 // #  define PROMPT "➜"
 # endif
 
+# ifndef PROMPT_SPACE
+#  define PROMPT_SPACE "  "
+# endif
+
 # ifndef SHOW_FOLDER
 #  define SHOW_FOLDER true
 # endif
 
+# ifndef FOLDER_SPACE
+#  define FOLDER_SPACE " "
+# endif
+
 # ifndef SHOW_GIT
 #  define SHOW_GIT true
+# endif
+
+# ifndef GIT_LEN_NO_BRANCH
+#  define GIT_LEN_NO_BRANCH 7
+# endif
+
+# ifndef ANSI_SHELL_LEN
+#  define ANSI_SHELL_LEN 8
 # endif
 
 # ifndef PATH_MAX
@@ -50,6 +66,10 @@
 
 # ifndef RL_PROMPT_MAX
 #  define RL_PROMPT_MAX 1024
+# endif
+
+# ifndef EMERGENCY_PROMPT
+#  define EMERGENCY_PROMPT "vash> "
 # endif
 
 #endif
