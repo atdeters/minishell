@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/10 18:52:51 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/10 18:55:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ char					*add_ansi(char *rl_prompt, char *color);
 // add_prompts.c
 char					*add_prompt(t_data *data, char *rl_prompt);
 char					*add_folder(char *rl_prompt, char *path);
-char					*get_git_alloc(void);
 int						add_git2(char *path);
 char					*add_branch(char *rl_prompt, char *branch);
 
