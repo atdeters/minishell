@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/01 20:34:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/10 18:21:21 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,22 +73,23 @@ typedef struct s_data
 
 //// FUNCTION-FILES
 // add_ansi.c
-void					start_ansi(char *rl_prompt, char *color);
-void					add_ansi(char *rl_prompt, char *color);
+char					*start_ansi(char *rl_prompt, char *color);
+char					*add_ansi(char *rl_prompt, char *color);
 
 // add_prompts.c
-void					add_prompt(t_data *data, char *rl_prompt);
-int						add_folder(char *rl_prompt);
-int						add_git(char *rl_prompt);
-int						add_git2(char *path, char *rl_prompt);
-void					add_branch(char *line, char *rl_prompt);
+char					*add_prompt(t_data *data, char *rl_prompt);
+char					*add_folder(char *rl_prompt, char *path);
+char					*get_git_alloc(void);
+int						add_git2(char *path);
+char					*add_branch(char *rl_prompt, char *branch);
 
 // builtin_clear.c
 void					clear(void);
 
 // builtin_pwd.c
 void					pwd(void);
-int						get_pwd(char buff[PATH_MAX], bool clean);
+char					*get_pwd_alloc(bool clean);
+//int						get_pwd(char buff[PATH_MAX], bool clean);
 
 // errors.c
 int						p_err(int code);
