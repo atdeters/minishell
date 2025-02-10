@@ -31,5 +31,10 @@ t_token	*create_token(token_type type, char *value);
 t_token	*ft_token_lstlast(t_token *lst);
 void	ft_token_lstadd_back(t_token **lst, t_token *new);
 void	ft_token_lstclear(t_token **lst);
-
+int	handle_special_char(char *input, t_token **current, int *i);
+int	handle_single_quote(int *i, char *input, t_token **current);
+int	handle_nested_double_quotes(int *i, char *input, t_token **current);
+int	handle_double_quotes(int *i, char *input, t_token **current);
+int	handle_word(int *i, char *input, t_token **current);
+int	lexing(char *input, t_token **list);
 #endif

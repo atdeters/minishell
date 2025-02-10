@@ -31,19 +31,15 @@ int	main(void)
 
 // int	main(int argc, char **argv, char **env)
 // {
-// 	t_data		data;
-// 	t_env_lst	*node;
+// 	t_data	data;
 
-// 	(void)argc;
-// 	(void)argv;
 // 	if (init_shell(&data))
 // 		return (p_err(INIT));
-// 	parse_env(&data, env);
-// 	node = data.env_lst;
-// 	while (node)
+// 	while (true)
 // 	{
-// 		printf("%s=%s\n", node->filed, node->value);
-// 		node = node->next;
+// 		data.input = get_input(&data);
+// 		if (data.input && !ft_strncmp(data.input, "clear", 5))
+// 			clear();
+// 		free(data.input);
 // 	}
-// 	ft_env_lstclear(&data.env_lst);
 // }
