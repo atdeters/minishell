@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 18:32:59 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 19:43:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,15 @@ typedef struct s_data
 	t_env_lst			*env_lst;
 	// return after parsing
 	char				**prompt;
+	/**
+	 * @brief The next pipe that will be opened
+	 */
+	int					next_pipe;
+	/**
+	 * 2D Array of maximum possible file descriptors (limited by 
+	 * FD_LIMIT).
+	 */
+	int					fd[FD_LIMIT][2];
 
 }						t_data;
 
