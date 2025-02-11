@@ -17,9 +17,10 @@ COMP = cc
 CFLAGS ?= -Wall -Wextra -Werror -g
 LDFLAGS = -lreadline
 
-SRC_FILES = main.c builtin_clear.c builtin_pwd.c init.c input.c errors.c\
-env_lst_func.c env_parser.c helpers1.c add_prompts.c add_ansi.c get_git.c \
-lexing.c lexing_utils.c lexing_utils_2.c lexing_utils_3.c
+SRC_FILES = main.c builtin_cd.c builtin_clear.c builtin_pwd.c init.c\
+input.c errors.c env_lst_func.c env_parser.c helpers1.c add_prompts.c\
+add_ansi.c get_git.c lexing.c lexing_utils.c lexing_utils_2.c lexing_utils_3.c
+
 SRCS = $(addprefix src/, $(SRC_FILES))
 
 OFOLDER = objs
