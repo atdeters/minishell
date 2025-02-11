@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 20:25:34 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 20:33:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,13 @@
 enum					e_errors
 {
 	/**
-		* @brief Minishell failed to initialize
-		*/
-	INIT = 1,
+	 * @brief Minishell failed to initialize
+	 */
+	INIT_PROG = 1,
+	/**
+	 * Current command failed to initialize
+	 */
+	INIT_COM = 2,
 };
 
 //// STRUCTS

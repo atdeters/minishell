@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 20:31:12 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 20:42:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,18 @@ int	main(void)
 	t_data	data;
 
 	if (init_shell(&data))
-		return (p_err(INIT));
+		return (p_err(INIT_PROG));
 	while (true)
 	{
+		if (init_command(&data))
+			return (p_err(INIT_COM));
 		data.input = get_input(&data);
 		if (data.input && !ft_strncmp(data.input, "clear", 5))
 			clear();
 		else if (data.input && !ft_strncmp(data.input, "pwd", 3))
 			pwd();
 		free(data.input);
+		
 	}
 }
 
