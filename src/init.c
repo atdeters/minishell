@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 20:13:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 21:31:16 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	init_fd_arr(t_data *data);
 int	init_command(t_data *data)
 {
 	data->n_pipe = 0;
+	data->n_pid = 0;
 	init_fd_arr(data);
 	// Count how many processes are needed -> set data->processes
 	// Count how many pipes needed -> set data->pipes_amount
+	// Use the pipe function on the array of fds
 	return (0);
 }
 
@@ -41,5 +43,6 @@ void	init_fd_arr(t_data *data)
 	{
 		data->fd[i][0] = -1;
 		data->fd[i][1] = -1;
+		i++;
 	}
 }

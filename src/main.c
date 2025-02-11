@@ -6,15 +6,33 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 20:45:16 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 21:32:55 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	execute(t_data *data, int fd_in, int fd_out, char **command)
+{
+	data->pid[data->n_pid] = fork();
+	if (data->pid[data->n_pid] == -1)
+		return (p_err(FORK));
+	if (data->pid[data->n_pid] == 0)
+	{
+		if (cool_dup(data, fd_in, fd_out))
+			return (p_err(DUP));
+		if (execve(command[0], command, NULL) == -1)
+			exit(p_err(EXEC));
+	}
+	data->n_pid++;
+	return (0);
+}
+
 int	main(void)
 {
 	t_data	data;
+
+	char *com[] = { "/usr/bin/cat", NULL };
 
 	if (init_shell(&data))
 		return (p_err(INIT_PROG));
@@ -27,6 +45,14 @@ int	main(void)
 			clear();
 		else if (data.input && !ft_strncmp(data.input, "pwd", 3))
 			pwd();
+
+		data.pipes_amount = 1;
+		data.fd[0][0] = open("Makefile", O_RDONLY);
+		data.fd[0][1] = open("outfile", O_WRONLY | O_CREAT | O_APPEND, 0644);
+		execute(&data, data.fd[0][0], data.fd[0][1], com);
+		close_all(&data);
+		wait_all(&data);
+
 		free(data.input);
 	}
 }

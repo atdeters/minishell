@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 20:33:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 21:29:25 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@
 # include "lexing.h"
 
 //// MAKROS
-# ifndef FD_LIMIT
-#  define FD_LIMIT 508
-# endif
+# define FD_LIMIT 508
+// Random number so far; not limited by the FD_LIMIT like in pipex
+# define MAX_PROCS 1024
 
 //// ENUMS
 enum					e_errors
@@ -43,6 +43,9 @@ enum					e_errors
 	 * Current command failed to initialize
 	 */
 	INIT_COM = 2,
+	EXEC = 3,
+	DUP = 4,
+	FORK = 5,
 };
 
 //// STRUCTS
@@ -98,6 +101,14 @@ typedef struct s_data
 	 * function will be called
 	 */
 	int					processes;
+	/**
+	 * Array of pids
+	 */
+	int					pid[MAX_PROCS];
+	/**
+	 * Next index in the pid array
+	 */
+	int					n_pid;
 
 }						t_data;
 
@@ -346,6 +357,7 @@ int						ft_strcpy(char *dest, const char *src);
  * @brief Initializes the mini shell program
  */
 int						init_shell(t_data *data);
+int						init_command(t_data *data);
 
 // input.c
 /**
@@ -403,9 +415,11 @@ void					parse_env(t_data *data, char **env);
  * Redirects the fd_in to STDIN and fd_out to STDOUT. If fd_in is equal
  * to STDIN or fd_out is equal to STDOUT, they will do nothing.
  * 
- * It closes fd_in and fd_out afterwards
+ * It closes all open pipes afterwards
  * 
  */
-int						cool_dup(int fd_in, int fd_out);
+void					wait_all(t_data *data);
+void					close_all(t_data *data);
+int						cool_dup(t_data *data, int fd_in, int fd_out);
 
 #endif
