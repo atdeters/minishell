@@ -56,4 +56,7 @@ int					handle_word(int *i, char *input, t_token **current);
 int					lexing(char *input, t_token **list);
 int					handle_dolar(char *input, t_token **current, int *i,
 						char **word);
+int					handle_delim(char *input, t_token **current, int *i,
+						 char **word);
+
 #endif

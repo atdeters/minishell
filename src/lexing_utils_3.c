@@ -35,3 +35,21 @@ int	handle_dolar(char *input, t_token **current, int *i, char **word)
 	*current = create_token(DOLAR_SIGN, *word);
 	return (1);
 }
+
+int	handle_delim(char *input, t_token **current, int *i, char **word)
+{
+	int j;
+
+	*i += 2;
+	j = *i;
+	while (input[*i] && input[*i + 1] && !ft_is_space(input[*i + 1])
+		&& input[*i + 1] != '<' && input[*i + 1] != '>'
+		&& input[*i + 1] != '|' && input[*i + 1] != '$'
+		&& input[*i + 1] != '\"' && input[*i + 1] != '\'') 
+		(*i)++;
+	*word = ft_substr(input, j, *i - j + 1);
+	if (!*word)
+		return (*word = NULL, 0);
+	*current = create_token(DELIMITER, *word);
+	return (1);
+}

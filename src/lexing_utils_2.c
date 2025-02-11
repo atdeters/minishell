@@ -24,10 +24,7 @@ int	handle_special_char(char *input, t_token **current, int *i)
 	else if (input[*i] == '<' && input[*i + 1] != '<')
 		*current = create_token(REDIR_IN, NULL);
 	else if (input[*i] == '<' && input[*i + 1] == '<')
-	{
-		(*i)++;
-		*current = create_token(DELIMITER, NULL);
-	}
+		return (handle_delim(input, current, i, &word));
 	else if (input[*i] == '>' && input[*i + 1] != '>')
 		*current = create_token(REDIR_OUT, NULL);
 	else if (input[*i] == '>' && input[*i + 1] == '>')
