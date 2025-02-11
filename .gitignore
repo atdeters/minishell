@@ -1,3 +1,7 @@
 # Object and archive files
 *.o
 *.a
+
+# Executables
+mini
+minishell
