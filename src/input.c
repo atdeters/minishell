@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 10:57:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 12:52:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	rl_prompt_len(t_data *data, char *path, char *branch)
 		len += ft_strlen(GIT_COLOR_BRANCH) + ANSI_SHELL_LEN;
 		len += ft_strlen(branch);
 		len += GIT_LEN_NO_BRANCH;
+		len += ft_strlen(GIT_SPACE);
 	}
 	len += ft_strlen(RESET) + ANSI_SHELL_LEN;
 	return (len);

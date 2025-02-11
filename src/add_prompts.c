@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:54:44 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/10 18:27:24 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 12:52:02 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*add_branch(char *rl_prompt, char *branch)
 	add_ansi(rl_prompt, GIT_COLOR_BRANCH);
 	ft_strcat(rl_prompt, branch);
 	add_ansi(rl_prompt, GIT_COLOR);
-	ft_strcat(rl_prompt, ") ");
+	ft_strcat(rl_prompt, ")");
+	ft_strcat(rl_prompt, GIT_SPACE);
 	return (rl_prompt);
 }
