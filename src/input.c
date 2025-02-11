@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 16:42:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:58:39 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ int	rl_prompt_len(t_data *data, char *path, char *branch)
 	return (len);
 }
 
+/**
+ * @brief Little helper function to free the paramters put into it
+ */
 void	clear_input_func(char *rl_prompt, char *path, char *branch)
 {
 	if (path)
