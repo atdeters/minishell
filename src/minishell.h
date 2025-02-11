@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 16:51:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 17:06:17 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,12 +204,55 @@ void					clear(void);
  */
 void					pwd(void);
 /**
+ * @brief Retrieves a dynamically allocated string containing the current
+ * working directory and optionally cleans it.
  * 
+ * This function uses `getcwd()` to get the current working directory and
+ * returns a dynamically allocated string representing the current directory
+ * path. If the `clean` parameter is set to `true`, the function will clean
+ * the directory path by extracting the last component (i.e., the folder or
+ * file name after the final `/`) and returning it. If `clean` is `false`,
+ * the full path is returned.
+ * 
+ * @param clean A boolean flag that determines whether to return the full path
+ * or just the last component.
+ *
+ *              - If `true`, returns only the last part of the current working
+ * directory.
+ *
+ *              - If `false`, returns the full path.
+ * 
+ * @return A pointer to the dynamically allocated string containing the desired
+ * directory path or component.
+ *         - If the `getcwd()` function fails or returns NULL,
+ * `NULL` is returned.
+ * 
+ *         - If `clean` is `true`, a pointer to a newly allocated string with
+ * only the last component of the path.
+ * 
+ *         - If `clean` is `false`,
+ * a pointer to the full current directory path.
+ * 
+ * @note The returned pointer should be freed
+ * by the caller to avoid memory leaks.
  */
 char					*get_pwd_alloc(bool clean);
-//int						get_pwd(char buff[PATH_MAX], bool clean);
 
 // errors.c
+/**
+ * @brief Handles error reporting based on a given error code.
+ * 
+ * This function checks the provided error `code` and prints an error message
+ * to standard error (`stderr`) based on the value of the code. The function
+ * then returns the provided error code to the caller. Ideally this error
+ * code is used as exit status of the program.
+ * 
+ * @param code An integer representing an error code that determines which
+ * message is printed. Specific error codes may have predefined messages.
+ * Valid error codes are part of the errors enum (`e_errors`)
+ * 
+ * @return The same error code that was passed as input.
+ */
 int						p_err(int code);
 
 // get_git.c
@@ -236,6 +279,15 @@ char					*allo_strcat(const char *s1, const char *s2);
  * trailing newline replaced by `\0`.
  */
 char					*rid_of_nl(char *str);
+/**
+ * @brief `UNSAFE` copying of a string
+ * 
+ * The `ft_strcpy()` function copies the string pointed to by src,
+ * including the terminating null byte (`\0`), to the buffer pointed
+ * to by dest.
+ * The strings may not overlap, and the destination string dest must
+ * be large enough to receive the copy.  Beware of buffer overruns!
+ */
 int						ft_strcpy(char *dest, const char *src);
 
 // init.c
