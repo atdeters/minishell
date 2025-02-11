@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:38 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 12:52:14 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 12:59:01 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 # define CONFIG_H
 
 // rl_prompt config - PROMPT
-# define SUCC_COLOR "\033[1;32m"
-# define FAIL_COLOR "\033[1;91m"
+# ifndef SUCC_COLOR
+#  define SUCC_COLOR "\033[1;32m"
+# endif
+
+# ifndef FAIL_COLOR
+#  define FAIL_COLOR "\033[1;91m"
+# endif
 
 # ifndef PROMPT
-#  define PROMPT "vash>"
+#  define PROMPT "\001\001➜\002\002"
 # endif
 
 # ifndef PROMPT_SPACE
@@ -30,7 +35,9 @@
 # endif
 
 // rl_prompt config - FOLDER
-# define CWD_COLOR "\033[1;36m"
+# ifndef CWD_COLOR
+#  define CWD_COLOR "\033[1;36m"
+# endif
 
 # ifndef SHOW_FOLDER
 #  define SHOW_FOLDER true
@@ -45,8 +52,13 @@
 # endif
 
 // rl_prompt config - GIT
-# define GIT_COLOR "\033[1;34m"
-# define GIT_COLOR_BRANCH "\033[1;91m"
+# ifndef GIT_COLOR
+#  define GIT_COLOR "\033[1;34m"
+# endif
+
+# ifndef GIT_COLOR_BRANCH
+#  define GIT_COLOR_BRANCH "\033[1;91m"
+# endif
 
 # ifndef SHOW_GIT
 #  define SHOW_GIT true
@@ -60,7 +72,6 @@
 #  define GIT_SPACE " "
 # endif
 
-# ifndef GIT_LEN_NO_BRANCH
 /**
  * @brief Base length of the git prompt segment, excluding the branch name.
  * 
@@ -72,14 +83,18 @@
  * Example: If the git prompt format is "git:(branch)", this constant
  * would be 7 to account for "git:(" and ")".
  * 
+ * As this format is currently hardcoded into the program and can not be
+ * changed in the config this value should not be changed. It could lead
+ * to memory allocation fails otherwise
  */
-#  define GIT_LEN_NO_BRANCH 6
-# endif
+# define GIT_LEN_NO_BRANCH 6
 
 // global stuff
+/**
+ * @brief Resets the colors/formatting of the terminal output
+ */
 # define RESET "\033[0m"
 
-# ifndef ANSI_SHELL_LEN
 /**
  * @brief Length of the readline non-printing character markers that
  * encapsulate ANSI escape sequences.
@@ -93,8 +108,7 @@
  * This macro defines the total length of these marker characters 
  * (4 bytes each, totaling 8 bytes) for memory allocation purposes.
  */
-#  define ANSI_SHELL_LEN 8
-# endif
+# define ANSI_SHELL_LEN 8
 
 # ifndef EMERGENCY_PROMPT
 /**
