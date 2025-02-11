@@ -8,7 +8,7 @@ DEFINES =	-D SHOW_FOLDER=$(SHOW_FOLDER)\
 			-D SHOW_GIT=$(SHOW_GIT)\
 
 COMP = cc
-CFLAGS = -Wall -Wextra -g # -Werror
+CFLAGS ?= -Wall -Wextra -Werror -g
 LDFLAGS = -lreadline
 
 SRC_FILES = main.c builtin_clear.c builtin_pwd.c init.c input.c errors.c\
@@ -59,4 +59,7 @@ basic: SHOW_FOLDER=false
 basic: SHOW_GIT=false
 basic: all
 
-.PHONY: all clean fclean re tidy basic
+no-flags: CFLAGS=""
+no-flags: all
+
+.PHONY: all clean fclean re tidy basic no-flags
