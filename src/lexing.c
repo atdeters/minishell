@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:11 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/10 19:54:39 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/11 14:07:19 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	lexing(char *input, t_token **list)
 		while (input[i] && ft_is_space(input[i]))
 			i++;
 		if (!input[i])
-			return (0);
+			return (1);
 		if (!process_token(input, &current, &i))
 			return (0);
 		ft_token_lstadd_back(list, current);
