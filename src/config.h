@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:38 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/10 18:23:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 10:51:23 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,6 @@
 
 # ifndef ANSI_SHELL_LEN
 #  define ANSI_SHELL_LEN 8
-# endif
-
-# ifndef PATH_MAX
-#  define PATH_MAX 4096
-# endif
-
-# ifndef RL_PROMPT_MAX
-#  define RL_PROMPT_MAX 1024
 # endif
 
 # ifndef EMERGENCY_PROMPT
