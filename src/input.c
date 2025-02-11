@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/10 18:45:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 10:57:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ char	*get_input(t_data *data)
 	char	*path;
 	char	*branch;
 
+	path = NULL;
+	branch = NULL;
 	if (SHOW_FOLDER)
 		path = get_pwd_alloc(true);
 	if (SHOW_GIT)

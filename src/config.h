@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:38 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 10:51:23 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 10:55:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
  */
 # ifndef PROMPT
 #  define PROMPT "vash>"
-// #  define PROMPT "➜"
+// #  define PROMPT "\001\➜"
 # endif
 
 # ifndef PROMPT_SPACE
