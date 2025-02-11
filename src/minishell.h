@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 20:08:57 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 20:25:34 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/wait.h>
 
 //// HEADERFILES
 # include "./libft/libft.h"
@@ -79,10 +80,20 @@ typedef struct s_data
 	 */
 	int					n_pipe;
 	/**
+	 * Amount of pipes needed for a given command
+	 */
+	int					pipes_amount;
+	/**
 	 * 2D Array of maximum possible file descriptors (limited by 
 	 * FD_LIMIT).
 	 */
 	int					fd[FD_LIMIT][2];
+	/**
+	 * The amount of processes a given command needs to be executed
+	 * properly. This defines how often the `fork()` and the `wait_pid()`
+	 * function will be called
+	 */
+	int					processes;
 
 }						t_data;
 

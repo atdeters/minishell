@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 19:58:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 20:13:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	init_command(t_data *data)
 {
 	data->n_pipe = 0;
 	init_fd_arr(data);
-	// Count how many pipes needed
+	// Count how many processes are needed -> set data->processes
+	// Count how many pipes needed -> set data->pipes_amount
 	return (0);
 }
 
