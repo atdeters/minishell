@@ -1,6 +1,6 @@
 NAME = mini
 
-# Overridable Defines
+# Overridable Makros
 SHOW_FOLDER	?=	true
 SHOW_GIT	?=	true
 
