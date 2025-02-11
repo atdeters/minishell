@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 20:42:04 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 20:45:16 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	main(void)
 		else if (data.input && !ft_strncmp(data.input, "pwd", 3))
 			pwd();
 		free(data.input);
-		
 	}
 }
 
