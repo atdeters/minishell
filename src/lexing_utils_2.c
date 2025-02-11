@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/10 19:54:28 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/11 14:09:03 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,36 @@
 
 int	handle_special_char(char *input, t_token **current, int *i)
 {
+	char	*word;
+
+	word = NULL;
 	if (input[*i] == '$')
-		*current = create_token(DOLAR_SIGN, NULL);
+		return (handle_dolar(input, current, i, &word));
 	else if (input[*i] == '|')
 		*current = create_token(PIPE, NULL);
-	else if (input[*i] == '<')
+	else if (input[*i] == '<' && input[*i + 1] != '<')
 		*current = create_token(REDIR_IN, NULL);
-	else if (input[*i] == '>')
+	else if (input[*i] == '<' && input[*i + 1] == '<')
+	{
+		(*i)++;
+		*current = create_token(DELIMITER, NULL);
+	}
+	else if (input[*i] == '>' && input[*i + 1] != '>')
 		*current = create_token(REDIR_OUT, NULL);
+	else if (input[*i] == '>' && input[*i + 1] == '>')
+	{
+		(*i)++;
+		*current = create_token(REDIR_APPEND, NULL);
+	}
 	if (!(*current))
-		return (0);
+		return (free(word), 0);
 	return (1);
 }
 
+// shoud return (some error code in case of unclosed quote?
+// (if (!input[*i]) 
+//return (0));)
+//should think about every error code in case of not closed quote
 int	handle_single_quote(int *i, char *input, t_token **current)
 {
 	int		start;
@@ -40,7 +57,7 @@ int	handle_single_quote(int *i, char *input, t_token **current)
 	word = ft_substr(input, start, (*i) - start);
 	if (!word)
 		return (0);
-	*current = create_token(WORD, word);
+	*current = create_token(SINGLE_QOUTE, word);
 	if (!*current)
 	{
 		free(word);
@@ -92,7 +109,7 @@ int	handle_double_quotes(int *i, char *input, t_token **current)
 	word = ft_substr(input, start, (*i) - start);
 	if (!word)
 		return (0);
-	*current = create_token(WORD, word);
+	*current = create_token(DOUBLE_QOUTE, word);
 	if (!*current)
 	{
 		free(word);
