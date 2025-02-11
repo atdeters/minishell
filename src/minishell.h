@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 14:59:26 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:51:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,10 +193,19 @@ char					*add_folder(char *rl_prompt, char *path);
 char					*add_branch(char *rl_prompt, char *branch);
 
 // builtin_clear.c
+/**
+ * @brief Clears the terminal screen
+ */
 void					clear(void);
 
 // builtin_pwd.c
+/**
+ * @brief Prints name of current/working directory
+ */
 void					pwd(void);
+/**
+ * 
+ */
 char					*get_pwd_alloc(bool clean);
 //int						get_pwd(char buff[PATH_MAX], bool clean);
 
