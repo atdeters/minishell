@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 17:06:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 17:55:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,15 +256,36 @@ char					*get_pwd_alloc(bool clean);
 int						p_err(int code);
 
 // get_git.c
+/**
+ * @brief Retrieves a dynamically allocated string containing the current
+ * git branch name from the repository (if pwd is a repository)
+ * 
+ * This function traverses the directories starting from the current working
+ * directory upwards, checking for the presence of a `.git/HEAD` file. 
+ * Once the `.git/HEAD` file is found, it reads its contents to extract the
+ * reference to the current git branch.
+ * 
+ * @return A pointer to a dynamically allocated string containing the git
+ * branch name, or `NULL` if the directory is not a git repository or
+ * an error occurs.
+ * 
+ * @note The returned branch name is dynamically allocated and must be freed
+ * by the caller to avoid memory leaks.
+ */
 char					*get_git_alloc(void);
 
 // helpers1.c
+/**
+ * @brief Counts the amount of slash (`/`) characters within a string `path`
+ * 
+ * It is used in the `get_git_alloc()` function to know when the current
+ * working directory is the home folder
+ */
 int						count_slash(char *path);
 /**
  * Unsafe version of a strlcat. Just protect before the use if needed.
  */
 int						ft_strcat(char *dst, const char *src);
-char					*allo_strcat(const char *s1, const char *s2);
 /**
  * @brief Removes the newline character (`\n`) from the end of a string,
  * if present.
@@ -291,15 +312,48 @@ char					*rid_of_nl(char *str);
 int						ft_strcpy(char *dest, const char *src);
 
 // init.c
+/**
+ * @brief Initializes the mini shell program
+ */
 int						init_shell(t_data *data);
 
 // input.c
 /**
- * The functions in here a built in a way, that the program does not
- * stop if anything fails in between but it will still have no leaks 
- * or segmentation faulty. The prompt will display incorrectly, but
- * the program is still going to run properly so there is no need to 
- * terminate it.
+ * @brief Retrieves the user input for the shell, constructing a prompt with
+ * dynamic elements like the current directory and git branch, and falls back
+ * to an emergency prompt if allocation fails.
+ * 
+ * This function builds the `rl_prompt` dynamically by including configurable
+ * components such as the current working directory (if `SHOW_FOLDER=true`)
+ * and git branch (if `SHOW_GIT=true`). If the `rl_prompt` allocation fails,
+ * the `EMERGENCY_PROMPT` will be used instead, ensuring that the shell remains 
+ * operational. It is defined within the `config.h` file.
+ * This behavior is designed to avoid segmentation faults, as the prompt
+ * elements will simply be omitted in case of failure, without interrupting
+ * the shell's operation.
+ * 
+ * The process includes:
+ * 
+ * - Allocating memory for the prompt
+ * 
+ * - Adding the prompt color depending of the last exit status,
+ * current directory (if enabled), and git branch (if enabled)
+ * 
+ * - Handling ANSI escape sequences for prompt formatting
+ * 
+ * - Falling back to `EMERGENCY_PROMPT` if the prompt allocation fails
+ * 
+ * @param data A pointer to the `t_data` structure, which holds the exit
+ * status and other necessary shell data.
+ * 
+ * @return A pointer to the user input string
+ * 
+ * @note The function ensures that the shell remains functional even if
+ * the prompt components (folder or Git branch) cannot be constructed
+ * due to allocation failure.
+ * 
+ * @warning The returned string (`input`) is dynamically allocated and
+ * must be freed by the caller to avoid memory leaks.
  */
 char					*get_input(t_data *data);
 
