@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:54:44 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 12:52:02 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:43:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,18 @@ char	*add_prompt(t_data *data, char *rl_prompt)
 {
 	if (!rl_prompt)
 		return (NULL);
-	if (data->exit_status)
+	if (SHOW_EXIT_COL && data->exit_status)
+	{
 		start_ansi(rl_prompt, FAIL_COLOR);
-	else
+		ft_strcat(rl_prompt, PROMPT);
+	}
+	else if (SHOW_EXIT_COL)
+	{
 		start_ansi(rl_prompt, SUCC_COLOR);
-	ft_strcat(rl_prompt, PROMPT);
+		ft_strcat(rl_prompt, PROMPT);
+	}
+	else
+		ft_strcpy(rl_prompt, PROMPT);
 	ft_strcat(rl_prompt, PROMPT_SPACE);
 	return (rl_prompt);
 }

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:38 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 12:59:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:39:00 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@
  * @brief Resets the colors/formatting of the terminal output
  */
 # define RESET "\033[0m"
+
+# ifndef SHOW_EXIT_COL
+#  define SHOW_EXIT_COL true
+# endif
 
 /**
  * @brief Length of the readline non-printing character markers that

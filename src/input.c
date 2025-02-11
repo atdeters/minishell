@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 12:52:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 16:42:30 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	rl_prompt_len(t_data *data, char *path, char *branch)
 	int	len;
 
 	len = 0;
-	if (data->exit_status)
+	if (SHOW_EXIT_COL && data->exit_status)
 		len += ft_strlen(FAIL_COLOR) + ANSI_SHELL_LEN;
-	else
+	else if (SHOW_EXIT_COL)
 		len += ft_strlen(SUCC_COLOR) + ANSI_SHELL_LEN;
 	len += ft_strlen(PROMPT);
 	len += ft_strlen(PROMPT_SPACE);

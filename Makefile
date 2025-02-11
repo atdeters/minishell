@@ -1,11 +1,17 @@
 NAME = mini
 
 # Overridable Makros
-SHOW_FOLDER	?=	true
-SHOW_GIT	?=	true
+SHOW_FOLDER		?=	true
+SHOW_GIT		?=	true
+PROMPT			?=	'"\001\001➜\002\002"'
+PROMPT_SPACE	?=	'"  "'
+SHOW_EXIT_COL 	?=	true
 
 DEFINES =	-D SHOW_FOLDER=$(SHOW_FOLDER)\
 			-D SHOW_GIT=$(SHOW_GIT)\
+			-D PROMPT=$(PROMPT)\
+			-D PROMPT_SPACE=$(PROMPT_SPACE)\
+			-D SHOW_EXIT_COL=$(SHOW_EXIT_COL)
 
 COMP = cc
 CFLAGS ?= -Wall -Wextra -Werror -g
@@ -55,6 +61,9 @@ re: fclean all
 
 tidy: all clean
 
+basic: PROMPT='"vash>"'
+basic: PROMPT_SPACE='" "'
+basic: SHOW_EXIT_COL=false
 basic: SHOW_FOLDER=false
 basic: SHOW_GIT=false
 basic: all
