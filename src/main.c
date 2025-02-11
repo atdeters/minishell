@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 15:38:47 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:29:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ ls -l | echo $path | cat>> file2 | echo '$$smt $' | cat < infile | cat \"\"
 // 	t_token *lst;
 
 // 	lst = NULL;
-// 	char *msg = "ls -l | echo $path | cat>> file2 | echo '$$smt $' | cat < infile | cat \"\"";
+// 	char *msg = "ls|cat -e<<her_doc>file1>>file2";
 // 	lexing(msg, &lst);
 // 	while (lst)
 // 	{
