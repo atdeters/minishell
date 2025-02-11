@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 10:50:58 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 14:41:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "config.h"
 # include "lexing.h"
 
+//// MAKROS
 # ifndef FD_LIMIT
 #  define FD_LIMIT 508
 # endif
@@ -78,7 +79,48 @@ typedef struct s_data
 
 //// FUNCTION-FILES
 // add_ansi.c
+/**
+ * @brief Adds ANSI color codes at the `beginning` of a readline prompt with
+ * proper escape sequences.
+ *
+ * @param rl_prompt The readline prompt string to modify
+ * @param color The ANSI color code to add to the prompt
+ * @return char* Returns the modified prompt string, or NULL if rl_prompt 
+ * is NULL
+ *
+ * This function wraps ANSI color codes with readline's non-printing
+ * character markers (\001 and \002) at the beginning of the prompt to 
+ * ensure proper line editing behavior. The function modifies the input
+ * string directly and also returns it.
+ *
+ * @warning The rl_prompt parameter must have sufficient space allocated to
+ * accommodate the additional characters.
+ * 
+ * @warning Always use this function at the beginning of the rl_prompt. If
+ * something needs to be added to an already existing rl_prompt use the 
+ * add_ansi function instead!
+ */
 char					*start_ansi(char *rl_prompt, char *color);
+/**
+ * @brief Adds ANSI color codes to a readline prompt with proper escape 
+ * sequences
+ *
+ * @param rl_prompt The readline prompt string to modify
+ * @param color The ANSI color code to add to the prompt
+ * @return char* Returns the modified prompt string, or NULL if rl_prompt 
+ * is NULL
+ *
+ * This function wraps ANSI color codes with readline's non-printing
+ * character markers (\001 and \002) to ensure proper line editing behavior.
+ * The function modifies the input string directly and also returns it.
+ *
+ * @warning The rl_prompt parameter must have sufficient space allocated to
+ * accommodate the additional characters.
+ * 
+ * @warning Always use this function to add on to an already existing rl_prompt
+ * If something needs to be added to the beginning of a new rl_prompt use the
+ * start_ansi function instead!
+ */
 char					*add_ansi(char *rl_prompt, char *color);
 
 // add_prompts.c
