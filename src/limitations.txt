@@ -1,1 +1,4 @@
 - Prompt must be \001\001charakter\002\002 to work if it is a unicode character
+- Possible performance boost would be to calculate the lenght of the prompt that
+stays the same (like the prompt) during the initialization instead of in every
+iteration of the loop.
