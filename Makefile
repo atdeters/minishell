@@ -1,15 +1,11 @@
 NAME = mini
 
 # Overridable Defines
-PROMPT ?= '"\001\001➜\002\002"'
-SHOW_FOLDER ?= true
-SHOW_GIT ?= true
+SHOW_FOLDER	?=	true
+SHOW_GIT	?=	true
 
-# Getting rid of these add-ons will be easier for the resources to handle
-# Unicode Charaters need two of the limiting Sequences
-DEFINES =	-D PROMPT=$(PROMPT)\
-			-D SHOW_FOLDER=$(SHOW_FOLDER)\
-			-D SHOW_GIT=$(SHOW_GIT)
+DEFINES =	-D SHOW_FOLDER=$(SHOW_FOLDER)\
+			-D SHOW_GIT=$(SHOW_GIT)\
 
 COMP = cc
 CFLAGS = -Wall -Wextra -g # -Werror
