@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 14:41:43 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 14:59:26 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_data
  * 
  * @warning Always use this function at the beginning of the rl_prompt. If
  * something needs to be added to an already existing rl_prompt use the 
- * add_ansi function instead!
+ * `add_ansi` function instead!
  */
 char					*start_ansi(char *rl_prompt, char *color);
 /**
@@ -119,14 +119,77 @@ char					*start_ansi(char *rl_prompt, char *color);
  * 
  * @warning Always use this function to add on to an already existing rl_prompt
  * If something needs to be added to the beginning of a new rl_prompt use the
- * start_ansi function instead!
+ * `start_ansi` function instead!
  */
 char					*add_ansi(char *rl_prompt, char *color);
 
 // add_prompts.c
+/**
+ * @brief Adds a prompt to the readline prompt string, with an optional color
+ * based on the exit status.
+ *
+ * @param data A pointer to the data structure containing the exit status
+ * @param rl_prompt The readline prompt string to modify
+ * @return char* Returns the modified prompt string, or NULL if rl_prompt 
+ * is NULL
+ *
+ * This function checks the exit status and applies a corresponding color
+ * (`FAIL_COLOR` or `SUCC_COLOR`) to the beginning of the prompt using the 
+ * `start_ansi` function. Then, it appends the prompt and a space
+ * to the readline prompt string. The space is defined as `PROMPT_SPACE`
+ * and can be changed in the config.h file.
+ * 
+ * As it uses the `start_ansi` function
+ * rather than the `add_ansi` function it is important to always start with
+ * this function when creating a new `rl_prompt`
+ *
+ * @warning The rl_prompt parameter must have sufficient space allocated to
+ * accommodate the additional characters.
+ */
 char					*add_prompt(t_data *data, char *rl_prompt);
+/**
+ * @brief Adds the current working directory path to the readline prompt
+ * with an optional color.
+ *
+ * @param rl_prompt The readline prompt string to modify
+ * @param path The current working directory path to append to the prompt
+ * @return char* Returns the modified prompt string, or NULL if rl_prompt 
+ * is NULL
+ *
+ * This function applies a color to the prompt using the `add_ansi` function
+ * and appends the specified directory path (the current working directory)
+ * to the readline prompt. A space is also added after the path. This space
+ * is defined as `FOLDER_SPACE` and can be changed in the config.h file.
+ *
+ * @note The rl_prompt parameter must have sufficient space allocated to
+ * accommodate the additional characters.
+ *
+ * @warning The function does not check for buffer overflow when concatenating
+ * strings.
+ */
 char					*add_folder(char *rl_prompt, char *path);
-int						add_git2(char *path);
+/**
+ * @brief Adds the current Git branch to the readline prompt, with appropriate
+ * colors.
+ *
+ * @param rl_prompt The readline prompt string to modify
+ * @param branch The current Git branch name to append to the prompt
+ * @return char* Returns the modified prompt string, or NULL if rl_prompt 
+ * is NULL
+ *
+ * This function applies a color to the prompt using the `add_ansi` function
+ * and appends the specified git branch to the readline prompt. A space is 
+ * also added after the branch. This space is defined as `GIT_SPACE` and
+ * can be changed in the config.h file.
+ *
+ * The modified prompt could look like:
+ *
+ * git:(main)(+GIT_SPACE)
+ * 
+ * @warning The rl_prompt parameter must have sufficient space allocated to
+ * accommodate the additional characters.
+ * 
+ */
 char					*add_branch(char *rl_prompt, char *branch);
 
 // builtin_clear.c
