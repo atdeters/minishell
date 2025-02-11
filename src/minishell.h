@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 17:55:42 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 18:14:00 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,7 +346,8 @@ int						init_shell(t_data *data);
  * @param data A pointer to the `t_data` structure, which holds the exit
  * status and other necessary shell data.
  * 
- * @return A pointer to the user input string
+ * @return A pointer to the user input string or `NULL` if the readline
+ * function fails to retrieve user input
  * 
  * @note The function ensures that the shell remains functional even if
  * the prompt components (folder or Git branch) cannot be constructed
