@@ -1,4 +1,5 @@
 # Object and archive files
+/objs
 *.o
 *.a
 
