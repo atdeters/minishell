@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/10 18:55:43 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 10:50:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 # include "./libft/libft.h"
 # include "config.h"
 # include "lexing.h"
+
+# ifndef FD_LIMIT
+#  define FD_LIMIT 508
+# endif
 
 //// ENUMS
 enum					e_errors
