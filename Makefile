@@ -55,4 +55,8 @@ re: fclean all
 
 tidy: all clean
 
-.PHONY: all clean fclean re tidy
+basic: SHOW_FOLDER=false
+basic: SHOW_GIT=false
+basic: all
+
+.PHONY: all clean fclean re tidy basic
