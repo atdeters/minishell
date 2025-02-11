@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:38 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 16:39:00 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 18:08:53 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,25 @@
 
 // rl_prompt config - PROMPT
 # ifndef SUCC_COLOR
+/**
+ * @brief Color of the prompt `PROMPT` if the option SHOW_EXIT_COL is true and
+ * the last exit status is equal to `0`
+ */
 #  define SUCC_COLOR "\033[1;32m"
 # endif
 
 # ifndef FAIL_COLOR
+/**
+ * @brief Color of the prompt `PROMPT` if the option SHOW_EXIT_COL is true and
+ * the last exit status is equal NOT to `0`
+ */
 #  define FAIL_COLOR "\033[1;91m"
 # endif
 
 # ifndef PROMPT
+/**
+ * @brief Prompt that will be shown for every line within the minishell
+ */
 #  define PROMPT "\001\001➜\002\002"
 # endif
 
@@ -36,10 +47,19 @@
 
 // rl_prompt config - FOLDER
 # ifndef CWD_COLOR
+/**
+ * @brief Color of the folder that is shown after the prompt
+ * `PROMPT` if the option `SHOW_FOLDER` is true
+ */
 #  define CWD_COLOR "\033[1;36m"
 # endif
 
 # ifndef SHOW_FOLDER
+/**
+ * @brief Option to show the current working directory after
+ * the prompt `PROMPT`. It just displays the last component and not
+ * the full path (aka just the folder - not the path to the folder)
+ */
 #  define SHOW_FOLDER true
 # endif
 
@@ -53,14 +73,34 @@
 
 // rl_prompt config - GIT
 # ifndef GIT_COLOR
+/**
+ * @brief Color of the git signifier that is shown after the prompt
+ * `PROMPT` if the option `SHOW_GIT` is true. The branch
+ * itself will have the color `GIT_COLOR_BRANCH`
+ * 
+ * In the format: `git:(branch)` it is the color of the `git:()`
+ */
 #  define GIT_COLOR "\033[1;34m"
 # endif
 
 # ifndef GIT_COLOR_BRANCH
+/**
+ * @brief Color of the git branch that is shown after the prompt
+ * `PROMPT` if the option `SHOW_GIT` is true. The signifier of the git
+ * branch will have the color `GIT_COLOR`
+ * 
+ * In the format: `git:(branch)` it is the color of the `branch`
+ */
 #  define GIT_COLOR_BRANCH "\033[1;91m"
 # endif
 
 # ifndef SHOW_GIT
+/**
+ * @brief Option to show the current branch after
+ * the prompt `PROMPT`.
+ * 
+ * Format: git:(branch) + GIT_SPACE
+ */
 #  define SHOW_GIT true
 # endif
 
@@ -96,6 +136,14 @@
 # define RESET "\033[0m"
 
 # ifndef SHOW_EXIT_COL
+/**
+ * @brief Option to change the prompts color depending on the last exit satus
+ * 
+ * - If it is true, the color changes to FAIL_COLOR if the exit status != 0
+ * and to SUCC_COLOR if it is 0
+ * 
+ * - If it is false, the color of the prompt `PROMPT` does not change
+ */
 #  define SHOW_EXIT_COL true
 # endif
 

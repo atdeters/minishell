@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:27:07 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 17:55:02 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 18:10:03 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ char	*create_branch(char *path)
 	}
 	return (close(fd), NULL);
 }
+
 char	*extract_branch(int fd, char *line)
 {
 	char	*branch;

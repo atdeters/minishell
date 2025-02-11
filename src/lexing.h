@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:18 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/11 14:07:29 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/11 18:10:37 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ int					lexing(char *input, t_token **list);
 int					handle_dolar(char *input, t_token **current, int *i,
 						char **word);
 int					handle_delim(char *input, t_token **current, int *i,
-						 char **word);
+						char **word);
 
 #endif
