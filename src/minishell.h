@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 19:43:58 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/11 20:08:57 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct s_data
 	/**
 	 * @brief The next pipe that will be opened
 	 */
-	int					next_pipe;
+	int					n_pipe;
 	/**
 	 * 2D Array of maximum possible file descriptors (limited by 
 	 * FD_LIMIT).
@@ -382,5 +382,15 @@ void					ft_env_lstclear(t_env_lst **lst);
 
 // env_parser
 void					parse_env(t_data *data, char **env);
+
+// piping.c
+/**
+ * Redirects the fd_in to STDIN and fd_out to STDOUT. If fd_in is equal
+ * to STDIN or fd_out is equal to STDOUT, they will do nothing.
+ * 
+ * It closes fd_in and fd_out afterwards
+ * 
+ */
+int						cool_dup(int fd_in, int fd_out);
 
 #endif
