@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/11 14:09:03 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:36:17 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,12 @@ int	handle_word(int *i, char *input, t_token **current)
 	char	*word;
 
 	start = *i;
-	while (input[*i] && !ft_is_space(input[*i]) && input[*i] != '\''
-		&& input[*i] != '"' && input[*i] != '$' && input[*i] != '|'
-		&& input[*i] != '<' && input[*i] != '>')
+	while (input[*i] && input[*i + 1] &&!ft_is_space(input[*i])
+		&& input[*i + 1] != '\'' && input[*i + 1] != '"'
+		&& input[*i + 1] != '$' && input[*i + 1] != '|'
+		&& input[*i + 1] != '<' && input[*i + 1] != '>')
 		(*i)++;
-	word = ft_substr(input, start, (*i) - start);
+	word = ft_substr(input, start, (*i) - start + 1);
 	if (!word)
 		return (0);
 	*current = create_token(WORD, word);

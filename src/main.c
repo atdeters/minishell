@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 14:06:54 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:38:47 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,22 @@ int	main(void)
 		free(data.input);
 	}
 }
+
+/*
+TEST CMDS:
+ls|cat -e<<her_doc>file1>>file2
+ls -l | echo $path | cat>> file2 | echo '$$smt $' | cat < infile | cat \"\"
+*/
+// int main()
+// {
+// 	t_token *lst;
+
+// 	lst = NULL;
+// 	char *msg = "ls -l | echo $path | cat>> file2 | echo '$$smt $' | cat < infile | cat \"\"";
+// 	lexing(msg, &lst);
+// 	while (lst)
+// 	{
+// 		printf("type: %d, value: %s\n", lst->type, lst->value);
+// 		lst = lst->next;
+// 	}
+// }
