@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 18:30:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:40:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ int	main(int ac, char **av, char **env)
 		return (p_err(INIT_PROG));
 	while (true)
 	{
+		// Should this really crash the program or just the current prompt?
 		if (init_command(&data))
-			return (p_err(INIT_COM));
+			return (p_err(data.error));
 		data.input = get_input(&data);
 		if (data.input && !ft_strncmp(data.input, "clear", 5))
 			clear();

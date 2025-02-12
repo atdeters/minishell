@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 18:28:14 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:37:18 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ enum					e_errors
 	EXEC = 3,
 	DUP = 4,
 	FORK = 5,
+	PIPE_E = 6,
 };
 
 enum					e_in_mode

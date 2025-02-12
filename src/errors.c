@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 21:02:04 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:37:38 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ int	p_err(int code)
 		ft_fprintf(2, "dup2 failed to execute\n");
 	if (code == FORK)
 		ft_fprintf(2, "fork failed to execute\n");
+	if (code == PIPE_E)
+		ft_fprintf(2, "pipe failed to execute\n");
 	return (code);
 }
