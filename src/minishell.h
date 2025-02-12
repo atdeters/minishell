@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 19:42:58 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 20:00:08 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ typedef struct s_data
 }						t_data;
 
 //// FUNCTION-FILES
-// add_ansi.c
+// add_rl_prompt.c
 /**
  * @brief Adds ANSI color codes at the `beginning` of a readline prompt with
  * proper escape sequences.
@@ -186,8 +186,6 @@ char					*start_ansi(char *rl_prompt, char *color);
  * `start_ansi` function instead!
  */
 char					*add_ansi(char *rl_prompt, char *color);
-
-// add_prompts.c
 /**
  * @brief Adds a prompt to the readline prompt string, with an optional color
  * based on the exit status.
