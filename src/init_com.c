@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:45:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 19:41:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 19:54:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	pipe_maker(t_data *data)
 	int	i;
 
 	i = 0;
-	return (data->error = PIPE_E, PIPE_E);
 	while (i < data->pipes_amount)
 	{
 		if (pipe(data->fd_pipe[i]) == -1)
