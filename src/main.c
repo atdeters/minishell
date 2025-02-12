@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 19:22:45 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 19:40:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int ac, char **av, char **env)
 		// a new line will be asked
 		if (init_command(&data))
 			vash_err(&data, NULL);
-		if (!data.error)
+		if (data.init_com_fails == 0)
 		{
 			data.input = get_input(&data);
 			if (data.input && !ft_strncmp(data.input, "clear", 5))
@@ -71,7 +71,7 @@ int	main(int ac, char **av, char **env)
 			// wait_all(&data);
 			free(data.input);
 		}
-		if (data.vash_e_amt > 9)
+		if (data.init_com_fails >= MAX_INIT_COM_FAILS)
 			return (p_err(VASH_E));
 	}
 }

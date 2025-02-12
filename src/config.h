@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:38 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 18:08:53 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 19:40:00 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,14 @@
  * @brief Resets the colors/formatting of the terminal output
  */
 # define RESET "\033[0m"
+
+/**
+ * Defines how often the initialization of a new command can fail before
+ * the minishell exits completely.
+ */
+# ifndef MAX_INIT_COM_FAILS
+#  define MAX_INIT_COM_FAILS 10
+# endif
 
 # ifndef SHOW_EXIT_COL
 /**

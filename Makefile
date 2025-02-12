@@ -70,10 +70,10 @@ basic: SHOW_FOLDER=false
 basic: SHOW_GIT=false
 basic: all
 
-no-werror: CFLAGS=-Wall -Wextra -g
-no-werror: all
+nw: CFLAGS=-Wall -Wextra -g
+nw: all
 
-no-flags: CFLAGS=""
-no-flags: all
+nf: CFLAGS=""
+nf: all
 
-.PHONY: all clean fclean re tidy basic no-werror no-flags
+.PHONY: all clean fclean re tidy basic nw nf

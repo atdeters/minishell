@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 19:23:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 19:42:49 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ int	p_err(int code)
 	return (code);
 }
 
-void	vash_err(t_data *data, char *arg)
+void	p_vash_err(t_data *data, char *arg)
 {
+	data->init_com_fails++;
 	ft_fprintf(2, "vash: ");
 	if (data->error == PIPE_E)
 	{
-		ft_fprintf(2, "pipe: pipe could temporarily not be built\n");
+		ft_fprintf(2, "pipe: pipe could temporarily not be built [%d]\n",
+			data->init_com_fails);
 	}
-	data->vash_e_amt++;
 }

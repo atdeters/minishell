@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:45:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 19:26:32 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 19:41:01 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	init_command(t_data *data)
 	// Use the pipe function on the array of fds
 	if (pipe_maker(data))
 		return (PIPE_E);
-	return (data->vash_e_amt = 0, data->error);
+	return (data->init_com_fails = 0, data->error);
 }
 
 void	init_fd_arr(t_data *data)

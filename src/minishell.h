@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 19:22:54 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 19:42:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ typedef struct s_data
 	 * initialization of a command. If it is higher than 9 it will 
 	 * crash the shell programm.
 	 */
-	int					vash_e_amt;
+	int					init_com_fails;
 
 }						t_data;
 
@@ -327,7 +327,7 @@ char					*get_pwd_alloc(bool clean);
  * @return The same error code that was passed as input.
  */
 int						p_err(int code);
-void					vash_err(t_data *data, char *arg);
+void					p_vash_err(t_data *data, char *arg);
 
 // get_git.c
 /**
@@ -392,6 +392,12 @@ int						ft_strcpy(char *dest, const char *src);
 int						init_shell(t_data *data, char **env);
 
 // init_prog.c
+/**
+ * - sets data.init_com_fails to 0 in the return if everything works
+ * Everthing afterwards will only be executed if data.init_com_fails is 0
+ * otherwise it will try to initialize the command MAX_INIT_COM_FAILS - 1
+ * more times and exit the program if it still doesn't work 
+ */
 int						init_command(t_data *data);
 
 // input.c
