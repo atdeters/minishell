@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 15:46:25 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 17:44:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,23 @@ enum					e_errors
 	FORK = 5,
 };
 
-//// STRUCTS
+enum					e_in_mode
+{
+	IN_MODE_STD = 0,
+	IN_MODE_FILE = 3,
+	IN_MODE_PIPE = 4,
+	IN_MODE_HERE_DOC = 5,
+};
 
+enum					e_out_mode
+{
+	OUT_MODE_STD = 1,
+	OUT_MODE_FILE_TR = 3,
+	OUT_MODE_FILE_APP = 5,
+	OUT_MODE_PIPE = 4,
+};
+
+//// STRUCTS
 typedef struct s_env_lst
 {
 	char				*filed;
