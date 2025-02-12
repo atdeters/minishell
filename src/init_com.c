@@ -1,28 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_com.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 18:42:40 by adeters          ###   ########.fr       */
+/*   Created: 2025/02/12 18:45:10 by adeters           #+#    #+#             */
+/*   Updated: 2025/02/12 18:45:49 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Initializing the whole shell program before first command
-int	init_shell(t_data *data, char **env)
-{
-	data->exit_status = 0;
-	data->error = 0;
-	data->env_lst = NULL;
-	data->envp = env;
-	return (data->error);
-}
-
-// Initializing for every new command
 void	init_fd_arr(t_data *data);
 int		pipe_maker(t_data *data);
 
