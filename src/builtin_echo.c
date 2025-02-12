@@ -1,0 +1,49 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_echo.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/12 15:44:09 by adeters           #+#    #+#             */
+/*   Updated: 2025/02/12 15:45:19 by adeters          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
+
+bool	check_echo_flag(char *str)
+{
+	int	i;
+
+	i = 1;
+	if (str[0] != '-')
+		return (false);
+	while (str[i])
+	{
+		if (str[i] != 'n')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+void	echo(char **arr)
+{
+	int		i;
+	bool	flag;
+
+	i = 0;
+	flag = check_echo_flag(arr[0]);
+	if (flag)
+		i++;
+	while (arr[i])
+	{
+		ft_printf("%s", arr[i]);
+		i++;
+		if (arr[i])
+			ft_printf(" ");
+	}
+	if (!flag)
+		ft_printf("\n");
+}

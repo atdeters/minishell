@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 21:29:37 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:45:41 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Still need to edit the exit status in here
 void	wait_all(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->n_pid)
@@ -27,7 +27,7 @@ void	wait_all(t_data *data)
 
 void	close_all(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->pipes_amount)

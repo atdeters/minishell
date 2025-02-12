@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 15:19:27 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:46:25 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,9 @@ void					cd(char *path);
  * @brief Clears the terminal screen
  */
 void					clear(void);
+
+// builtin_echo.c
+void					echo(char **arr);
 
 // builtin_pwd.c
 /**

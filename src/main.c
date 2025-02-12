@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 15:19:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:44:26 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int ac, char **av, char **env)
 	t_data	data;
 
 	char *com[] = { "/usr/bin/cat", NULL };
+	char *tester[] = { "hallo", "chris", "schau", "wie", "cool", NULL };
 
 	if (init_shell(&data, env))
 		return (p_err(INIT_PROG));
@@ -46,12 +47,12 @@ int	main(int ac, char **av, char **env)
 		else if (data.input && !ft_strncmp(data.input, "pwd", 3))
 			pwd();
 
-		data.pipes_amount = 1;
-		data.fd[0][0] = open("Makefile", O_RDONLY);
-		data.fd[0][1] = open("outfile", O_WRONLY | O_CREAT | O_APPEND, 0644);
-		execute(&data, data.fd[0][0], data.fd[0][1], com);
-		close_all(&data);
-		wait_all(&data);
+		// data.pipes_amount = 1;
+		// data.fd[0][0] = open("Makefile", O_RDONLY);
+		// data.fd[0][1] = open("outfile", O_WRONLY | O_CREAT | O_APPEND, 0644);
+		// execute(&data, data.fd[0][0], data.fd[0][1], com);
+		// close_all(&data);
+		// wait_all(&data);
 
 		free(data.input);
 	}
