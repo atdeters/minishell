@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 19:40:43 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 19:44:49 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,10 @@ int	main(int ac, char **av, char **env)
 {
 	t_data	data;
 
-	char *com[] = { "/usr/bin/cat", NULL };
-	char *tester[] = { "hallo", "chris", "schau", "wie", "cool", NULL };
-
-	// Initializing fail here will crash the program.
 	if (init_shell(&data, env))
 		return (p_err(data.error));
 	while (true)
 	{
-		// Initializing fail here will not crash the shell program
-		// a new line will be asked
 		if (init_command(&data))
 			vash_err(&data, NULL);
 		if (data.init_com_fails == 0)
@@ -62,13 +56,15 @@ int	main(int ac, char **av, char **env)
 				clear();
 			else if (data.input && !ft_strncmp(data.input, "pwd", 3))
 				pwd();
-
+				
+			// char *com[] = { "/usr/bin/cat", NULL };
 			// data.pipes_amount = 1;
 			// data.fd[0][0] = open("Makefile", O_RDONLY);
 			// data.fd[0][1] = open("outfile", O_WRONLY | O_CREAT | O_APPEND, 0644);
 			// execute(&data, data.fd[0][0], data.fd[0][1], com);
 			// close_all(&data);
 			// wait_all(&data);
+			
 			free(data.input);
 		}
 		if (data.init_com_fails >= MAX_INIT_COM_FAILS)
