@@ -6,11 +6,22 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 15:44:26 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:30:17 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// write to pipe: fd[n_pipe][1]
+// read from pipe: fd[n_pipe][0] -> then n_pipe++;
+// Function that read from pipe uses fd[n_pipe][0] and then increases n_pipe
+// Function that write to pipe uses fd[n_pipe][1] but doesn't increase n_pipe
+
+
+// About the two fd arrays: The maximum amount of fds in a command can be 
+// FD_LIMIT. So to check how many files can be opened we need to calculate the
+// amount of pipes. So FD_LIMIT - (pipes_amount * 2) will give us the max. 
+// number of files that can be opened with the remaining file descriptors
 
 int	execute(t_data *data, int fd_in, int fd_out, char **command)
 {

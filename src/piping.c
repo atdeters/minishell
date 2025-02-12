@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 15:45:41 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:28:55 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	close_all(t_data *data)
 	i = 0;
 	while (i < data->pipes_amount)
 	{
-		if (data->fd[i][0] != -1)
-			close (data->fd[i][0]);
-		if (data->fd[i][1] != -1)
-			close (data->fd[i][1]);
+		if (data->fd_pipe[i][0] != -1)
+			close (data->fd_pipe[i][0]);
+		if (data->fd_pipe[i][1] != -1)
+			close (data->fd_pipe[i][1]);
 		i++;
 	}
 }

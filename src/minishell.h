@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 17:44:07 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:28:14 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,12 @@ typedef struct s_data
 	 * 2D Array of maximum possible file descriptors (limited by 
 	 * FD_LIMIT).
 	 */
-	int					fd[FD_LIMIT][2];
+	int					fd_pipe[FD_LIMIT][2];
+	/**
+	 * 2D Array of maximum possible file descriptors (limited by 
+	 * FD_LIMIT).
+	 */
+	int					fd_file[FD_LIMIT * 2];
 	/**
 	 * The amount of processes a given command needs to be executed
 	 * properly. This defines how often the `fork()` and the `wait_pid()`
