@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 21:29:25 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 14:47:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_data
 	 * Next index in the pid array
 	 */
 	int					n_pid;
+	char				**envp;
 
 }						t_data;
 

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 21:32:55 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 14:54:00 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,19 @@ int	execute(t_data *data, int fd_in, int fd_out, char **command)
 	{
 		if (cool_dup(data, fd_in, fd_out))
 			return (p_err(DUP));
-		if (execve(command[0], command, NULL) == -1)
+		if (execve(command[0], command, data->envp) == -1)
 			exit(p_err(EXEC));
 	}
 	data->n_pid++;
 	return (0);
 }
 
-int	main(void)
+int	main(int ac, char **av, char **env)
 {
 	t_data	data;
 
 	char *com[] = { "/usr/bin/cat", NULL };
+	data.envp = env;
 
 	if (init_shell(&data))
 		return (p_err(INIT_PROG));
