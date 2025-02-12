@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 14:54:00 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:19:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ int	main(int ac, char **av, char **env)
 	t_data	data;
 
 	char *com[] = { "/usr/bin/cat", NULL };
-	data.envp = env;
 
-	if (init_shell(&data))
+	if (init_shell(&data, env))
 		return (p_err(INIT_PROG));
 	while (true)
 	{

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 14:47:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:19:27 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -357,7 +357,7 @@ int						ft_strcpy(char *dest, const char *src);
 /**
  * @brief Initializes the mini shell program
  */
-int						init_shell(t_data *data);
+int						init_shell(t_data *data, char **env);
 int						init_command(t_data *data);
 
 // input.c
