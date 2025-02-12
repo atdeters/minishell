@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 18:37:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 19:23:18 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,17 @@ int	p_err(int code)
 		ft_fprintf(2, "dup2 failed to execute\n");
 	if (code == FORK)
 		ft_fprintf(2, "fork failed to execute\n");
-	if (code == PIPE_E)
-		ft_fprintf(2, "pipe failed to execute\n");
+	if (code == VASH_E)
+		ft_fprintf(2, "command initialization failed too often\n");
 	return (code);
+}
+
+void	vash_err(t_data *data, char *arg)
+{
+	ft_fprintf(2, "vash: ");
+	if (data->error == PIPE_E)
+	{
+		ft_fprintf(2, "pipe: pipe could temporarily not be built\n");
+	}
+	data->vash_e_amt++;
 }

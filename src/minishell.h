@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 18:46:23 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 19:22:54 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ enum					e_errors
 	DUP = 4,
 	FORK = 5,
 	PIPE_E = 6,
+	VASH_E = 7,
 };
 
 enum					e_in_mode
@@ -131,6 +132,12 @@ typedef struct s_data
 	 */
 	int					n_pid;
 	char				**envp;
+	/**
+	 * @brief Counts the amount of vash errors since the last succesfull
+	 * initialization of a command. If it is higher than 9 it will 
+	 * crash the shell programm.
+	 */
+	int					vash_e_amt;
 
 }						t_data;
 
@@ -320,6 +327,7 @@ char					*get_pwd_alloc(bool clean);
  * @return The same error code that was passed as input.
  */
 int						p_err(int code);
+void					vash_err(t_data *data, char *arg);
 
 // get_git.c
 /**

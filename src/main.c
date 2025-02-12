@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 18:49:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 19:22:45 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,33 @@ int	main(int ac, char **av, char **env)
 	char *com[] = { "/usr/bin/cat", NULL };
 	char *tester[] = { "hallo", "chris", "schau", "wie", "cool", NULL };
 
+	// Initializing fail here will crash the program.
 	if (init_shell(&data, env))
 		return (p_err(data.error));
 	while (true)
 	{
-		// Should this really crash the program or just the current prompt?
+		// Initializing fail here will not crash the shell program
+		// a new line will be asked
 		if (init_command(&data))
-			return (p_err(data.error));
-		data.input = get_input(&data);
-		if (data.input && !ft_strncmp(data.input, "clear", 5))
-			clear();
-		else if (data.input && !ft_strncmp(data.input, "pwd", 3))
-			pwd();
+			vash_err(&data, NULL);
+		if (!data.error)
+		{
+			data.input = get_input(&data);
+			if (data.input && !ft_strncmp(data.input, "clear", 5))
+				clear();
+			else if (data.input && !ft_strncmp(data.input, "pwd", 3))
+				pwd();
 
-		// data.pipes_amount = 1;
-		// data.fd[0][0] = open("Makefile", O_RDONLY);
-		// data.fd[0][1] = open("outfile", O_WRONLY | O_CREAT | O_APPEND, 0644);
-		// execute(&data, data.fd[0][0], data.fd[0][1], com);
-		// close_all(&data);
-		// wait_all(&data);
-
-		free(data.input);
+			// data.pipes_amount = 1;
+			// data.fd[0][0] = open("Makefile", O_RDONLY);
+			// data.fd[0][1] = open("outfile", O_WRONLY | O_CREAT | O_APPEND, 0644);
+			// execute(&data, data.fd[0][0], data.fd[0][1], com);
+			// close_all(&data);
+			// wait_all(&data);
+			free(data.input);
+		}
+		if (data.vash_e_amt > 9)
+			return (p_err(VASH_E));
 	}
 }
 
