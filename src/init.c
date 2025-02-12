@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 18:39:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:42:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 int	init_shell(t_data *data, char **env)
 {
 	data->exit_status = 0;
+	data->error = 0;
 	data->env_lst = NULL;
 	data->envp = env;
-	return (0);
+	return (data->error);
 }
 
 // Initializing for every new command

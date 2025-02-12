@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 18:40:12 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/12 18:41:34 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av, char **env)
 	char *tester[] = { "hallo", "chris", "schau", "wie", "cool", NULL };
 
 	if (init_shell(&data, env))
-		return (p_err(INIT_PROG));
+		return (p_err(data.error));
 	while (true)
 	{
 		// Should this really crash the program or just the current prompt?
