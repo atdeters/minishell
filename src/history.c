@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 18:36:15 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 20:48:24 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 20:54:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	write_hst_file(t_data *data, char *hist_file_path)
 	if (data->hstlst)
 	{
 		write(fd, data->hstlst->content, ft_strlen(data->hstlst->content));
+		write(fd, "\n", 1);
 		free(data->hstlst->content);
 		free (data->hstlst);
 	}
