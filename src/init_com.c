@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:45:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 17:51:04 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:59:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int	init_command(t_data *data)
 	// Count how many pipes needed -> set data->pipes_amount
 	if (pipe_maker(data))
 		return (ERR_PIPE);
-	return (setnret(data, ERR_PIPE));
-	return (data->init_com_fails = 0, data->error);
+	return (data->init_com_fails = 0, 0);
 }
 
 void	init_fd_arr(t_data *data)
@@ -38,6 +37,12 @@ void	init_fd_arr(t_data *data)
 	{
 		data->fd_pipe[i][0] = -1;
 		data->fd_pipe[i][1] = -1;
+		i++;
+	}
+	i = 0;
+	while (i < FD_LIMIT * 2)
+	{
+		data->fd_file[i] = -1;
 		i++;
 	}
 }
