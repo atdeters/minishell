@@ -6,32 +6,38 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 17:37:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:43:53 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	setnret(t_data *data, int code)
+{
+	data->error = code;
+	return (code);
+}
+
 int	p_err(int code)
 {
 	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
-	if (code == INIT_PROG)
+	if (code == ERR_INIT_PROG)
 		ft_fprintf(2, "%s\n", E_MSG_INIT_PROG);
-	if (code == INIT_COM)
+	if (code == ERR_INIT_COM)
 		ft_fprintf(2, "%s\n", E_MSG_INIT_COM);
-	if (code == EXEC)
+	if (code == ERR_EXECVE)
 		ft_fprintf(2, "%s\n", E_MSG_FUNC_EXECVE);
-	if (code == DUP)
+	if (code == ERR_DUP2)
 		ft_fprintf(2, "%s\n", E_MSG_FUNC_DUP2);
-	if (code == FORK)
+	if (code == ERR_FORK)
 		ft_fprintf(2, "%s\n", E_MSG_FUNC_FORK);
 	return (code);
 }
 
-void	p_nc_err(t_data *data, char *arg)
+void	p_nc_err(t_data *data)
 {
 	data->init_com_fails++;
 	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
-	if (data->error == PIPE_E)
+	if (data->error == ERR_PIPE)
 		ft_fprintf(2, "%s [%d]\n", E_MSG_FUNC_PIPE, data->init_com_fails);
 }

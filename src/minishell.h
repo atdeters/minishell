@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 17:33:14 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:44:02 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,12 @@
 //// ENUMS
 enum					e_errors
 {
-	/**
-	 * @brief Minishell failed to initialize
-	 */
-	INIT_PROG = 1,
-	/**
-	 * Current command failed to initialize
-	 */
-	INIT_COM = 2,
-	EXEC = 3,
-	DUP = 4,
-	FORK = 5,
-	PIPE_E = 6,
+	ERR_INIT_PROG = 1,
+	ERR_INIT_COM = 2,
+	ERR_EXECVE = 3,
+	ERR_DUP2 = 4,
+	ERR_FORK = 5,
+	ERR_PIPE = 6,
 };
 
 enum					e_in_mode
@@ -310,6 +304,7 @@ void					pwd(void);
 char					*get_pwd_alloc(bool clean);
 
 // errors.c
+int						setnret(t_data *data, int code);
 /**
  * @brief Handles error reporting based on a given error code.
  * 
@@ -329,7 +324,7 @@ int						p_err(int code);
  * @brief Prints non-critical errors aka the program will not immediately
  * terminate after these errors.
  */
-void					p_nc_err(t_data *data, char *arg);
+void					p_nc_err(t_data *data);
 
 // get_git.c
 /**
