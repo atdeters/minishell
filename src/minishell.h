@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 17:45:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 19:30:56 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define FD_LIMIT 508
 // Random number so far; not limited by the FD_LIMIT like in pipex
 # define MAX_PROCS 1024
+# define HIST_FILE_PATH ".vash_history"
 
 //// ENUMS
 enum					e_errors
@@ -42,6 +43,8 @@ enum					e_errors
 	ERR_DUP2 = 4,
 	ERR_FORK = 5,
 	ERR_PIPE = 6,
+	ERR_HIST = 7,
+	ERR_HIST_WFILE = 8,
 };
 
 enum					e_in_mode
@@ -132,6 +135,7 @@ typedef struct s_data
 	 * crash the shell programm.
 	 */
 	int					init_com_fails;
+	t_list				*sess_hist_lst;
 
 }						t_data;
 
@@ -324,7 +328,7 @@ int						pc_err(int code);
  * @brief Prints non-critical errors aka the program will not immediately
  * terminate after these errors.
  */
-void					pnc_err(t_data *data);
+int						pnc_err(t_data *data);
 
 // get_git.c
 /**
@@ -381,6 +385,20 @@ char					*rid_of_nl(char *str);
  * be large enough to receive the copy.  Beware of buffer overruns!
  */
 int						ft_strcpy(char *dest, const char *src);
+
+// history.c
+/**
+ * Loads the history from a specific history file. Nothing happens
+ * if this fails as it isn't really that important and nothing
+ * else can break if this function doesn't work. 
+ */
+int						load_old_history(char *hist_file_path);
+/**
+ * Makes a list of history entries for the current session.
+ * Before exiting the program these will be written into a 
+ * specific history file
+ */
+int						add_full_history(t_data *data);
 
 // init_com.c
 /**

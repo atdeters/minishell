@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:55:11 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 17:55:12 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 18:56:02 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@
 
 // non-critical errors (program does not terminate)
 # define E_NC_MSG_FUNC_PIPE "pipe could temporarily no be built"
+# define E_NC_MSG_HIST "history entry could not be added"
 
 #endif
