@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 19:30:56 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 20:31:46 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,13 @@ typedef struct s_data
 	 * crash the shell programm.
 	 */
 	int					init_com_fails;
-	t_list				*sess_hist_lst;
+	/**
+	 * All commands during the program execution are saved in this list
+	 * and then written into a hidden file at the exit point. When
+	 * opening minishell again it will load those files into the history
+	 * of the current session.
+	 */
+	t_list				*hstlst;
 
 }						t_data;
 
@@ -399,6 +405,7 @@ int						load_old_history(char *hist_file_path);
  * specific history file
  */
 int						add_full_history(t_data *data);
+int						write_hst_file(t_data *data, char *hist_file_path);
 
 // init_com.c
 /**

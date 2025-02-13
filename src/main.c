@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 20:19:15 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 20:32:48 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,34 +39,6 @@ int	execute(t_data *data, int fd_in, int fd_out, char **command)
 	return (0);
 }
 
-int	write_hst_file(t_data *data, char *hist_file_path)
-{
-	int		fd;
-	t_list	*pre;
-
-	if (!hist_file_path)
-		return (setnret(data, ERR_HIST_WFILE));
-	fd = open(hist_file_path, O_WRONLY | O_APPEND | O_CREAT, 0644);
-	if (fd < 0)
-		return (setnret(data, ERR_HIST_WFILE));
-	while (data->sess_hist_lst && data->sess_hist_lst->next)
-	{
-		write(fd, data->sess_hist_lst->content, ft_strlen(data->sess_hist_lst->content));
-		free(data->sess_hist_lst->content);
-		write(fd, "\n", 1);
-		pre = data->sess_hist_lst;
-		data->sess_hist_lst = data->sess_hist_lst->next;
-		free (pre);
-	}
-	if (data->sess_hist_lst)
-	{
-		write(fd, data->sess_hist_lst->content, ft_strlen(data->sess_hist_lst->content));
-		free(data->sess_hist_lst->content);
-		free (data->sess_hist_lst);
-	}
-	return (0);
-}
-
 int	main(int ac, char **av, char **env)
 {
 	t_data			data;
@@ -91,15 +63,6 @@ int	main(int ac, char **av, char **env)
 				free(data.input);
 				break;
 			}
-			
-			// char *com[] = { "/usr/bin/cat", NULL };
-			// data.pipes_amount = 1;
-			// data.fd[0][0] = open("Makefile", O_RDONLY);
-			// data.fd[0][1] = open("outfile", O_WRONLY | O_CREAT | O_APPEND, 0644);
-			// execute(&data, data.fd[0][0], data.fd[0][1], com);
-			// close_all(&data);
-			// wait_all(&data);
-			
 			free(data.input);
 		}
 		if (data.init_com_fails >= MAX_INIT_COM_FAILS)

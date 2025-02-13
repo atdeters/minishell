@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 18:36:15 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 20:13:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 20:32:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,34 @@ int	add_full_history(t_data *data)
 	node = ft_lstnew(lst_entry);
 	if (!node)
 		return (free(lst_entry), setnret(data, ERR_HIST));
-	ft_lstadd_back(&data->sess_hist_lst, node);
+	ft_lstadd_back(&data->hstlst, node);
+	return (0);
+}
+
+int	write_hst_file(t_data *data, char *hist_file_path)
+{
+	int		fd;
+	t_list	*pre;
+
+	if (!hist_file_path)
+		return (setnret(data, ERR_HIST_WFILE));
+	fd = open(hist_file_path, O_WRONLY | O_APPEND | O_CREAT, 0644);
+	if (fd < 0)
+		return (setnret(data, ERR_HIST_WFILE));
+	while (data->hstlst && data->hstlst->next)
+	{
+		write(fd, data->hstlst->content, ft_strlen(data->hstlst->content));
+		free(data->hstlst->content);
+		write(fd, "\n", 1);
+		pre = data->hstlst;
+		data->hstlst = data->hstlst->next;
+		free (pre);
+	}
+	if (data->hstlst)
+	{
+		write(fd, data->hstlst->content, ft_strlen(data->hstlst->content));
+		free(data->hstlst->content);
+		free (data->hstlst);
+	}
 	return (0);
 }
