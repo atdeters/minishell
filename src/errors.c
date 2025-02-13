@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 19:42:49 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:37:30 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,24 @@
 
 int	p_err(int code)
 {
+	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
 	if (code == INIT_PROG)
-		ft_fprintf(2, "minishell failed to initialize\n");
+		ft_fprintf(2, "%s\n", E_MSG_INIT_PROG);
 	if (code == INIT_COM)
-		ft_fprintf(2, "command failed to initialize\n");
+		ft_fprintf(2, "%s\n", E_MSG_INIT_COM);
 	if (code == EXEC)
-		ft_fprintf(2, "execve failed to execute\n");
+		ft_fprintf(2, "%s\n", E_MSG_FUNC_EXECVE);
 	if (code == DUP)
-		ft_fprintf(2, "dup2 failed to execute\n");
+		ft_fprintf(2, "%s\n", E_MSG_FUNC_DUP2);
 	if (code == FORK)
-		ft_fprintf(2, "fork failed to execute\n");
-	if (code == VASH_E)
-		ft_fprintf(2, "command initialization failed too often\n");
+		ft_fprintf(2, "%s\n", E_MSG_FUNC_FORK);
 	return (code);
 }
 
-void	p_vash_err(t_data *data, char *arg)
+void	p_nc_err(t_data *data, char *arg)
 {
 	data->init_com_fails++;
-	ft_fprintf(2, "vash: ");
+	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
 	if (data->error == PIPE_E)
-	{
-		ft_fprintf(2, "pipe: pipe could temporarily not be built [%d]\n",
-			data->init_com_fails);
-	}
+		ft_fprintf(2, "%s [%d]\n", E_MSG_FUNC_PIPE, data->init_com_fails);
 }

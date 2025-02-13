@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 19:53:16 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:32:37 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int ac, char **av, char **env)
 	while (true)
 	{
 		if (init_command(&data))
-			p_vash_err(&data, NULL);
+			p_nc_err(&data, NULL);
 		if (data.init_com_fails == 0)
 		{
 			data.input = get_input(&data);
@@ -68,7 +68,7 @@ int	main(int ac, char **av, char **env)
 			free(data.input);
 		}
 		if (data.init_com_fails >= MAX_INIT_COM_FAILS)
-			return (p_err(VASH_E));
+			return (p_err(INIT_COM));
 	}
 }
 

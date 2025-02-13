@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 20:00:08 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:33:14 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "./libft/libft.h"
 # include "config.h"
 # include "lexing.h"
+# include "errmsg.h"
 
 //// MAKROS
 # define FD_LIMIT 508
@@ -47,7 +48,6 @@ enum					e_errors
 	DUP = 4,
 	FORK = 5,
 	PIPE_E = 6,
-	VASH_E = 7,
 };
 
 enum					e_in_mode
@@ -325,7 +325,11 @@ char					*get_pwd_alloc(bool clean);
  * @return The same error code that was passed as input.
  */
 int						p_err(int code);
-void					p_vash_err(t_data *data, char *arg);
+/**
+ * @brief Prints non-critical errors aka the program will not immediately
+ * terminate after these errors.
+ */
+void					p_nc_err(t_data *data, char *arg);
 
 // get_git.c
 /**
