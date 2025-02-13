@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:27:07 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 18:10:03 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 20:20:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ char	*create_branch(char *path)
 	while (line)
 	{
 		if (ft_strncmp(line, "ref:", 4) == 0)
-			return (extract_branch(fd, line));
+			return (get_next_line(-1), extract_branch(fd, line));
 		free(line);
 		line = get_next_line(fd);
 	}
-	return (close(fd), NULL);
+	return (get_next_line(-1), close(fd), NULL);
 }
 
 char	*extract_branch(int fd, char *line)

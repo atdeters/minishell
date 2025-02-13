@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 19:29:50 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 20:19:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	execute(t_data *data, int fd_in, int fd_out, char **command)
 
 int	write_hst_file(t_data *data, char *hist_file_path)
 {
-	int fd;
+	int		fd;
+	t_list	*pre;
 
 	if (!hist_file_path)
 		return (setnret(data, ERR_HIST_WFILE));
@@ -50,13 +51,19 @@ int	write_hst_file(t_data *data, char *hist_file_path)
 		return (setnret(data, ERR_HIST_WFILE));
 	while (data->sess_hist_lst && data->sess_hist_lst->next)
 	{
-		write(1, data->sess_hist_lst->content, ft_strlen(data->sess_hist_lst->content));
-		write(1, "\n", 1);
+		write(fd, data->sess_hist_lst->content, ft_strlen(data->sess_hist_lst->content));
+		free(data->sess_hist_lst->content);
+		write(fd, "\n", 1);
+		pre = data->sess_hist_lst;
 		data->sess_hist_lst = data->sess_hist_lst->next;
+		free (pre);
 	}
-	write(fd, data->sess_hist_lst->content, ft_strlen(data->sess_hist_lst->content));
-	write(fd, "\n", 1);
-	ft_lstclear(&data->sess_hist_lst, free);
+	if (data->sess_hist_lst)
+	{
+		write(fd, data->sess_hist_lst->content, ft_strlen(data->sess_hist_lst->content));
+		free(data->sess_hist_lst->content);
+		free (data->sess_hist_lst);
+	}
 	return (0);
 }
 
@@ -64,11 +71,9 @@ int	main(int ac, char **av, char **env)
 {
 	t_data			data;
 
-	int i = 0;
-
 	if (init_shell(&data, env))
 		return (pc_err(data.error));
-	while (i < 2)
+	while (true)
 	{
 		if (init_command(&data))
 			pnc_err(&data);
@@ -81,7 +86,12 @@ int	main(int ac, char **av, char **env)
 				clear();
 			else if (data.input && !ft_strncmp(data.input, "pwd", 3))
 				pwd();
-
+			else if (data.input && !ft_strncmp(data.input, "exit", 4))
+			{
+				free(data.input);
+				break;
+			}
+			
 			// char *com[] = { "/usr/bin/cat", NULL };
 			// data.pipes_amount = 1;
 			// data.fd[0][0] = open("Makefile", O_RDONLY);
@@ -94,7 +104,6 @@ int	main(int ac, char **av, char **env)
 		}
 		if (data.init_com_fails >= MAX_INIT_COM_FAILS)
 			return (pc_err(ERR_INIT_COM));
-		i++;
 	}
 	write_hst_file(&data, HIST_FILE_PATH);
 }

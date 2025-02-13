@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 18:36:15 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 19:31:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 20:13:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int	add_full_history(t_data *data)
 	node = ft_lstnew(lst_entry);
 	if (!node)
 		return (free(lst_entry), setnret(data, ERR_HIST));
-	ft_lstadd_front(&data->sess_hist_lst, node);
+	ft_lstadd_back(&data->sess_hist_lst, node);
 	return (0);
 }
