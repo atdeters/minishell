@@ -3,6 +3,10 @@
 *.o
 *.a
 
+# Other files
+.vash_history
+readline.supp
+
 # Executables
 mini
 minishell
