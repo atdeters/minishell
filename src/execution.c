@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_prog.c                                        :+:      :+:    :+:   */
+/*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 20:38:12 by adeters          ###   ########.fr       */
+/*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
+/*   Updated: 2025/02/13 20:35:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	init_shell(t_data *data, char **env)
+int	execute(t_data *data, int fd_in, int fd_out, char **command)
 {
-	data->exit_status = 0;
-	data->error = 0;
-	data->init_com_fails = 0;
-	data->env_lst = NULL;
-	data->envp = env;
-	data->hstlst = NULL;
-	load_old_history(HIST_FILE_PATH);
-	return (data->error);
+	data->pid[data->n_pid] = fork();
+	if (data->pid[data->n_pid] == -1)
+		return (pc_err(ERR_FORK));
+	if (data->pid[data->n_pid] == 0)
+	{
+		if (cool_dup(data, fd_in, fd_out))
+			return (pc_err(ERR_DUP2));
+		if (execve(command[0], command, data->envp) == -1)
+			exit(pc_err(ERR_EXECVE));
+	}
+	data->n_pid++;
+	return (0);
 }

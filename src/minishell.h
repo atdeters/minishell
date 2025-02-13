@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 20:31:46 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 20:37:35 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -335,6 +335,10 @@ int						pc_err(int code);
  * terminate after these errors.
  */
 int						pnc_err(t_data *data);
+
+// execution.c
+int						execute(t_data *data, int fd_in, int fd_out,
+							char **command);
 
 // get_git.c
 /**
