@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 17:40:00 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:45:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	execute(t_data *data, int fd_in, int fd_out, char **command)
 {
 	data->pid[data->n_pid] = fork();
 	if (data->pid[data->n_pid] == -1)
-		return (p_err(ERR_FORK));
+		return (pc_err(ERR_FORK));
 	if (data->pid[data->n_pid] == 0)
 	{
 		if (cool_dup(data, fd_in, fd_out))
-			return (p_err(ERR_DUP2));
+			return (pc_err(ERR_DUP2));
 		if (execve(command[0], command, data->envp) == -1)
-			exit(p_err(ERR_EXECVE));
+			exit(pc_err(ERR_EXECVE));
 	}
 	data->n_pid++;
 	return (0);
@@ -44,11 +44,11 @@ int	main(int ac, char **av, char **env)
 	t_data	data;
 
 	if (init_shell(&data, env))
-		return (p_err(data.error));
+		return (pc_err(data.error));
 	while (true)
 	{
 		if (init_command(&data))
-			p_nc_err(&data, NULL);
+			pnc_err(&data);
 		if (data.init_com_fails == 0)
 		{
 			data.input = get_input(&data);
@@ -68,7 +68,7 @@ int	main(int ac, char **av, char **env)
 			free(data.input);
 		}
 		if (data.init_com_fails >= MAX_INIT_COM_FAILS)
-			return (p_err(ERR_INIT_COM));
+			return (pc_err(ERR_INIT_COM));
 	}
 }
 

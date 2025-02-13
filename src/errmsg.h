@@ -13,6 +13,6 @@
 # define E_MSG_FUNC_FORK "fork function failes to execute"
 
 // non-critical errors (program does not terminate)
-# define E_MSG_FUNC_PIPE "pipe could temporarily no be built"
+# define E_NC_MSG_FUNC_PIPE "pipe could temporarily no be built"
 
 #endif

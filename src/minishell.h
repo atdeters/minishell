@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 17:44:02 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:45:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,12 +319,12 @@ int						setnret(t_data *data, int code);
  * 
  * @return The same error code that was passed as input.
  */
-int						p_err(int code);
+int						pc_err(int code);
 /**
  * @brief Prints non-critical errors aka the program will not immediately
  * terminate after these errors.
  */
-void					p_nc_err(t_data *data);
+void					pnc_err(t_data *data);
 
 // get_git.c
 /**
