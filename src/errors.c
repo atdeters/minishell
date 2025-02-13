@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 17:48:03 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:53:49 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ void	pnc_err(t_data *data)
 	data->init_com_fails++;
 	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
 	if (data->error == ERR_PIPE)
-		ft_fprintf(2, "%s [%d]\n", E_NC_MSG_FUNC_PIPE, data->init_com_fails);
+		ft_fprintf(2, "%s", E_NC_MSG_FUNC_PIPE);
+	ft_fprintf(2, " [%d]\n", data->init_com_fails);
 }

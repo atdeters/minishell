@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:45:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 17:47:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/13 17:51:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	init_command(t_data *data)
 	// Count how many pipes needed -> set data->pipes_amount
 	if (pipe_maker(data))
 		return (ERR_PIPE);
+	return (setnret(data, ERR_PIPE));
 	return (data->init_com_fails = 0, data->error);
 }
 
