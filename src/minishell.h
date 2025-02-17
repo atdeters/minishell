@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 19:28:56 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 19:33:19 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -355,7 +355,7 @@ char					*get_pwd_alloc(bool clean);
 
 // errors.c
 int						setnret(t_data *data, int code);
-void					handle_builtin(char **command);
+bool					handle_builtin(char **command);
 
 /**
  * @brief Handles error reporting based on a given error code.

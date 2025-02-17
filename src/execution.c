@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 19:30:36 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 19:35:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,22 @@ int	execute(t_data *data, int fd_in, int fd_out, char **command)
 	return (0);
 }
 
-void	handle_builtin(char **command)
+bool	handle_builtin(char **command)
 {
 	if (!ft_strncmp(command[0], "echo", fd_strlen(command[0])))
-		ft_echo(command);
+		return (ft_echo(command), true);
 	else if (!ft_strncmp(command[0], "cd", fd_strlen(command[0])))
-		ft_cd(command);
+		return (ft_cd(command), true);
 	else if (!ft_strncmp(command[0], "pwd", fd_strlen(command[0])))
-		ft_pwd();
+		return (ft_pwd(), true);
 	else if (!ft_strncmp(command[0], "export", fd_strlen(command[0])))
-		ft_export(command);
+		return (ft_export(command), true);
 	else if (!ft_strncmp(command[0], "unset", fd_strlen(command[0])))
-		ft_unset(command);
+		return (ft_unset(command), true);
 	else if (!ft_strncmp(command[0], "env", fd_strlen(command[0])))
-		ft_env(command);
+		return (ft_env(command), true);
 	else if (!ft_strncmp(command[0], "exit", fd_strlen(command[0])))
-		ft_exit(command);
+		return (ft_exit(command), true);
+	else
+		return (false);
 }
