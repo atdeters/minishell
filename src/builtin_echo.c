@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:44:09 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 15:45:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 19:28:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ bool	check_echo_flag(char *str)
 	return (true);
 }
 
-void	echo(char **arr)
+void	ft_echo(char **arr)
 {
 	int		i;
 	bool	flag;
 
-	i = 0;
-	flag = check_echo_flag(arr[0]);
+	i = 1;
+	flag = check_echo_flag(arr[i]);
 	if (flag)
 		i++;
 	while (arr[i])

@@ -6,13 +6,13 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 19:59:43 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/25 20:00:51 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 19:28:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	clear(void)
+void	ft_clear(void)
 {
 	printf("\e[1;1H\e[2J");
 }

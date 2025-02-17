@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 17:28:15 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 19:27:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	execute(t_data *data, int fd_in, int fd_out, char **command)
 	{
 		if (cool_dup(data, fd_in, fd_out))
 			exit (pc_err(ERR_DUP2));
+		if (is_builtin(command))
+			exit (0);
 		if (execve(command[0], command, data->envp) == -1)
 			exit(pc_err(ERR_EXECVE));
 	}
@@ -36,22 +38,20 @@ int	execute(t_data *data, int fd_in, int fd_out, char **command)
 	return (0);
 }
 
-// 
-int	is_builtin(char **command)
+void	handle_builtin(char **command)
 {
 	if (!ft_strncmp(command[0], "echo", 4))
-		return (ECHO);
-	if (!ft_strncmp(command[0], "cd", 2))
-		return (CD);
-	if (!ft_strncmp(command[0], "pwd", 3))
-		return (PWD);
-	if (!ft_strncmp(command[0], "export", 6))
-		return (EXPORT);
-	if (!ft_strncmp(command[0], "unset", 5))
-		return (UNSET);
-	if (!ft_strncmp(command[0], "env", 3))
-		return (ENV);
-	if (!ft_strncmp(command[0], "exit", 4))
-		return (EXIT);
-	return (0);
+		ft_echo(command);
+	else if (!ft_strncmp(command[0], "cd", 2))
+		ft_cd(command);
+	else if (!ft_strncmp(command[0], "pwd", 3))
+		ft_pwd();
+	else if (!ft_strncmp(command[0], "export", 6))
+		ft_export(command);
+	else if (!ft_strncmp(command[0], "unset", 5))
+		ft_unset(command);
+	else if (!ft_strncmp(command[0], "env", 3))
+		ft_env(command);
+	else if (!ft_strncmp(command[0], "exit", 4))
+		ft_exit(command);
 }
