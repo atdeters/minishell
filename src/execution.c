@@ -6,12 +6,15 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 17:13:00 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:23:22 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Does currently not free anything that might be allocated anywhere
+// Make sure to check for every exit
+// Filedescriptors are closed already in the cool_dup
 int	execute(t_data *data, int fd_in, int fd_out, char **command)
 {
 	int	acc_code;
@@ -25,7 +28,7 @@ int	execute(t_data *data, int fd_in, int fd_out, char **command)
 	if (data->pid[data->n_pid] == 0)
 	{
 		if (cool_dup(data, fd_in, fd_out))
-			return (pc_err(ERR_DUP2));
+			exit (pc_err(ERR_DUP2));
 		if (execve(command[0], command, data->envp) == -1)
 			exit(pc_err(ERR_EXECVE));
 	}
