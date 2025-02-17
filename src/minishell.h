@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 14:56:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:48:11 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -493,51 +493,34 @@ void					parse_env(t_data *data, char **env);
 
 // path.c
 /**
- * @brief Determines whether the given command specifies a direct path 
- * to an executable that can be executed from this path.
+ * @brief Resolves the full path to an executable if it is not already
+ * a direct path.
  * 
- * @param command A null-terminated string array where the first element 
- * represents the command to check.
+ * If the command is already a direct path (i.e., it contains a `'/'` 
+ * character), the function returns the `command` array unchanged. 
+ * Otherwise, it searches for the executable in the directories specified
+ * by the `PATH` environment variable.
  * 
- * @returns
- * - `1`   : If the file does not exist or the command is not a direct 
- *           path to an executable.
+ * If the executable is found, `command[0]` is replaced with a newly allocated
+ * string containing the full path. The original `command[0]` is freed before
+ * replacement, ensuring no additional memory is allocated overall.
  * 
- * - `126` : If the file exists but lacks execute permissions.
+ * Example:
  * 
- * - `0`   : If the file is a valid executable and can be executed directly.
+ * - Before: `command[0] = "cat";`
  * 
- * @note If this function returns `1`, you may use `exe_isinpath()` to 
- * check whether the executable is available in one of the directories 
- * listed in the `PATH` environment variable.
- */
-int						exe_isdirect(char **command);
-/**
- * @brief Determines whether an executable is available in one of the
- * directories listed in the `PATH` environment variable.
+ * - After:  `command[0] = "/usr/bin/cat";`
  * 
  * @param command A null-terminated string array where the first element
- * represents the command to check.
- *
- * @param path A pointer to a `char *` where the full path to the executable
- * will be stored if found. If the executable is not found,
- * `*path` is set to `NULL`. The caller is responsible for freeing
- * the allocated memory.
+ * represents the executable to resolve.
  * 
- * @returns
- * - `1`   : If the file does not exist or is not found in any of the 
- *           directories specified in the `PATH` variable.
+ * @returns The modified `command` array with `command[0]` updated if
+ * necessary or `NULL` in case of an error.
  * 
- * - `126` : If the file exists in one of the `PATH` directories but lacks 
- *           execute permissions.
- * 
- * - `0`   : If the file is a valid executable located in one of the `PATH` 
- *           directories. The full path is allocated and stored in `*path`.
- * 
- * @note This function is useful when `exe_isdirect()` returns `1`, indicating 
- * that the command is not a direct path to an executable. 
+ * @note The caller remains responsible for freeing `command[0]` as before.
+ * This function does not allocate extra memory beyond replacing `command[0]`.
  */
-int						exe_isinpath(char **command, char *path);
+char	**add_path(char **command);
 
 // piping.c
 /**
