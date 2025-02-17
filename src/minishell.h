@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 13:50:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 14:03:57 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -490,6 +490,46 @@ void					ft_env_lstclear(t_env_lst **lst);
 
 // env_parser
 void					parse_env(t_data *data, char **env);
+
+// path.c
+/**
+ * @brief Determines whether the given command specifies a direct path 
+ * to an executable that can be executed from this path.
+ * 
+ * @param command A null-terminated string array where the first element 
+ * represents the command to check.
+ * 
+ * @returns
+ * - `1`   : If the file does not exist or the command is not a direct 
+ *           path to an executable.
+ * 
+ * - `126` : If the file exists but lacks execute permissions.
+ * 
+ * - `0`   : If the file is a valid executable and can be executed directly.
+ * 
+ * @note If this function returns `1`, you may use `exe_isinpath()` to 
+ * check whether the executable is available in one of the directories 
+ * listed in the `PATH` environment variable.
+ */
+int						exe_isdirect(char **command);
+/**
+ * @brief Checks whether an executable is able to execute within
+ * one of the path variables
+ * 
+ * @param command A null-terminated string array where the first element 
+ * represents the command to check.
+ * 
+ * @returns
+ * - `1`   : If the file does not exist or the command is not within one of
+ * the path variables
+ * 
+ * - `126` : If the file exists in one of the path variables but lacks
+ * execute permissions.
+ * 
+ * - `0`   : If the file is a valid executable in one of the path variables
+ * (and therefore can not be executed directly but needs appending of the path)
+ */
+int						exe_isinpath(char **command);
 
 // piping.c
 /**
