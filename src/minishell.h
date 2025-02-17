@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 16:32:39 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:20:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,37 @@ typedef struct s_data
 }						t_data;
 
 //// FUNCTION-FILES
+// access.c
+/**
+ * @brief Checks the accessibility of an executable (direct path or command).
+ * 
+ * This function verifies the existence and execution permissions of the
+ * executable specified in `command[0]`. It is assumed that `command[0]`
+ * may be either an absolute or relative path to the executable. 
+ * The function additionally sets the value of `acc_code` based
+ * on the result (see return).
+ * 
+ * If `command[0]` is not a valid direct path (does not contain `/`),
+ * the function assumes the executable cannot be executed (as the `execve`
+ * function needs it to start with `./` for it to work)
+ * 
+ * @param command A null-terminated string array where `command[0]` represents
+ *                the path or name of the executable to check.
+ *
+ * @param acc_code A pointer to an integer that will be set to:
+ * 
+ * - `0` if the executable can be executed directly.
+ * 
+ * - `ERR_ACCESS` if the executable does not exist or is not a valid direct path.
+ * 
+ * - `ERR_PERM` if the executable exists but execute permission is denied.
+ * 
+ * @returns The value of `acc_code`, indicating the result of the check.
+ * 
+ */
+int						check_access(char **command, int *acc_code);
+
+
 // add_rl_prompt.c
 /**
  * @brief Adds ANSI color codes at the `beginning` of a readline prompt with
@@ -545,8 +576,13 @@ char					*join_path_exe(char *path, char *exe);
  * @returns The modified `command` array with `command[0]` updated if
  * necessary or `NULL` in case of an error.
  * 
- * @note The caller remains responsible for freeing `command[0]` as before.
+ * @note
+ * 
+ * - The caller remains responsible for freeing `command[0]` as before.
  * This function does not allocate extra memory beyond replacing `command[0]`.
+ * 
+ * - No checks about the accessibility of the executables is done in 
+ * this function
  */
 char					**add_path(t_data *data, char **command);
 
