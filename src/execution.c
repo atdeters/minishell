@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 17:23:22 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:26:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	execute(t_data *data, int fd_in, int fd_out, char **command)
 	return (0);
 }
 
+// 
 bool	is_builtin(char **command)
 {
 	if (!ft_strncmp(command[0], "echo", 4))

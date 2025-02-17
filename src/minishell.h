@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 17:20:07 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:27:23 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,17 @@ enum					e_out_mode
 	OUT_MODE_FILE_TR = 3,
 	OUT_MODE_FILE_APP = 5,
 	OUT_MODE_PIPE = 4,
+};
+
+enum					e_builtin
+{
+	ECHO,
+	CD,
+	PWD,
+	EXPORT,
+	UNSET,
+	ENV,
+	EXIT
 };
 
 //// STRUCTS
