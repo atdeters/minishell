@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 15:55:32 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:26:23 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,17 @@ int	pnc_err(t_data *data)
 	if (data->error == ERR_SPLIT)
 		ft_fprintf(2, "%s", E_NC_MSG_SPLIT);
 	ft_fprintf(2, " [%d]\n", data->init_com_fails);
+	return (data->error);
+}
+
+int	pnc_err_arg(t_data *data, const char *arg)
+{
+	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
+	if (data->error == ERR_ACCESS)
+		ft_fprintf(2, "%s%s\n", E_NC_MSG_ACCESS, arg);
+	if (data->error == ERR_PERM)
+		ft_fprintf(2, "%s%s\n", E_NC_MSG_PERM, arg);
+	if (data->error == ERR_OPEN)
+		ft_fprintf(2, "%s%s\n", E_NC_MSG_OPEN, arg);
 	return (data->error);
 }

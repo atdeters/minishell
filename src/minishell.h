@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 16:12:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:24:21 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ enum					e_errors
 	ERR_HIST = 7,
 	ERR_HIST_WFILE = 8,
 	ERR_SPLIT = 9,
+	ERR_OPEN = 10,
 	ERR_PERM = 126,
+	ERR_ACCESS = 127,
 };
 
 enum					e_in_mode
@@ -342,6 +344,11 @@ int						pc_err(int code);
  * terminate after these errors.
  */
 int						pnc_err(t_data *data);
+/**
+ * @brief Prints non-critical errors aka the program will not immediately
+ * terminate after these errors. Adds the argument that caused the error
+ */
+int						pnc_err_arg(t_data *data, const char *arg);
 
 // execution.c
 int						execute(t_data *data, int fd_in, int fd_out,

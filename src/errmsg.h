@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:55:11 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 15:56:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:26:10 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@
 # define E_NC_MSG_FUNC_PIPE "pipe could temporarily no be built"
 # define E_NC_MSG_HIST "history entry could not be added"
 # define E_NC_MSG_SPLIT "split function failed to execute"
+# define E_NC_MSG_ACCESS "command not found: "
+# define E_NC_MSG_PERM "permission denied: "
+# define E_NC_MSG_OPEN "could not open file: "
 
 #endif
