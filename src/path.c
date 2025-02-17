@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:52:51 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 16:17:36 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:45:00 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ char	**add_path(t_data *data, char **command)
 	while (env[i])
 	{
 		tmp = join_path_exe(env[i], command[0]);
-		if (access(tmp, F_OK) && !access(tmp, X_OK))
-			return (free(tmp), fr_lst(env), data->error = ERR_PERM, NULL);
-		else if (acces(tmp, F_OK))
+		if (acces(tmp, F_OK))
 			break ;
 		free(tmp);
 		i++;
 	}
-	free(command[0]);
-	command[0] = tmp;
-	return (fr_lst(env), command);
+	if (env[i])
+		return (free(command[0]), command[0] = tmp, fr_lst(env), command);
+	return (free(tmp), fr_lst(env), command);
 }

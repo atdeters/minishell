@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 16:26:23 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:32:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	pnc_err(t_data *data)
 	return (data->error);
 }
 
-int	pnc_err_arg(t_data *data, const char *arg)
+int	p_err_arg(t_data *data, const char *arg)
 {
 	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
 	if (data->error == ERR_ACCESS)
