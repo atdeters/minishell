@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 19:33:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:55:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -602,12 +602,11 @@ char					*join_path_exe(char *path, char *exe);
 char					**add_path(t_data *data, char **command);
 
 // piping.c
+
 /**
- * Redirects the fd_in to STDIN and fd_out to STDOUT. If fd_in is equal
- * to STDIN or fd_out is equal to STDOUT, they will do nothing.
- * 
- * It closes all open pipes afterwards
- * 
+ * Redirects the fd_in to STDIN and fd_out to STDOUT.
+ * If fd_in is equal to STDIN or fd_out is equal to STDOUT,
+ * they will do nothing. It closes all open pipes afterwards
  */
 void					wait_all(t_data *data);
 void					close_all(t_data *data);
