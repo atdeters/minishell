@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 15:48:11 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:09:53 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ enum					e_errors
 	ERR_PIPE = 6,
 	ERR_HIST = 7,
 	ERR_HIST_WFILE = 8,
+	ERR_SPLIT = 9,
 };
 
 enum					e_in_mode
@@ -354,6 +355,9 @@ int						execute(t_data *data, int fd_in, int fd_out,
  */
 bool					is_builtin(char **command);
 
+// free.c
+void					fr_lst(char **arr);
+
 // get_git.c
 /**
  * @brief Retrieves a dynamically allocated string containing the current
@@ -493,6 +497,23 @@ void					parse_env(t_data *data, char **env);
 
 // path.c
 /**
+ * @brief Joins a directory path with an executable name to form a full
+ * executable path.
+ * 
+ * This function concatenates `path` and `exe` with a `/` separator in
+ * between. If either `path` or `exe` is `NULL`, the function returns `NULL`.
+ * 
+ * Memory is dynamically allocated for the resulting string.
+ * The caller is responsible for freeing the returned string.
+ * 
+ * @param path The directory path (e.g., `"/usr/bin"`).
+ * @param exe  The executable name (e.g., `"cat"`).
+ * 
+ * @returns A newly allocated string containing `path/exe`
+ * (e.g., `"/usr/bin/cat"`), or `NULL` on failure .
+ */
+char					*join_path_exe(char *path, char *exe);
+/**
  * @brief Resolves the full path to an executable if it is not already
  * a direct path.
  * 
@@ -520,7 +541,7 @@ void					parse_env(t_data *data, char **env);
  * @note The caller remains responsible for freeing `command[0]` as before.
  * This function does not allocate extra memory beyond replacing `command[0]`.
  */
-char	**add_path(char **command);
+char					**add_path(t_data *data, char **command);
 
 // piping.c
 /**

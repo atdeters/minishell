@@ -6,14 +6,43 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:52:51 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 15:40:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:05:28 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**add_path(char **command)
+char	*join_path_exe(char *path, char *exe)
 {
+	char	*tmp;
+	char	*res;
+
+	if (!path | !exe)
+		return (NULL);
+	tmp = ft_strjoin(path, "/");
+	if (!tmp)
+		return (NULL);
+	res = ft_strjoin(tmp, exe);
+	if (!res)
+		return (free(tmp), NULL);
+	return (free(tmp), res);
+}
+
+char	**add_path(t_data *data, char **command)
+{
+	char	**env;
+	int		i;
+
 	if (ft_strchr(command[0], '/'))
 		return (command);
+	env = ft_split(data->env_lst, ':');
+	if (!env)
+		return (data->error = ERR_SPLIT, NULL);
+	i = 0;
+	while (env[i])
+	{
+		
+		i++;
+	}
+
 }
