@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 17:26:12 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:28:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,21 @@ int	execute(t_data *data, int fd_in, int fd_out, char **command)
 }
 
 // 
-bool	is_builtin(char **command)
+int	is_builtin(char **command)
 {
 	if (!ft_strncmp(command[0], "echo", 4))
-		return (true);
+		return (ECHO);
 	if (!ft_strncmp(command[0], "cd", 2))
-		return (true);
+		return (CD);
 	if (!ft_strncmp(command[0], "pwd", 3))
-		return (true);
+		return (PWD);
 	if (!ft_strncmp(command[0], "export", 6))
-		return (true);
+		return (EXPORT);
 	if (!ft_strncmp(command[0], "unset", 5))
-		return (true);
+		return (UNSET);
 	if (!ft_strncmp(command[0], "env", 3))
-		return (true);
+		return (ENV);
 	if (!ft_strncmp(command[0], "exit", 4))
-		return (true);
-	return (false);
+		return (EXIT);
+	return (0);
 }
