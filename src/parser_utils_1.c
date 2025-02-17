@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_utils_1.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/17 16:14:30 by vsenniko          #+#    #+#             */
+/*   Updated: 2025/02/17 16:14:43 by vsenniko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
+
 //shoud rewrite in and ount mode after this function call
 t_parsed	*create_p_node(char **cmd_and_args, char *in, char *out)
 {
