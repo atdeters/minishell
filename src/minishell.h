@@ -27,6 +27,7 @@
 # include "config.h"
 # include "lexing.h"
 # include "errmsg.h"
+# include "parser.h"
 
 //// MAKROS
 # define FD_LIMIT 508
@@ -70,6 +71,16 @@ typedef struct s_env_lst
 	char				*value;
 	struct s_env_lst	*next;
 }						t_env_lst;
+
+typedef struct s_parsed{
+	char **cmd_and_args;
+	char *in;
+	char *out;
+	int in_mode;
+	int out_mode;
+	struct s_parsed *prev;
+	struct s_parsed *next;
+} t_parsed;
 
 typedef struct s_data
 {
@@ -142,6 +153,8 @@ typedef struct s_data
 	 * of the current session.
 	 */
 	t_list				*hstlst;
+
+	t_parsed			*parsed_lst;
 
 }						t_data;
 
@@ -489,4 +502,36 @@ void					wait_all(t_data *data);
 void					close_all(t_data *data);
 int						cool_dup(t_data *data, int fd_in, int fd_out);
 
+
+
+
+
+// #include "minishell.h"
+
+//structures and enums
+
+
+typedef struct s_pars_data{
+	t_parsed **parsed_lst;
+	int cmd_amount;
+	int	parsed_amount;
+	t_token **token_lst;
+	t_env_lst **env_lst;
+	t_token *cur_head;
+	t_token *cur_tail;
+
+} t_pars_data;
+
+// int	parser(t_token **tokens, t_data *data);
+int	parser_main(t_token **tokens, t_data *data);
+
+//utils functions
+t_parsed	*create_p_node(char **cmd_and_args, char *in, char *out);
+t_parsed	*get_p_last(t_parsed *lst);
+t_parsed	*add_p_back(t_parsed **lst, t_parsed *new);
+void		free_p_lst(t_parsed **lst);
+int			pipe_counter(t_token **tokens);
+
+//parser functions
+void	check_type(t_token *head, t_token *tail, int flag, t_parsed **new);
 #endif
