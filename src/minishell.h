@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 13:31:04 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 13:49:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,11 @@ typedef struct s_data
 	 * function will be called
 	 */
 	int					processes;
+	/**
+	 * Variable that is passed by reference in the waitpid function
+	 * to return the exit status of the last proccess
+	 */
+	int		wstatus;
 	/**
 	 * Array of pids
 	 */

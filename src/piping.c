@@ -6,23 +6,26 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/12 18:28:55 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 13:49:31 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Still need to edit the exit status in here
 void	wait_all(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (i < data->n_pid)
+	while (i < data->n_pid - 1)
 	{
 		waitpid(data->pid[i], NULL, 0);
 		i++;
 	}
+	waitpid(data->pid[i], &data->wstatus, 0);
+	if (WIFEXITED(data->wstatus))
+		return (WEXITSTATUS(data->wstatus));
+	return (1);
 }
 
 void	close_all(t_data *data)
