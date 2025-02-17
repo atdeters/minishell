@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 15:56:28 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 15:57:17 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int main(int ac, char **av, char **env)
 	(void) av;
 
 	t_lst = NULL;
-	char *msg = "wc < Makefile -w | >> infile cat | echo $SHELL | cat \"\"";
+	char *msg = "wc  Makefile -w | >> infile cat | echo $SHELL | cat \"\" | ls -l -a";
 	data.parsed_lst = NULL;
 	lexing(msg, &t_lst);
 	parse_env(&data, env);
