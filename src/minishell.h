@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 14:03:57 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 14:56:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -513,23 +513,31 @@ void					parse_env(t_data *data, char **env);
  */
 int						exe_isdirect(char **command);
 /**
- * @brief Checks whether an executable is able to execute within
- * one of the path variables
+ * @brief Determines whether an executable is available in one of the
+ * directories listed in the `PATH` environment variable.
  * 
- * @param command A null-terminated string array where the first element 
+ * @param command A null-terminated string array where the first element
  * represents the command to check.
+ *
+ * @param path A pointer to a `char *` where the full path to the executable
+ * will be stored if found. If the executable is not found,
+ * `*path` is set to `NULL`. The caller is responsible for freeing
+ * the allocated memory.
  * 
  * @returns
- * - `1`   : If the file does not exist or the command is not within one of
- * the path variables
+ * - `1`   : If the file does not exist or is not found in any of the 
+ *           directories specified in the `PATH` variable.
  * 
- * - `126` : If the file exists in one of the path variables but lacks
- * execute permissions.
+ * - `126` : If the file exists in one of the `PATH` directories but lacks 
+ *           execute permissions.
  * 
- * - `0`   : If the file is a valid executable in one of the path variables
- * (and therefore can not be executed directly but needs appending of the path)
+ * - `0`   : If the file is a valid executable located in one of the `PATH` 
+ *           directories. The full path is allocated and stored in `*path`.
+ * 
+ * @note This function is useful when `exe_isdirect()` returns `1`, indicating 
+ * that the command is not a direct path to an executable. 
  */
-int						exe_isinpath(char **command);
+int						exe_isinpath(char **command, char *path);
 
 // piping.c
 /**
