@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 16:09:53 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:12:38 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ enum					e_errors
 	ERR_HIST = 7,
 	ERR_HIST_WFILE = 8,
 	ERR_SPLIT = 9,
+	ERR_PERM = 126,
 };
 
 enum					e_in_mode
