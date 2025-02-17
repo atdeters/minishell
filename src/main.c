@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 20:35:10 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:10:12 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,17 @@ int main(int ac, char **av, char **env)
 	(void) av;
 
 	t_lst = NULL;
-	char *msg = "wc < Makefile -w | >> infile cat | echo $user | cat \"\"";
+	char *msg = "wc < Makefile -w | >> infile cat | echo $SHELL | cat \"\"";
 	data.parsed_lst = NULL;
 	lexing(msg, &t_lst);
 	parse_env(&data, env);
+	t_token *tmp = t_lst;
+	while (tmp)
+	{
+		printf("Value = %s, type = %d\n", tmp->value, tmp->type);
+		tmp = tmp->next;
+	}
+	printf("\n\n\n");
 	parser_main(&t_lst, &data);
 	while (data.parsed_lst)
 	{
@@ -83,7 +90,7 @@ int main(int ac, char **av, char **env)
 			printf("cmd_and_args[%d]: %s\n", i, data.parsed_lst->cmd_and_args[i]);
 			i++;
 		}
-		printf("\n");
+		printf("cmd_and_args[%d] = %s\n", i, data.parsed_lst->cmd_and_args[i]);
 		printf("in: %s\n", data.parsed_lst->in);
 		printf("out: %s\n", data.parsed_lst->out);
 		printf("in_mode: %d\n", data.parsed_lst->in_mode);
