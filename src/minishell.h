@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 20:48:57 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/17 13:31:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,7 +315,7 @@ char					*get_pwd_alloc(bool clean);
 
 // errors.c
 int						setnret(t_data *data, int code);
-/**
+/**bool	is_builtin(char **command)
  * @brief Handles error reporting based on a given error code.
  * 
  * This function checks the provided error `code` and prints an error message
@@ -339,6 +339,15 @@ int						pnc_err(t_data *data);
 // execution.c
 int						execute(t_data *data, int fd_in, int fd_out,
 							char **command);
+/**
+ * @brief Checks whether a function is a builtin or not
+ * 
+ * @return 
+ * - True, if the function is a builtin
+ * 
+ * - False, if the function is not a builtin
+ */
+bool					is_builtin(char **command);
 
 // get_git.c
 /**
