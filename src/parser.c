@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:59 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/17 17:09:38 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:16:17 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	call_check_type(t_pars_data *pars_data, t_parsed *new)
 		(*pars_data).cmd_amount, &new);
 	else if ((*pars_data).parsed_amount == 0)
 		check_type((*pars_data).cur_head, (*pars_data).cur_tail, 1, &new);
-	else if ((*pars_data).parsed_amount < (*pars_data).cmd_amount &&
+	else if ((*pars_data).parsed_amount < (*pars_data).cmd_amount - 1 &&
 	 (*pars_data).parsed_amount != 0)
 		check_type((*pars_data).cur_head, (*pars_data).cur_tail, 2, &new);
 	else
