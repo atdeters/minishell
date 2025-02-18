@@ -6,11 +6,11 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:41:13 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 16:42:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:54:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../src/minishell.h"
 
 // TEST CMDS TO UNCOMMENT
 #define COMMAND "ls|cat -e<<her_doc>file1>>file2"
@@ -33,12 +33,13 @@ int main(int ac, char **av, char **env)
 	lexing(msg, &t_lst);
 	parse_env(&data, env);
 	t_token *tmp = t_lst;
+	printf("%st_token list output:%s\n", SUCC_COLOR, RESET);
 	while (tmp)
 	{
 		printf("Value = %s, type = %d\n", tmp->value, tmp->type);
 		tmp = tmp->next;
 	}
-	printf("\n\n\n");
+	printf("\n%sparsed list output:%s\n", SUCC_COLOR, RESET);
 	parser_main(&t_lst, &data);
 	while (data.parsed_lst)
 	{
@@ -53,7 +54,8 @@ int main(int ac, char **av, char **env)
 		printf("out: %s\n", data.parsed_lst->out);
 		printf("in_mode: %d\n", data.parsed_lst->in_mode);
 		printf("out_mode: %d\n", data.parsed_lst->out_mode);
-		printf("\n\n\n");
+		if (data.parsed_lst->next)
+			printf("=========================\n");
 		data.parsed_lst = data.parsed_lst->next;
 	}
 }

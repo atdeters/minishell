@@ -24,13 +24,12 @@ SRC_FILES =	builtin_cd.c builtin_clear.c builtin_pwd.c init_com.c init_prog.c\
 			get_git.c lexing.c lexing_utils.c lexing_utils_2.c lexing_utils_3.c\
 			piping.c builtin_echo.c history.c parser_utils_1.c parser_utils_2.c\
 			parser.c parser_utils_3.c parser_utils_4.c access.c path.c execution.c free.c\
-			$(CUR_MAIN)
 
 SRCS = $(addprefix src/, $(SRC_FILES))
 
 OFOLDER = objs
 OPATH = objs/
-OBJS = $(addprefix $(OPATH), $(SRC_FILES:.c=.o))
+OBJS = $(addprefix $(OPATH), $(SRC_FILES:.c=.o)) $(CUR_MAIN)
 
 ARCH = ./src/libft.a
 
