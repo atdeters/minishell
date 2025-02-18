@@ -17,7 +17,7 @@ COMP = cc
 CFLAGS ?=	-Wall -Wextra -Werror -g
 LDFLAGS =	-lreadline
 
-CUR_MAIN =	tests/t_parser_main.c # main.c
+CUR_MAIN ?=	tests/t_parser_main.c # main.c
 
 SRC_FILES =	builtin_cd.c builtin_clear.c builtin_pwd.c init_com.c init_prog.c\
 			input.c errors.c env_lst_func.c env_parser.c helpers1.c add_rl_prompt.c\
