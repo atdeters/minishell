@@ -14,14 +14,17 @@ DEFINES =	-D SHOW_FOLDER=$(SHOW_FOLDER)\
 			-D SHOW_EXIT_COL=$(SHOW_EXIT_COL)
 
 COMP = cc
-CFLAGS ?= -Wall -Wextra -Werror -g
-LDFLAGS = -lreadline
+CFLAGS ?=	-Wall -Wextra -Werror -g
+LDFLAGS =	-lreadline
 
-SRC_FILES =	main.c builtin_cd.c builtin_clear.c builtin_pwd.c init_com.c init_prog.c\
+CUR_MAIN =	tests/t_parser_main.c # main.c
+
+SRC_FILES =	builtin_cd.c builtin_clear.c builtin_pwd.c init_com.c init_prog.c\
 			input.c errors.c env_lst_func.c env_parser.c helpers1.c add_rl_prompt.c\
 			get_git.c lexing.c lexing_utils.c lexing_utils_2.c lexing_utils_3.c\
 			piping.c builtin_echo.c history.c parser_utils_1.c parser_utils_2.c\
-			parser.c parser_utils_3.c parser_utils_4.c access.c path.c execution.c free.c
+			parser.c parser_utils_3.c parser_utils_4.c access.c path.c execution.c free.c\
+			$(CUR_MAIN)
 
 SRCS = $(addprefix src/, $(SRC_FILES))
 
