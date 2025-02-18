@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_parser_main.c                                    :+:      :+:    :+:   */
+/*   test_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:41:13 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 16:54:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 18:21:02 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int main(int ac, char **av, char **env)
 
 	t_lst = NULL;
 	char *msg = COMMAND;
-	data.parsed_lst = NULL;
-	lexing(msg, &t_lst);
-	parse_env(&data, env);
+	data.parsed_lst = NULL; // Do in init_com
+	lexing(msg, &t_lst); // Do in init_com
+	parse_env(&data, env); // Do in init_shell
 	t_token *tmp = t_lst;
 	printf("%st_token list output:%s\n", SUCC_COLOR, RESET);
 	while (tmp)
