@@ -65,8 +65,22 @@ FLAGS:
 2 -> IN = PIPE, OUT = PIPE
 3 -> IN PIPE, OUT = STDOUT
 */
-void	check_type(t_token *head, t_token *tail, int flag, t_parsed **new)
+static void	check_type(t_token *head, t_token *tail, int flag, t_parsed **new)
 {
 	check_type_in(head, tail, new, flag);
 	check_type_out(head, tail, new, flag);
+}
+
+void	call_check_type(t_pars_data *pars_data, t_parsed *new)
+{
+	if (!(*pars_data).cur_tail)
+		check_type((*pars_data).cur_head, ft_token_lstlast((*pars_data).cur_head),
+		(*pars_data).cmd_amount, &new);
+	else if ((*pars_data).parsed_amount == 0)
+		check_type((*pars_data).cur_head, (*pars_data).cur_tail, 1, &new);
+	else if ((*pars_data).parsed_amount < (*pars_data).cmd_amount - 1 &&
+	 (*pars_data).parsed_amount != 0)
+		check_type((*pars_data).cur_head, (*pars_data).cur_tail, 2, &new);
+	else
+		check_type((*pars_data).cur_head, (*pars_data).cur_tail, 3, &new);
 }

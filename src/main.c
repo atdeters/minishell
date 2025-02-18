@@ -70,7 +70,7 @@ ls -l | echo $path | cat>> file2 | echo '$$smt $' | cat < infile | cat \"\"
 // 	(void) av;
 
 // 	t_lst = NULL;
-// 	char *msg = "wc  Makefile -w | >> infile cat | echo $SHELL | cat \"\" | ls -l -a";
+// 	char *msg = "wc  <Makefile -w | >> infile cat | echo $SHELL | cat \"\" | ls -l -a";
 // 	data.parsed_lst = NULL;
 // 	lexing(msg, &t_lst);
 // 	parse_env(&data, env);
@@ -80,7 +80,6 @@ ls -l | echo $path | cat>> file2 | echo '$$smt $' | cat < infile | cat \"\"
 // 		printf("Value = %s, type = %d\n", tmp->value, tmp->type);
 // 		tmp = tmp->next;
 // 	}
-// 	printf("\n\n\n");
 // 	parser_main(&t_lst, &data);
 // 	while (data.parsed_lst)
 // 	{
@@ -98,12 +97,4 @@ ls -l | echo $path | cat>> file2 | echo '$$smt $' | cat < infile | cat \"\"
 // 		printf("\n\n\n");
 // 		data.parsed_lst = data.parsed_lst->next;
 // 	}
-// 	// parser_main(&t_lst, &data);
-// 	// parser(t_lst, &data);
-// 	// data->env_lst = 
-// 	// while (lst)
-// 	// {
-// 	// 	printf("type: %d, value: %s\n", lst->type, lst->value);
-// 	// 	lst = lst->next;
-// 	// }
 // }
