@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 15:57:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:05:27 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	main(int ac, char **av, char **env)
 			if (add_full_history(&data))
 				pnc_err(&data);
 			if (data.input && !ft_strncmp(data.input, "clear", 5))
-				clear();
+				ft_clear();
 			else if (data.input && !ft_strncmp(data.input, "pwd", 3))
-				pwd();
+				ft_pwd();
 			else if (data.input && !ft_strncmp(data.input, "exit", 4))
 			{
 				free(data.input);

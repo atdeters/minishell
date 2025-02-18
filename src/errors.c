@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 16:32:12 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:09:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ int	pnc_err(t_data *data)
 	return (data->error);
 }
 
-int	p_err_arg(t_data *data, const char *arg)
+int	p_err_arg(int code, const char *arg)
 {
 	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
-	if (data->error == ERR_ACCESS)
+	if (code == ERR_ACCESS)
 		ft_fprintf(2, "%s%s\n", E_NC_MSG_ACCESS, arg);
-	if (data->error == ERR_PERM)
+	if (code == ERR_PERM)
 		ft_fprintf(2, "%s%s\n", E_NC_MSG_PERM, arg);
-	if (data->error == ERR_OPEN)
+	if (code == ERR_OPEN)
 		ft_fprintf(2, "%s%s\n", E_NC_MSG_OPEN, arg);
-	return (data->error);
+	return (code);
 }

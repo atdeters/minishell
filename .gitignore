@@ -13,3 +13,6 @@ minishell
 
 # VS Code Stuff
 .vscode
+
+# MAC Stuff
+.DS_STORE

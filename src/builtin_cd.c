@@ -6,14 +6,14 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 19:28:04 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:12:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_cd(char *path)
+void	ft_cd(char **command)
 {
 	// Needs a lot more shit
-	chdir(path);
+	chdir(command[0]);
 }

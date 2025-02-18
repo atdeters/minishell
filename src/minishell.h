@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 15:55:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:12:20 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ typedef struct s_data
  * @returns The value of `acc_code`, indicating the result of the check.
  * 
  */
-int						check_access(char **command, int *acc_code);
+int						check_access(t_data *data, char **command, int *acc_code);
 
 
 // add_rl_prompt.c
@@ -315,7 +315,7 @@ char					*add_branch(char *rl_prompt, char *branch);
 /**
  * @brief Changes the working directory
  */
-void					ft_cd(char *path);
+void					ft_cd(char **command);
 
 // builtin_clear.c
 /**
@@ -393,7 +393,7 @@ int						pnc_err(t_data *data);
 /**
  * @brief Prints errors and adds the argument that caused the error
  */
-int						p_err_arg(t_data *data, const char *arg);
+int						p_err_arg(int code, const char *arg);
 
 // execution.c
 int						execute(t_data *data, int fd_in, int fd_out,
@@ -608,7 +608,7 @@ char					**add_path(t_data *data, char **command);
  * If fd_in is equal to STDIN or fd_out is equal to STDOUT,
  * they will do nothing. It closes all open pipes afterwards
  */
-void					wait_all(t_data *data);
+int						wait_all(t_data *data);
 void					close_all(t_data *data);
 int						cool_dup(t_data *data, int fd_in, int fd_out);
 

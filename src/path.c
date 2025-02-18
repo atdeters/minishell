@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:52:51 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 16:45:00 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:09:47 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	**add_path(t_data *data, char **command)
 	while (env[i])
 	{
 		tmp = join_path_exe(env[i], command[0]);
-		if (acces(tmp, F_OK))
+		if (access(tmp, F_OK))
 			break ;
 		free(tmp);
 		i++;
