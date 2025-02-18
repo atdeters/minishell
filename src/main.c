@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 16:15:16 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:36:00 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@
 // 	write_hst_file(&data, HIST_FILE_PATH);
 // }
 
-/*
-TEST CMDS:
-ls|cat -e<<her_doc>file1>>file2
-ls -l | echo $path | cat>> file2 | echo '$$smt $' | cat < infile | cat \"\"
-*/
+
+// TEST CMDS:
+// #define COMMAND "ls|cat -e<<her_doc>file1>>file2"
+#define COMMAND "ls -l | echo $PATH | cat>> file2 | echo '$$smt $' | cat < infile | cat \"\""
+// #define COMMAND "wc  <Makefile -w | >> infile cat | echo $SHELL | cat \"\" | ls -l -a"
 
 int main(int ac, char **av, char **env)
 {
@@ -71,7 +71,7 @@ int main(int ac, char **av, char **env)
 	(void) av;
 
 	t_lst = NULL;
-	char *msg = "wc  <Makefile -w | >> infile cat | echo $SHELL | cat \"\" | ls -l -a";
+	char *msg = COMMAND;
 	data.parsed_lst = NULL;
 	lexing(msg, &t_lst);
 	parse_env(&data, env);
@@ -81,6 +81,7 @@ int main(int ac, char **av, char **env)
 		printf("Value = %s, type = %d\n", tmp->value, tmp->type);
 		tmp = tmp->next;
 	}
+	printf("\n\n\n");
 	parser_main(&t_lst, &data);
 	while (data.parsed_lst)
 	{

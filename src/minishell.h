@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 16:26:32 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:30:50 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ enum					e_in_mode
 	IN_MODE_FILE = 3,
 	IN_MODE_PIPE = 4,
 	IN_MODE_HERE_DOC = 5,
-};
+}; 
 
 enum					e_out_mode
 {
