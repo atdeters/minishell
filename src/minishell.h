@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 16:30:50 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 17:16:22 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -577,6 +577,7 @@ void					parse_env(t_data *data, char **env);
  * (e.g., `"/usr/bin/cat"`), or `NULL` on failure .
  */
 char					*join_path_exe(char *path, char *exe);
+char					*get_pathstr(t_data *data);
 /**
  * @brief Resolves the full path to an executable if it is not already
  * a direct path.
