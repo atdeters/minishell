@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 16:12:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:18:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	execute(t_data *data, int fd_in, int fd_out, char **command)
 	data->pid[data->n_pid] = fork();
 	if (data->pid[data->n_pid] == -1)
 		return (pc_err(ERR_FORK));
-	check_access(data, command, &acc_code);
+	check_access(command, &acc_code);
 	if (acc_code)
 		exit(acc_code);
 	if (data->pid[data->n_pid] == 0)

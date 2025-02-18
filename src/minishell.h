@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 16:12:20 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:26:32 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,17 @@ typedef struct s_data
 
 }						t_data;
 
+typedef struct			s_pars_data{
+	t_parsed **parsed_lst;
+	int cmd_amount;
+	int	parsed_amount;
+	t_token **token_lst;
+	t_env_lst **env_lst;
+	t_token *cur_head;
+	t_token *cur_tail;
+
+}						t_pars_data;
+
 //// FUNCTION-FILES
 // access.c
 /**
@@ -196,7 +207,7 @@ typedef struct s_data
  * @returns The value of `acc_code`, indicating the result of the check.
  * 
  */
-int						check_access(t_data *data, char **command, int *acc_code);
+int						check_access(char **command, int *acc_code);
 
 
 // add_rl_prompt.c
@@ -612,46 +623,24 @@ int						wait_all(t_data *data);
 void					close_all(t_data *data);
 int						cool_dup(t_data *data, int fd_in, int fd_out);
 
-
-
-
-
-// #include "minishell.h"
-
-//structures and enums
-
-
-typedef struct s_pars_data{
-	t_parsed **parsed_lst;
-	int cmd_amount;
-	int	parsed_amount;
-	t_token **token_lst;
-	t_env_lst **env_lst;
-	t_token *cur_head;
-	t_token *cur_tail;
-
-} t_pars_data;
-
-// int	parser(t_token **tokens, t_data *data);
-int	parser_main(t_token **tokens, t_data *data);
+// int						parser(t_token **tokens, t_data *data);
+int						parser_main(t_token **tokens, t_data *data);
 
 //utils functions
-t_parsed	*create_p_node(char **cmd_and_args, char *in, char *out);
-t_parsed	*get_p_last(t_parsed *lst);
-t_parsed	*add_p_back(t_parsed **lst, t_parsed *new);
-void		free_p_lst(t_parsed **lst);
-int			pipe_counter(t_token **tokens);
+t_parsed				*create_p_node(char **cmd_and_args, char *in, char *out);
+t_parsed				*get_p_last(t_parsed *lst);
+t_parsed				*add_p_back(t_parsed **lst, t_parsed *new);
+void					free_p_lst(t_parsed **lst);
+int						pipe_counter(t_token **tokens);
 
 //parser functions
-void	call_check_type(t_pars_data *pars_data, t_parsed *new);
-void	init_pars_data(t_pars_data *pars_data, t_data *data, t_token **tokens);
-int	check_for_count(t_token *token);
-int	check_for_putting_words(t_token *token);
-int	check_for_putting_dollar(t_token *token);
-char *return_from_env(t_pars_data pars_data, char *field);
-int parse_in_out(t_token *current, t_parsed **new);
-int	parse_in_out_part_2(t_token *current, t_parsed **new);
-
-
+void					call_check_type(t_pars_data *pars_data, t_parsed *new);
+void					init_pars_data(t_pars_data *pars_data, t_data *data, t_token **tokens);
+int						check_for_count(t_token *token);
+int						check_for_putting_words(t_token *token);
+int						check_for_putting_dollar(t_token *token);
+char 					*return_from_env(t_pars_data pars_data, char *field);
+int 					parse_in_out(t_token *current, t_parsed **new);
+int						parse_in_out_part_2(t_token *current, t_parsed **new);
 
 #endif

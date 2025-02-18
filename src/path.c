@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:52:51 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 16:09:47 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:20:10 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,16 @@ char	*join_path_exe(char *path, char *exe)
 char	**add_path(t_data *data, char **command)
 {
 	char	**env;
+	char	*path_str;
 	char	*tmp;
 	int		i;
 
 	if (ft_strchr(command[0], '/'))
 		return (command);
-	env = ft_split(data->env_lst, ':');
+	// Write a function here that get the string for all paths
+	// here and extracts it
+	path_str = NULL;
+	env = ft_split(path_str, ':');
 	if (!env)
 		return (data->error = ERR_SPLIT, NULL);
 	i = 0;
