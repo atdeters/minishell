@@ -22,6 +22,7 @@ t_token	*create_token(int type, char *value)
 	token->type = type;
 	token->value = value;
 	token->next = NULL;
+	token->prev = NULL;
 	return (token);
 }
 
@@ -47,6 +48,7 @@ void	ft_token_lstadd_back(t_token **lst, t_token *new)
 	}
 	current = ft_token_lstlast(*lst);
 	current->next = new;
+	new->prev = current;
 }
 
 static void	ft_token_lstdelone(t_token *lst)

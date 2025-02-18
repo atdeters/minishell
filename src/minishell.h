@@ -643,5 +643,15 @@ void		free_p_lst(t_parsed **lst);
 int			pipe_counter(t_token **tokens);
 
 //parser functions
-void	check_type(t_token *head, t_token *tail, int flag, t_parsed **new);
+void	call_check_type(t_pars_data *pars_data, t_parsed *new);
+void	init_pars_data(t_pars_data *pars_data, t_data *data, t_token **tokens);
+int	check_for_count(t_token *token);
+int	check_for_putting_words(t_token *token);
+int	check_for_putting_dollar(t_token *token);
+char *return_from_env(t_pars_data pars_data, char *field);
+int parse_in_out(t_token *current, t_parsed **new);
+int	parse_in_out_part_2(t_token *current, t_parsed **new);
+
+
+
 #endif

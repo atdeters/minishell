@@ -17,11 +17,11 @@ COMP = cc
 CFLAGS ?= -Wall -Wextra -Werror -g
 LDFLAGS = -lreadline
 
-SRC_FILES =	main.c builtin_cd.c builtin_clear.c builtin_pwd.c init_com.c\
-			init_prog.c input.c errors.c env_lst_func.c env_parser.c helpers1.c add_rl_prompt.c\
-			get_git.c lexing.c lexing_utils.c lexing_utils_2.c lexing_utils_3.c\
-			piping.c builtin_echo.c history.c access.c path.c execution.c free.c\
-			parser_utils_1.c parser_utils_2.c parser.c
+SRC_FILES = main.c builtin_cd.c builtin_clear.c builtin_pwd.c init_com.c\
+init_prog.c input.c errors.c env_lst_func.c env_parser.c helpers1.c add_rl_prompt.c\
+get_git.c lexing.c lexing_utils.c lexing_utils_2.c lexing_utils_3.c\
+piping.c builtin_echo.c history.c parser_utils_1.c parser_utils_2.c\
+parser.c parser_utils_3.c parser_utils_4.c access.c path.c execution.c free.c
 
 SRCS = $(addprefix src/, $(SRC_FILES))
 
