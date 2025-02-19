@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 18:31:07 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 18:32:56 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(int ac, char **av, char **env)
 				pnc_err(&data);
 			if (!lexing(data.input, &data.token_lst))
 				pnc_err(&data);
-			printf("data.token_lst->value = %s\n", data.token_lst->value);
 			parser_main(&data.token_lst, &data);
 			while (data.parsed_lst)
 			{
