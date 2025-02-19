@@ -6,12 +6,13 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 15:40:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 15:43:46 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Add here_doc
 int	get_fd_in(t_data *data, int *fd_in)
 {
 	int	in_m;
@@ -57,8 +58,6 @@ int	get_fd_out(t_data *data, int *fd_out)
 	}
 }
 
-// Add permission check to file names!
-// Add here_doc
 int	get_fds(t_data *data, int *fd_in, int *fd_out)
 {
 	if (check_access_files(data))
@@ -75,9 +74,9 @@ int	get_fds(t_data *data, int *fd_in, int *fd_out)
 // Filedescriptors are closed already in the cool_dup
 int	execute(t_data *data)
 {
-	int	fd_in;
-	int	fd_out;
-	char **command;
+	int		fd_in;
+	int		fd_out;
+	char	**command;
 
 	command = data->parsed_lst->cmd_and_args;
 	data->pid[data->n_pid] = fork();
