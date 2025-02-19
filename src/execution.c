@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 17:42:20 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 18:41:18 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	execute(t_data *data)
 		return (pc_err(ERR_FORK));
 	if (data->pid[data->n_pid] == 0)
 	{
+		add_path(data, command);
 		if (get_fds(data, &fd_in, &fd_out))
 			exit(data->error);
 		if (check_access(data, command[0], false))
