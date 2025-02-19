@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 15:11:21 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 15:25:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -598,25 +598,6 @@ void					close_all(t_data *data);
 int						cool_dup(t_data *data, int fd_in, int fd_out);
 
 
-
-
-
-// #include "minishell.h"
-
-//structures and enums
-
-
-typedef struct s_pars_data{
-	t_parsed **parsed_lst;
-	int cmd_amount;
-	int	parsed_amount;
-	t_token **token_lst;
-	t_env_lst **env_lst;
-	t_token *cur_head;
-	t_token *cur_tail;
-
-} t_pars_data;
-
 // int	parser(t_token **tokens, t_data *data);
 int	parser_main(t_token **tokens, t_data *data);
 
@@ -628,8 +609,6 @@ void		free_p_lst(t_parsed **lst);
 int			pipe_counter(t_token **tokens);
 
 //parser functions
-void	check_type(t_token *head, t_token *tail, int flag, t_parsed **new);
-// int						parser(t_token **tokens, t_data *data);
 int						parser_main(t_token **tokens, t_data *data);
 
 //utils functions
