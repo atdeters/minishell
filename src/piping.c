@@ -6,13 +6,13 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 13:49:31 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:05:47 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	wait_all(t_data *data)
+int	wait_all(t_data *data)
 {
 	int	i;
 

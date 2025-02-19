@@ -76,159 +76,75 @@ prew->prew
 next -> NULL
 */
 
-void	init_pars_data(t_pars_data *pars_data, t_data *data, t_token **tokens)
+static int	init_cmd_array(t_token *current, t_token *tail, t_parsed **new)
 {
-	(*pars_data).env_lst = &data->env_lst;
-	(*pars_data).token_lst = tokens;
-	(*pars_data).cmd_amount = pipe_counter(tokens) + 1;
-	(*data).pipes_amount = pipe_counter(tokens);
-	(*pars_data).parsed_amount = 0;
-	*(*pars_data).parsed_lst = NULL;
-}
+	int	i;
 
-void	call_check_type(t_pars_data *pars_data, t_parsed *new)
-{
-	if (!(*pars_data).cur_tail)
-		check_type((*pars_data).cur_head, ft_token_lstlast((*pars_data).cur_head),
-		(*pars_data).cmd_amount, &new);
-	else if ((*pars_data).parsed_amount == 0)
-		check_type((*pars_data).cur_head, (*pars_data).cur_tail, 1, &new);
-	else if ((*pars_data).parsed_amount < (*pars_data).cmd_amount - 1 &&
-	 (*pars_data).parsed_amount != 0)
-		check_type((*pars_data).cur_head, (*pars_data).cur_tail, 2, &new);
-	else
-		check_type((*pars_data).cur_head, (*pars_data).cur_tail, 3, &new);
-}
-
-int	parse_in_out_part_2(t_token *current, t_parsed **new)
-{
-	if (current->type == REDIR_OUT)
+	i = 0;
+	while (current && current != tail->next)
 	{
-		if (current->next)
-		{
-			(*new)->out = ft_strdup(current->next->value);
-			if (!(*new)->out)
-				return (2);
-		}	
-		else
-			return (0);
-		(*new)->out_mode = OUT_MODE_FILE_TR;
+		if (!parse_in_out(current, new))
+			return (-1);
+		if (check_for_count(current))
+			i++;
+		current = current->next;
 	}
-	if (current->type == REDIR_APPEND)
+	(*new)->cmd_and_args = malloc(sizeof(char *) * (i + 1));
+	if (!(*new)->cmd_and_args)
+		return (-1);
+	(*new)->cmd_and_args[i] = NULL;
+	return (i);
+}
+
+static int	fill_cmd_array(t_token *current, t_token *tail, t_parsed **new, t_pars_data *pars_data)
+{
+	int	i;
+
+	i = 0;
+	while (current && current != tail->next)
 	{
-		if (current->next)
+		if (check_for_putting_words(current))
 		{
-			(*new)->out = ft_strdup(current->next->value);
-			if (!(*new)->out)
-				return (2);
-		}	
-		else
-			return (0);
-		(*new)->out_mode = OUT_MODE_FILE_APP;
+			(*new)->cmd_and_args[i] = ft_strdup(current->value);
+			if (!(*new)->cmd_and_args[i])
+				return (0);
+			i++;
+		}
+		else if (check_for_putting_dollar(current))
+		{
+			(*new)->cmd_and_args[i] = return_from_env(*pars_data, current->value);
+			if ((*new)->cmd_and_args[i] == NULL)
+				return (0);
+			i++;
+		}
+		current = current->next;
 	}
 	return (1);
 }
 
-int parse_in_out(t_token *current, t_parsed **new)
-{
-	if (current->type == REDIR_IN)
-	{
-		if (current->next)
-		{
-			(*new)->in = ft_strdup(current->next->value);
-			if (!(*new)->in)
-				return (2);
-		}	
-		else
-			return (0);
-		(*new)->in_mode = IN_MODE_FILE;
-	}
-	if (current->type == DELIMITER)
-	{
-		if (current->next)
-		{
-			(*new)->in = ft_strdup(current->next->value);
-			if (!(*new)->in)
-				return (2);
-		}	
-		else
-			return (0);
-		(*new)->in_mode = IN_MODE_HERE_DOC;
-	}
-	return (parse_in_out_part_2(current, new));
-}
-
-char *return_from_env(t_pars_data pars_data, char *field)
-{
-	t_env_lst *tmp;
-	char	*res;
-
-	res = NULL;
-	tmp = *pars_data.env_lst;
-	while(tmp)
-	{
-		if (ft_strncmp(tmp->filed, field, ft_strlen(field) - 1) == 0)
-		{
-			res = ft_strdup(tmp->value);
-			return (res);
-		}
-		tmp = tmp->next;
-	}
-	res = malloc(sizeof(char));
-	res[0] = '\0';
-	return (res);
-}
-
-int	parse_command(t_pars_data *pars_data)
+static int	parse_command(t_pars_data *pars_data)
 {
 	t_parsed	*new;
-	t_token 	*current;
-	t_token 	*prev;
-	int			i;
+	t_token		*current;
+	int			array_size;
 
 	new = create_p_node(NULL, NULL, NULL);
-	i = 0;
 	call_check_type(pars_data, new);
 	(*pars_data).parsed_amount++;
 	current = (*pars_data).cur_head;
-	prev = NULL;
-	while (current && current != (*pars_data).cur_tail->next)
-	{
-		if (!parse_in_out(current, &new))
-			return (0);
-		if ((current->type == WORD || current->type ==DOUBLE_QOUTE || current->type ==DOLAR_SIGN || current->type ==SINGLE_QOUTE) && (!prev || (prev && (prev->type != REDIR_APPEND && prev->type != REDIR_OUT && prev->type != REDIR_IN && prev->type != DELIMITER))))
-			i++;
-		prev = current;
-		current = current->next;
-	}
-	new->cmd_and_args = malloc(sizeof(char *) * (i + 1));
-	if (!new->cmd_and_args)
+
+	array_size = init_cmd_array(current, (*pars_data).cur_tail, &new);
+	if (array_size == -1)
 		return (0);
-	new->cmd_and_args[i] = NULL;
-	current = (*pars_data).cur_head;
-	i = 0;
-	while (current && current != (*pars_data).cur_tail->next)
-	{
-		if ((current->type == WORD || current->type ==DOUBLE_QOUTE || current->type ==SINGLE_QOUTE) && (!prev || (prev && (prev->type != REDIR_APPEND && prev->type != REDIR_OUT && prev->type != REDIR_IN && prev->type != DELIMITER))))
-		{
-			new->cmd_and_args[i] = ft_strdup(current->value);
-			if (!new->cmd_and_args[i])
-				return (0);
-			i++;
-		}
-		else if (current->type == DOLAR_SIGN && (!prev || (prev && (prev->type != REDIR_APPEND && prev->type != REDIR_OUT && prev->type != REDIR_IN && prev->type != DELIMITER))))
-		{
-			new->cmd_and_args[i] = return_from_env(*pars_data, current->value);
-			i++;
-		}
-		prev = current;
-		current = current->next;
-	}
+
+	if (!fill_cmd_array(current, (*pars_data).cur_tail, &new, pars_data))
+		return (0);
+
 	add_p_back((*pars_data).parsed_lst, new);
 	return (1);
 }
 
-int	parser_loop(t_pars_data pars_data)
+static int	parser_loop(t_pars_data pars_data)
 {
 	t_token *current;
 

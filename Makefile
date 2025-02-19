@@ -7,27 +7,29 @@ PROMPT			?=	'"\001\001➜\002\002"'
 PROMPT_SPACE	?=	'"  "'
 SHOW_EXIT_COL 	?=	true
 
-DEFINES =	-D SHOW_FOLDER=$(SHOW_FOLDER)\
-			-D SHOW_GIT=$(SHOW_GIT)\
-			-D PROMPT=$(PROMPT)\
-			-D PROMPT_SPACE=$(PROMPT_SPACE)\
-			-D SHOW_EXIT_COL=$(SHOW_EXIT_COL)
+DEFINES		 =	-D SHOW_FOLDER=$(SHOW_FOLDER)\
+				-D SHOW_GIT=$(SHOW_GIT)\
+				-D PROMPT=$(PROMPT)\
+				-D PROMPT_SPACE=$(PROMPT_SPACE)\
+				-D SHOW_EXIT_COL=$(SHOW_EXIT_COL)
 
-COMP = cc
-CFLAGS ?= -Wall -Wextra -Werror -g
-LDFLAGS = -lreadline
+COMP		=	cc
+CFLAGS		?=	-Wall -Wextra -Werror -g
+LDFLAGS		=	-lreadline
 
-SRC_FILES = main.c builtin_cd.c builtin_clear.c builtin_pwd.c init_com.c\
-init_prog.c input.c errors.c env_lst_func.c env_parser.c helpers1.c add_rl_prompt.c\
-get_git.c lexing.c lexing_utils.c lexing_utils_2.c lexing_utils_3.c\
-piping.c builtin_echo.c history.c parser_utils_1.c parser_utils_2.c\
-parser.c
+MAIN		?=	tests/test_parser.c # main.c
+
+SRC_FILES	=	builtin_cd.c builtin_clear.c builtin_pwd.c init_com.c init_prog.c\
+				input.c errors.c env_lst_func.c env_parser.c helpers1.c add_rl_prompt.c\
+				get_git.c lexing.c lexing_utils.c lexing_utils_2.c lexing_utils_3.c\
+				piping.c builtin_echo.c history.c parser_utils_1.c parser_utils_2.c\
+				parser.c parser_utils_3.c parser_utils_4.c access.c path.c execution.c free.c\
 
 SRCS = $(addprefix src/, $(SRC_FILES))
 
 OFOLDER = objs
 OPATH = objs/
-OBJS = $(addprefix $(OPATH), $(SRC_FILES:.c=.o))
+OBJS = $(addprefix $(OPATH), $(SRC_FILES:.c=.o)) $(MAIN)
 
 ARCH = ./src/libft.a
 

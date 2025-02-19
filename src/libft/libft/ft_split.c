@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/06 13:50:08 by adeters           #+#    #+#             */
-/*   Updated: 2024/11/15 19:51:27 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/18 17:33:10 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	**ft_split(char const *s, char c)
 	int		arr_len;
 	char	**arr;
 
+	if (!s | !c)
+		return (NULL);
 	arr_len = ft_arr_len(s, c);
 	arr = (char **)malloc((1 + arr_len) * sizeof(char *));
 	if (arr == 0)

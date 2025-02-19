@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 19:33:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 15:11:21 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "config.h"
 # include "lexing.h"
 # include "errmsg.h"
+# include "parser.h"
 # include "parser.h"
 
 //// MAKROS
@@ -58,7 +59,7 @@ enum					e_in_mode
 	IN_MODE_FILE = 3,
 	IN_MODE_PIPE = 4,
 	IN_MODE_HERE_DOC = 5,
-};
+}; 
 
 enum					e_out_mode
 {
@@ -167,36 +168,20 @@ typedef struct s_data
 
 }						t_data;
 
+typedef struct			s_pars_data{
+	t_parsed **parsed_lst;
+	int cmd_amount;
+	int	parsed_amount;
+	t_token **token_lst;
+	t_env_lst **env_lst;
+	t_token *cur_head;
+	t_token *cur_tail;
+
+}						t_pars_data;
+
 //// FUNCTION-FILES
 // access.c
-/**
- * @brief Checks the accessibility of an executable (direct path or command).
- * 
- * This function verifies the existence and execution permissions of the
- * executable specified in `command[0]`. It is assumed that `command[0]`
- * may be either an absolute or relative path to the executable. 
- * The function additionally sets the value of `acc_code` based
- * on the result (see return).
- * 
- * If `command[0]` is not a valid direct path (does not contain `/`),
- * the function assumes the executable cannot be executed (as the `execve`
- * function needs it to start with `./` for it to work)
- * 
- * @param command A null-terminated string array where `command[0]` represents
- *                the path or name of the executable to check.
- *
- * @param acc_code A pointer to an integer that will be set to:
- * 
- * - `0` if the executable can be executed directly.
- * 
- * - `ERR_ACCESS` if the executable does not exist or is not a valid direct path.
- * 
- * - `ERR_PERM` if the executable exists but execute permission is denied.
- * 
- * @returns The value of `acc_code`, indicating the result of the check.
- * 
- */
-int						check_access(char **command, int *acc_code);
+int						check_access(t_data *data, char *name, bool is_file);
 
 
 // add_rl_prompt.c
@@ -315,7 +300,7 @@ char					*add_branch(char *rl_prompt, char *branch);
 /**
  * @brief Changes the working directory
  */
-void					ft_cd(char *path);
+void					ft_cd(char **command);
 
 // builtin_clear.c
 /**
@@ -393,11 +378,10 @@ int						pnc_err(t_data *data);
 /**
  * @brief Prints errors and adds the argument that caused the error
  */
-int						p_err_arg(t_data *data, const char *arg);
+int						p_err_arg(int code, const char *arg);
 
 // execution.c
-int						execute(t_data *data, int fd_in, int fd_out,
-							char **command);
+int						execute(t_data *data);
 /**
  * @brief Checks whether a function is a builtin or not
  * 
@@ -566,6 +550,7 @@ void					parse_env(t_data *data, char **env);
  * (e.g., `"/usr/bin/cat"`), or `NULL` on failure .
  */
 char					*join_path_exe(char *path, char *exe);
+char					*get_pathstr(t_data *data);
 /**
  * @brief Resolves the full path to an executable if it is not already
  * a direct path.
@@ -602,14 +587,13 @@ char					*join_path_exe(char *path, char *exe);
 char					**add_path(t_data *data, char **command);
 
 // piping.c
+
 /**
- * Redirects the fd_in to STDIN and fd_out to STDOUT. If fd_in is equal
- * to STDIN or fd_out is equal to STDOUT, they will do nothing.
- * 
- * It closes all open pipes afterwards
- * 
+ * Redirects the fd_in to STDIN and fd_out to STDOUT.
+ * If fd_in is equal to STDIN or fd_out is equal to STDOUT,
+ * they will do nothing. It closes all open pipes afterwards
  */
-void					wait_all(t_data *data);
+int						wait_all(t_data *data);
 void					close_all(t_data *data);
 int						cool_dup(t_data *data, int fd_in, int fd_out);
 
@@ -645,4 +629,24 @@ int			pipe_counter(t_token **tokens);
 
 //parser functions
 void	check_type(t_token *head, t_token *tail, int flag, t_parsed **new);
+// int						parser(t_token **tokens, t_data *data);
+int						parser_main(t_token **tokens, t_data *data);
+
+//utils functions
+t_parsed				*create_p_node(char **cmd_and_args, char *in, char *out);
+t_parsed				*get_p_last(t_parsed *lst);
+t_parsed				*add_p_back(t_parsed **lst, t_parsed *new);
+void					free_p_lst(t_parsed **lst);
+int						pipe_counter(t_token **tokens);
+
+//parser functions
+void					call_check_type(t_pars_data *pars_data, t_parsed *new);
+void					init_pars_data(t_pars_data *pars_data, t_data *data, t_token **tokens);
+int						check_for_count(t_token *token);
+int						check_for_putting_words(t_token *token);
+int						check_for_putting_dollar(t_token *token);
+char 					*return_from_env(t_pars_data pars_data, char *field);
+int 					parse_in_out(t_token *current, t_parsed **new);
+int						parse_in_out_part_2(t_token *current, t_parsed **new);
+
 #endif
