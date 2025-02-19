@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:53:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 15:33:50 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 17:42:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	check_access_files(t_data *data)
 	in_m = data->parsed_lst->in_mode;
 	if (in_m == IN_MODE_FILE)
 	{
-		check_access (data, data->parsed_lst->in, true);
+		error = check_access (data, data->parsed_lst->in, true);
 		if (error)
 			return (setnret(data, error));
 	}
 	if (out_m == OUT_MODE_FILE_APP || out_m == OUT_MODE_FILE_TR)
 	{
-		check_access (data, data->parsed_lst->out, true);
+		error = check_access (data, data->parsed_lst->out, true);
 		if (error)
 			return (setnret(data, error));
 	}

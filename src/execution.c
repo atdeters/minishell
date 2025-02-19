@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 15:43:46 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 17:42:20 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	get_fd_out(t_data *data, int *fd_out)
 		if (*fd_out == -1)
 			return (setnret(data, ERR_OPEN));
 	}
+	return (0);
 }
 
 int	get_fds(t_data *data, int *fd_in, int *fd_out)
