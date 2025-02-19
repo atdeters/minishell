@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:53:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 17:42:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 20:17:19 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	check_access(t_data *data, char *name, bool is_file)
 	int	error;
 
 	error = 0;
-	if (access(name, F_OK) == -1)
+	if (!is_file && access(name, F_OK) == -1)
 		error = p_err_arg(ERR_ACCESS, name);
 	else if (!is_file && access(name, X_OK) == -1)
 		error = p_err_arg(ERR_PERM, name);
-	else if (is_file && access(name, R_OK) == -1)
+	else if (is_file && access(name, R_OK) == -1 && !access(name, F_OK))
 		error = p_err_arg(ERR_PERM, name);
 	else if (!is_file && !ft_strchr(name, '/'))
 		error = p_err_arg(ERR_ACCESS, name);
