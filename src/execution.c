@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 20:10:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 20:10:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ int	execute(t_data *data)
 		add_path(data, command);
 		if (get_fds(data, &fd_in, &fd_out))
 			exit(data->error);
-		printf("in_m: %d; out_m: %d\n", data->parsed_lst->in_mode, data->parsed_lst->out_mode);
-		printf("fd_in: %d; fd_out: %d\n", fd_in, fd_out);
 		if (check_access(data, command[0], false))
 			exit(data->error);
 		if (cool_dup(data, fd_in, fd_out))

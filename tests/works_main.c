@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 20:10:00 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 20:11:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	main(int ac, char **av, char **env)
 				if (data.parsed_lst->in_mode == IN_MODE_PIPE)
 					data.ind_in_pipe++;
 				execute(&data);
-				usleep(1000); // Get rid of this
 				data.parsed_lst = data.parsed_lst->next;
 			}
 			close_all(&data);
