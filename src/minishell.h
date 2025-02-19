@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 18:53:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 20:09:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ typedef struct s_data
 		* @brief The next pipe that will be opened
 		*/
 	int					n_pipe;
+	int					ind_in_pipe;
+	int					ind_out_pipe;
 	/**
 		* Amount of pipes needed for a given command
 		*/
