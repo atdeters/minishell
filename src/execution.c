@@ -6,22 +6,65 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 18:18:25 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:28:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// Add permission check to file names!
+// Add here_doc
+int	get_fds(t_data *data, int *fd_in, int *fd_out)
+{
+	// fd_in
+	if (data->parsed_lst->in_mode == IN_MODE_STD)
+		fd_in = STDIN_FILENO;
+	else if (data->parsed_lst->in_mode == IN_MODE_PIPE)
+	{
+		fd_in = data->fd_pipe[data->n_pipe][0];
+		data->n_pipe++;
+	}
+	else if (data->parsed_lst->in_mode == IN_MODE_FILE)
+	{
+		fd_in = open(data->parsed_lst->in, O_RDONLY);
+		if (fd_in == -1)
+			return (1);
+	}
+	
+	// fd_out
+	if (data->parsed_lst->out_mode == OUT_MODE_STD)
+		fd_out = STDOUT_FILENO;
+	else if (data->parsed_lst->out_mode == OUT_MODE_PIPE)
+		fd_out = data->fd_pipe[data->n_pipe - 1][0];
+	else if (data->parsed_lst->out_mode == OUT_MODE_FILE_TR)
+	{
+		fd_out = open(data->parsed_lst->out, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+		if (fd_out == -1)
+			return (1);
+	}
+	else if (data->parsed_lst->out_mode == OUT_MODE_FILE_APP)
+	{
+		fd_out = open(data->parsed_lst->out, O_WRONLY | O_CREAT | O_APPEND, 0644);
+		if (fd_out == -1)
+			return (1);
+	}
+	return (0);
+}
+
 // Does currently not free anything that might be allocated anywhere
 // Make sure to check for every exit
 // Filedescriptors are closed already in the cool_dup
-int	execute(t_data *data, int fd_in, int fd_out, char **command)
+int	execute(t_data *data, char **command)
 {
 	int	acc_code;
+	int	fd_in;
+	int	fd_out;
 
 	data->pid[data->n_pid] = fork();
 	if (data->pid[data->n_pid] == -1)
 		return (pc_err(ERR_FORK));
+	if (get_fds(data, &fd_in, &fd_out))
+		exit(1); // Give it a code and print error
 	if (check_access(command, &acc_code))
 		exit(acc_code);
 	if (data->pid[data->n_pid] == 0)
