@@ -6,33 +6,55 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 15:13:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 15:40:01 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-check_access_files(t_data *data)
+int	get_fd_in(t_data *data, int *fd_in)
 {
-	int	out_m;
 	int	in_m;
-	int	error;
 
-	out_m = data->parsed_lst->out_mode;
 	in_m = data->parsed_lst->in_mode;
-	if (in_m == IN_MODE_FILE)
+	if (in_m == IN_MODE_STD)
+		*fd_in = STDIN_FILENO;
+	else if (in_m == IN_MODE_PIPE)
 	{
-		check_access (data, data->parsed_lst->in, true);
-		if (error)
-			return (setnret(data, error));
+		*fd_in = data->fd_pipe[data->n_pipe][0];
+		data->n_pipe++;
 	}
-	if (out_m == OUT_MODE_FILE_APP || out_m == OUT_MODE_FILE_TR)
+	else if (in_m == IN_MODE_FILE)
 	{
-		check_access (data, data->parsed_lst->out, true);
-		if (error)
-			return (setnret(data, error));
+		*fd_in = open(data->parsed_lst->in, O_RDONLY);
+		if (*fd_in == -1)
+			return (setnret(data, ERR_OPEN));
 	}
 	return (0);
+}
+
+int	get_fd_out(t_data *data, int *fd_out)
+{
+	int		out_m;
+	int		open_m;
+	char	*outfile;
+
+	out_m = data->parsed_lst->out_mode;
+	outfile = data->parsed_lst->out;
+	if (out_m == OUT_MODE_FILE_APP)
+		open_m = O_WRONLY | O_CREAT | O_APPEND;
+	else
+		open_m = O_WRONLY | O_CREAT | O_TRUNC;
+	if (out_m == OUT_MODE_STD)
+		*fd_out = STDOUT_FILENO;
+	else if (out_m == OUT_MODE_PIPE)
+		*fd_out = data->fd_pipe[data->n_pipe - 1][0];
+	else if (out_m == OUT_MODE_FILE_TR || out_m == OUT_MODE_FILE_APP)
+	{
+		*fd_out = open(data->parsed_lst->out, open_m, 0644);
+		if (*fd_out == -1)
+			return (setnret(data, ERR_OPEN));
+	}
 }
 
 // Add permission check to file names!
@@ -41,39 +63,10 @@ int	get_fds(t_data *data, int *fd_in, int *fd_out)
 {
 	if (check_access_files(data))
 		return (data->error);
-	
-	// fd_in
-	if (data->parsed_lst->in_mode == IN_MODE_STD)
-		fd_in = STDIN_FILENO;
-	else if (data->parsed_lst->in_mode == IN_MODE_PIPE)
-	{
-		fd_in = data->fd_pipe[data->n_pipe][0];
-		data->n_pipe++;
-	}
-	else if (data->parsed_lst->in_mode == IN_MODE_FILE)
-	{
-		fd_in = open(data->parsed_lst->in, O_RDONLY);
-		if (fd_in == -1)
-			return (setnret(data, ERR_OPEN));
-	}
-	
-	// fd_out
-	if (data->parsed_lst->out_mode == OUT_MODE_STD)
-		fd_out = STDOUT_FILENO;
-	else if (data->parsed_lst->out_mode == OUT_MODE_PIPE)
-		fd_out = data->fd_pipe[data->n_pipe - 1][0];
-	else if (data->parsed_lst->out_mode == OUT_MODE_FILE_TR)
-	{
-		fd_out = open(data->parsed_lst->out, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		if (fd_out == -1)
-			return (setnret(data, ERR_OPEN));
-	}
-	else if (data->parsed_lst->out_mode == OUT_MODE_FILE_APP)
-	{
-		fd_out = open(data->parsed_lst->out, O_WRONLY | O_CREAT | O_APPEND, 0644);
-		if (fd_out == -1)
-			return (setnret(data, ERR_OPEN));
-	}
+	if (get_fd_in(data, fd_in))
+		return (data->error);
+	if (get_fd_out(data, fd_out))
+		return (data->error);
 	return (0);
 }
 

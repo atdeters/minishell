@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 15:42:22 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:34:59 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include "config.h"
 # include "errmsg.h"
 # include "lexing.h"
-# include "parser.h"
 
 //// MAKROS
 # define FD_LIMIT 508
@@ -183,6 +182,7 @@ typedef struct s_pars_data
 //// FUNCTION-FILES
 // access.c
 int						check_access(t_data *data, char *name, bool is_file);
+int						check_access_files(t_data *data);
 
 // add_rl_prompt.c
 /**
