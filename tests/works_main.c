@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 19:16:44 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 19:35:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,14 @@ int	main(int ac, char **av, char **env)
 			lexing(data.input, &data.token_lst);
 			parse_env(&data, env);
 			parser_main(&data.token_lst, &data);
+			pipe_maker(&data);
 			while (data.parsed_lst)
 			{
+				if (data.parsed_lst->out_mode == OUT_MODE_PIPE)
+				{
+					pipe(data.fd_pipe[data.n_pipe]);
+					data.n_pipe++;
+				}
 				execute(&data);
 				data.parsed_lst = data.parsed_lst->next;
 			}

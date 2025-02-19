@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 19:00:53 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 19:37:55 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,12 @@ int	get_fd_in(t_data *data, int *fd_in)
 {
 	int	in_m;
 
+	printf("pipe index: %d\n", data->n_pipe - 1);
 	in_m = data->parsed_lst->in_mode;
 	if (in_m == IN_MODE_STD)
 		*fd_in = STDIN_FILENO;
 	else if (in_m == IN_MODE_PIPE)
-	{
-		*fd_in = data->fd_pipe[data->n_pipe][0];
-		data->n_pipe++;
-	}
+		*fd_in = data->fd_pipe[data->n_pipe - 1][0];
 	else if (in_m == IN_MODE_FILE)
 	{
 		*fd_in = open(data->parsed_lst->in, O_RDONLY);
@@ -49,7 +47,7 @@ int	get_fd_out(t_data *data, int *fd_out)
 	if (out_m == OUT_MODE_STD)
 		*fd_out = STDOUT_FILENO;
 	else if (out_m == OUT_MODE_PIPE)
-		*fd_out = data->fd_pipe[data->n_pipe - 1][0];
+		*fd_out = data->fd_pipe[data->n_pipe - 1][1];
 	else if (out_m == OUT_MODE_FILE_TR || out_m == OUT_MODE_FILE_APP)
 	{
 		*fd_out = open(data->parsed_lst->out, open_m, 0644);
@@ -88,6 +86,8 @@ int	execute(t_data *data)
 		add_path(data, command);
 		if (get_fds(data, &fd_in, &fd_out))
 			exit(data->error);
+		printf("in_m: %d; out_m: %d\n", data->parsed_lst->in_mode, data->parsed_lst->out_mode);
+		printf("fd_in: %d; fd_out: %d\n", fd_in, fd_out);
 		if (check_access(data, command[0], false))
 			exit(data->error);
 		if (cool_dup(data, fd_in, fd_out))

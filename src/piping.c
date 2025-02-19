@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 16:05:47 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 19:19:33 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	close_all(t_data *data)
 int	cool_dup(t_data *data, int fd_in, int fd_out)
 {
 	if (fd_in != 0 && dup2(fd_in, STDIN_FILENO) == -1)
-		return (1);
+		return (close_all(data), 1);
 	if (fd_out != 1 && dup2(fd_out, STDOUT_FILENO) == -1)
-		return (1);
+		return (close_all(data), 1);
 	close_all(data);
 	return (0);
 }
