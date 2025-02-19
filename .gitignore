@@ -11,7 +11,7 @@ mini
 minishell
 
 # VS Code Stuff
-.vscode
+/.vscode
 
 # MAC Stuff
 .DS_Store
