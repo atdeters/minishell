@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 17:35:54 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 18:53:18 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -481,6 +481,7 @@ int						init_shell(t_data *data, char **env);
  * more times and exit the program if it still doesn't work
  */
 int						init_command(t_data *data);
+int						pipe_maker(t_data *data);
 
 // input.c
 /**

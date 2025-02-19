@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   works_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 18:44:23 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/19 19:01:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,13 @@ int	main(int ac, char **av, char **env)
 			parse_env(&data, env);
 			// printf("data.token_lst->value = %s\n", data.token_lst->value);
 			parser_main(&data.token_lst, &data);
-			ft_printf("data.parsed_lst->cmd_and[0] = %s\n",
-				data.parsed_lst->cmd_and_args[0]);
+			pipe_maker(&data);
 			while (data.parsed_lst)
 			{
-				ft_printf("in main [0] = %s\n",
-					data.parsed_lst->cmd_and_args[1]);
 				execute(&data);
 				data.parsed_lst = data.parsed_lst->next;
 			}
+			close_all(&data);
 			wait_all(&data);
 			free(data.input);
 		}
