@@ -6,13 +6,13 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:30 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/17 16:14:43 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:41:00 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//shoud rewrite in and ount mode after this function call
+// shoud rewrite in and ount mode after this function call
 t_parsed	*create_p_node(char **cmd_and_args, char *in, char *out)
 {
 	t_parsed	*new;
@@ -32,7 +32,7 @@ t_parsed	*create_p_node(char **cmd_and_args, char *in, char *out)
 
 t_parsed	*get_p_last(t_parsed *lst)
 {
-	t_parsed *last;
+	t_parsed	*last;
 
 	if (!lst)
 		return (NULL);
@@ -44,7 +44,7 @@ t_parsed	*get_p_last(t_parsed *lst)
 
 t_parsed	*add_p_back(t_parsed **lst, t_parsed *new)
 {
-	t_parsed *last;
+	t_parsed	*last;
 
 	if (!new)
 		return (NULL);
@@ -61,9 +61,9 @@ t_parsed	*add_p_back(t_parsed **lst, t_parsed *new)
 
 void	free_p_lst(t_parsed **lst)
 {
-	t_parsed *current;
-	t_parsed *tmp;
-	int		i;
+	t_parsed	*current;
+	t_parsed	*tmp;
+	int			i;
 
 	if (!lst)
 		return ;
@@ -88,7 +88,7 @@ void	free_p_lst(t_parsed **lst)
 
 int	pipe_counter(t_token **tokens)
 {
-	t_token *current;
+	t_token	*current;
 	int		pipe_count;
 
 	current = *tokens;

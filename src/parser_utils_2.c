@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:50 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/17 16:19:47 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:41:14 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,13 @@ static void	check_type(t_token *head, t_token *tail, int flag, t_parsed **new)
 void	call_check_type(t_pars_data *pars_data, t_parsed *new)
 {
 	if (!(*pars_data).cur_tail)
-		check_type((*pars_data).cur_head, ft_token_lstlast((*pars_data).cur_head),
-		(*pars_data).cmd_amount, &new);
+		check_type((*pars_data).cur_head,
+			ft_token_lstlast((*pars_data).cur_head), (*pars_data).cmd_amount,
+			&new);
 	else if ((*pars_data).parsed_amount == 0)
 		check_type((*pars_data).cur_head, (*pars_data).cur_tail, 1, &new);
-	else if ((*pars_data).parsed_amount < (*pars_data).cmd_amount - 1 &&
-	 (*pars_data).parsed_amount != 0)
+	else if ((*pars_data).parsed_amount < (*pars_data).cmd_amount - 1
+		&& (*pars_data).parsed_amount != 0)
 		check_type((*pars_data).cur_head, (*pars_data).cur_tail, 2, &new);
 	else
 		check_type((*pars_data).cur_head, (*pars_data).cur_tail, 3, &new);
