@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 18:31:53 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 19:12:25 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@ int	init_shell(t_data *data, char **env)
 	data->exit_status = 0;
 	data->error = 0;
 	data->init_com_fails = 0;
-	data->env_lst = NULL;
 	data->envp = env;
 	data->hstlst = NULL;
-	parse_env(data, env);
+	data->env_lst = NULL;
 	load_old_history(HIST_FILE_PATH);
 	return (data->error);
 }
