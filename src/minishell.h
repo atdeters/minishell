@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 14:11:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:44:36 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -407,7 +407,7 @@ int						pnc_err(t_data *data);
 int						p_err_arg(int code, const char *arg);
 
 // execution.c
-int						execute(t_data *data, char **command);
+int						execute(t_data *data);
 /**
  * @brief Checks whether a function is a builtin or not
  * 

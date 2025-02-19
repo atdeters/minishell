@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 14:28:42 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/19 14:44:14 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,14 @@ int	get_fds(t_data *data, int *fd_in, int *fd_out)
 // Does currently not free anything that might be allocated anywhere
 // Make sure to check for every exit
 // Filedescriptors are closed already in the cool_dup
-int	execute(t_data *data, char **command)
+int	execute(t_data *data)
 {
 	int	acc_code;
 	int	fd_in;
 	int	fd_out;
+	char **command;
 
+	command = data->parsed_lst->cmd_and_args;
 	data->pid[data->n_pid] = fork();
 	if (data->pid[data->n_pid] == -1)
 		return (pc_err(ERR_FORK));
