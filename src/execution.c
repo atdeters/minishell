@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 19:53:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 20:13:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,17 @@ int	execute(t_data *data)
 {
 	int		fd_in;
 	int		fd_out;
+	bool	builtin_flag;
 	char	**command;
 
 	command = data->parsed_lst->cmd_and_args;
+	if (handle_builtin(command))
+	{
+		builtin_flag = true;
+		// return (0);
+	}
+	else
+		builtin_flag = false;
 	data->pid[data->n_pid] = fork();
 	if (data->pid[data->n_pid] == -1)
 		return (pc_err(ERR_FORK));
@@ -89,7 +97,9 @@ int	execute(t_data *data)
 			exit(data->error);
 		if (cool_dup(data, fd_in, fd_out))
 			exit (pc_err(ERR_DUP2));
-		if (handle_builtin(command))
+		//if (handle_builtin(command))
+		//	exit (0);
+		if (builtin_flag)
 			exit (0);
 		if (execve(command[0], command, data->envp) == -1)
 			exit(pc_err(ERR_EXECVE));
