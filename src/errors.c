@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 18:11:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:20:23 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	pnc_err(t_data *data)
 		ft_fprintf(2, "%s", E_NC_MSG_FUNC_PIPE);
 	if (data->error == ERR_SPLIT)
 		ft_fprintf(2, "%s", E_NC_MSG_SPLIT);
+	if (data->error == ERR_PARS)
+		ft_fprintf(2, "%s", E_MSG_PARSING);
 	ft_fprintf(2, " [%d]\n", data->init_com_fails);
 	return (data->error);
 }
