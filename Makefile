@@ -19,7 +19,7 @@ LDFLAGS		=	-lreadline
 
 MAIN		?=	tests/works_main.c
 
-SRC_FILES	=	builtin_cd.c builtin_pwd.c init_com.c init_prog.c\
+SRC_FILES	=	builtin_cd.c builtin_pwd.c builtin_env.c init_com.c init_prog.c\
 				input.c errors.c env_lst_func.c env_parser.c helpers1.c add_rl_prompt.c\
 				get_git.c lexing.c lexing_utils.c lexing_utils_2.c lexing_utils_3.c\
 				piping.c builtin_echo.c history.c parser_utils_1.c parser_utils_2.c\

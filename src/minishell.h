@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 19:47:26 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 22:01:17 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ typedef struct s_data
 		*/
 	int					n_pid;
 	char				**envp;
+	char				**original_env;
 	/**
 		* @brief Counts the amount of vash errors since the last succesfull
 		* initialization of a command. If it is higher than 9 it will
@@ -313,6 +314,9 @@ void					ft_clear(void);
 // builtin_echo.c
 void					ft_echo(char **arr);
 
+// builtin_env.c
+void					ft_env(t_data *data);
+
 // builtin_pwd.c
 /**
  * @brief Prints name of current/working directory
@@ -355,8 +359,6 @@ char					*get_pwd_alloc(bool clean);
 
 // errors.c
 int						setnret(t_data *data, int code);
-bool					handle_builtin(char **command);
-
 /**
  * @brief Handles error reporting based on a given error code.
  *
@@ -392,7 +394,7 @@ int						execute(t_data *data);
  *
  * - False, if the function is not a builtin
  */
-bool					handle_builtin(char **command);
+bool					handle_builtin(t_data *data, char **command);
 
 // free.c
 void					fr_lst(char **arr);

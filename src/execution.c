@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 21:47:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 22:00:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	execute(t_data *data)
 			exit(data->error);
 		if (cool_dup(data, fd_in, fd_out))
 			exit (pc_err(ERR_DUP2));
-		if (handle_builtin(command))
+		if (handle_builtin(data, command))
 			exit (0);
 		if (execve(command[0], command, data->envp) == -1)
 			exit(pc_err(ERR_EXECVE));
@@ -115,12 +115,14 @@ bool	handle_nc_builtin(char **command)
 	return (false);
 }
 
-bool	handle_builtin(char **command)
+bool	handle_builtin(t_data *data, char **command)
 {
 	if (!ft_strncmp(command[0], "echo", ft_strlen(command[0])))
 		return (ft_echo(command), true);
 	else if (!ft_strncmp(command[0], "pwd", ft_strlen(command[0])))
 		return (ft_pwd(), true);
+	else if (!ft_strncmp(command[0], "env", ft_strlen(command[0])))
+		return (ft_env(data), true);
 
 	// nc_builtins dont have to be done here
 	if (!ft_strncmp(command[0], "cd", ft_strlen(command[0])))
@@ -129,8 +131,7 @@ bool	handle_builtin(char **command)
 	// 	return (ft_export(command), true);
 	// else if (!ft_strncmp(command[0], "unset", ft_strlen(command[0])))
 	// 	return (ft_unset(command), true);
-	// else if (!ft_strncmp(command[0], "env", ft_strlen(command[0])))
-	// 	return (ft_env(command), true);
+
 	// else if (!ft_strncmp(command[0], "exit", ft_strlen(command[0])))
 	// 	return (ft_exit(command), true);
 	else
