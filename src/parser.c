@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:59 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/19 15:40:28 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:14:22 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,7 @@ int	parser_main(t_token **tokens, t_data *data)
 	t_pars_data	pars_data;
 
 	init_pars_data(&pars_data, data, tokens);
-	if (pars_data.cmd_amount == 1)
-		parse_command(&pars_data);
-	else
-		parser_loop(pars_data);
+	parser_loop(pars_data);
 	(*data).parsed_lst = *pars_data.parsed_lst;
 	ft_token_lstclear(tokens);
 	return (1);
