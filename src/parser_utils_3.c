@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 15:39:01 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/20 13:55:17 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:09:43 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ int	check_for_count(t_token *token)
 
 int	check_for_putting_words(t_token *token)
 {
-	if ((token->type == WORD || token->type == DOUBLE_QOUTE
-			|| token->type == DOLAR_SIGN || token->type == SINGLE_QOUTE)
+	if ((token->type == WORD || token->type == DOUBLE_QOUTE || token->type == SINGLE_QOUTE)
 		&& (!token->prev || (token->prev && (token->prev->type != REDIR_APPEND
 					&& token->prev->type != REDIR_OUT
 					&& token->prev->type != REDIR_IN
@@ -65,7 +64,7 @@ char	*return_from_env(t_pars_data pars_data, char *field)
 	tmp = *pars_data.env_lst;
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->filed, field, ft_strlen(field) - 1) == 0)
+		if (ft_strncmp(tmp->filed, field, ft_strlen(tmp->filed)) == 0)
 		{
 			res = ft_strdup(tmp->value);
 			if (!res)

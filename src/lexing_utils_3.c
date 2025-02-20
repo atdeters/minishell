@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils_3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:24:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/11 18:09:55 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 19:34:19 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	handle_dolar(char *input, t_token **current, int *i, char **word)
 		(*i)++;
 	*word = ft_substr(input, j, *i - j + 1);
 	if (ft_strnstr(*word, "|><", ft_strlen(*word)))
-		return (free(*word), 0);
+		return (free(*word), *word = NULL, 0);
 	if (!*word)
 		return (*word = NULL, 0);
 	*current = create_token(DOLAR_SIGN, *word);

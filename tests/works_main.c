@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   works_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 21:47:20 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/21 16:33:24 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int ac, char **av, char **env)
 				data.input = av[2];
 			if (add_full_history(&data))
 				pnc_err(&data);
+			
 			if(!lexing(data.input, &data.token_lst, &data.error))
 				pnc_err(&data);
 			if(!parser_main(&data.token_lst, &data))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:59:25 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/01/30 16:01:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 19:44:33 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	error_exit_env(char *f, char *v, t_env_lst *lst, int exit_code)
 	exit(exit_code);
 }
 
+//should i really exit? I should add here return 0 instead
 static void	transfer_into_node(char *str, t_data *data, int j)
 {
 	char		*field;
@@ -66,21 +67,36 @@ void	parse_env(t_data *data, char **env)
 	}
 }
 
-// int	main(int argc, char **argv, char **env)
-// {
-// 	t_data		data;
-// 	t_env_lst	*node;
-
-// 	(void)argc;
-// 	(void)argv;
-// 	if (init_shell(&data))
-// 		return (p_err(INIT));
-// 	parse_env(&data, env);
-// 	node = data.env_lst;
-// 	while (node)
-// 	{
-// 		printf("%s=%s\n", node->filed, node->value);
-// 		node = node->next;
-// 	}
-// 	ft_env_lstclear(&data.env_lst);
-// }
+int	check_replace_input(t_data *data)
+{
+	int	i;
+	int	start;
+	char	*word;
+	char	*n_input;
+	char	*res;
+	i = 0;
+	while (data->input[i])
+	{
+		if (data->input[i] == '$')
+		{
+			start = i;
+			while (data->input[i] && !ft_is_space(data->input[i]))
+				i++;
+			word = ft_substr(data->input, start, i - start);
+			if (!word)
+				return (0);
+			n_input = ft_substr(data->input, 0, start);
+			if (!n_input)
+				return (free(word), 0);
+			res = ft_strjoin(n_input, word);
+			free(n_input);
+			free(word);
+			start = i;
+			while (data->input[start])
+				start++;
+			//??
+		}
+		if (data->input[i])
+			i++;
+	}
+}
