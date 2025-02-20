@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 17:53:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:06:16 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,20 @@ int	main(int ac, char **av, char **env)
 {
 	t_data	data;
 
+	if (ac == 3 && !ft_strncmp(av[1], "-c", ft_strlen(av[1])))
+		data.single = 1;
 	if (init_shell(&data, env))
 		return (pc_err(data.error));
-	while (true)
+	while (true && data.single)
 	{
 		if (init_command(&data))
 			pnc_err(&data);
 		if (data.init_com_fails == 0)
 		{
-			data.input = get_input(&data);
+			if (!data.single)
+				data.input = get_input(&data);
+			else
+				data.input = av[2];
 			if (add_full_history(&data))
 				pnc_err(&data);
 			lexing(data.input, &data.token_lst);
@@ -41,10 +46,12 @@ int	main(int ac, char **av, char **env)
 			}
 			close_all(&data);
 			wait_all(&data);
-			free(data.input);
+			if (!data.single)
+				free(data.input);
 		}
 		if (data.init_com_fails >= MAX_INIT_COM_FAILS)
 			return (pc_err(ERR_INIT_COM));
+		data.single = 0;
 	}
 	write_hst_file(&data, HIST_FILE_PATH);
 }
