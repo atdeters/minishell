@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:27:07 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 20:20:58 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 20:36:34 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*get_git_alloc(void)
 	path = ft_strdup(path_tmp);
 	while (access(git_dir, R_OK) != 0)
 	{
+		free (path);
 		chdir("..");
 		path = get_pwd_alloc(false);
 		if (!path)
@@ -39,7 +40,6 @@ char	*get_git_alloc(void)
 				return (chdir(path_tmp), free(path_tmp), free(path), NULL);
 			close_flag = true;
 		}
-		free (path);
 	}
 	return (chdir(path_tmp), free(path_tmp), create_branch(path));
 }
@@ -53,6 +53,7 @@ char	*create_branch(char *path)
 	file = ft_strjoin(path, "/.git/HEAD");
 	if (!file)
 		return (free(path), NULL);
+	// DOUBLE FREE FOR cd ./objs HERE
 	free(path);
 	fd = open(file, O_RDONLY);
 	free(file);
