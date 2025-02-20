@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 15:43:14 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:08:55 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	pc_err(int code)
 		ft_fprintf(2, "%s\n", E_MSG_FUNC_DUP2);
 	if (code == ERR_FORK)
 		ft_fprintf(2, "%s\n", E_MSG_FUNC_FORK);
+	if (code == ERR_USAGE)
+		ft_fprintf(2, "%s\n", E_MSG_USAGE);
 	return (code);
 }
 

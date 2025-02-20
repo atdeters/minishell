@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 18:06:16 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:08:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int ac, char **av, char **env)
 
 	if (ac == 3 && !ft_strncmp(av[1], "-c", ft_strlen(av[1])))
 		data.single = 1;
+	if (ac != 1 || (ac != 3 && ft_strncmp(av[1], "-c", ft_strlen(av[1]))))
+		return (pc_err(ERR_USAGE));
 	if (init_shell(&data, env))
 		return (pc_err(data.error));
 	while (true && data.single)

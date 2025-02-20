@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 18:03:31 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:08:36 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ enum					e_errors
 	ERR_HIST_WFILE = 8,
 	ERR_SPLIT = 9,
 	ERR_OPEN = 10,
+	ERR_USAGE = 11,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 };

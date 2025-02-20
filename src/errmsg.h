@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:55:11 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/17 16:26:10 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:09:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define E_MSG_FUNC_EXECVE "execve function failed to execute"
 # define E_MSG_FUNC_DUP2 "dup2 function failes to execute"
 # define E_MSG_FUNC_FORK "fork function failes to execute"
+# define E_MSG_USAGE "Usage: ./mini OR ./mini -c \"Full command in here\""
 
 // non-critical errors (program does not terminate)
 # define E_NC_MSG_FUNC_PIPE "pipe could temporarily no be built"
