@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 20:48:27 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 17:53:01 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int ac, char **av, char **env)
 
 	if (init_shell(&data, env))
 		return (pc_err(data.error));
-	data.env_lst = NULL;
 	while (true)
 	{
 		if (init_command(&data))
@@ -29,7 +28,6 @@ int	main(int ac, char **av, char **env)
 			if (add_full_history(&data))
 				pnc_err(&data);
 			lexing(data.input, &data.token_lst);
-			parse_env(&data, env);
 			parser_main(&data.token_lst, &data);
 			pipe_maker(&data);
 			while (data.parsed_lst)
