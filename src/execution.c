@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 21:02:55 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 21:42:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ int	get_fds(t_data *data, int *fd_in, int *fd_out)
 // Filedescriptors are closed already in the cool_dup
 int	execute(t_data *data)
 {
-	int		fd_in;
-	int		fd_out;
 	char	**command;
 
 	command = data->parsed_lst->cmd_and_args;
@@ -86,6 +84,10 @@ int	execute(t_data *data)
 		return (pc_err(ERR_FORK));
 	if (data->pid[data->n_pid] == 0)
 	{
+		// make this into a function: execute_subshell
+		int		fd_in;
+		int		fd_out;
+		
 		add_path(data, command);
 		if (get_fds(data, &fd_in, &fd_out))
 			exit(data->error);
@@ -115,8 +117,10 @@ bool	handle_builtin(char **command)
 		return (ft_echo(command), true);
 	else if (!ft_strncmp(command[0], "pwd", ft_strlen(command[0])))
 		return (ft_pwd(), true);
-	else if (!ft_strncmp(command[0], "cd", ft_strlen(command[0])))
-		return (ft_cd(command), true);
+
+	// nc_builtins dont have to be done here
+	if (!ft_strncmp(command[0], "cd", ft_strlen(command[0])))
+		return (true);
 	// else if (!ft_strncmp(command[0], "export", ft_strlen(command[0])))
 	// 	return (ft_export(command), true);
 	// else if (!ft_strncmp(command[0], "unset", ft_strlen(command[0])))
