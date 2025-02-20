@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errmsg.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:55:11 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 18:14:32 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:11:54 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define E_MSG_INIT_PROG "failed to initialize program"
 # define E_MSG_INIT_COM "command initialization failed too often"
 # define E_MSG_FUNC_EXECVE "execve function failed to execute"
-# define E_MSG_FUNC_DUP2 "dup2 function failes to execute"
-# define E_MSG_FUNC_FORK "fork function failes to execute"
+# define E_MSG_FUNC_DUP2 "dup2 function failed to execute"
+# define E_MSG_FUNC_FORK "fork function failed to execute"
 # define E_MSG_USAGE "Usage: ./mini OR ./mini -c \"Full command in here\""
 
 // non-critical errors (program does not terminate)
