@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 20:39:03 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 21:30:21 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	main(int ac, char **av, char **env)
 {
-	t_data	data;
-	int		pid;
+	t_data	data; 
 
+	data = (t_data){0};
 	data.single_flag = true;
 	if (ac == 3 && !ft_strncmp(av[1], "--single", ft_strlen(av[1])))
 		data.single = true;

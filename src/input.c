@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/13 18:52:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 21:14:44 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char	*get_input(t_data *data)
 		input = readline(rl_prompt);
 	else
 		input = readline(EMERGENCY_PROMPT);
+	if (!input)
+		exit(1);
 	clear_input_func(rl_prompt, path, branch);
 	return (input);
 }
