@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 18:31:58 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:34:20 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ int	main(int ac, char **av, char **env)
 		if (data.single)
 			data.single_flag = false;
 	}
+
+	
 	write_hst_file(&data, HIST_FILE_PATH);
 }
