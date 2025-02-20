@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errmsg.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:55:11 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 18:09:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:14:32 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@
 # define E_NC_MSG_ACCESS "command not found: "
 # define E_NC_MSG_PERM "permission denied: "
 # define E_NC_MSG_OPEN "could not open file: "
+
+//lexing parsing errors
+# define E_MSG_PARSING "parse error:"
 
 #endif

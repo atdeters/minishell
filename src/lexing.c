@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:11 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/11 14:07:19 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/20 17:56:07 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,18 @@ static int	process_token(char *input, t_token **current, int *i)
 	return (1);
 }
 
-int	lexing(char *input, t_token **list)
+int	lexing(char *input, t_token **list, int *err_code)
 {
 	t_token	*current;
 	int		i;
 
 	i = 0;
+	while (input[i] && ft_is_space(input[i]))
+		i++;
+	if (!input[i])
+		return (1);
+	if (input[i] == '|')
+		return (*err_code = 130, 0);
 	while (input[i])
 	{
 		while (input[i] && ft_is_space(input[i]))
@@ -51,7 +57,7 @@ int	lexing(char *input, t_token **list)
 		if (!input[i])
 			return (1);
 		if (!process_token(input, &current, &i))
-			return (0);
+			return (*err_code = 130, 0);
 		ft_token_lstadd_back(list, current);
 		if (input[i])
 			i++;
