@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 21:30:21 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 21:47:20 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,6 @@ int	main(int ac, char **av, char **env)
 			pipe_maker(&data);
 			while (data.parsed_lst)
 			{
-				if (data.parsed_lst->out_mode == OUT_MODE_PIPE)
-					data.ind_out_pipe++;
-				if (data.parsed_lst->in_mode == IN_MODE_PIPE)
-					data.ind_in_pipe++;
 				execute(&data);
 				data.parsed_lst = data.parsed_lst->next;
 			}

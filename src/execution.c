@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 21:42:42 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 21:47:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,10 @@ int	execute(t_data *data)
 {
 	char	**command;
 
+	if (data->parsed_lst->out_mode == OUT_MODE_PIPE)
+					data->ind_out_pipe++;
+	if (data->parsed_lst->in_mode == IN_MODE_PIPE)
+					data->ind_in_pipe++;
 	command = data->parsed_lst->cmd_and_args;
 	if (data->pipes_amount == 0 && handle_nc_builtin(command))
 		return (0);
