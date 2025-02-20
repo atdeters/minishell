@@ -6,11 +6,13 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 20:13:43 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 20:22:39 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+bool	handle_nc_builtin(char **command);
 
 // Add here_doc
 int	get_fd_in(t_data *data, int *fd_in)
@@ -74,17 +76,13 @@ int	execute(t_data *data)
 {
 	int		fd_in;
 	int		fd_out;
-	bool	builtin_flag;
+	bool	nc_flag;
 	char	**command;
 
 	command = data->parsed_lst->cmd_and_args;
-	if (handle_builtin(command))
-	{
-		builtin_flag = true;
-		// return (0);
-	}
-	else
-		builtin_flag = false;
+	nc_flag = false;
+	if (handle_nc_builtin(command))
+		nc_flag = true;
 	data->pid[data->n_pid] = fork();
 	if (data->pid[data->n_pid] == -1)
 		return (pc_err(ERR_FORK));
@@ -97,9 +95,7 @@ int	execute(t_data *data)
 			exit(data->error);
 		if (cool_dup(data, fd_in, fd_out))
 			exit (pc_err(ERR_DUP2));
-		//if (handle_builtin(command))
-		//	exit (0);
-		if (builtin_flag)
+		if (nc_flag || handle_builtin(command))
 			exit (0);
 		if (execve(command[0], command, data->envp) == -1)
 			exit(pc_err(ERR_EXECVE));
@@ -108,12 +104,17 @@ int	execute(t_data *data)
 	return (0);
 }
 
+bool	handle_nc_builtin(char **command)
+{
+	if (!ft_strncmp(command[0], "cd", ft_strlen(command[0])))
+		return (ft_cd(command), true);
+	return (false);
+}
+
 bool	handle_builtin(char **command)
 {
-	if (!ft_strncmp(command[0], "ft_echo", ft_strlen(command[0])))
+	if (!ft_strncmp(command[0], "echo", ft_strlen(command[0])))
 		return (ft_echo(command), true);
-	else if (!ft_strncmp(command[0], "cd", ft_strlen(command[0])))
-		return (ft_cd(command), true);
 	else if (!ft_strncmp(command[0], "pwd", ft_strlen(command[0])))
 		return (ft_pwd(), true);
 	// else if (!ft_strncmp(command[0], "export", ft_strlen(command[0])))
