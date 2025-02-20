@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 17:58:32 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:13:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	get_fd_out(t_data *data, int *fd_out)
 	int		open_m;
 	char	*outfile;
 
-	printf("%d\n", data->parsed_lst->out_mode);
 	out_m = data->parsed_lst->out_mode;
 	outfile = data->parsed_lst->out;
 	if (out_m == OUT_MODE_FILE_APP)

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 18:08:36 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 18:15:33 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,8 @@ typedef struct s_data
 
 	t_parsed			*parsed_lst;
 	t_token				*token_lst;
-	int					single;
+	bool				single;
+	bool				single_flag;
 
 }						t_data;
 
