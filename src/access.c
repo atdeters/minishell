@@ -6,17 +6,38 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:53:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 20:17:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 19:52:29 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+bool	is_builtin(char *name)
+{
+	if (ft_strncmp(name, "echo", ft_strlen(name)))
+		return (true);
+	if (ft_strncmp(name, "cd", ft_strlen(name)))
+		return (true);
+	if (ft_strncmp(name, "pwd", ft_strlen(name)))
+		return (true);
+	if (ft_strncmp(name, "export", ft_strlen(name)))
+		return (true);
+	if (ft_strncmp(name, "unset", ft_strlen(name)))
+		return (true);
+	if (ft_strncmp(name, "env", ft_strlen(name)))
+		return (true);
+	if (ft_strncmp(name, "exit", ft_strlen(name)))
+		return (true);
+	return false;
+}
 
 int	check_access(t_data *data, char *name, bool is_file)
 {
 	int	error;
 
 	error = 0;
+	if (is_builtin(name))
+		return (0);
 	if (!is_file && access(name, F_OK) == -1)
 		error = p_err_arg(ERR_ACCESS, name);
 	else if (!is_file && access(name, X_OK) == -1)

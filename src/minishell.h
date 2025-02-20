@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 18:20:34 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 19:47:26 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -392,7 +392,7 @@ int						execute(t_data *data);
  *
  * - False, if the function is not a builtin
  */
-bool					is_builtin(char **command);
+bool					handle_builtin(char **command);
 
 // free.c
 void					fr_lst(char **arr);

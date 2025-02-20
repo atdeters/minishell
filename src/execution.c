@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 18:37:20 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 19:53:38 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	execute(t_data *data)
 
 bool	handle_builtin(char **command)
 {
-	if (!ft_strncmp(command[0], "echo", ft_strlen(command[0])))
+	if (!ft_strncmp(command[0], "ft_echo", ft_strlen(command[0])))
 		return (ft_echo(command), true);
 	else if (!ft_strncmp(command[0], "cd", ft_strlen(command[0])))
 		return (ft_cd(command), true);

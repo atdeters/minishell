@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 16:12:04 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 19:54:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_cd(char **command)
 {
 	// Needs a lot more shit
-	chdir(command[0]);
+	chdir(command[1]);
 }
