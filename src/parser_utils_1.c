@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:30 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/19 15:41:00 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:52:49 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,22 @@ t_parsed	*get_p_last(t_parsed *lst)
 	return (last);
 }
 
-t_parsed	*add_p_back(t_parsed **lst, t_parsed *new)
+void	add_p_back(t_parsed **lst, t_parsed *new)
 {
 	t_parsed	*last;
 
 	if (!new)
-		return (NULL);
+		return ;
+	if (!lst)
+		return ;
 	if (!*lst)
 	{
 		*lst = new;
-		return (new);
+		return ;
 	}
 	last = get_p_last(*lst);
 	last->next = new;
 	new->prev = last;
-	return (new);
 }
 
 void	free_p_lst(t_parsed **lst)

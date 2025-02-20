@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/19 20:48:56 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 13:43:21 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -603,18 +603,7 @@ int						parser_main(t_token **tokens, t_data *data);
 t_parsed				*create_p_node(char **cmd_and_args, char *in,
 							char *out);
 t_parsed				*get_p_last(t_parsed *lst);
-t_parsed				*add_p_back(t_parsed **lst, t_parsed *new);
-void					free_p_lst(t_parsed **lst);
-int						pipe_counter(t_token **tokens);
-
-// parser functions
-int						parser_main(t_token **tokens, t_data *data);
-
-// utils functions
-t_parsed				*create_p_node(char **cmd_and_args, char *in,
-							char *out);
-t_parsed				*get_p_last(t_parsed *lst);
-t_parsed				*add_p_back(t_parsed **lst, t_parsed *new);
+void					add_p_back(t_parsed **lst, t_parsed *new);
 void					free_p_lst(t_parsed **lst);
 int						pipe_counter(t_token **tokens);
 
@@ -628,5 +617,6 @@ int						check_for_putting_dollar(t_token *token);
 char					*return_from_env(t_pars_data pars_data, char *field);
 int						parse_in_out(t_token *current, t_parsed **new);
 int						parse_in_out_part_2(t_token *current, t_parsed **new);
+void					clear_parsing(t_data *data);
 
 #endif

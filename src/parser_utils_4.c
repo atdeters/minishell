@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 15:39:07 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/19 15:41:34 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:22:42 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,10 @@ int	parse_in_out(t_token *current, t_parsed **new)
 		(*new)->in_mode = IN_MODE_HERE_DOC;
 	}
 	return (parse_in_out_part_2(current, new));
+}
+
+void	clear_parsing(t_data *data)
+{
+	ft_token_lstclear(&data->token_lst);
+	free_p_lst(&data->parsed_lst);
 }

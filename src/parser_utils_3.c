@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 15:39:01 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/19 15:41:19 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:55:17 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	init_pars_data(t_pars_data *pars_data, t_data *data, t_token **tokens)
 {
-	(*pars_data).env_lst = &data->env_lst;
-	(*pars_data).token_lst = tokens;
-	(*pars_data).cmd_amount = pipe_counter(tokens) + 1;
-	(*data).pipes_amount = pipe_counter(tokens);
-	(*pars_data).parsed_amount = 0;
-	*(*pars_data).parsed_lst = NULL;
+	pars_data->env_lst = &data->env_lst;
+	pars_data->token_lst = tokens;
+	pars_data->cmd_amount = pipe_counter(tokens) + 1;
+	data->pipes_amount = pipe_counter(tokens);
+	pars_data->parsed_amount = 0;
 }
 
 int	check_for_count(t_token *token)
@@ -69,6 +68,8 @@ char	*return_from_env(t_pars_data pars_data, char *field)
 		if (ft_strncmp(tmp->filed, field, ft_strlen(field) - 1) == 0)
 		{
 			res = ft_strdup(tmp->value);
+			if (!res)
+				return (NULL);
 			return (res);
 		}
 		tmp = tmp->next;
