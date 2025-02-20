@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:59 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/20 13:14:22 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:54:34 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	fill_cmd_array(t_token *current, t_token *tail, t_parsed **new,
 		{
 			(*new)->cmd_and_args[i] = return_from_env(*pars_data,
 					current->value);
-			if ((*new)->cmd_and_args[i] == NULL)
+			if (!(*new)->cmd_and_args[i])
 				return (0);
 			i++;
 		}
@@ -67,6 +67,8 @@ static int	parse_command(t_pars_data *pars_data)
 	int			array_size;
 
 	new = create_p_node(NULL, NULL, NULL);
+	if (!new)
+		return (0);
 	call_check_type(pars_data, new);
 	(*pars_data).parsed_amount++;
 	current = (*pars_data).cur_head;
@@ -75,7 +77,7 @@ static int	parse_command(t_pars_data *pars_data)
 		return (0);
 	if (!fill_cmd_array(current, (*pars_data).cur_tail, &new, pars_data))
 		return (0);
-	add_p_back((*pars_data).parsed_lst, new);
+	add_p_back(pars_data->parsed_lst, new);
 	return (1);
 }
 
@@ -102,9 +104,13 @@ static int	parser_loop(t_pars_data pars_data)
 int	parser_main(t_token **tokens, t_data *data)
 {
 	t_pars_data	pars_data;
+	t_parsed	*parse_lst;
 
+	parse_lst = NULL;
+	pars_data.parsed_lst = &parse_lst;
 	init_pars_data(&pars_data, data, tokens);
-	parser_loop(pars_data);
+	if (!parser_loop(pars_data))
+		return (0);
 	(*data).parsed_lst = *pars_data.parsed_lst;
 	ft_token_lstclear(tokens);
 	return (1);
