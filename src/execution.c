@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 20:22:39 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/20 21:02:55 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,11 @@ int	execute(t_data *data)
 {
 	int		fd_in;
 	int		fd_out;
-	bool	nc_flag;
 	char	**command;
 
 	command = data->parsed_lst->cmd_and_args;
-	nc_flag = false;
-	if (handle_nc_builtin(command))
-		nc_flag = true;
+	if (data->pipes_amount == 0 && handle_nc_builtin(command))
+		return (0);
 	data->pid[data->n_pid] = fork();
 	if (data->pid[data->n_pid] == -1)
 		return (pc_err(ERR_FORK));
@@ -95,7 +93,7 @@ int	execute(t_data *data)
 			exit(data->error);
 		if (cool_dup(data, fd_in, fd_out))
 			exit (pc_err(ERR_DUP2));
-		if (nc_flag || handle_builtin(command))
+		if (handle_builtin(command))
 			exit (0);
 		if (execve(command[0], command, data->envp) == -1)
 			exit(pc_err(ERR_EXECVE));
@@ -117,6 +115,8 @@ bool	handle_builtin(char **command)
 		return (ft_echo(command), true);
 	else if (!ft_strncmp(command[0], "pwd", ft_strlen(command[0])))
 		return (ft_pwd(), true);
+	else if (!ft_strncmp(command[0], "cd", ft_strlen(command[0])))
+		return (ft_cd(command), true);
 	// else if (!ft_strncmp(command[0], "export", ft_strlen(command[0])))
 	// 	return (ft_export(command), true);
 	// else if (!ft_strncmp(command[0], "unset", ft_strlen(command[0])))
