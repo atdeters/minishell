@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/21 16:34:48 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:22:19 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -596,8 +596,8 @@ int						cool_dup(t_data *data, int fd_in, int fd_out);
 
 // replace input $
 int						check_replace_input(t_data *data);
-int						quotes_problen(t_data *data);
-
+int						quotes_problem(t_data *data);
+int						in_single_qoute(t_data *data, int pos);
 // env func
 void					parse_env(t_data *data, char **env);
 char					*return_from_env_with_data(t_data *data, char *field);

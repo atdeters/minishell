@@ -6,13 +6,13 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:25:57 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/21 16:29:09 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:21:59 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	quotes_problen(t_data *data)
+int	quotes_problem(t_data *data)
 {
 	int sing;
 	int dob;
@@ -33,5 +33,23 @@ int	quotes_problen(t_data *data)
 		return(data->error = ERR_PARS_SINGLE_QUTE, 1);
 	if (dob % 2 != 0)
 		return(data->error = ERR_PARS_DOUBLE_QUTE, 1);
+	return (0);
+}
+
+int	in_single_qoute(t_data *data, int pos)
+{
+	int	i;
+	int	counter;
+
+	counter = 0;
+	i = 0;
+	while (i != pos)
+	{
+		if (data->input[i] == '\'')
+			counter++;
+		i++;
+	}
+	if (counter % 2 != 0)
+		return (1);
 	return (0);
 }

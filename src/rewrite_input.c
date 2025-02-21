@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/21 16:26:30 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:21:54 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static int	replace_word(t_data *data)
 	i = 0;
 	while (data->input[i])
 	{
-		if (data->input[i] == '$')
+		if (data->input[i] == '$' && !in_single_qoute(data, i))
 		{
 			start = i;
 			if (data->input[i + 1] && (data->input[i + 1] == '$'
@@ -110,7 +110,7 @@ int	check_replace_input(t_data *data)
 
 	i = 0;
 	counter = 0;
-	if (quotes_problen(data))
+	if (quotes_problem(data))
 		return(0);
 	while (data->input[i])
 	{
