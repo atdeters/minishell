@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/21 15:18:01 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:21:02 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static int	special_case_pid(char **word)
 	int		pid;
 
 	pid = getpid();
-	printf("pid = %d\n", pid);
 	res = ft_itoa(pid);
 	if (!res)
 		return (0);
@@ -36,7 +35,7 @@ static int	check_for_special(char **word, char **res, char **start_w,
 	}
 	else
 	{
-		*word = return_from_env_before(data, *res);
+		*word = return_from_env_with_data(data, *res);
 		if (!*word)
 			return (free(*start_w), free(*res), 0);
 	}

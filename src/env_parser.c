@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:59:25 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/21 15:17:17 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:20:53 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*return_from_env_with_data(t_data *data, char *field)
 	tmp = data->env_lst;
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->filed, field, ft_strlen(tmp->filed)) == 0)
+		if (ft_strncmp(tmp->filed, field, ft_strlen(field)) == 0)
 		{
 			res = ft_strdup(tmp->value);
 			if (!res)
