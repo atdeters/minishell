@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/21 16:33:51 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:34:40 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -527,16 +527,6 @@ int						pipe_maker(t_data *data);
  */
 char					*get_input(t_data *data);
 
-// env_lst_funcs
-t_env_lst				*ft_env_lstnew(char *f, char *v);
-t_env_lst				*ft_env_lstlast(t_env_lst *lst);
-void					ft_env_lstadd_back(t_env_lst **lst, t_env_lst *new);
-void					ft_env_lstdelone(t_env_lst *lst);
-void					ft_env_lstclear(t_env_lst **lst);
-
-// env_parser
-void					parse_env(t_data *data, char **env);
-
 // path.c
 /**
  * @brief Joins a directory path with an executable name to form a full
@@ -602,18 +592,25 @@ int						wait_all(t_data *data);
 void					close_all(t_data *data);
 int						cool_dup(t_data *data, int fd_in, int fd_out);
 
-// int	parser(t_token **tokens, t_data *data);
-int						parser_main(t_token **tokens, t_data *data);
+// replace input $
+int						check_replace_input(t_data *data);
 
-// utils functions
-t_parsed				*create_p_node(char **cmd_and_args, char *in,
-							char *out);
-t_parsed				*get_p_last(t_parsed *lst);
-void					add_p_back(t_parsed **lst, t_parsed *new);
-void					free_p_lst(t_parsed **lst);
-int						pipe_counter(t_token **tokens);
+// env func
+void					parse_env(t_data *data, char **env);
+char					*return_from_env_with_data(t_data *data, char *field);
+int						del_env_var(t_env_lst *lst, char *field);
+int						parser_env_into_arr(t_data *data);
+
+// env_utils
+t_env_lst				*ft_env_lstnew(char *f, char *v);
+t_env_lst				*ft_env_lstlast(t_env_lst *lst);
+void					ft_env_lstadd_back(t_env_lst **lst, t_env_lst *new);
+void					ft_env_lstdelone(t_env_lst *lst);
+void					ft_env_lstclear(t_env_lst **lst);
+void					ft_env_lstdel_node(t_env_lst *lst, char *field);
 
 // parser functions
+int						parser_main(t_token **tokens, t_data *data);
 void					call_check_type(t_pars_data *pars_data, t_parsed *new);
 void					init_pars_data(t_pars_data *pars_data, t_data *data,
 							t_token **tokens);
@@ -624,6 +621,13 @@ char					*return_from_env(t_pars_data pars_data, char *field);
 int						parse_in_out(t_token *current, t_parsed **new);
 int						parse_in_out_part_2(t_token *current, t_parsed **new);
 void					clear_parsing(t_data *data);
-int						check_replace_input(t_data *data);
-char					*return_from_env_with_data(t_data *data, char *field);
+
+// parser utils functions
+t_parsed				*create_p_node(char **cmd_and_args, char *in,
+							char *out);
+t_parsed				*get_p_last(t_parsed *lst);
+void					add_p_back(t_parsed **lst, t_parsed *new);
+void					free_p_lst(t_parsed **lst);
+int						pipe_counter(t_token **tokens);
+
 #endif

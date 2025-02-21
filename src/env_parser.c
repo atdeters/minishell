@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:59:25 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/21 15:20:53 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:15:47 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,25 @@ char	*return_from_env_with_data(t_data *data, char *field)
 	res = malloc(sizeof(char));
 	res[0] = '\0';
 	return (res);
+}
+
+//Return 1 if funct found and deleted node otherwise = 0
+int		del_env_var(t_env_lst *lst, char *field)
+{
+	t_env_lst	*prev;
+	t_env_lst	*tmp;
+	
+	tmp = lst;
+	while (tmp && ft_strncmp(tmp->value, field, ft_strlen(field) != 0))
+	{
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	if (ft_strncmp(tmp->value, field, ft_strlen(field) == 0))
+	{
+		prev->next = tmp->next;
+		ft_env_lstdelone(tmp);
+		return (1);
+	}
+	return (0);
 }
