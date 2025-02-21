@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/21 16:34:40 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:34:48 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ enum					e_errors
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_PARS = 130,
+	ERR_PARS_SINGLE_QUTE = 998,
+	ERR_PARS_DOUBLE_QUTE = 999,
 };
 
 enum					e_in_mode
@@ -594,6 +596,7 @@ int						cool_dup(t_data *data, int fd_in, int fd_out);
 
 // replace input $
 int						check_replace_input(t_data *data);
+int						quotes_problen(t_data *data);
 
 // env func
 void					parse_env(t_data *data, char **env);

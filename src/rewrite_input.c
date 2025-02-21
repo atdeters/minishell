@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/21 15:41:00 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:26:30 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ int	check_replace_input(t_data *data)
 
 	i = 0;
 	counter = 0;
+	if (quotes_problen(data))
+		return(0);
 	while (data->input[i])
 	{
 		if (data->input[i] == '$')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errmsg.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:55:11 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 19:11:54 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/21 16:34:52 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@
 
 //lexing parsing errors
 # define E_MSG_PARSING "parse error:"
+# define E_MSG_SINGLE_QOUTE "parse error near \'\'\'"
+# define E_MSG_DOUBLE_QOUTE "parse error near \'\"\'"
 
 #endif

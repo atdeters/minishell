@@ -24,7 +24,7 @@ SRC_FILES	=	builtin_cd.c builtin_pwd.c builtin_env.c init_com.c init_prog.c\
 				get_git.c lexing.c lexing_utils.c lexing_utils_2.c lexing_utils_3.c\
 				piping.c builtin_echo.c history.c parser_utils_1.c parser_utils_2.c\
 				parser.c parser_utils_3.c parser_utils_4.c access.c path.c execution.c free.c\
-				rewrite_input.c env_lst_to_arr.c\
+				rewrite_input.c env_lst_to_arr.c rewrite_input_utils_1.c\
 
 SRCS = $(addprefix src/, $(SRC_FILES))
 

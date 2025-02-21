@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 18:20:23 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/21 16:30:41 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ int	pnc_err(t_data *data)
 		ft_fprintf(2, "%s", E_NC_MSG_SPLIT);
 	if (data->error == ERR_PARS)
 		ft_fprintf(2, "%s", E_MSG_PARSING);
+	if (data->error == ERR_PARS_SINGLE_QUTE)
+		ft_fprintf(2, "%s", E_MSG_SINGLE_QOUTE);
+	if (data->error == ERR_PARS_DOUBLE_QUTE)
+		ft_fprintf(2, "%s", E_MSG_DOUBLE_QOUTE);
 	ft_fprintf(2, " [%d]\n", data->init_com_fails);
 	return (data->error);
 }

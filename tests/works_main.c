@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/21 16:34:25 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:34:59 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	main(int ac, char **av, char **env)
 			else
 				data.input = av[2];
 			if (add_full_history(&data))
+				pnc_err(&data);
+			if (!check_replace_input(&data))
 				pnc_err(&data);
 			if(!lexing(data.input, &data.token_lst, &data.error))
 				pnc_err(&data);
