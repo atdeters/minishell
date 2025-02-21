@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 15:39:01 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/20 19:09:43 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:41:49 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ int	check_for_count(t_token *token)
 
 int	check_for_putting_words(t_token *token)
 {
-	if ((token->type == WORD || token->type == DOUBLE_QOUTE || token->type == SINGLE_QOUTE)
-		&& (!token->prev || (token->prev && (token->prev->type != REDIR_APPEND
+	if ((token->type == WORD || token->type == DOUBLE_QOUTE
+			|| token->type == SINGLE_QOUTE) && (!token->prev || (token->prev
+				&& (token->prev->type != REDIR_APPEND
 					&& token->prev->type != REDIR_OUT
 					&& token->prev->type != REDIR_IN
 					&& token->prev->type != DELIMITER))))

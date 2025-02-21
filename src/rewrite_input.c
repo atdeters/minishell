@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/21 15:21:02 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:41:00 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ static int	check_for_special(char **word, char **res, char **start_w,
 	if (ft_strlen(*res) == 1 && *res[0] == '$')
 	{
 		if (!special_case_pid(word))
+			return (free(*start_w), free(*res), 0);
+	}
+	else if (ft_strlen(*res) == 1 && *res[0] == '?')
+	{
+		*word = ft_itoa(data->error);
+		if (!*word)
 			return (free(*start_w), free(*res), 0);
 	}
 	else
@@ -82,12 +88,14 @@ static int	replace_word(t_data *data)
 		if (data->input[i] == '$')
 		{
 			start = i;
-			if (data->input[i + 1] && data->input[i + 1] == '$')
+			if (data->input[i + 1] && (data->input[i + 1] == '$'
+					|| data->input[i + 1] == '?'))
 				return (sub_replace(data, start, i + 1));
 			while (data->input[i] && data->input[i + 1]
 				&& ft_isalnum(data->input[i + 1]))
 				i++;
-			return (sub_replace(data, start, i));
+			if (start != i)
+				return (sub_replace(data, start, i));
 		}
 		if (data->input[i])
 			i++;
@@ -97,10 +105,23 @@ static int	replace_word(t_data *data)
 
 int	check_replace_input(t_data *data)
 {
-	while (ft_strnstr(data->input, "$", ft_strlen(data->input)))
+	int	counter;
+	int	i;
+
+	i = 0;
+	counter = 0;
+	while (data->input[i])
+	{
+		if (data->input[i] == '$')
+			counter++;
+		i++;
+	}
+	i = 0;
+	while (i != counter)
 	{
 		if (!replace_word(data))
 			return (0);
+		i++;
 	}
 	return (1);
 }

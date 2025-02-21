@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 14:12:34 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/21 15:07:14 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:42:27 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int ac, char **av, char **env)
 			check_replace_input(&data);
 			printf("data input after = %s\n", data.input);
 		}
-		free(data.input);
+		
 	}
 	write_hst_file(&data, HIST_FILE_PATH);
 }
