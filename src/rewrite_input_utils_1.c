@@ -1,49 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_echo.c                                     :+:      :+:    :+:   */
+/*   rewrite_input_utils_1.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 15:44:09 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 19:20:00 by vsenniko         ###   ########.fr       */
+/*   Created: 2025/02/21 16:25:57 by vsenniko          #+#    #+#             */
+/*   Updated: 2025/02/21 16:29:09 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	check_echo_flag(char *str)
+int	quotes_problen(t_data *data)
 {
+	int sing;
+	int dob;
 	int	i;
 
-	i = 1;
-	if (str[0] != '-')
-		return (false);
-	while (str[i])
+	i = 0;
+	sing = 0;
+	dob = 0;
+	while (data->input[i])
 	{
-		if (str[i] != 'n')
-			return (false);
+		if (data->input[i] == '\'')
+			sing++;
+		else if (data->input[i] == '"')
+			dob++;
 		i++;
 	}
-	return (true);
-}
-
-void	ft_echo(char **arr)
-{
-	int		i;
-	bool	flag;
-
-	i = 1;
-	flag = check_echo_flag(arr[i]);
-	if (flag)
-		i++;
-	while (arr[i])
-	{
-		ft_printf("%s", arr[i]);
-		i++;
-		if (arr[i])
-			ft_printf(" ");
-	}
-	if (!flag)
-		ft_printf("\n");
+	if (sing % 2 != 0)
+		return(data->error = ERR_PARS_SINGLE_QUTE, 1);
+	if (dob % 2 != 0)
+		return(data->error = ERR_PARS_DOUBLE_QUTE, 1);
+	return (0);
 }

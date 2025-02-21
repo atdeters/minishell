@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:59:25 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/01/30 16:01:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/21 16:15:47 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	error_exit_env(char *f, char *v, t_env_lst *lst, int exit_code)
 	exit(exit_code);
 }
 
+// should i really exit? I should add here return 0 instead
 static void	transfer_into_node(char *str, t_data *data, int j)
 {
 	char		*field;
@@ -66,21 +67,46 @@ void	parse_env(t_data *data, char **env)
 	}
 }
 
-// int	main(int argc, char **argv, char **env)
-// {
-// 	t_data		data;
-// 	t_env_lst	*node;
+char	*return_from_env_with_data(t_data *data, char *field)
+{
+	t_env_lst	*tmp;
+	char		*res;
 
-// 	(void)argc;
-// 	(void)argv;
-// 	if (init_shell(&data))
-// 		return (p_err(INIT));
-// 	parse_env(&data, env);
-// 	node = data.env_lst;
-// 	while (node)
-// 	{
-// 		printf("%s=%s\n", node->filed, node->value);
-// 		node = node->next;
-// 	}
-// 	ft_env_lstclear(&data.env_lst);
-// }
+	res = NULL;
+	tmp = data->env_lst;
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->filed, field, ft_strlen(field)) == 0)
+		{
+			res = ft_strdup(tmp->value);
+			if (!res)
+				return (NULL);
+			return (res);
+		}
+		tmp = tmp->next;
+	}
+	res = malloc(sizeof(char));
+	res[0] = '\0';
+	return (res);
+}
+
+//Return 1 if funct found and deleted node otherwise = 0
+int		del_env_var(t_env_lst *lst, char *field)
+{
+	t_env_lst	*prev;
+	t_env_lst	*tmp;
+	
+	tmp = lst;
+	while (tmp && ft_strncmp(tmp->value, field, ft_strlen(field) != 0))
+	{
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	if (ft_strncmp(tmp->value, field, ft_strlen(field) == 0))
+	{
+		prev->next = tmp->next;
+		ft_env_lstdelone(tmp);
+		return (1);
+	}
+	return (0);
+}
