@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:59:25 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/20 19:44:33 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:17:17 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	error_exit_env(char *f, char *v, t_env_lst *lst, int exit_code)
 	exit(exit_code);
 }
 
-//should i really exit? I should add here return 0 instead
+// should i really exit? I should add here return 0 instead
 static void	transfer_into_node(char *str, t_data *data, int j)
 {
 	char		*field;
@@ -67,36 +67,25 @@ void	parse_env(t_data *data, char **env)
 	}
 }
 
-int	check_replace_input(t_data *data)
+char	*return_from_env_with_data(t_data *data, char *field)
 {
-	int	i;
-	int	start;
-	char	*word;
-	char	*n_input;
-	char	*res;
-	i = 0;
-	while (data->input[i])
+	t_env_lst	*tmp;
+	char		*res;
+
+	res = NULL;
+	tmp = data->env_lst;
+	while (tmp)
 	{
-		if (data->input[i] == '$')
+		if (ft_strncmp(tmp->filed, field, ft_strlen(tmp->filed)) == 0)
 		{
-			start = i;
-			while (data->input[i] && !ft_is_space(data->input[i]))
-				i++;
-			word = ft_substr(data->input, start, i - start);
-			if (!word)
-				return (0);
-			n_input = ft_substr(data->input, 0, start);
-			if (!n_input)
-				return (free(word), 0);
-			res = ft_strjoin(n_input, word);
-			free(n_input);
-			free(word);
-			start = i;
-			while (data->input[start])
-				start++;
-			//??
+			res = ft_strdup(tmp->value);
+			if (!res)
+				return (NULL);
+			return (res);
 		}
-		if (data->input[i])
-			i++;
+		tmp = tmp->next;
 	}
+	res = malloc(sizeof(char));
+	res[0] = '\0';
+	return (res);
 }

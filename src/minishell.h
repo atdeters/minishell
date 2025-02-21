@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 22:01:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/21 16:33:51 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -624,5 +624,6 @@ char					*return_from_env(t_pars_data pars_data, char *field);
 int						parse_in_out(t_token *current, t_parsed **new);
 int						parse_in_out_part_2(t_token *current, t_parsed **new);
 void					clear_parsing(t_data *data);
-
+int						check_replace_input(t_data *data);
+char					*return_from_env_with_data(t_data *data, char *field);
 #endif
