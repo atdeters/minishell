@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 18:39:42 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 19:56:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,6 @@ int	wait_all(t_data *data)
 	if (WIFEXITED(data->exit_status))
 		return (WEXITSTATUS(data->exit_status));
 	return (1);
-}
-
-void	close_all(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->pipes_amount)
-	{
-		if (data->fd_pipe[i][0] != -1)
-			close (data->fd_pipe[i][0]);
-		if (data->fd_pipe[i][1] != -1)
-			close (data->fd_pipe[i][1]);
-		i++;
-	}
-	i = 0;
-	while (i < FD_LIMIT * 2)
-	{
-		if (data->fd_file[i] != -1)
-			close (data->fd_file[i]);
-		i++;
-	}
 }
 
 int	cool_dup(t_data *data, int fd_in, int fd_out)

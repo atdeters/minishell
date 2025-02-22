@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 19:06:39 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 19:57:18 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,28 @@ void	fr_lst(char **arr)
 	}
 }
 
+void	close_all(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->pipes_amount)
+	{
+		if (data->fd_pipe[i][0] != -1)
+			close (data->fd_pipe[i][0]);
+		if (data->fd_pipe[i][1] != -1)
+			close (data->fd_pipe[i][1]);
+		i++;
+	}
+	i = 0;
+	while (i < FD_LIMIT * 2)
+	{
+		if (data->fd_file[i] != -1)
+			close (data->fd_file[i]);
+		i++;
+	}
+}
+
 // Supposed to free everything that can be allocated
 void	rage_quit(t_data *data, int exit_code)
 {
@@ -44,7 +66,7 @@ void	rage_quit(t_data *data, int exit_code)
 	if (data->token_lst)
 		ft_token_lstclear(&data->token_lst);
 	if (data->envp)
-		free_two_dim(data->envp);
+		fr_lst(data->envp);
 	close_all(data);
 	exit (exit_code);
 }

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 19:55:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 19:57:49 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -379,6 +379,7 @@ bool					handle_builtin(t_data *data, char **command);
 
 // free.c
 void					fr_lst(char **arr);
+void					close_all(t_data *data);
 void					rage_quit(t_data *data, int exit_code);
 
 // get_git.c
@@ -572,7 +573,6 @@ char					**add_path(t_data *data, char **command);
  * they will do nothing. It closes all open pipes afterwards
  */
 int						wait_all(t_data *data);
-void					close_all(t_data *data);
 int						cool_dup(t_data *data, int fd_in, int fd_out);
 
 // replace input $
@@ -592,7 +592,6 @@ void					ft_env_lstadd_back(t_env_lst **lst, t_env_lst *new);
 void					ft_env_lstdelone(t_env_lst *lst);
 void					ft_env_lstclear(t_env_lst **lst);
 void					ft_env_lstdel_node(t_env_lst *lst, char *field);
-void					free_two_dim(char **arr);
 
 // parser functions
 int						parser_main(t_token **tokens, t_data *data);

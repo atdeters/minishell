@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:47:41 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/22 19:06:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 19:56:54 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*join_from_node(t_env_lst *cur)
 	return (res);
 }
 
-void	free_two_dim(char **arr)
+static void	free_two_dim(char **arr)
 {
 	int	i;
 
