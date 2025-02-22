@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 18:45:28 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 18:52:28 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -511,6 +511,12 @@ int						pipe_maker(t_data *data);
  * must be freed by the caller to avoid memory leaks.
  */
 char					*get_input(t_data *data);
+
+// mini_flags.c
+bool					is_flag_single(char *flag);
+bool					is_flag_help(char *flag);
+int						check_flags(t_data *data, int ac, char **av);
+
 
 // path.c
 /**

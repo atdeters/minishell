@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 18:49:47 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 18:50:29 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	fr_lst(char **arr)
 
 // Supposed to free everything that can be allocated
 // Missing the envp so far
-void	rage_quit(t_data *data, int error)
+void	rage_quit(t_data *data, int exit_code)
 {
 	write_hst_file(data, HIST_FILE_PATH);
 	if (data->input && data->flag_single == false)
@@ -45,5 +45,5 @@ void	rage_quit(t_data *data, int error)
 	if (data->token_lst)
 		ft_token_lstclear(data->token_lst);
 	close_all(data);
-	exit (error);
+	exit (exit_code);
 }
