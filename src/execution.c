@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 19:29:49 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 19:48:44 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,40 @@ int	get_fds(t_data *data, int *fd_in, int *fd_out)
 	return (0);
 }
 
-// Does currently not free anything that might be allocated anywhere
-// Make sure to check for every exit
-// Filedescriptors are closed already in the cool_dup
+int	execute_subshell(t_data *data, char **command)
+{
+	int		fd_in;
+	int		fd_out;
+	
+	// check for aliases here
+	add_path(data, command);
+	if (get_fds(data, &fd_in, &fd_out))
+		rage_quit(data, data->error);
+	if (check_access(data, command[0], false))
+		rage_quit(data, data->error);
+	if (cool_dup(data, fd_in, fd_out))
+	{
+		pc_err(ERR_DUP2);
+		rage_quit(data, data->error);
+	}
+	if (handle_builtin(data, command))
+		rage_quit(data, 0);
+	if (execve(command[0], command, data->envp) == -1)
+	{
+		exit(pc_err(ERR_EXECVE));
+		rage_quit(data, data->error);
+	}
+	return (0);
+}
+
 int	execute(t_data *data)
 {
 	char	**command;
 
 	if (data->parsed_lst->out_mode == OUT_MODE_PIPE)
-					data->ind_out_pipe++;
+		data->ind_out_pipe++;
 	if (data->parsed_lst->in_mode == IN_MODE_PIPE)
-					data->ind_in_pipe++;
+		data->ind_in_pipe++;
 	command = data->parsed_lst->cmd_and_args;
 	if (data->pipes_amount == 0 && handle_nc_builtin(command))
 		return (0);
@@ -87,29 +110,7 @@ int	execute(t_data *data)
 	if (data->pid[data->n_pid] == -1)
 		return (pc_err(ERR_FORK));
 	if (data->pid[data->n_pid] == 0)
-	{
-		// make this into a function: execute_subshell
-		int		fd_in;
-		int		fd_out;
-		// check for aliases here
-		add_path(data, command);
-		if (get_fds(data, &fd_in, &fd_out))
-			rage_quit(data, data->error);
-		if (check_access(data, command[0], false))
-			rage_quit(data, data->error);
-		if (cool_dup(data, fd_in, fd_out))
-		{
-			pc_err(ERR_DUP2);
-			rage_quit(data, data->error);
-		}
-		if (handle_builtin(data, command))
-			rage_quit(data, 0);
-		if (execve(command[0], command, data->envp) == -1)
-		{
-			exit(pc_err(ERR_EXECVE));
-			rage_quit(data, data->error);
-		}
-	}
+		execute_subshell(data, command);
 	data->n_pid++;
 	return (0);
 }
