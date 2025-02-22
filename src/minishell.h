@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 18:52:28 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 18:53:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -516,6 +516,7 @@ char					*get_input(t_data *data);
 bool					is_flag_single(char *flag);
 bool					is_flag_help(char *flag);
 int						check_flags(t_data *data, int ac, char **av);
+void					print_help(void);
 
 
 // path.c

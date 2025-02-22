@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 18:51:33 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 18:52:03 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 18:53:28 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,28 @@ int	check_flags(t_data *data, int ac, char **av)
 	else if (ac == 2)
 		return (setnret(data, ERR_USAGE));
 	return (0);
+}
+
+void	print_help(void)
+{
+	char	*line;
+	int		fd;
+
+	fd = open(HELP_FILE_PATH, O_RDONLY);
+	if (fd < 0)
+		exit (ERR_OPEN);
+	line = get_next_line(fd);
+	if (!line)
+	{
+		close (fd);
+		exit (ERR_MALLOC);
+	}
+	while (line)
+	{
+		printf("%s", line);
+		free (line);
+		line = get_next_line(fd);
+	}
+	close (fd);
+	exit (0);
 }
