@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 20:11:55 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 20:12:50 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -386,7 +386,6 @@ void					rage_quit(t_data *data, int exit_code);
 int						get_fd_in(t_data *data, int *fd_in);
 int						get_fd_out(t_data *data, int *fd_out);
 int						get_fds(t_data *data, int *fd_in, int *fd_out);
-
 
 // get_git.c
 /**
