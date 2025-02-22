@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 18:15:31 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 18:25:25 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 // Random number so far; not limited by the FD_LIMIT like in pipex
 # define MAX_PROCS 1024
 # define HIST_FILE_PATH ".vash_history"
+# define HELP_FILE_PATH ".vash_help"
 
 //// ENUMS
 enum					e_errors
@@ -51,6 +52,7 @@ enum					e_errors
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_PARS = 130,
+	ERR_MALLOC = 12,
 	ERR_PARS_SINGLE_QUTE = 998,
 	ERR_PARS_DOUBLE_QUTE = 999,
 };
