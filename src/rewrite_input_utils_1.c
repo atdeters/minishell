@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rewrite_input_utils_1.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:25:57 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/21 17:21:59 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/22 20:00:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	quotes_problem(t_data *data)
 {
-	int sing;
-	int dob;
+	int	sing;
+	int	dob;
 	int	i;
 
 	i = 0;
@@ -30,9 +30,9 @@ int	quotes_problem(t_data *data)
 		i++;
 	}
 	if (sing % 2 != 0)
-		return(data->error = ERR_PARS_SINGLE_QUTE, 1);
+		return (data->error = ERR_PARS_SINGLE_QUTE, 1);
 	if (dob % 2 != 0)
-		return(data->error = ERR_PARS_DOUBLE_QUTE, 1);
+		return (data->error = ERR_PARS_DOUBLE_QUTE, 1);
 	return (0);
 }
 

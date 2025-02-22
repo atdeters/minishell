@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:38 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 17:43:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 20:06:33 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,19 +161,5 @@
  * (4 bytes each, totaling 8 bytes) for memory allocation purposes.
  */
 # define ANSI_SHELL_LEN 8
-
-# ifndef EMERGENCY_PROMPT
-/**
- * @brief Fallback prompt used when the standard prompt generation fails.
- * 
- * This simple, static prompt serves as a safety mechanism to ensure
- * the shell remains operational even if prompt customization fails
- * (e.g. memory allocation failures).
- * 
- * Using this fallback prevents non-critical prompt errors from
- * crashing the shell.
- */
-#  define EMERGENCY_PROMPT "vash> "
-# endif
 
 #endif

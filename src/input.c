@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 21:14:44 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 20:06:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 int		rl_prompt_len(t_data *data, char *path, char *branch);
 void	clear_input_func(char *rl_prompt, char *path, char *branch);
 
+// If !input means EOF (i think)
+// basically meaning that ctrl+d will end the programm here successfully
+// Nothing here is free properly in case of errors or EOF
 char	*get_input(t_data *data)
 {
 	char	*input;
@@ -35,14 +38,10 @@ char	*get_input(t_data *data)
 	if (SHOW_GIT && branch)
 		add_branch(rl_prompt, branch);
 	add_ansi(rl_prompt, RESET);
-	if (rl_prompt)
-		input = readline(rl_prompt);
-	else
-		input = readline(EMERGENCY_PROMPT);
+	input = readline(rl_prompt);
 	if (!input)
-		exit(1);
-	clear_input_func(rl_prompt, path, branch);
-	return (input);
+		rage_quit(data, 0);
+	return (clear_input_func(rl_prompt, path, branch), input);
 }
 
 /**
