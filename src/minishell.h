@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 21:04:11 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 21:50:36 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@
 # define MAX_PROCS 1024
 // Those should be created in the home folder somehow
 # define HIST_FILE_PATH ".vash_history"
+# define HIST_FILE_NAME ".vash_history"
 # define HELP_FILE_PATH ".vash_help"
+# define HELP_FILE_NAME ".vash_help"
 
 //// ENUMS
 enum					e_errors
@@ -104,6 +106,7 @@ typedef struct s_data
 	int					pid[MAX_PROCS];
 	int					n_pid;
 	char				**envp;
+	char				*hist_path;
 	// Different for every prompt
 	// We could make a pipe_line struct out of them
 	char				*input;
