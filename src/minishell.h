@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 18:25:25 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 18:45:28 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,6 @@ typedef struct s_data
 		* in case something fails
 		*/
 	int					error;
-	/**
-		* @brief If the pwd is a git repository, this one shows the branch
-		* If the pwd is not a git repository it with be NULL
-		*/
-	char				*branch;
 	t_env_lst			*env_lst;
 	// return after parsing
 	char				**prompt;
@@ -159,7 +154,6 @@ typedef struct s_data
 		* of the current session.
 		*/
 	t_list				*hstlst;
-
 	t_parsed			*parsed_lst;
 	t_token				*token_lst;
 	// Program flags
