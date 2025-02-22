@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:53:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 21:02:49 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 20:08:08 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	is_builtin(char *name)
 		return (true);
 	if (!ft_strncmp(name, "exit", ft_strlen(name)))
 		return (true);
-	return false;
+	return (false);
 }
 
 int	check_access(t_data *data, char *name, bool is_file)

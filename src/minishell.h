@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 19:57:49 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 20:11:55 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -382,6 +382,12 @@ void					fr_lst(char **arr);
 void					close_all(t_data *data);
 void					rage_quit(t_data *data, int exit_code);
 
+// get_fds.c
+int						get_fd_in(t_data *data, int *fd_in);
+int						get_fd_out(t_data *data, int *fd_out);
+int						get_fds(t_data *data, int *fd_in, int *fd_out);
+
+
 // get_git.c
 /**
  * @brief Retrieves a dynamically allocated string containing the current
@@ -509,7 +515,6 @@ bool					is_flag_single(char *flag);
 bool					is_flag_help(char *flag);
 int						check_flags(t_data *data, int ac, char **av);
 void					print_help(void);
-
 
 // path.c
 /**
