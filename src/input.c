@@ -6,14 +6,13 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 20:47:35 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 22:07:23 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 int		rl_prompt_len(t_data *data, char *path, char *branch);
-void	clear_input_func(char *rl_prompt, char *path, char *branch);
 
 static char	*free_helper(t_data *data, char *branch, char *path, bool error)
 {
@@ -61,10 +60,10 @@ char	*get_input(t_data *data)
 
 	rl_prompt = create_rl_prompt(data);
 	if (!rl_prompt)
-		rage_quit(data, data->error);
+		rage_quit(data, data->error, true);
 	input = readline(rl_prompt);
 	if (!input)
-		rage_quit(data, 0);
+		rage_quit(data, 0, true);
 	return (free(rl_prompt), input);
 }
 

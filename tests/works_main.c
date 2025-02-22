@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 19:39:25 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 22:04:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	main(int ac, char **av, char **env)
 	while (data.on)
 	{
 		if (handle_prompt(&data, av))
-			rage_quit(&data, data.error);
+			rage_quit(&data, data.error, true);
 		if (data.flag_single)
 			data.on = false;
 	}
-	rage_quit(&data, 0);
+	rage_quit(&data, 0, true);
 }
 
 int	handle_prompt(t_data *data, char **av)

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 21:51:42 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 22:02:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ void	close_all(t_data *data)
 }
 
 // Supposed to free everything that can be allocated
-void	rage_quit(t_data *data, int exit_code)
+void	rage_quit(t_data *data, int exit_code, bool write_hist)
 {
-	write_hst_file(data, data->hist_path);
+	if (write_hist)
+		write_hst_file(data, data->hist_path);
 	if (data->hist_path)
 		free (data->hist_path);
 	if (data->input && data->flag_single == false)

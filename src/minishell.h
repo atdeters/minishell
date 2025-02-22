@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 21:50:36 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 22:03:08 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -342,7 +342,7 @@ bool					handle_builtin(t_data *data, char **command);
 // free.c
 void					fr_lst(char **arr);
 void					close_all(t_data *data);
-void					rage_quit(t_data *data, int exit_code);
+void					rage_quit(t_data *data, int exit_code, bool write_hist);
 
 // get_fds.c
 int						get_fd_in(t_data *data, int *fd_in);

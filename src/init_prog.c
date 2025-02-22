@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 21:50:55 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 22:04:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 	parser_env_into_arr(data);
 	data->hist_path = get_hist_file_path(data);
 	if (!data->hist_path)
-		rage_quit(data, data->error);
+		rage_quit(data, data->error, false);
 	load_old_history(data->hist_path);
 	return (data->error);
 }
