@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 20:53:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 20:57:17 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,8 @@ typedef struct s_parsed
 
 typedef struct s_data
 {
-	char				*input;
 	int					exit_status;
 	int					error;
-	t_env_lst			*env_lst;
-	// return after parsing
-	char				**prompt;
 	int					ind_in_pipe;
 	int					ind_out_pipe;
 	int					pipes_amount;
@@ -108,8 +104,10 @@ typedef struct s_data
 	int					processes;
 	int					pid[MAX_PROCS];
 	int					n_pid;
+	char				*input;
 	char				**envp;
 	t_list				*hstlst;
+	t_env_lst			*env_lst;
 	t_parsed			*parsed_lst;
 	t_token				*token_lst;
 	bool				flag_single;

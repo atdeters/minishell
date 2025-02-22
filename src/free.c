@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 19:57:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 20:56:57 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ void	rage_quit(t_data *data, int exit_code)
 	write_hst_file(data, HIST_FILE_PATH);
 	if (data->input && data->flag_single == false)
 		free (data->input);
-	if (data->prompt)
-		free (data->prompt);
 	if (data->env_lst)
 		ft_env_lstclear(&data->env_lst);
 	if (data->parsed_lst)
