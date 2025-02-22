@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 19:48:44 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 19:50:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	execute_subshell(t_data *data, char **command)
 		rage_quit(data, 0);
 	if (execve(command[0], command, data->envp) == -1)
 	{
-		exit(pc_err(ERR_EXECVE));
+		pc_err(ERR_EXECVE);
 		rage_quit(data, data->error);
 	}
 	return (0);
