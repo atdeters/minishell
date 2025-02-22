@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 19:06:29 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 19:23:48 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ typedef struct s_data
 	t_token				*token_lst;
 	// Program flags
 	bool				flag_single;
-	bool				flag_single_switch;
+	bool				on;
 }						t_data;
 
 typedef struct s_pars_data
@@ -463,13 +463,7 @@ int						write_hst_file(t_data *data, char *hist_file_path);
 int						init_shell(t_data *data, int ac, char **av, char **env);
 
 // init_prog.c
-/**
- * - sets data.init_com_fails to 0 in the return if everything works
- * Everthing afterwards will only be executed if data.init_com_fails is 0
- * otherwise it will try to initialize the command MAX_INIT_COM_FAILS - 1
- * more times and exit the program if it still doesn't work
- */
-int						init_command(t_data *data);
+void					init_command(t_data *data);
 int						pipe_maker(t_data *data);
 
 // input.c

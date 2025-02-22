@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 18:51:33 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 18:53:28 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 19:24:20 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ bool	is_flag_help(char *flag)
 
 int	check_flags(t_data *data, int ac, char **av)
 {
-	data->flag_single_switch = true;
 	if (ac == 3 && is_flag_single(av[1]))
 		data->flag_single = true;
 	else if (ac == 3)

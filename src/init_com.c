@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:45:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 18:58:29 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 19:26:35 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_fd_arr(t_data *data);
 
-int	init_command(t_data *data)
+void	init_command(t_data *data)
 {
 	data->n_pipe = -1;
 	data->n_pid = 0;
@@ -26,7 +26,6 @@ int	init_command(t_data *data)
 	data->input = NULL;
 	init_fd_arr(data);
 	data->pipes_amount = 0;
-	return (0);
 }
 
 void	init_fd_arr(t_data *data)
