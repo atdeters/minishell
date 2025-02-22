@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 20:57:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 21:02:10 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,24 +94,26 @@ typedef struct s_parsed
 
 typedef struct s_data
 {
+	// Global
+	bool				on;
 	int					exit_status;
 	int					error;
+	bool				flag_single;
+	t_env_lst			*env_lst;
+	t_list				*hstlst;
+	int					pid[MAX_PROCS];
+	int					n_pid;
+	char				**envp;
+	// Different for every prompt
+	// We could make a pipe_line struct out of them
+	char				*input;
 	int					ind_in_pipe;
 	int					ind_out_pipe;
 	int					pipes_amount;
 	int					fd_pipe[FD_LIMIT][2];
 	int					fd_file[FD_LIMIT * 2];
-	int					processes;
-	int					pid[MAX_PROCS];
-	int					n_pid;
-	char				*input;
-	char				**envp;
-	t_list				*hstlst;
-	t_env_lst			*env_lst;
 	t_parsed			*parsed_lst;
 	t_token				*token_lst;
-	bool				flag_single;
-	bool				on;
 }						t_data;
 
 typedef struct s_pars_data
