@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 21:02:10 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 21:04:11 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 
 //// MAKROS
 # define FD_LIMIT 508
-// Random number so far; not limited by the FD_LIMIT like in pipex
 # define MAX_PROCS 1024
+// Those should be created in the home folder somehow
 # define HIST_FILE_PATH ".vash_history"
 # define HELP_FILE_PATH ".vash_help"
 
