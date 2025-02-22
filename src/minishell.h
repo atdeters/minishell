@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 19:23:48 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 19:55:38 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,6 @@ typedef struct s_data
 	t_env_lst			*env_lst;
 	// return after parsing
 	char				**prompt;
-	/**
-		* @brief The next pipe that will be opened
-		*/
-	int					n_pipe;
 	int					ind_in_pipe;
 	int					ind_out_pipe;
 	/**
