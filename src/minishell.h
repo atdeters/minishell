@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 20:12:50 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 20:53:19 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,65 +94,24 @@ typedef struct s_parsed
 
 typedef struct s_data
 {
-	/**
-		* @brief Input that has been read from the terminal
-		*/
 	char				*input;
-	/**
-		* @brief Exit status of the most recent call
-		*
-		* Initialized to 0.
-		*/
 	int					exit_status;
-	/**
-		* @brief Integer that can be set to a specific error code
-		* in case something fails
-		*/
 	int					error;
 	t_env_lst			*env_lst;
 	// return after parsing
 	char				**prompt;
 	int					ind_in_pipe;
 	int					ind_out_pipe;
-	/**
-		* Amount of pipes needed for a given command
-		*/
 	int					pipes_amount;
-	/**
-		* 2D Array of maximum possible file descriptors (limited by
-		* FD_LIMIT).
-		*/
 	int					fd_pipe[FD_LIMIT][2];
-	/**
-		* 2D Array of maximum possible file descriptors (limited by
-		* FD_LIMIT).
-		*/
 	int					fd_file[FD_LIMIT * 2];
-	/**
-		* The amount of processes a given command needs to be executed
-		* properly. This defines how often the `fork()` and the `wait_pid()`
-		* function will be called
-		*/
 	int					processes;
-	/**
-		* Array of pids
-		*/
 	int					pid[MAX_PROCS];
-	/**
-		* Next index in the pid array
-		*/
 	int					n_pid;
 	char				**envp;
-	/**
-		* All commands during the program execution are saved in this list
-		* and then written into a hidden file at the exit point. When
-		* opening minishell again it will load those files into the history
-		* of the current session.
-		*/
 	t_list				*hstlst;
 	t_parsed			*parsed_lst;
 	t_token				*token_lst;
-	// Program flags
 	bool				flag_single;
 	bool				on;
 }						t_data;
