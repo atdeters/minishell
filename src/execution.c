@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 22:00:12 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 18:13:02 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	execute(t_data *data)
 		// make this into a function: execute_subshell
 		int		fd_in;
 		int		fd_out;
-		
+		// check for aliases here
 		add_path(data, command);
 		if (get_fds(data, &fd_in, &fd_out))
 			exit(data->error);
@@ -117,12 +117,12 @@ bool	handle_nc_builtin(char **command)
 
 bool	handle_builtin(t_data *data, char **command)
 {
+	(void)data; // just to mute compiler
 	if (!ft_strncmp(command[0], "echo", ft_strlen(command[0])))
 		return (ft_echo(command), true);
 	else if (!ft_strncmp(command[0], "pwd", ft_strlen(command[0])))
 		return (ft_pwd(), true);
-	else if (!ft_strncmp(command[0], "env", ft_strlen(command[0])))
-		return (ft_env(data), true);
+
 
 	// nc_builtins dont have to be done here
 	if (!ft_strncmp(command[0], "cd", ft_strlen(command[0])))
@@ -131,7 +131,8 @@ bool	handle_builtin(t_data *data, char **command)
 	// 	return (ft_export(command), true);
 	// else if (!ft_strncmp(command[0], "unset", ft_strlen(command[0])))
 	// 	return (ft_unset(command), true);
-
+	// else if (!ft_strncmp(command[0], "env", ft_strlen(command[0])))
+	// 	return (ft_env(data), true);
 	// else if (!ft_strncmp(command[0], "exit", ft_strlen(command[0])))
 	// 	return (ft_exit(command), true);
 	else

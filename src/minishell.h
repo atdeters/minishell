@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 17:46:54 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 18:15:31 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ typedef struct s_data
 		*/
 	int					n_pid;
 	char				**envp;
-	char				**original_env;
 	/**
 		* All commands during the program execution are saved in this list
 		* and then written into a hidden file at the exit point. When
@@ -161,9 +160,9 @@ typedef struct s_data
 
 	t_parsed			*parsed_lst;
 	t_token				*token_lst;
-	bool				single;
-	bool				single_flag;
-
+	// Program flags
+	bool				flag_single;
+	bool				flag_single_switch;
 }						t_data;
 
 typedef struct s_pars_data
@@ -300,12 +299,6 @@ char					*add_branch(char *rl_prompt, char *branch);
  * @brief Changes the working directory
  */
 void					ft_cd(char **command);
-
-// builtin_clear.c
-/**
- * @brief Clears the terminal screen
- */
-void					ft_clear(void);
 
 // builtin_echo.c
 void					ft_echo(char **arr);
@@ -470,7 +463,7 @@ int						write_hst_file(t_data *data, char *hist_file_path);
 /**
  * @brief Initializes the mini shell program
  */
-int						init_shell(t_data *data, char **env);
+int						init_shell(t_data *data, int ac, char **av, char **env);
 
 // init_prog.c
 /**

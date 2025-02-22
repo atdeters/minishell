@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 17:43:37 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 18:14:54 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,13 @@ int	main(int ac, char **av, char **env)
 {
 	t_data	data; 
 
-	data = (t_data){0};
-	data.single_flag = true;
-	if (ac == 3 && !ft_strncmp(av[1], "--single", ft_strlen(av[1])))
-		data.single = true;
-	else if (ac == 3 && !ft_strncmp(av[1], "-s", ft_strlen(av[1])))
-		data.single = true;
-	else
-		data.single = false;
-	if (ac != 1 && (ac != 3))
-		return (pc_err(ERR_USAGE));
-	if (init_shell(&data, env))
+	if (init_shell(&data, ac, av, env))
 		return (pc_err(data.error));
-	while (true && data.single_flag)
+	while (true && data.flag_single_switch)
 	{
 		if (init_command(&data))
 			pnc_err(&data);
-		if (!data.single)
+		if (!data.flag_single)
 			data.input = get_input(&data);
 		else
 			data.input = av[2];
@@ -52,10 +42,10 @@ int	main(int ac, char **av, char **env)
 		}
 		close_all(&data);
 		wait_all(&data);
-		if (!data.single)
+		if (!data.flag_single)
 			free(data.input);
-		if (data.single)
-			data.single_flag = false;
+		if (data.flag_single)
+			data.flag_single_switch = false;
 	}
 	write_hst_file(&data, HIST_FILE_PATH);
 }
