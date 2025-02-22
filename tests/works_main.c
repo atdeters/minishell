@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 18:14:54 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 19:00:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int ac, char **av, char **env)
 		if(!parser_main(&data.token_lst, &data))
 			pnc_err(&data);
 		pipe_maker(&data);
+		rage_quit(&data, 0);
 		while (data.parsed_lst)
 		{
 			execute(&data);
@@ -47,5 +48,5 @@ int	main(int ac, char **av, char **env)
 		if (data.flag_single)
 			data.flag_single_switch = false;
 	}
-	write_hst_file(&data, HIST_FILE_PATH);
+	rage_quit(&data, 0);
 }

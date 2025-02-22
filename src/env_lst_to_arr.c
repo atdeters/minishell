@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_lst_to_arr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:47:41 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/21 16:13:55 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/22 19:06:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*join_from_node(t_env_lst *cur)
 	return (res);
 }
 
-static void	free_two_dim(char **arr)
+void	free_two_dim(char **arr)
 {
 	int	i;
 
