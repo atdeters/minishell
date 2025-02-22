@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 20:06:43 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 20:47:35 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,57 @@
 int		rl_prompt_len(t_data *data, char *path, char *branch);
 void	clear_input_func(char *rl_prompt, char *path, char *branch);
 
-// If !input means EOF (i think)
-// basically meaning that ctrl+d will end the programm here successfully
-// Nothing here is free properly in case of errors or EOF
-char	*get_input(t_data *data)
+static char	*free_helper(t_data *data, char *branch, char *path, bool error)
 {
-	char	*input;
-	char	*rl_prompt;
+	if (path)
+		free (path);
+	if (branch)
+		free (branch);
+	if (error)
+		data->error = ERR_MALLOC;
+	return (NULL);
+}
+
+char	*create_rl_prompt(t_data *data)
+{
 	char	*path;
 	char	*branch;
+	char	*rl_prompt;
 
 	path = NULL;
 	branch = NULL;
 	if (SHOW_FOLDER)
 		path = get_pwd_alloc(true);
+	if (SHOW_FOLDER && !path)
+		return (free_helper(data, branch, path, true));
 	if (SHOW_GIT)
 		branch = get_git_alloc();
+	if (SHOW_GIT && !branch)
+		return (free_helper(data, branch, path, true));
 	rl_prompt = ft_calloc(rl_prompt_len(data, path, branch) + 1, 1);
+	if (!rl_prompt)
+		return (free_helper(data, branch, path, true));
 	add_prompt(data, rl_prompt);
-	if (SHOW_FOLDER && path)
+	if (SHOW_FOLDER)
 		add_folder(rl_prompt, path);
-	if (SHOW_GIT && branch)
+	if (SHOW_GIT)
 		add_branch(rl_prompt, branch);
 	add_ansi(rl_prompt, RESET);
+	return (free_helper(data, branch, path, 0), rl_prompt);
+}
+
+char	*get_input(t_data *data)
+{
+	char	*input;
+	char	*rl_prompt;
+
+	rl_prompt = create_rl_prompt(data);
+	if (!rl_prompt)
+		rage_quit(data, data->error);
 	input = readline(rl_prompt);
 	if (!input)
 		rage_quit(data, 0);
-	return (clear_input_func(rl_prompt, path, branch), input);
+	return (free(rl_prompt), input);
 }
 
 /**
@@ -96,17 +120,4 @@ int	rl_prompt_len(t_data *data, char *path, char *branch)
 	}
 	len += ft_strlen(RESET) + ANSI_SHELL_LEN;
 	return (len);
-}
-
-/**
- * @brief Little helper function to free the paramters put into it
- */
-void	clear_input_func(char *rl_prompt, char *path, char *branch)
-{
-	if (path)
-		free (path);
-	if (branch)
-		free (branch);
-	if (rl_prompt)
-		free (rl_prompt);
 }
