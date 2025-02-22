@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 22:18:48 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 22:35:27 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	wait_all(t_data *data)
 	}
 	waitpid(data->pid[i], &data->exit_status, 0);
 	if (WIFEXITED(data->exit_status))
-		return (WEXITSTATUS(data->exit_status));
+	{
+		data->exit_status = WEXITSTATUS(data->exit_status);
+		return (data->exit_status);
+	}
 	return (1);
 }
 

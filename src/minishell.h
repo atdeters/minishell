@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 22:19:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 22:38:19 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ enum					e_errors
 	ERR_ACCESS = 127,
 	ERR_PARS = 130,
 	ERR_MALLOC = 12,
-	ERR_PARS_SINGLE_QUTE = 998,
-	ERR_PARS_DOUBLE_QUTE = 999,
+	ERR_PARS_SINGLE_QUTE = 135,
+	ERR_PARS_DOUBLE_QUTE = 140,
+	ERR_CHILD = 200,
 };
 
 enum					e_in_mode

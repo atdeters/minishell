@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 22:20:58 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 22:38:30 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	handle_prompt(t_data *data, char **av)
 	}
 	close_all(data);
 	wait_all(data);
+	if (data->exit_status == ERR_CHILD)
+		rage_quit(data, ERR_CHILD, true);
 	if (!data->flag_single)
 		free(data->input);
 	return (0);
