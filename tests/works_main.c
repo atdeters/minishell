@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   works_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/21 16:34:59 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:43:37 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,28 @@ int	main(int ac, char **av, char **env)
 	{
 		if (init_command(&data))
 			pnc_err(&data);
-		if (data.init_com_fails == 0)
+		if (!data.single)
+			data.input = get_input(&data);
+		else
+			data.input = av[2];
+		if (add_full_history(&data))
+			pnc_err(&data);
+		if (!check_replace_input(&data))
+			pnc_err(&data);
+		if(!lexing(data.input, &data.token_lst, &data.error))
+			pnc_err(&data);
+		if(!parser_main(&data.token_lst, &data))
+			pnc_err(&data);
+		pipe_maker(&data);
+		while (data.parsed_lst)
 		{
-			if (!data.single)
-				data.input = get_input(&data);
-			else
-				data.input = av[2];
-			if (add_full_history(&data))
-				pnc_err(&data);
-			if (!check_replace_input(&data))
-				pnc_err(&data);
-			if(!lexing(data.input, &data.token_lst, &data.error))
-				pnc_err(&data);
-			if(!parser_main(&data.token_lst, &data))
-				pnc_err(&data);
-			pipe_maker(&data);
-			while (data.parsed_lst)
-			{
-				execute(&data);
-				data.parsed_lst = data.parsed_lst->next;
-			}
-			close_all(&data);
-			wait_all(&data);
-			if (!data.single)
-				free(data.input);
+			execute(&data);
+			data.parsed_lst = data.parsed_lst->next;
 		}
-		if (data.init_com_fails >= MAX_INIT_COM_FAILS)
-			return (pc_err(ERR_INIT_COM));
+		close_all(&data);
+		wait_all(&data);
+		if (!data.single)
+			free(data.input);
 		if (data.single)
 			data.single_flag = false;
 	}

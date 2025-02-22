@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_com.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:45:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/21 15:43:31 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:44:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	init_command(t_data *data)
 	data->pipes_amount = 0;
 	//if (pipe_maker(data))
 	//	return (ERR_PIPE);
-	return (data->init_com_fails = 0, 0);
+	return (0);
 }
 
 void	init_fd_arr(t_data *data)

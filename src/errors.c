@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/21 16:30:41 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:44:57 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	pc_err(int code)
 
 int	pnc_err(t_data *data)
 {
-	data->init_com_fails++;
 	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
 	if (data->error == ERR_PIPE)
 		ft_fprintf(2, "%s", E_NC_MSG_FUNC_PIPE);
@@ -50,7 +49,6 @@ int	pnc_err(t_data *data)
 		ft_fprintf(2, "%s", E_MSG_SINGLE_QOUTE);
 	if (data->error == ERR_PARS_DOUBLE_QUTE)
 		ft_fprintf(2, "%s", E_MSG_DOUBLE_QOUTE);
-	ft_fprintf(2, " [%d]\n", data->init_com_fails);
 	return (data->error);
 }
 

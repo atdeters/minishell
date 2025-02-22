@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_parse_dolar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 14:12:34 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/21 15:42:27 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:45:22 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,15 @@ int	main(int ac, char **av, char **env)
 	{
 		if (init_command(&data))
 			pnc_err(&data);
-		if (data.init_com_fails == 0)
-		{
-			if (!data.single)
-				data.input = get_input(&data);
-			else
-				data.input = av[2];
-			if (add_full_history(&data))
-				pnc_err(&data);
-			printf("data input before parsing = %s\n", data.input);
-			check_replace_input(&data);
-			printf("data input after = %s\n", data.input);
-		}
-		
+		if (!data.single)
+			data.input = get_input(&data);
+		else
+			data.input = av[2];
+		if (add_full_history(&data))
+			pnc_err(&data);
+		printf("data input before parsing = %s\n", data.input);
+		check_replace_input(&data);
+		printf("data input after = %s\n", data.input);
 	}
 	write_hst_file(&data, HIST_FILE_PATH);
 }

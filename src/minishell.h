@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/21 17:22:19 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:46:54 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,12 +151,6 @@ typedef struct s_data
 	int					n_pid;
 	char				**envp;
 	char				**original_env;
-	/**
-		* @brief Counts the amount of vash errors since the last succesfull
-		* initialization of a command. If it is higher than 9 it will
-		* crash the shell programm.
-		*/
-	int					init_com_fails;
 	/**
 		* All commands during the program execution are saved in this list
 		* and then written into a hidden file at the exit point. When
