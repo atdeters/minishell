@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 18:13:02 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/22 19:29:49 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,21 @@ int	execute(t_data *data)
 		// check for aliases here
 		add_path(data, command);
 		if (get_fds(data, &fd_in, &fd_out))
-			exit(data->error);
+			rage_quit(data, data->error);
 		if (check_access(data, command[0], false))
-			exit(data->error);
+			rage_quit(data, data->error);
 		if (cool_dup(data, fd_in, fd_out))
-			exit (pc_err(ERR_DUP2));
+		{
+			pc_err(ERR_DUP2);
+			rage_quit(data, data->error);
+		}
 		if (handle_builtin(data, command))
-			exit (0);
+			rage_quit(data, 0);
 		if (execve(command[0], command, data->envp) == -1)
+		{
 			exit(pc_err(ERR_EXECVE));
+			rage_quit(data, data->error);
+		}
 	}
 	data->n_pid++;
 	return (0);
