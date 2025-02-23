@@ -6,12 +6,14 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:10:32 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 20:11:20 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 17:14:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// File fds need to be put into the fds_file array so they can be closed
+// properly (not that bad right now as they never open in the parent proc)
 // Add here_doc
 int	get_fd_in(t_data *data, int *fd_in)
 {
@@ -25,6 +27,12 @@ int	get_fd_in(t_data *data, int *fd_in)
 	else if (in_m == IN_MODE_FILE)
 	{
 		*fd_in = open(data->parsed_lst->in, O_RDONLY);
+		if (*fd_in == -1)
+			return (setnret(data, ERR_OPEN));
+	}
+	else if (in_m == IN_MODE_HERE_DOC)
+	{
+		*fd_in = get_here_doc_fd(data, data->parsed_lst->in);
 		if (*fd_in == -1)
 			return (setnret(data, ERR_OPEN));
 	}

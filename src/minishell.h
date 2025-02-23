@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 22:38:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 16:47:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,6 +346,7 @@ void					close_all(t_data *data);
 void					rage_quit(t_data *data, int exit_code, bool write_hist);
 
 // get_fds.c
+int						get_here_doc_fd(t_data *data, char *delimiter);
 int						get_fd_in(t_data *data, int *fd_in);
 int						get_fd_out(t_data *data, int *fd_out);
 int						get_fds(t_data *data, int *fd_in, int *fd_out);
@@ -368,6 +369,13 @@ int						get_fds(t_data *data, int *fd_in, int *fd_out);
  * by the caller to avoid memory leaks.
  */
 char					*get_git_alloc(void);
+
+// get_here_doc_fd.c
+char					*delimiter_add_nl(char *delimiter_old);
+int						add_random_end(char *doc_file, int amount);
+int						get_here_doc_fd(t_data *data, char *delimiter);
+
+
 
 // helpers1.c
 /**

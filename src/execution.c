@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 22:39:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 17:20:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 bool	handle_nc_builtin(char **command);
 
+// Check for the ERR_CHILD that it is always correct or the prog will quit
+// for non crititcal errors
 int	execute_subshell(t_data *data, char **command)
 {
 	int		fd_in;
@@ -23,7 +25,7 @@ int	execute_subshell(t_data *data, char **command)
 	if (get_fds(data, &fd_in, &fd_out))
 		rage_quit(data, ERR_CHILD, false);
 	if (check_access(data, command[0], false))
-		rage_quit(data, ERR_CHILD, false);
+		rage_quit(data, data->error, false);
 	if (cool_dup(data, fd_in, fd_out))
 	{
 		pc_err(ERR_DUP2);
