@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 20:48:33 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 20:54:29 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -586,7 +586,8 @@ void					ft_env_lstclear(t_env_lst **lst);
 void					ft_env_lstdel_node(t_env_lst *lst, char *field);
 
 // parser functions
-int						parser_main(t_token **tokens, t_data *data);
+// int					parser_main(t_token **tokens, t_data *data);
+int						parser_main(t_data *data);
 void					call_check_type(t_pars_data *pars_data, t_parsed *new);
 void					init_pars_data(t_pars_data *pars_data, t_data *data,
 							t_token **tokens);

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:25:57 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/22 20:00:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 20:54:26 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	quotes_problem(t_data *data)
 		i++;
 	}
 	if (sing % 2 != 0)
-		return (data->error = ERR_PARS_SINGLE_QUTE, 1);
+		return (setnret(data, ERR_PARS_SINGLE_QUTE));
 	if (dob % 2 != 0)
-		return (data->error = ERR_PARS_DOUBLE_QUTE, 1);
+		return (setnret(data, ERR_PARS_DOUBLE_QUTE));
 	return (0);
 }
 

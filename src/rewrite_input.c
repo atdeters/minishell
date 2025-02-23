@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/22 20:07:54 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 20:55:00 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	check_replace_input(t_data *data)
 	i = 0;
 	counter = 0;
 	if (quotes_problem(data))
-		return (0);
+		return (data->error);
 	while (data->input[i])
 	{
 		if (data->input[i] == '$')
@@ -122,8 +122,8 @@ int	check_replace_input(t_data *data)
 	while (i != counter)
 	{
 		if (!replace_word(data))
-			return (0);
+			return (1);
 		i++;
 	}
-	return (1);
+	return (0);
 }

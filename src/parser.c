@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:59 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/23 20:31:39 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 20:51:11 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,17 +101,32 @@ static int	parser_loop(t_pars_data pars_data)
 	return (1);
 }
 
-int	parser_main(t_token **tokens, t_data *data)
+// int	parser_main(t_token **tokens, t_data *data)
+// {
+// 	t_pars_data	pars_data;
+// 	t_parsed	*parse_lst;
+
+// 	parse_lst = NULL;
+// 	pars_data.parsed_lst = &parse_lst;
+// 	init_pars_data(&pars_data, data, tokens);
+// 	if (!parser_loop(pars_data))
+// 		return (data->error = ERR_PARS, 0);
+// 	(*data).parsed_lst = *pars_data.parsed_lst;
+// 	ft_token_lstclear(tokens);
+// 	return (1);
+// }
+
+int	parser_main(t_data *data)
 {
 	t_pars_data	pars_data;
 	t_parsed	*parse_lst;
 
 	parse_lst = NULL;
 	pars_data.parsed_lst = &parse_lst;
-	init_pars_data(&pars_data, data, tokens);
+	init_pars_data(&pars_data, data, &data->token_lst);
 	if (!parser_loop(pars_data))
-		return (data->error = ERR_PARS, 0);
+		return (setnret(data, ERR_PARS));
 	(*data).parsed_lst = *pars_data.parsed_lst;
-	ft_token_lstclear(tokens);
-	return (1);
+	ft_token_lstclear(&data->token_lst);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 20:47:04 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 20:55:03 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	handle_prompt(t_data *data, char **av)
 		data->input = av[2];
 	if (add_full_history(data))
 		pnc_err(data);
-	if (!check_replace_input(data))
+	if (check_replace_input(data))
 		pnc_err(data);
 	// if (!lexing(data->input, &data->token_lst, &data->error))
 	// 	pnc_err(data);
 	if (lexing(data))
 		pnc_err(data);
-	if (!parser_main(&data->token_lst, data))
+	if (parser_main(data))
 		pnc_err(data);
 	if (pipe_maker(data))
 		pnc_err(data);
