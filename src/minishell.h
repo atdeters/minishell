@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 17:54:02 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 18:22:50 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ typedef struct s_env_lst
 	struct s_env_lst	*next;
 }						t_env_lst;
 
+// We need a access check for in files / out files during
+// Making this struct and stop as soon as one does not exist
+// Could fix by giving me a 
 typedef struct s_parsed
 {
 	char				**cmd_and_args;

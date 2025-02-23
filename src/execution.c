@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 17:56:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 17:58:34 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ bool	handle_nc_builtin(char **command)
 	// other option. Else they can not be used in a child
 	return (false);
 }
-
 bool	handle_builtin(t_data *data, char **command)
 {
 	(void)data; // just to mute compiler
