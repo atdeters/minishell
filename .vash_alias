@@ -1,3 +1,4 @@
 com="git commit -m"
 st="git status"
 add="git add"
+beamazed="echo hello there dear evaluator. I hope you are doing fine"

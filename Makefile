@@ -1,6 +1,6 @@
 NAME = mini
 
-# Overridable Makros
+# Config Makros
 SHOW_FOLDER		?=	true
 SHOW_GIT		?=	true
 PROMPT			?=	'"\001\001➜\002\002"'
