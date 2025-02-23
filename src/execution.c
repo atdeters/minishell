@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 17:54:24 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 17:56:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ bool	handle_nc_builtin(char **command)
 {
 	if (!ft_strncmp(command[0], "cd", ft_strlen(command[0])))
 		return (ft_cd(command), true);
+	// "export" and "alias" are nc_builtins when they have
+	// other option. Else they can not be used in a child
 	return (false);
 }
 
