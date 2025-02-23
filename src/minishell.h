@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 16:47:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 17:45:34 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_data
 	int					error;
 	bool				flag_single;
 	t_env_lst			*env_lst;
+	t_env_lst			*alias_lst;
 	t_list				*hstlst;
 	int					pid[MAX_PROCS];
 	int					n_pid;
@@ -248,6 +249,8 @@ char					*add_folder(char *rl_prompt, char *path);
  *
  */
 char					*add_branch(char *rl_prompt, char *branch);
+
+// aliases.c
 
 // builtin_cd.c
 /**
