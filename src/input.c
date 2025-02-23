@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 22:07:23 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 21:12:19 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,9 @@ char	*get_input(t_data *data)
 	input = readline(rl_prompt);
 	if (!input)
 		rage_quit(data, 0, true);
+	data->input = input;
+	if (add_full_history(data))
+		rage_quit(data, data->error, true);
 	return (free(rl_prompt), input);
 }
 

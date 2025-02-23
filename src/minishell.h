@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 21:00:43 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 21:13:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -429,6 +429,7 @@ char					*rid_of_nl(char *str);
  * be large enough to receive the copy.  Beware of buffer overruns!
  */
 int						ft_strcpy(char *dest, const char *src);
+int						ft_strcmp(const char *s1, const char *s2);
 
 // history.c
 /**

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 20:11:24 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 21:16:28 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,33 +63,34 @@ int	execute(t_data *data)
 
 bool	handle_nc_builtin(t_data *data, char **command)
 {
-	if (!ft_strncmp(command[0], "cd", ft_strlen(command[0])))
+	if (!ft_strcmp(command[0], "cd"))
 		return (ft_cd(command), true);
-	else if (!ft_strncmp(command[0], "exit", ft_strlen(command[0])))
+	else if (!ft_strcmp(command[0], "exit"))
 	 	return (ft_exit(data), true);
 	// "export" and "alias" are nc_builtins when they have
 	// other option. Else they can not be used in a child
 	return (false);
 }
+
 bool	handle_builtin(t_data *data, char **command)
 {
 	(void)data; // just to mute compiler
-	if (!ft_strncmp(command[0], "echo", ft_strlen(command[0])))
+	if (!ft_strcmp(command[0], "echo"))
 		return (ft_echo(command), true);
-	else if (!ft_strncmp(command[0], "pwd", ft_strlen(command[0])))
+	else if (!ft_strcmp(command[0], "pwd"))
 		return (ft_pwd(), true);
 	// nc_builtins dont have to be done here
-	if (!ft_strncmp(command[0], "cd", ft_strlen(command[0])))
+	if (!ft_strcmp(command[0], "cd"))
 		return (true);
-	else if (!ft_strncmp(command[0], "exit", ft_strlen(command[0])))
+	else if (!ft_strcmp(command[0], "exit"))
 	 	return (true);
-	// else if (!ft_strncmp(command[0], "export", ft_strlen(command[0])))
+	// else if (!ft_strcmp(command[0], "export"))
 	// 	return (ft_export(command), true);
-	// else if (!ft_strncmp(command[0], "alias", ft_strlen(command[0])))
+	// else if (!ft_strcmp(command[0], "alias"))
 	// 	return (ft_export(command), true);
-	// else if (!ft_strncmp(command[0], "unset", ft_strlen(command[0])))
+	// else if (!ft_strcmp(command[0], "unset"))
 	// 	return (ft_unset(command), true);
-	// else if (!ft_strncmp(command[0], "env", ft_strlen(command[0])))
+	// else if (!ft_strcmp(command[0], "env"))
 	// 	return (ft_env(data), true);
 	else
 		return (false);

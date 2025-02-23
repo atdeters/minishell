@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:53:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 17:54:50 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 21:16:16 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 bool	is_builtin(char *name)
 {
-	if (!ft_strncmp(name, "echo", ft_strlen(name)))
+	if (!ft_strcmp(name, "echo"))
 		return (true);
-	if (!ft_strncmp(name, "cd", ft_strlen(name)))
+	if (!ft_strcmp(name, "cd"))
 		return (true);
-	if (!ft_strncmp(name, "pwd", ft_strlen(name)))
+	if (!ft_strcmp(name, "pwd"))
 		return (true);
-	if (!ft_strncmp(name, "export", ft_strlen(name)))
+	if (!ft_strcmp(name, "export"))
 		return (true);
-	if (!ft_strncmp(name, "unset", ft_strlen(name)))
+	if (!ft_strcmp(name, "unset"))
 		return (true);
-	if (!ft_strncmp(name, "env", ft_strlen(name)))
+	if (!ft_strcmp(name, "env"))
 		return (true);
-	if (!ft_strncmp(name, "exit", ft_strlen(name)))
+	if (!ft_strcmp(name, "exit"))
 		return (true);
-	if (!ft_strncmp(name, "alias", ft_strlen(name)))
+	if (!ft_strcmp(name, "alias"))
 		return (true);
 	return (false);
 }

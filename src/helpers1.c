@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:19:25 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/11 17:55:49 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 21:13:22 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,26 @@ int	ft_strcpy(char *dest, const char *src)
 	}
 	dest[i] = '\0';
 	return (y);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	if (!s1 || !s2)
+		return (0);
+	i = 0;
+	while (s1[i])
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	while (s2[i])
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
 }

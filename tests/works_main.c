@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 21:00:00 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 21:07:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,9 @@ int	handle_prompt(t_data *data, char **av)
 {
 	init_command(data);
 	if (!data->flag_single)
-		data->input = get_input(data);
+		get_input(data);
 	else
 		data->input = av[2];
-	if (add_full_history(data))
-		pnc_err(data);
 	if (check_replace_input(data))
 		pnc_err(data);
 	if (lexing(data))
