@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 20:54:29 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 21:00:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ typedef struct s_parsed
 typedef struct s_data
 {
 	// Global
-	bool				on;
 	int					exit_status;
 	int					error;
 	bool				flag_single;

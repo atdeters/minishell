@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 20:55:03 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 21:00:00 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ int	main(int ac, char **av, char **env)
 
 	if (init_shell(&data, ac, av, env))
 		return (pc_err(data.error));
-	while (data.on)
+	while (true)
 	{
 		if (handle_prompt(&data, av))
 			rage_quit(&data, data.error, true);
 		if (data.flag_single)
-			data.on = false;
+			rage_quit(&data, 0, true);
 	}
-	rage_quit(&data, 0, true);
 }
 
 int	handle_prompt(t_data *data, char **av)
@@ -41,8 +40,6 @@ int	handle_prompt(t_data *data, char **av)
 		pnc_err(data);
 	if (check_replace_input(data))
 		pnc_err(data);
-	// if (!lexing(data->input, &data->token_lst, &data->error))
-	// 	pnc_err(data);
 	if (lexing(data))
 		pnc_err(data);
 	if (parser_main(data))
