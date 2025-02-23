@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:18 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/20 17:57:02 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/23 20:48:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,13 @@ int					handle_nested_double_quotes(int *i, char *input,
 int					handle_double_quotes(int *i, char *input,
 						t_token **current);
 int					handle_word(int *i, char *input, t_token **current);
-int					lexing(char *input, t_token **list, int *err_code);
+
+
+// int				lexing(char *input, t_token **list, int *err_code);
+// Moved to minishell.h
+
+
+
 int					handle_dolar(char *input, t_token **current, int *i,
 						char **word);
 int					handle_delim(char *input, t_token **current, int *i,

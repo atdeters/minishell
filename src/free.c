@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 22:02:43 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 20:19:50 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,33 @@ void	close_all(t_data *data)
 	}
 }
 
+void	free_all_com(t_data *data)
+{
+	if (data->input && data->flag_single == false)
+		free (data->input);
+	if (data->parsed_lst)
+		free_p_lst(&data->parsed_lst);
+	if (data->token_lst)
+		ft_token_lstclear(&data->token_lst);
+	close_all(data);
+}
+
+void	free_all_global(t_data *data)
+{
+	if (data->hist_path)
+		free (data->hist_path);
+	if (data->envp)
+		fr_lst(data->envp);
+	if (data->env_lst)
+		ft_env_lstclear(&data->env_lst);
+}
+
 // Supposed to free everything that can be allocated
 void	rage_quit(t_data *data, int exit_code, bool write_hist)
 {
 	if (write_hist)
 		write_hst_file(data, data->hist_path);
-	if (data->hist_path)
-		free (data->hist_path);
-	if (data->input && data->flag_single == false)
-		free (data->input);
-	if (data->env_lst)
-		ft_env_lstclear(&data->env_lst);
-	if (data->parsed_lst)
-		free_p_lst(&data->parsed_lst);
-	if (data->token_lst)
-		ft_token_lstclear(&data->token_lst);
-	if (data->envp)
-		fr_lst(data->envp);
-	close_all(data);
+	free_all_com(data);
+	free_all_global(data);
 	exit (exit_code);
 }

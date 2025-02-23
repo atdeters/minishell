@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 20:10:45 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 20:48:33 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -353,6 +353,14 @@ bool					handle_builtin(t_data *data, char **command);
 void					fr_lst(char **arr);
 void					close_all(t_data *data);
 void					rage_quit(t_data *data, int exit_code, bool write_hist);
+/**
+ * Stuff to free after every command
+ */
+void					free_all_com(t_data *data);
+/**
+ * Stuff to free after exiting
+ */
+void					free_all_global(t_data *data);
 
 // get_fds.c
 int						get_here_doc_fd(t_data *data, char *delimiter);
@@ -597,5 +605,8 @@ t_parsed				*get_p_last(t_parsed *lst);
 void					add_p_back(t_parsed **lst, t_parsed *new);
 void					free_p_lst(t_parsed **lst);
 int						pipe_counter(t_token **tokens);
+
+// lexing
+int						lexing(t_data *data);
 
 #endif

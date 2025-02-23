@@ -6,13 +6,13 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 19:51:32 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 20:47:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../src/minishell.h"
 
-int handle_prompt(t_data *data, char **av);
+int	handle_prompt(t_data *data, char **av);
 
 int	main(int ac, char **av, char **env)
 {
@@ -41,15 +41,14 @@ int	handle_prompt(t_data *data, char **av)
 		pnc_err(data);
 	if (!check_replace_input(data))
 		pnc_err(data);
-	if (!lexing(data->input, &data->token_lst, &data->error))
+	// if (!lexing(data->input, &data->token_lst, &data->error))
+	// 	pnc_err(data);
+	if (lexing(data))
 		pnc_err(data);
 	if (!parser_main(&data->token_lst, data))
 		pnc_err(data);
 	if (pipe_maker(data))
 		pnc_err(data);
-	// create here docs here
-	// Check access for files and open files here
-	// Pipeline needs to "crash" when one of the files is not accessible
 	while (data->parsed_lst)
 	{
 		execute(data);
@@ -59,7 +58,6 @@ int	handle_prompt(t_data *data, char **av)
 	wait_all(data);
 	if (data->exit_status == ERR_CHILD)
 		rage_quit(data, ERR_CHILD, true);
-	if (!data->flag_single)
-		free(data->input);
+	free_all_com(data);
 	return (0);
 }

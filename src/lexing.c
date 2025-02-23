@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:11 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/20 17:56:07 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/23 20:47:00 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexing.h"
+#include "minishell.h"
 
 static int	process_token(char *input, t_token **current, int *i)
 {
@@ -38,29 +39,60 @@ static int	process_token(char *input, t_token **current, int *i)
 	return (1);
 }
 
-int	lexing(char *input, t_token **list, int *err_code)
+
+
+// int	lexing(char *input, t_token **list, int *err_code)
+// {
+// 	t_token	*current;
+// 	int		i;
+
+// 	i = 0;
+// 	while (input[i] && ft_is_space(input[i]))
+// 		i++;
+// 	if (!input[i])
+// 		return (1);
+// 	if (input[i] == '|')
+// 		return (*err_code = 130, 0);
+// 	while (input[i])
+// 	{
+// 		while (input[i] && ft_is_space(input[i]))
+// 			i++;
+// 		if (!input[i])
+// 			return (1);
+// 		if (!process_token(input, &current, &i))
+// 			return (*err_code = 130, 0);
+// 		ft_token_lstadd_back(list, current);
+// 		if (input[i])
+// 			i++;
+// 	}
+// 	return (1);
+// }
+
+
+int	lexing(t_data *data)
 {
 	t_token	*current;
 	int		i;
 
 	i = 0;
-	while (input[i] && ft_is_space(input[i]))
+	while (data->input[i] && ft_is_space(data->input[i]))
 		i++;
-	if (!input[i])
-		return (1);
-	if (input[i] == '|')
-		return (*err_code = 130, 0);
-	while (input[i])
+	if (!data->input[i])
+		return (0);
+	if (data->input[i] == '|')
+		return (setnret(data, ERR_PARS));
+	while (data->input[i])
 	{
-		while (input[i] && ft_is_space(input[i]))
+		while (data->input[i] && ft_is_space(data->input[i]))
 			i++;
-		if (!input[i])
-			return (1);
-		if (!process_token(input, &current, &i))
-			return (*err_code = 130, 0);
-		ft_token_lstadd_back(list, current);
-		if (input[i])
+		if (!data->input[i])
+			return (0);
+		if (!process_token(data->input, &current, &i))
+			return (setnret(data, ERR_PARS));
+		ft_token_lstadd_back(&data->token_lst, current);
+		if (data->input[i])
 			i++;
 	}
-	return (1);
+	return (0);
 }
+
