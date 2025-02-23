@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:38 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 20:06:33 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 17:23:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,5 +161,9 @@
  * (4 bytes each, totaling 8 bytes) for memory allocation purposes.
  */
 # define ANSI_SHELL_LEN 8
+
+# ifndef HERE_DOC_PROMPT
+#  define HERE_DOC_PROMPT "here_doc> "
+# endif
 
 #endif

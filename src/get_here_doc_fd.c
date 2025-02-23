@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:46:04 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 17:12:12 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/23 17:23:32 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	get_here_doc_fd(t_data *data, char *delimiter)
 	delimiter = delimiter_add_nl(delimiter);
 	if (!delimiter)
 		return (0);
-	ft_printf("here_doc> ");
+	ft_printf("%s", HERE_DOC_PROMPT);
 	line = get_next_line(0);
 	if (!line)
 			return (free(delimiter), -1);
