@@ -1,0 +1,3 @@
+com="git commit -m"
+st="git status"
+add="git add"
