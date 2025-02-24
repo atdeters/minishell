@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 15:02:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:14:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void	add_aliases_to_file(t_data *data)
 	if (fd == -1)
 		return ;
 	tmp = data->alias_lst;
+	if (!tmp)
+	{
+		close (fd);
+		return ;
+	}
 	while (tmp)
 	{
 		write(fd, tmp->filed, ft_strlen(tmp->filed));
@@ -36,26 +41,31 @@ void	add_aliases_to_file(t_data *data)
 	close (fd);
 }
 
-void	remove_alias(t_data *data, char *key)
+void	remove_alias(t_env_lst **lst, char *key)
 {
+	t_env_lst	*head;
 	t_env_lst	*tmp;
-	t_env_lst	*to_del;
+	t_env_lst	*current;
 
-	tmp = data->alias_lst;
-	if (!tmp->next)
+	if (!lst | !*lst)
+		return ;
+	head = *lst;
+	if (!ft_strcmp(key, (*lst)->filed))
 	{
-		ft_env_lstdelone(tmp);
-		tmp = NULL;
+		*lst = head->next;
+		ft_env_lstdelone(head);
+		return ;
 	}
-	while (tmp && tmp->next)
+	current = head;
+	while (current && current->next)
 	{
-		if (!ft_strcmp(key, tmp->next->filed))
+		if (!ft_strcmp(key, current->next->filed))
 		{
-			to_del = tmp->next;
-			tmp->next = tmp->next->next;
-			ft_env_lstdelone(to_del);
+			tmp = current->next->next;
+			ft_env_lstdelone(current->next);
+			current->next = tmp;
 		}
-		tmp = tmp->next;
+		current = current->next;
 	}
 }
 
@@ -95,16 +105,20 @@ bool	is_valid_entry_form(char *entry)
 bool	is_unique_key(t_env_lst *lst, char *entry)
 {
 	char	*key;
+	char	*check;
 	int		eq_ind;
 
 	if (!lst)
 		return (true);
 	eq_ind = ft_strchr(entry, '=') - entry;
-	key = entry;
+	key = ft_strdup(entry);
+	if (!key)
+		return (false); // Add error message;
 	key[eq_ind] = '\0';
-	if (get_value_from_lst(lst, key))
-		return (false);
-	return (true);
+	check = get_value_from_lst(lst, key);
+	if (!ft_strcmp(check, key))
+		return (free(key), true);
+	return (free(key), false);
 }
 
 bool check_entry(t_data *data, char *entry)
@@ -138,16 +152,16 @@ void	ft_alias(t_data *data, char **command)
 	{
 		if (command[2] && !strcmp(command[1], "rm"))
 		{
-			remove_alias(data, command[2]);
+			remove_alias(&data->alias_lst, command[2]);
 			add_aliases_to_file(data);
 		} 
 		else
 		{
-			if (check_entry(data, command[1]))
+			if (!check_entry(data, command[1]))
 				return ;
 			entry = delimiter_add_nl(command[1]);
 			if (!entry)
-				rage_quit(data, ERR_MALLOC, true);	
+				rage_quit(data, ERR_MALLOC, true);
 			alias_to_node(data, entry);
 			add_aliases_to_file(data);
 			free (entry);

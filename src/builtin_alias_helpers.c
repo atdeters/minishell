@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 12:36:59 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 12:37:05 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 15:39:19 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	load_alias_lst(t_data *data, char *path)
 	char	*entry;
 
 	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return (1);
 	entry = get_next_line(fd);
 	if (!entry)
 		return (close(fd), 1);

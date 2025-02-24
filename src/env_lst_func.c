@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_lst_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:17:55 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/21 16:00:19 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:19:38 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	ft_env_lstdelone(t_env_lst *lst)
 	if (lst->value)
 		free(lst->value);
 	free(lst);
+	lst = NULL;
 }
 
 void	ft_env_lstclear(t_env_lst **lst)
