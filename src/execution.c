@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 21:16:28 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 12:25:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ bool	handle_nc_builtin(t_data *data, char **command)
 		return (ft_cd(command), true);
 	else if (!ft_strcmp(command[0], "exit"))
 	 	return (ft_exit(data), true);
+	else if (!ft_strcmp(command[0], "alias") && command[1])
+		return (ft_alias(data, command), true);
 	// "export" and "alias" are nc_builtins when they have
 	// other option. Else they can not be used in a child
 	return (false);
@@ -74,7 +76,6 @@ bool	handle_nc_builtin(t_data *data, char **command)
 
 bool	handle_builtin(t_data *data, char **command)
 {
-	(void)data; // just to mute compiler
 	if (!ft_strcmp(command[0], "echo"))
 		return (ft_echo(command), true);
 	else if (!ft_strcmp(command[0], "pwd"))
@@ -84,9 +85,11 @@ bool	handle_builtin(t_data *data, char **command)
 		return (true);
 	else if (!ft_strcmp(command[0], "exit"))
 	 	return (true);
+	else if (!ft_strcmp(command[0], "alias") && command[1])
+		return (true);
+	else if (!ft_strcmp(command[0], "alias"))
+		return (ft_alias(data, command), true);
 	// else if (!ft_strcmp(command[0], "export"))
-	// 	return (ft_export(command), true);
-	// else if (!ft_strcmp(command[0], "alias"))
 	// 	return (ft_export(command), true);
 	// else if (!ft_strcmp(command[0], "unset"))
 	// 	return (ft_unset(command), true);

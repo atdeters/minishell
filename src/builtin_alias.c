@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 12:03:44 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 12:47:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,69 +16,43 @@
 // make it a builtin function that can show the list and add entry just like
 // the export function
 
-static void	error_exit_env(char *f, char *v, t_env_lst *lst, int exit_code)
+void	add_alias_to_file(t_data *data, char *entry)
 {
-	if (f)
-		free(f);
-	if (v)
-		free(v);
-	if (lst)
-		ft_env_lstclear(&lst);
-	exit(exit_code);
-}
+	int	fd;
 
-static void	transfer_alias_into_node(char *str, t_data *data, int i)
-{
-	char		*field;
-	char		*value;
-	t_env_lst	*node;
-
-	field = ft_substr(str, 0, i);
-	if (!field)
-		error_exit_env(NULL, NULL, data->alias_lst, 1);
-	value = ft_substr(str, i + 1, ft_strlen(str) - i);
-	if (!value)
-		error_exit_env(field, NULL, data->alias_lst, 1);
-	node = ft_env_lstnew(field, value);
-	if (!node)
-		error_exit_env(field, value, data->alias_lst, 1);
-	if (!data->alias_lst)
-		data->alias_lst = node;
-	else
-		ft_env_lstadd_back(&data->alias_lst, node);
-}
-
-void	alias_to_node(t_data *data, char *entry)
-{
-	int	i;
-
-	i = 0;
-	while (entry[i])
-	{
-		if (entry[i] == '=')
-		{
-			transfer_alias_into_node(entry, data, i);
-			break ;
-		}
-		i++;
-	}
-}
-
-int	alias_file_to_lst(t_data *data)
-{
-	int		fd;
-	char	*entry;
-
-	fd = open(".vash_alias", O_RDONLY);
-	entry = get_next_line(fd);
-	if (!entry)
-		return (close(fd), 1);
-	while (entry)
-	{
-		alias_to_node(data, entry);
-		free (entry);
-		entry = get_next_line(fd);
-	}
+	fd = open(data->alias_path, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	if (fd == -1)
+		return ;
+	write(fd, entry, ft_strlen(entry));
 	close (fd);
-	return (0);
+}
+
+void	ft_alias(t_data *data, char **command)
+{
+	t_env_lst	*tmp;
+	char		*entry;
+
+	// Add functionality to remove aliases
+	tmp = data->alias_lst;
+	// Loop through it and give errors for everything
+	// That is bullshit like command[1] with no or more than 1 '='
+	// Or more than 1 option after the "alias"
+	if (!command[1])
+	{
+		while (tmp)
+		{
+			ft_printf("%s=", tmp->filed);
+			ft_printf("%s", tmp->value);
+			tmp = tmp->next;
+		}
+	}
+	else
+	{
+		entry = delimiter_add_nl(command[1]);
+		if (!entry)
+			rage_quit(data, ERR_MALLOC, true);
+		alias_to_node(data, entry);
+		add_alias_to_file(data, entry);
+		free (entry);
+	}
 }

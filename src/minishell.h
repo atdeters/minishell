@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 12:02:41 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 12:37:39 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define HIST_FILE_NAME ".vash_history"
 # define HELP_FILE_PATH ".vash_help"
 # define HELP_FILE_NAME ".vash_help"
+# define ALIAS_FILE_NAME ".vash_alias"
 
 //// ENUMS
 enum					e_errors
@@ -51,10 +52,10 @@ enum					e_errors
 	ERR_SPLIT = 9,
 	ERR_OPEN = 10,
 	ERR_USAGE = 11,
+	ERR_MALLOC = 12,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_PARS = 130,
-	ERR_MALLOC = 12,
 	ERR_PARS_SINGLE_QUTE = 135,
 	ERR_PARS_DOUBLE_QUTE = 140,
 	ERR_CHILD = 200,
@@ -111,6 +112,7 @@ typedef struct s_data
 	int					n_pid;
 	char				**envp;
 	char				*hist_path;
+	char				*alias_path;
 	// Different for every prompt
 	// We could make a pipe_line struct out of them
 	char				*input;
@@ -252,8 +254,13 @@ char					*add_folder(char *rl_prompt, char *path);
  */
 char					*add_branch(char *rl_prompt, char *branch);
 
+// builtin_alias_helpers.c
+void					alias_to_node(t_data *data, char *entry);
+int						load_alias_lst(t_data *data, char *path);
+
 // builtin_alias.c
-int						alias_file_to_lst(t_data *data);
+int						load_alias_lst(t_data *data, char *path);
+void					ft_alias(t_data *data, char **command);
 
 // builtin_cd.c
 /**
@@ -363,7 +370,6 @@ void					free_all_com(t_data *data);
 void					free_all_global(t_data *data);
 
 // get_fds.c
-int						get_here_doc_fd(t_data *data, char *delimiter);
 int						get_fd_in(t_data *data, int *fd_in);
 int						get_fd_out(t_data *data, int *fd_out);
 int						get_fds(t_data *data, int *fd_in, int *fd_out);

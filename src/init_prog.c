@@ -6,13 +6,13 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 12:04:42 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 12:12:56 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*get_hist_file_path(t_data *data)
+char	*get_home_path_for_file(t_data *data, char *file_name)
 {
 	t_env_lst	*tmp;
 	char		*address;
@@ -27,7 +27,7 @@ char	*get_hist_file_path(t_data *data)
 			tmp_ad = ft_strjoin(tmp->value, "/");
 			if (!tmp_ad)
 				return (data->error = ERR_MALLOC, NULL);
-			address = ft_strjoin(tmp_ad, HIST_FILE_NAME);
+			address = ft_strjoin(tmp_ad, file_name);
 			if (!address)
 				return (free(tmp_ad), data->error = ERR_MALLOC, NULL);
 			return (free(tmp_ad), address);
@@ -46,8 +46,11 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 		return (data->error);
 	parse_env(data, env);
 	parser_env_into_arr(data);
-	alias_file_to_lst(data);
-	data->hist_path = get_hist_file_path(data);
+	data->alias_path = get_home_path_for_file(data, ALIAS_FILE_NAME);
+	if (!data->alias_path)
+		rage_quit(data, data->error, false);
+	load_alias_lst(data, data->alias_path);
+	data->hist_path = get_home_path_for_file(data, HIST_FILE_NAME);
 	if (!data->hist_path)
 		rage_quit(data, data->error, false);
 	load_old_history(data->hist_path);
