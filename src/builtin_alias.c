@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 17:14:15 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:20:47 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	remove_alias(t_env_lst **lst, char *key)
 			tmp = current->next->next;
 			ft_env_lstdelone(current->next);
 			current->next = tmp;
+			return ;
 		}
 		current = current->next;
 	}
