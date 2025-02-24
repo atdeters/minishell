@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 21:13:43 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 12:02:41 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,7 @@ char					*add_folder(char *rl_prompt, char *path);
 char					*add_branch(char *rl_prompt, char *branch);
 
 // builtin_alias.c
+int						alias_file_to_lst(t_data *data);
 
 // builtin_cd.c
 /**
