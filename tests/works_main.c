@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 21:07:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:38:18 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	handle_prompt(t_data *data, char **av)
 		pnc_err(data);
 	if (lexing(data))
 		pnc_err(data);
+	// Maybe do here_doc here; than change the in_mode to file
+	// and add the filename to it
 	if (parser_main(data))
 		pnc_err(data);
 	if (pipe_maker(data))
