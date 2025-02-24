@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:20:41 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 13:21:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 13:56:10 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*get_value_from_lst(t_env_lst *lst, char *key)
 
 	tmp = lst;
 	while (tmp)
+	
 	{
 		if (!ft_strcmp(key, tmp->filed))
 		{
@@ -39,23 +40,23 @@ char **lst_join(char **lst1, char **lst2)
 	int		j;
 	char	**new;
 
-	if (!lst1 | !lst2)
-		return (NULL);
-	while (lst1[i++])
+	fields = 0;
+	i = -1;
+	while (lst1 && lst1[i++])
 		fields++;
-	i = 0;
-	while (lst2[i++])
+	i = -1;
+	while (lst2 && lst2[i++])
 		fields++;
-	fields++;
-	new = malloc(fields * sizeof(char *));
+	new = malloc((fields - 1) * sizeof(char *));
 	if (!new)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (lst1[i++])
-		new[j++] = lst1[i];
+	while (lst1 && lst1[i])
+		new[j++] = strdup(lst1[i++]);
 	i = 0;
-	while (lst2[i++])
-		new[j++] = lst2[i];
+	while (lst2 && lst2[i])
+		new[j++] = strdup(lst2[i++]);
+	new[j] = NULL;
 	return (new);
 }
