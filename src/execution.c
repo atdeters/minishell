@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 17:45:58 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:56:33 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	execute(t_data *data)
 		data->ind_out_pipe++;
 	if (data->parsed_lst->in_mode == IN_MODE_PIPE)
 		data->ind_in_pipe++;
+	command = data->parsed_lst->cmd_and_args;
 	command = replace_alias(data, data->parsed_lst->cmd_and_args);
 	if (!command)
 		rage_quit(data, ERR_MALLOC, true);
