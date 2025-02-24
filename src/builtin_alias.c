@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 14:35:21 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 14:37:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	remove_alias(t_data *data, char *key)
 
 static void	print_aliases(t_env_lst *lst)
 {
+	if (!lst)
+		printf("alias list currently emtpy\n");
 	while (lst)
 	{
 		ft_printf("%s=%s", lst->filed, lst->value);
