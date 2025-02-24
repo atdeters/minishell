@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:11 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/23 20:47:00 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:26:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static int	process_token(char *input, t_token **current, int *i)
 	return (1);
 }
 
-
-
 // int	lexing(char *input, t_token **list, int *err_code)
 // {
 // 	t_token	*current;
@@ -68,7 +66,6 @@ static int	process_token(char *input, t_token **current, int *i)
 // 	return (1);
 // }
 
-
 int	lexing(t_data *data)
 {
 	t_token	*current;
@@ -95,4 +92,3 @@ int	lexing(t_data *data)
 	}
 	return (0);
 }
-

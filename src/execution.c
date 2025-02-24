@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 14:00:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:30:08 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	execute_subshell(t_data *data, char **command)
 	return (0);
 }
 
-char **replace_alias(t_data *data, char **command)
+char	**replace_alias(t_data *data, char **command)
 {
 	char	*alias;
 	char	**rep_com;
@@ -59,7 +59,7 @@ char **replace_alias(t_data *data, char **command)
 		free (tmp);
 		if (!rep_com)
 			rage_quit(data, ERR_SPLIT, true);
-		new_com = lst_join(command + 1, rep_com);	
+		new_com = lst_join(command + 1, rep_com);
 		fr_lst(rep_com);
 		if (!new_com)
 			rage_quit(data, ERR_MALLOC, true);

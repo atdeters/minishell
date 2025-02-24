@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 12:36:59 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 15:39:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:24:45 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,30 @@ int	load_alias_lst(t_data *data, char *path)
 	}
 	close (fd);
 	return (0);
+}
+
+// Add error messages
+void	add_aliases_to_file(t_data *data)
+{
+	int			fd;
+	t_env_lst	*tmp;
+
+	fd = open(data->alias_path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd == -1)
+		return ;
+	tmp = data->alias_lst;
+	if (!tmp)
+	{
+		close (fd);
+		return ;
+	}
+	while (tmp)
+	{
+		write(fd, tmp->filed, ft_strlen(tmp->filed));
+		write(fd, "=", 1);
+		write(fd, tmp->value, ft_strlen(tmp->value));
+		tmp = tmp->next;
+	}
+	write(fd, "\n", 1);
+	close (fd);
 }

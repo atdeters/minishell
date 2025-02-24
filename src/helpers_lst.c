@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:20:41 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 15:12:08 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:29:14 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ char	*get_value_from_lst(t_env_lst *lst, char *key)
 
 	tmp = lst;
 	while (tmp)
-	
 	{
 		if (!ft_strcmp(key, tmp->filed))
 		{
@@ -33,7 +32,7 @@ char	*get_value_from_lst(t_env_lst *lst, char *key)
 	return (key);
 }
 
-char **lst_join(char **lst1, char **lst2)
+char	**lst_join(char **lst1, char **lst2)
 {
 	int		fields;
 	int		i;

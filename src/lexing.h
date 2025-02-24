@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:18 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/23 20:48:42 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:26:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,8 @@ int					handle_double_quotes(int *i, char *input,
 						t_token **current);
 int					handle_word(int *i, char *input, t_token **current);
 
-
 // int				lexing(char *input, t_token **list, int *err_code);
 // Moved to minishell.h
-
-
 
 int					handle_dolar(char *input, t_token **current, int *i,
 						char **word);

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 13:21:28 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:26:17 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,6 +257,18 @@ char					*add_branch(char *rl_prompt, char *branch);
 // builtin_alias_helpers.c
 void					alias_to_node(t_data *data, char *entry);
 int						load_alias_lst(t_data *data, char *path);
+void					add_aliases_to_file(t_data *data);
+
+// builtin_alias_helpers2.c
+void					remove_alias(t_env_lst **lst, char *key);
+void					print_aliases(t_env_lst *lst);
+bool					is_valid_entry_form(char *entry);
+/**
+ * This function assumes that the entry has exactly one "="
+ * It segfaults if used without one!!
+ */
+bool					is_unique_key(t_env_lst *lst, char *entry);
+bool					check_entry(t_data *data, char *entry);
 
 // builtin_alias.c
 int						load_alias_lst(t_data *data, char *path);

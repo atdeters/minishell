@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:46:04 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 17:28:59 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:30:20 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	get_here_doc_fd(t_data *data, char *delimiter)
 	ft_printf("%s", HERE_DOC_PROMPT);
 	line = get_next_line(0);
 	if (!line)
-			return (free(delimiter), -1);
+		return (free(delimiter), -1);
 	while (ft_strncmp(line, delimiter, ft_strlen(delimiter)))
 	{
 		// Add variable expansion here
