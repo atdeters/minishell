@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:16:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 13:18:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 13:19:48 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	handle_nc_builtin(t_data *data, char **command)
 	if (!ft_strcmp(command[0], "cd"))
 		return (ft_cd(command), true);
 	else if (!ft_strcmp(command[0], "exit"))
-	 	return (ft_exit(data), true);
+		return (ft_exit(data), true);
 	else if (!ft_strcmp(command[0], "alias") && command[1])
 		return (ft_alias(data, command), true);
 	// "export" and "alias" are nc_builtins when they have
@@ -56,7 +56,7 @@ bool	handle_builtin(t_data *data, char **command)
 	if (!ft_strcmp(command[0], "cd"))
 		return (true);
 	else if (!ft_strcmp(command[0], "exit"))
-	 	return (true);
+		return (true);
 	else if (!ft_strcmp(command[0], "alias") && command[1])
 		return (true);
 	else if (!ft_strcmp(command[0], "alias"))
