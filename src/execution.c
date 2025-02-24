@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 13:16:53 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 13:21:44 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,54 +39,6 @@ int	execute_subshell(t_data *data, char **command)
 		rage_quit(data, data->error, false);
 	}
 	return (0);
-}
-
-char	*get_value_from_lst(t_env_lst *lst, char *key)
-{
-	t_env_lst	*tmp;
-	char		*value;
-
-	tmp = lst;
-	while (tmp)
-	{
-		if (!ft_strcmp(key, tmp->filed))
-		{
-			value = ft_strdup(tmp->value);
-			if (!value)
-				return (NULL);
-			return (value);
-		}
-		tmp = tmp->next;
-	}
-	return (key);
-}
-
-char **lst_join(char **lst1, char **lst2)
-{
-	int		fields;
-	int		i;
-	int		j;
-	char	**new;
-
-	if (!lst1 | !lst2)
-		return (NULL);
-	while (lst1[i++])
-		fields++;
-	i = 0;
-	while (lst2[i++])
-		fields++;
-	fields++;
-	new = malloc(fields * sizeof(char *));
-	if (!new)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (lst1[i++])
-		new[j++] = lst1[i];
-	i = 0;
-	while (lst2[i++])
-		new[j++] = lst2[i];
-	return (new);
 }
 
 int	replace_alias(t_data *data, char **command)

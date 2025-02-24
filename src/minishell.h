@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 13:18:42 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 13:21:28 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -402,6 +402,9 @@ bool					handle_nc_builtin(t_data *data, char **command);
  */
 bool					handle_builtin(t_data *data, char **command);
 
+// helpers_lst.c
+char					*get_value_from_lst(t_env_lst *lst, char *key);
+char					**lst_join(char **lst1, char **lst2);
 
 // helpers1.c
 /**
