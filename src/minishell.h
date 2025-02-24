@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 12:37:39 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 13:18:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,15 +346,6 @@ int						p_err_arg(int code, const char *arg);
 
 // execution.c
 int						execute(t_data *data);
-/**
- * @brief Checks whether a function is a builtin or not
- *
- * @return
- * - True, if the function is a builtin
- *
- * - False, if the function is not a builtin
- */
-bool					handle_builtin(t_data *data, char **command);
 
 // free.c
 void					fr_lst(char **arr);
@@ -398,6 +389,18 @@ char					*delimiter_add_nl(char *delimiter_old);
 int						add_random_end(char *doc_file, int amount);
 int						get_here_doc_fd(t_data *data, char *delimiter);
 
+// handle_builtins.c
+bool					is_builtin(char *name);
+bool					handle_nc_builtin(t_data *data, char **command);
+/**
+ * @brief Checks whether a function is a builtin or not
+ *
+ * @return
+ * - True, if the function is a builtin
+ *
+ * - False, if the function is not a builtin
+ */
+bool					handle_builtin(t_data *data, char **command);
 
 
 // helpers1.c

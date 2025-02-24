@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 12:25:24 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 13:16:53 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,82 @@ int	execute_subshell(t_data *data, char **command)
 	return (0);
 }
 
+char	*get_value_from_lst(t_env_lst *lst, char *key)
+{
+	t_env_lst	*tmp;
+	char		*value;
+
+	tmp = lst;
+	while (tmp)
+	{
+		if (!ft_strcmp(key, tmp->filed))
+		{
+			value = ft_strdup(tmp->value);
+			if (!value)
+				return (NULL);
+			return (value);
+		}
+		tmp = tmp->next;
+	}
+	return (key);
+}
+
+char **lst_join(char **lst1, char **lst2)
+{
+	int		fields;
+	int		i;
+	int		j;
+	char	**new;
+
+	if (!lst1 | !lst2)
+		return (NULL);
+	while (lst1[i++])
+		fields++;
+	i = 0;
+	while (lst2[i++])
+		fields++;
+	fields++;
+	new = malloc(fields * sizeof(char *));
+	if (!new)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (lst1[i++])
+		new[j++] = lst1[i];
+	i = 0;
+	while (lst2[i++])
+		new[j++] = lst2[i];
+	return (new);
+}
+
+int	replace_alias(t_data *data, char **command)
+{
+	char	*alias;
+	char	**add_commands;
+	char	**new_com;
+	char	*tmp;
+
+	alias = command[0];
+	tmp = get_value_from_lst(data->alias_lst, command[0]);
+	if (!tmp)
+		return (1);
+	if (ft_strcmp(command[0], tmp))
+	{
+		rid_of_nl(tmp);
+		add_commands = ft_split(tmp, ' ');
+		free (tmp);
+		if (!add_commands)
+			rage_quit(data, ERR_SPLIT, true);
+		new_com = lst_join(add_commands, command);
+		ft_lst(add_commands);
+		if (!new_com)
+			rage_quit(data, ERR_MALLOC, true);
+		fr_lst(command);
+		command = new_com;
+	}
+	return (0);
+}
+
 int	execute(t_data *data)
 {
 	char	**command;
@@ -50,6 +126,8 @@ int	execute(t_data *data)
 	if (data->parsed_lst->in_mode == IN_MODE_PIPE)
 		data->ind_in_pipe++;
 	command = data->parsed_lst->cmd_and_args;
+	if (replace_alias(data, command))
+		rage_quit(data, ERR_MALLOC, true);
 	if (data->pipes_amount == 0 && handle_nc_builtin(data, command))
 		return (0);
 	data->pid[data->n_pid] = fork();
@@ -59,42 +137,4 @@ int	execute(t_data *data)
 		execute_subshell(data, command);
 	data->n_pid++;
 	return (0);
-}
-
-bool	handle_nc_builtin(t_data *data, char **command)
-{
-	if (!ft_strcmp(command[0], "cd"))
-		return (ft_cd(command), true);
-	else if (!ft_strcmp(command[0], "exit"))
-	 	return (ft_exit(data), true);
-	else if (!ft_strcmp(command[0], "alias") && command[1])
-		return (ft_alias(data, command), true);
-	// "export" and "alias" are nc_builtins when they have
-	// other option. Else they can not be used in a child
-	return (false);
-}
-
-bool	handle_builtin(t_data *data, char **command)
-{
-	if (!ft_strcmp(command[0], "echo"))
-		return (ft_echo(command), true);
-	else if (!ft_strcmp(command[0], "pwd"))
-		return (ft_pwd(), true);
-	// nc_builtins dont have to be done here
-	if (!ft_strcmp(command[0], "cd"))
-		return (true);
-	else if (!ft_strcmp(command[0], "exit"))
-	 	return (true);
-	else if (!ft_strcmp(command[0], "alias") && command[1])
-		return (true);
-	else if (!ft_strcmp(command[0], "alias"))
-		return (ft_alias(data, command), true);
-	// else if (!ft_strcmp(command[0], "export"))
-	// 	return (ft_export(command), true);
-	// else if (!ft_strcmp(command[0], "unset"))
-	// 	return (ft_unset(command), true);
-	// else if (!ft_strcmp(command[0], "env"))
-	// 	return (ft_env(data), true);
-	else
-		return (false);
 }
