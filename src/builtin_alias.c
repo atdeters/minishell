@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 14:37:12 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 15:02:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,60 @@ static void	print_aliases(t_env_lst *lst)
 	}
 }
 
+bool	is_valid_entry_form(char *entry)
+{
+	int	eq_count;
+	int	i;
+
+	eq_count = 0;
+	i = 0;
+	while (entry[i])
+	{
+		if (entry[i] == '=')
+			eq_count++;
+		i++;
+	}
+	if (eq_count != 1)
+		return (false);
+	return (true);
+}
+
+/**
+ * This function assumes that the entry has exactly one "="
+ * It segfaults if used without one!!
+ */
+bool	is_unique_key(t_env_lst *lst, char *entry)
+{
+	char	*key;
+	int		eq_ind;
+
+	if (!lst)
+		return (true);
+	eq_ind = ft_strchr(entry, '=') - entry;
+	key = entry;
+	key[eq_ind] = '\0';
+	if (get_value_from_lst(lst, key))
+		return (false);
+	return (true);
+}
+
+bool check_entry(t_data *data, char *entry)
+{
+	if (!is_valid_entry_form(entry))
+	{
+		printf("Not a valid entry for alias\n");
+		return (false);
+	}
+	if (!is_unique_key(data->alias_lst, entry))
+	{
+		ft_printf("\"%s\" is not a unique entry.\n", entry);
+		ft_printf("Choose another one or remove this one ");
+		ft_printf("by using \"alias rm [key]\"\n");
+		return (false);
+	}
+	return (true);
+}
+
 // Feature: Sort the list
 // Feature: Throw arrow when key already exists and don't add it in
 void	ft_alias(t_data *data, char **command)
@@ -86,12 +140,14 @@ void	ft_alias(t_data *data, char **command)
 		{
 			remove_alias(data, command[2]);
 			add_aliases_to_file(data);
-		}
+		} 
 		else
 		{
+			if (check_entry(data, command[1]))
+				return ;
 			entry = delimiter_add_nl(command[1]);
 			if (!entry)
-				rage_quit(data, ERR_MALLOC, true);
+				rage_quit(data, ERR_MALLOC, true);	
 			alias_to_node(data, entry);
 			add_aliases_to_file(data);
 			free (entry);
