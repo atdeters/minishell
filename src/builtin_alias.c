@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 14:22:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 14:35:21 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,23 @@
 // make it a builtin function that can show the list and add entry just like
 // the export function
 
-void	add_alias_to_file(t_data *data, char *entry)
+void	add_aliases_to_file(t_data *data)
 {
-	int	fd;
+	int			fd;
+	t_env_lst	*tmp;
 
-	fd = open(data->alias_path, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	fd = open(data->alias_path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 		return ;
-	write(fd, entry, ft_strlen(entry));
+	tmp = data->alias_lst;
+	while (tmp)
+	{
+		write(fd, tmp->filed, ft_strlen(tmp->filed));
+		write(fd, "=", 1);
+		write(fd, tmp->value, ft_strlen(tmp->value));
+		tmp = tmp->next;
+	}
+	write(fd, "\n", 1);
 	close (fd);
 }
 
@@ -59,6 +68,8 @@ static void	print_aliases(t_env_lst *lst)
 	}
 }
 
+// Feature: Sort the list
+// Feature: Throw arrow when key already exists and don't add it in
 void	ft_alias(t_data *data, char **command)
 {
 	t_env_lst	*tmp;
@@ -70,14 +81,17 @@ void	ft_alias(t_data *data, char **command)
 	else
 	{
 		if (command[2] && !strcmp(command[1], "rm"))
+		{
 			remove_alias(data, command[2]);
+			add_aliases_to_file(data);
+		}
 		else
 		{
 			entry = delimiter_add_nl(command[1]);
 			if (!entry)
 				rage_quit(data, ERR_MALLOC, true);
 			alias_to_node(data, entry);
-			add_alias_to_file(data, entry);
+			add_aliases_to_file(data);
 			free (entry);
 		}
 	}
