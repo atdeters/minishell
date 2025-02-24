@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 12:40:14 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 17:40:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	free_all_com(t_data *data)
 		free_p_lst(&data->parsed_lst);
 	if (data->token_lst)
 		ft_token_lstclear(&data->token_lst);
+	// Unlink a list of here_doc files that have been created
 	close_all(data);
 }
 
