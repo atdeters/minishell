@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 12:47:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/24 14:22:30 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,58 @@ void	add_alias_to_file(t_data *data, char *entry)
 	close (fd);
 }
 
+void	remove_alias(t_data *data, char *key)
+{
+	t_env_lst	*tmp;
+	t_env_lst	*to_del;
+
+	tmp = data->alias_lst;
+	if (!tmp->next)
+	{
+		ft_env_lstdelone(tmp);
+		tmp = NULL;
+	}
+	while (tmp && tmp->next)
+	{
+		if (!ft_strcmp(key, tmp->next->filed))
+		{
+			to_del = tmp->next;
+			tmp->next = tmp->next->next;
+			ft_env_lstdelone(to_del);
+		}
+		tmp = tmp->next;
+	}
+}
+
+static void	print_aliases(t_env_lst *lst)
+{
+	while (lst)
+	{
+		ft_printf("%s=%s", lst->filed, lst->value);
+		lst = lst->next;
+	}
+}
+
 void	ft_alias(t_data *data, char **command)
 {
 	t_env_lst	*tmp;
 	char		*entry;
 
-	// Add functionality to remove aliases
 	tmp = data->alias_lst;
-	// Loop through it and give errors for everything
-	// That is bullshit like command[1] with no or more than 1 '='
-	// Or more than 1 option after the "alias"
 	if (!command[1])
-	{
-		while (tmp)
-		{
-			ft_printf("%s=", tmp->filed);
-			ft_printf("%s", tmp->value);
-			tmp = tmp->next;
-		}
-	}
+		print_aliases(tmp);
 	else
 	{
-		entry = delimiter_add_nl(command[1]);
-		if (!entry)
-			rage_quit(data, ERR_MALLOC, true);
-		alias_to_node(data, entry);
-		add_alias_to_file(data, entry);
-		free (entry);
+		if (command[2] && !strcmp(command[1], "rm"))
+			remove_alias(data, command[2]);
+		else
+		{
+			entry = delimiter_add_nl(command[1]);
+			if (!entry)
+				rage_quit(data, ERR_MALLOC, true);
+			alias_to_node(data, entry);
+			add_alias_to_file(data, entry);
+			free (entry);
+		}
 	}
 }
