@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 14:26:27 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 14:34:32 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	free_all_global(t_data *data)
 {
 	if (data->hist_path)
 		free (data->hist_path);
+	if (data->alias_path)
+		free (data->alias_path);
 	if (data->envp)
 		fr_lst(data->envp);
 	if (data->alias_lst)
@@ -79,6 +81,8 @@ void	rage_quit(t_data *data, int exit_code, bool write_hist)
 {
 	if (write_hist)
 		write_hst_file(data, data->hist_path);
+	else
+		free_hst_list(data);
 	free_all_com(data);
 	free_all_global(data);
 	exit (exit_code);
