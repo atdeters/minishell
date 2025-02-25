@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/24 17:56:22 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 13:33:46 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static int	replace_word(t_data *data)
 	return (1);
 }
 
-int	check_env_expansion(t_data *data)
+int	check_replace_input(t_data *data)
 {
 		int	counter;
 	int	i;
@@ -125,20 +125,5 @@ int	check_env_expansion(t_data *data)
 			return (1);
 		i++;
 	}
-	return (0);
-}
-
-int	check_alias_expansion(t_data *data)
-{
-	(void)data;
-	return (0);
-}
-
-int	check_replace_input(t_data *data)
-{
-	if (check_env_expansion(data))
-		return (1);
-	if (check_alias_expansion(data))
-		return (1);
 	return (0);
 }
