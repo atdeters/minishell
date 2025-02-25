@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 17:26:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 10:24:10 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -633,6 +633,7 @@ void					free_p_lst(t_parsed **lst);
 int						pipe_counter(t_token **tokens);
 
 // lexing
-int						lexing(t_data *data);
+int						lexing(char *input, t_token **list, int *err_code);
+// int						lexing(t_data *data);
 
 #endif
