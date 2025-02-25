@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:53:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/11 18:09:34 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 10:53:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_token_lstadd_back(t_token **lst, t_token *new)
 	new->prev = current;
 }
 
-static void	ft_token_lstdelone(t_token *lst)
+void	ft_token_lstdelone(t_token *lst)
 {
 	if (lst == NULL)
 		return ;

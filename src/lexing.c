@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:11 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/25 10:23:45 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 10:53:08 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,30 +65,3 @@ int	lexing(char *input, t_token **list, int *err_code)
 	}
 	return (1);
 }
-
-// int	lexing(t_data *data)
-// {
-// 	t_token	*current;
-// 	int		i;
-
-// 	i = 0;
-// 	while (data->input[i] && ft_is_space(data->input[i]))
-// 		i++;
-// 	if (!data->input[i])
-// 		return (0);
-// 	if (data->input[i] == '|')
-// 		return (setnret(data, ERR_PARS));
-// 	while (data->input[i])
-// 	{
-// 		while (data->input[i] && ft_is_space(data->input[i]))
-// 			i++;
-// 		if (!data->input[i])
-// 			return (0);
-// 		if (!process_token(data->input, &current, &i))
-// 			return (setnret(data, ERR_PARS));
-// 		ft_token_lstadd_back(&data->token_lst, current);
-// 		if (data->input[i])
-// 			i++;
-// 	}
-// 	return (0);
-// }

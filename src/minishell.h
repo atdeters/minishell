@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 10:24:10 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 10:56:19 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@
 //// MAKROS
 # define FD_LIMIT 508
 # define MAX_PROCS 1024
-// Those should be created in the home folder somehow
-# define HIST_FILE_PATH ".vash_history"
+// # define HIST_FILE_PATH ".vash_history"
 # define HIST_FILE_NAME ".vash_history"
 # define HELP_FILE_PATH ".vash_help"
 # define HELP_FILE_NAME ".vash_help"
@@ -56,6 +55,7 @@ enum					e_errors
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_PARS = 130,
+	ERR_LEXING = 132,
 	ERR_PARS_SINGLE_QUTE = 135,
 	ERR_PARS_DOUBLE_QUTE = 140,
 	ERR_CHILD = 200,

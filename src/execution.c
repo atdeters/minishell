@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 17:56:33 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 10:47:47 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,33 @@ int	execute_subshell(t_data *data, char **command)
 	return (0);
 }
 
-char	**replace_alias(t_data *data, char **command)
-{
-	char	*alias;
-	char	**rep_com;
-	char	**new_com;
-	char	*tmp;
+// char	**replace_alias(t_data *data, char **command)
+// {
+// 	char	*alias;
+// 	char	**rep_com;
+// 	char	**new_com;
+// 	char	*tmp;
 
-	alias = command[0];
-	tmp = get_value_from_lst(data->alias_lst, command[0]);
-	if (!tmp)
-		return (NULL);
-	if (ft_strcmp(command[0], tmp))
-	{
-		rid_of_nl(tmp);
-		rep_com = ft_split(tmp, ' ');
-		free (tmp);
-		if (!rep_com)
-			rage_quit(data, ERR_SPLIT, true);
-		new_com = lst_join(rep_com, command + 1);
-		fr_lst(rep_com);
-		if (!new_com)
-			rage_quit(data, ERR_MALLOC, true);
-		fr_lst(command);
-		command = new_com;
-	}
-	return (command);
-}
+// 	alias = command[0];
+// 	tmp = get_value_from_lst(data->alias_lst, command[0]);
+// 	if (!tmp)
+// 		return (NULL);
+// 	if (ft_strcmp(command[0], tmp))
+// 	{
+// 		rid_of_nl(tmp);
+// 		rep_com = ft_split(tmp, ' ');
+// 		free (tmp);
+// 		if (!rep_com)
+// 			rage_quit(data, ERR_SPLIT, true);
+// 		new_com = lst_join(rep_com, command + 1);
+// 		fr_lst(rep_com);
+// 		if (!new_com)
+// 			rage_quit(data, ERR_MALLOC, true);
+// 		fr_lst(command);
+// 		command = new_com;
+// 	}
+// 	return (command);
+// }
 
 int	execute(t_data *data)
 {
@@ -78,7 +78,7 @@ int	execute(t_data *data)
 	if (data->parsed_lst->in_mode == IN_MODE_PIPE)
 		data->ind_in_pipe++;
 	command = data->parsed_lst->cmd_and_args;
-	command = replace_alias(data, data->parsed_lst->cmd_and_args);
+	// command = replace_alias(data, data->parsed_lst->cmd_and_args);
 	if (!command)
 		rage_quit(data, ERR_MALLOC, true);
 	if (data->pipes_amount == 0 && handle_nc_builtin(data, command))

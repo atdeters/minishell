@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:18 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/24 17:26:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 10:53:33 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int					ft_is_space(char ch);
 t_token				*create_token(int type, char *value);
 t_token				*ft_token_lstlast(t_token *lst);
 void				ft_token_lstadd_back(t_token **lst, t_token *new);
+void				ft_token_lstdelone(t_token *lst);
 void				ft_token_lstclear(t_token **lst);
 int					handle_special_char(char *input, t_token **current, int *i);
 int					handle_single_quote(int *i, char *input, t_token **current);
