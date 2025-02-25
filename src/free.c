@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 14:34:32 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:54:20 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	free_all_com(t_data *data)
 {
 	if (data->input && data->flag_single == false)
 		free (data->input);
+	while (data->parsed_lst && data->parsed_lst->prev)
+		data->parsed_lst = data->parsed_lst->prev;
 	if (data->parsed_lst)
 		free_p_lst(&data->parsed_lst);
 	if (data->token_lst)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:30 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/25 14:17:56 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:53:08 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@ t_parsed	*create_p_node(char **cmd_and_args, char *in, char *out)
 {
 	t_parsed	*new;
 
+	(void) cmd_and_args;
+	(void) in;
+	(void) out;
 	new = malloc(sizeof(t_parsed));
 	if (!new)
 		return (NULL);
-	new->cmd_and_args = cmd_and_args;
-	new->in = in;
-	new->out = out;
+	new->cmd_and_args = NULL;
+	new->in = NULL;
+	new->out = NULL;
 	new->in_mode = 0;
 	new->out_mode = 0;
 	new->prev = NULL;
@@ -60,40 +63,39 @@ void	add_p_back(t_parsed **lst, t_parsed *new)
 	new->prev = last;
 }
 
+void	free_p_node(t_parsed *node)
+{
+	int	i;
+
+	i = 0;
+	if (!node)
+		return ;
+	if (node->cmd_and_args)
+	{
+		while (node->cmd_and_args[i])
+			free(node->cmd_and_args[i++]);
+		free(node->cmd_and_args);
+	}
+	free(node->in);
+	free(node->out);
+	free(node);
+}
+
 void	free_p_lst(t_parsed **lst)
 {
 	t_parsed	*current;
-	// t_parsed	*tmp;
-	int			i;
+	t_parsed	*tmp;
 
 	if (!lst)
 		return ;
-	current = (*lst)->next;
-	while (*lst)
+	current = *lst;
+	while (current)
 	{
-		i = 0;
-
-		// tmp = current;
-		// current = current->next;
-
-		
-		//tmp = current->next;
-
-
-		while ((*lst)->cmd_and_args[i])
-		{
-			free((*lst)->cmd_and_args[i]);
-			i++;
-		}
-		free((*lst)->cmd_and_args);
-		free((*lst)->in);
-		free((*lst)->out);
-		free((*lst));
-
-		*lst = current;
-		//current = tmp;
+		tmp = current;
+		current = current->next;
+		free_p_node(tmp);	
 	}
-	// *lst = NULL;
+	*lst = NULL;
 }
 
 int	pipe_counter(t_token **tokens)

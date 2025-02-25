@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:59 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/25 13:54:29 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:53:29 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ static int	parse_command(t_pars_data *pars_data)
 	if (!new)
 		return (0);
 	call_check_type(pars_data, new);
-	(*pars_data).parsed_amount++;
-	current = (*pars_data).cur_head;
-	array_size = init_cmd_array(current, (*pars_data).cur_tail, &new);
+	(pars_data->parsed_amount)++;
+	current = pars_data->cur_head;
+	array_size = init_cmd_array(current, pars_data->cur_tail, &new);
 	if (array_size == -1)
 		return (0);
-	if (!fill_cmd_array(current, (*pars_data).cur_tail, &new, pars_data))
+	if (!fill_cmd_array(current, pars_data->cur_tail, &new, pars_data))
 		return (0);
 	add_p_back(pars_data->parsed_lst, new);
 	return (1);
@@ -126,7 +126,7 @@ int	parser_main(t_data *data)
 	init_pars_data(&pars_data, data, &data->token_lst);
 	if (!parser_loop(pars_data))
 		return (setnret(data, ERR_PARS));
-	(*data).parsed_lst = *pars_data.parsed_lst;
+	data->parsed_lst = *pars_data.parsed_lst;
 	ft_token_lstclear(&data->token_lst);
 	return (0);
 }

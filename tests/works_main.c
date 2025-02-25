@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   works_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 15:28:04 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:53:40 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ int	handle_prompt(t_data *data, char **av)
 		pnc_err(data);
 	if (pipe_maker(data))
 		pnc_err(data);
-	while (data->parsed_lst)
+	while (data->parsed_lst->next)
 	{
 		execute(data);
 		data->parsed_lst = data->parsed_lst->next;
 	}
+	execute(data);
 	close_all(data);
 	wait_all(data);
 	if (data->exit_status == ERR_CHILD)
