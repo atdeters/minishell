@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:30 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/25 13:11:32 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 14:17:56 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,37 @@ void	add_p_back(t_parsed **lst, t_parsed *new)
 void	free_p_lst(t_parsed **lst)
 {
 	t_parsed	*current;
-	t_parsed	*tmp;
+	// t_parsed	*tmp;
 	int			i;
 
 	if (!lst)
 		return ;
-	current = *lst;
-	while (current)
+	current = (*lst)->next;
+	while (*lst)
 	{
 		i = 0;
-		tmp = current->next;
-		while (current->cmd_and_args[i])
+
+		// tmp = current;
+		// current = current->next;
+
+		
+		//tmp = current->next;
+
+
+		while ((*lst)->cmd_and_args[i])
 		{
-			free(current->cmd_and_args[i]);
+			free((*lst)->cmd_and_args[i]);
 			i++;
 		}
-		free(current->cmd_and_args);
-		free(current->in);
-		free(current->out);
-		free(current);
-		current = tmp;
+		free((*lst)->cmd_and_args);
+		free((*lst)->in);
+		free((*lst)->out);
+		free((*lst));
+
+		*lst = current;
+		//current = tmp;
 	}
-	free(lst);
-	*lst = NULL;
+	// *lst = NULL;
 }
 
 int	pipe_counter(t_token **tokens)
