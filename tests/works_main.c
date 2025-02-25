@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 15:25:14 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:28:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,67 +27,6 @@ int	main(int ac, char **av, char **env)
 		if (data.flag_single)
 			rage_quit(&data, 0, true);
 	}
-}
-
-void	chp(void)
-{
-	static int	pos;
-
-	printf("Checkpoint %d successful!\n", pos);
-	pos++;
-}
-
-// Also needs to return true in bonus for the && or || or ;
-bool	needs_expand(t_data *data, char *current, t_token *tmp)
-{
-	if (!tmp->prev && ft_strcmp(current, tmp->value))
-		return (true);
-	else if (tmp->prev && tmp->prev->type == PIPE && ft_strcmp(current,
-			tmp->value))
-		return (true);
-	return (false);
-}
-
-int	expand_alias(t_data *data, t_token **lst)
-{
-	t_token	*tmp;
-	t_token	*last;
-	t_token	*old;
-	t_token	*expanded;
-	char	*current;
-
-	tmp = *lst;
-	expanded = NULL;
-	while (tmp)
-	{
-		if (tmp->type == WORD)
-		{
-			current = get_value_from_lst(data->alias_lst, tmp->value);
-			if (!current)
-				rage_quit(data, ERR_MALLOC, true);
-			if (needs_expand(data, current, tmp))
-			{
-				current = rid_of_nl(current);
-				if (!lexing(current, &expanded, &data->error))
-				{
-					free(current);
-					rage_quit(data, ERR_LEXING, true);
-				}
-				last = ft_token_lstlast(expanded);
-				last->next = tmp->next;
-				old = tmp;
-				if (tmp->prev)
-					tmp->prev->next = expanded;
-				else
-					data->token_lst = expanded;
-				ft_token_lstdelone(old);
-				tmp = last;
-			}
-			free(current);
-		}
-		tmp = tmp->next;
-	}
-	return (0);
 }
 
 int	handle_prompt(t_data *data, char **av)

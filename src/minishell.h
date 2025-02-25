@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 14:31:47 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:29:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,6 +270,10 @@ bool					is_valid_entry_form(char *entry);
 bool					is_unique_key(t_env_lst *lst, char *entry);
 bool					check_entry(t_data *data, char *entry);
 
+// builtin_alias_helpers3.c
+bool					needs_expand(char *current, t_token *tmp);
+int						expand_alias(t_data *data, t_token **lst);
+
 // builtin_alias.c
 int						load_alias_lst(t_data *data, char *path);
 void					ft_alias(t_data *data, char **command);
@@ -455,6 +459,13 @@ char					*rid_of_nl(char *str);
  */
 int						ft_strcpy(char *dest, const char *src);
 int						ft_strcmp(const char *s1, const char *s2);
+
+// helpers2.c
+/**
+ * @brief Creates a checkpoint in your code and prints an increasing
+ * number for everytime that it is called
+ */
+void					chp(void);
 
 // history.c
 /**
