@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 15:21:20 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:25:14 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ void	chp(void)
 	pos++;
 }
 
+// Also needs to return true in bonus for the && or || or ;
 bool	needs_expand(t_data *data, char *current, t_token *tmp)
 {
 	if (!tmp->prev && ft_strcmp(current, tmp->value))
 		return (true);
-	else if (tmp->prev && tmp->prev->type != WORD && ft_strcmp(current,
+	else if (tmp->prev && tmp->prev->type == PIPE && ft_strcmp(current,
 			tmp->value))
 		return (true);
 	return (false);
