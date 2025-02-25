@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:52:51 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/18 17:34:37 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/25 16:03:53 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ char	*join_path_exe(char *path, char *exe)
 
 char	*get_pathstr(t_data *data)
 {
-	while (data->env_lst)
+	t_env_lst *tmp;
+
+	tmp = data->env_lst;
+	while (tmp)
 	{
-		if (!ft_strncmp(data->env_lst->filed, "PATH",
-				ft_strlen(data->env_lst->filed)))
-			return (data->env_lst->value);
-		data->env_lst = data->env_lst->next;
+		if (!ft_strncmp(tmp->filed, "PATH",
+				ft_strlen(tmp->filed)))
+			return (tmp->value);
+		tmp = tmp->next;
 	}
 	return (NULL);
 }
