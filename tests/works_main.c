@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/27 19:32:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:51:17 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,15 @@ int	handle_prompt(t_data *data, char **av)
 		pnc_err(data);
 	if (expand_alias(data, &data->token_lst))
 		pnc_err(data);
-
-
 	if (create_hdf(data))
 		pnc_err(data);
 	if (fill_hdf_arr(data, &data->token_lst))
 		pnc_err(data);
+
+
+
+
+
 	if (parser_main(data))
 		pnc_err(data);
 	if (pipe_maker(data))

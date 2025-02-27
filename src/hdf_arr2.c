@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:43:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/27 19:26:02 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:50:53 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	fill_hdf(t_data *data, char *hdf, char *delim, int nb)
 int	fill_hdf_arr(t_data *data, t_token **lst)
 {
 	t_token	*current;
+	t_token *new;
+	t_token	*tmp;
 	int		i;
 	int		nb;
 
@@ -49,15 +51,20 @@ int	fill_hdf_arr(t_data *data, t_token **lst)
 	nb = 0;
 	while (current)
 	{
+		new = NULL;
 		if (current->type == DELIMITER)
 		{
 			if (fill_hdf(data, data->hdf_arr[i], current->value, nb))
 				return (data->error);
 			current->type = REDIR_IN;
 			free (current->value);
-			current->value = ft_strdup(data->hdf_arr[i]);
-			if (!current->value)
-				return (setnret(data, ERR_MALLOC));
+			current->value = NULL;
+			tmp = current->next;
+			new = create_token(WORD, ft_strdup(data->hdf_arr[i]));
+			if (!new)
+				return (1);
+			current->next = new;
+			new->next = tmp;
 			i++;
 		}
 		current = current->next;

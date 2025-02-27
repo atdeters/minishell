@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:29:01 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/27 18:44:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:47:28 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	create_hdf(t_data *data)
 		data->hdf_arr[i] = hdf_name_gen(data);
 		if (!data->hdf_arr[i])
 			rage_quit(data, ERR_MALLOC, true);
-		fd = open(data->hdf_arr[i], O_CREAT, 0600);
+		fd = open(data->hdf_arr[i], O_CREAT, 0777);
 		if (fd < 0)
 			return (setnret(data, ERR_OPEN));
 		close (fd);
