@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/27 18:46:39 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:21:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -429,7 +429,7 @@ void					hdf_prompt(t_data *data, int nb);
 
 // hdf_arr2.c
 int						fill_hdf(t_data *data, char *hdf, char *delim, int nb);
-int						fill_hdf_arr(t_data *data);
+int						fill_hdf_arr(t_data *data, t_token **lst);
 
 // helpers_lst.c
 char					*get_value_from_lst(t_env_lst *lst, char *key);

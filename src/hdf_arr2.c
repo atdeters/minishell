@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:43:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/27 18:44:32 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/27 19:26:02 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int	fill_hdf(t_data *data, char *hdf, char *delim, int nb)
 	return (free(delimiter), free(line), close(fd), 0);
 }
 
-int	fill_hdf_arr(t_data *data)
+int	fill_hdf_arr(t_data *data, t_token **lst)
 {
 	t_token	*current;
 	int		i;
 	int		nb;
 
-	current = data->token_lst;
+	current = *lst;
 	i = 0;
 	nb = 0;
 	while (current)
@@ -53,7 +53,11 @@ int	fill_hdf_arr(t_data *data)
 		{
 			if (fill_hdf(data, data->hdf_arr[i], current->value, nb))
 				return (data->error);
-			// Replace current node with the new file
+			current->type = REDIR_IN;
+			free (current->value);
+			current->value = ft_strdup(data->hdf_arr[i]);
+			if (!current->value)
+				return (setnret(data, ERR_MALLOC));
 			i++;
 		}
 		current = current->next;
