@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/27 18:00:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/27 18:46:39 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct s_data
 	int					fd_pipe[FD_LIMIT][2];
 	int					fd_file[FD_LIMIT * 2];
 	char				**hdf_arr;
+	int					hdf_amt;
 	t_parsed			*parsed_lst;
 	t_token				*token_lst;
 }						t_data;
@@ -419,6 +420,16 @@ bool					handle_nc_builtin(t_data *data, char **command);
  * - False, if the function is not a builtin
  */
 bool					handle_builtin(t_data *data, char **command);
+
+// hdf_arr.c
+int						hdf_counter(t_data *data, t_token *lst);
+char					*hdf_name_gen(t_data *data);
+int						create_hdf(t_data *data);
+void					hdf_prompt(t_data *data, int nb);
+
+// hdf_arr2.c
+int						fill_hdf(t_data *data, char *hdf, char *delim, int nb);
+int						fill_hdf_arr(t_data *data);
 
 // helpers_lst.c
 char					*get_value_from_lst(t_env_lst *lst, char *key);
