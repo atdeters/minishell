@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 15:29:24 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/27 18:00:17 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ enum					e_errors
 	ERR_OPEN = 10,
 	ERR_USAGE = 11,
 	ERR_MALLOC = 12,
+	ERR_GNL = 13,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_PARS = 130,
@@ -121,6 +122,7 @@ typedef struct s_data
 	int					pipes_amount;
 	int					fd_pipe[FD_LIMIT][2];
 	int					fd_file[FD_LIMIT * 2];
+	char				**hdf_arr;
 	t_parsed			*parsed_lst;
 	t_token				*token_lst;
 }						t_data;

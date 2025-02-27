@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:45:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 19:55:28 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/27 17:47:56 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_command(t_data *data)
 	data->token_lst = NULL;
 	data->parsed_lst = NULL;
 	data->input = NULL;
+	data->hdf_arr = NULL;
 	init_fd_arr(data);
 	data->pipes_amount = 0;
 }

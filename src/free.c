@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 15:54:20 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:49:59 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,20 @@ void	close_all(t_data *data)
 	}
 }
 
+void	free_hdf_arr(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->hdf_arr[i])
+	{
+		unlink(data->hdf_arr[i]);
+		free (data->hdf_arr[i]);
+		i++;
+	}
+	free(data->hdf_arr);
+}
+
 void	free_all_com(t_data *data)
 {
 	if (data->input && data->flag_single == false)
@@ -61,6 +75,8 @@ void	free_all_com(t_data *data)
 		free_p_lst(&data->parsed_lst);
 	if (data->token_lst)
 		ft_token_lstclear(&data->token_lst);
+	if (data->hdf_arr)
+		free_hdf_arr(data);
 	close_all(data);
 }
 
