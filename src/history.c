@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 18:36:15 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 14:32:46 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:44:05 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	write_hst_file(t_data *data, char *hist_file_path)
 		free(data->hstlst->content);
 		free (data->hstlst);
 	}
+	data->hstlst = NULL;
 	return (close(fd), 0);
 }
 
@@ -96,5 +97,6 @@ int	free_hst_list(t_data *data)
 		free(data->hstlst->content);
 		free (data->hstlst);
 	}
+	data->hstlst = NULL;
 	return (0);
 }

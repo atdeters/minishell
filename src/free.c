@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/28 18:42:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:45:22 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ void	close_all(t_data *data)
 			close (data->fd_pipe[i][1]);
 		i++;
 	}
-	i = 0;
-	while (i < FD_LIMIT * 2)
-	{
-		if (data->fd_file[i] != -1)
-			close (data->fd_file[i]);
-		i++;
-	}
+	// i = 0;
+	// while (i < FD_LIMIT * 2)
+	// {
+	// 	if (data->fd_file[i] != -1)
+	// 		close (data->fd_file[i]);
+	// 	i++;
+	// }
 }
 
 void	free_hdf_arr(t_data *data)

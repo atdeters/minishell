@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:45:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/27 17:47:56 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:45:56 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	init_fd_arr(t_data *data)
 		data->fd_pipe[i][1] = -1;
 		i++;
 	}
-	i = 0;
-	while (i < FD_LIMIT * 2)
-	{
-		data->fd_file[i] = -1;
-		i++;
-	}
+	// i = 0;
+	// while (i < FD_LIMIT * 2)
+	// {
+	// 	data->fd_file[i] = -1;
+	// 	i++;
+	// }
 }
 
 /**

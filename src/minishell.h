@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/28 17:36:36 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:45:32 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ typedef struct s_data
 	int					ind_out_pipe;
 	int					pipes_amount;
 	int					fd_pipe[FD_LIMIT][2];
-	int					fd_file[FD_LIMIT * 2];
+	// int					fd_file[FD_LIMIT * 2];
 	char				**hdf_arr;
 	int					hdf_amt;
 	t_parsed			*parsed_lst;
