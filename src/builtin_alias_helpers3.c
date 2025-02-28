@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:26:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 15:29:36 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:14:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ int	expand_alias(t_data *data, t_token **lst)
 				}
 				last = ft_token_lstlast(expanded);
 				last->next = tmp->next;
+				expanded->prev = tmp->prev;
+				if (tmp->next)
+					tmp->next->prev = last;
 				old = tmp;
 				if (tmp->prev)
 					tmp->prev->next = expanded;
