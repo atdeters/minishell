@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/27 17:49:59 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:42:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,15 @@ void	free_hdf_arr(t_data *data)
 	int	i;
 
 	i = 0;
-	while (data->hdf_arr[i])
+	while (data->hdf_arr && data->hdf_arr[i])
 	{
 		unlink(data->hdf_arr[i]);
 		free (data->hdf_arr[i]);
+		data->hdf_arr[i] = NULL;
 		i++;
 	}
 	free(data->hdf_arr);
+	data->hdf_arr = NULL;
 }
 
 void	free_all_com(t_data *data)

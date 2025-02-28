@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 18:51:33 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 19:24:20 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:35:00 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ bool	is_flag_single(char *flag)
 {
 	int	i;
 
-	if (!ft_strncmp(flag, "--single", ft_strlen(flag)))
+	if (!ft_strcmp(flag, "--single"))
 		return (true);
-	if (!ft_strncmp(flag, "-s", ft_strlen(flag)))
+	if (!ft_strcmp(flag, "-s"))
 		return (true);
 	i = 1;
 	if (flag[0] != '-')
