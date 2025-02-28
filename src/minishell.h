@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/27 19:21:43 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/28 17:36:36 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -336,6 +336,15 @@ void					ft_pwd(void);
  */
 char					*get_pwd_alloc(bool clean);
 
+// debug.c
+/**
+ * @brief Creates a checkpoint in your code and prints an increasing
+ * number for everytime that it is called
+ */
+void					chp(void);
+void					print_parsed_data(t_parsed *lst);
+
+
 // errors.c
 int						setnret(t_data *data, int code);
 /**
@@ -472,13 +481,6 @@ char					*rid_of_nl(char *str);
  */
 int						ft_strcpy(char *dest, const char *src);
 int						ft_strcmp(const char *s1, const char *s2);
-
-// helpers2.c
-/**
- * @brief Creates a checkpoint in your code and prints an increasing
- * number for everytime that it is called
- */
-void					chp(void);
 
 // history.c
 /**

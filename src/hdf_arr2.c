@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:43:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/27 19:50:53 by adeters          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:09:36 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	fill_hdf_arr(t_data *data, t_token **lst)
 				return (1);
 			current->next = new;
 			new->next = tmp;
+			new->prev = current;
+			tmp->prev = new;
 			i++;
 		}
 		current = current->next;
