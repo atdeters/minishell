@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/28 18:26:07 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/01 16:57:51 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	handle_prompt(t_data *data, char **av)
 	while (data->parsed_lst->next)
 	{
 		execute(data);
+		data->pipe_ind++;
 		data->parsed_lst = data->parsed_lst->next;
 	}
 	execute(data);

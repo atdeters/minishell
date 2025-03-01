@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:10:32 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/27 19:31:22 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/01 16:57:38 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	get_fd_in(t_data *data, int *fd_in)
 	if (in_m == IN_MODE_STD)
 		*fd_in = STDIN_FILENO;
 	else if (in_m == IN_MODE_PIPE)
-		*fd_in = data->fd_pipe[data->ind_in_pipe][0];
+		*fd_in = data->fd_pipe[data->pipe_ind - 1][0];
 	else if (in_m == IN_MODE_FILE)
 	{
 		*fd_in = open(data->parsed_lst->in, O_RDONLY);
@@ -48,7 +48,7 @@ int	get_fd_out(t_data *data, int *fd_out)
 	if (out_m == OUT_MODE_STD)
 		*fd_out = STDOUT_FILENO;
 	else if (out_m == OUT_MODE_PIPE)
-		*fd_out = data->fd_pipe[data->ind_out_pipe][1];
+		*fd_out = data->fd_pipe[data->pipe_ind][1];
 	else if (out_m == OUT_MODE_FILE_TR || out_m == OUT_MODE_FILE_APP)
 	{
 		*fd_out = open(data->parsed_lst->out, open_m, 0644);

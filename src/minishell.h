@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/28 18:45:32 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/01 16:59:10 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,7 @@ typedef struct s_data
 	// Different for every prompt
 	// We could make a pipe_line struct out of them
 	char				*input;
-	int					ind_in_pipe;
-	int					ind_out_pipe;
+	int					pipe_ind;
 	int					pipes_amount;
 	int					fd_pipe[FD_LIMIT][2];
 	// int					fd_file[FD_LIMIT * 2];
