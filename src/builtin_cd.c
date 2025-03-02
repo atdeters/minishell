@@ -12,8 +12,10 @@
 
 #include "minishell.h"
 
-void	ft_cd(char **command)
+int	ft_cd(char **command)
 {
 	// Needs a lot more shit etc.
-	chdir(command[1]);
+	if (chdir(command[1]) == -1)
+		return (1);
+	return (0);
 }

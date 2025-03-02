@@ -278,13 +278,13 @@ int						expand_alias(t_data *data, t_token **lst);
 
 // builtin_alias.c
 int						load_alias_lst(t_data *data, char *path);
-void					ft_alias(t_data *data, char **command);
+int						ft_alias(t_data *data, char **command);
 
 // builtin_cd.c
 /**
  * @brief Changes the working directory
  */
-void					ft_cd(char **command);
+int					ft_cd(char **command);
 
 // builtin_echo.c
 void					ft_echo(char **arr);

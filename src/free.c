@@ -105,5 +105,6 @@ void	rage_quit(t_data *data, int exit_code, bool write_hist)
 		free_hst_list(data);
 	free_all_com(data);
 	free_all_global(data);
+	data->exit_status = exit_code;
 	exit (exit_code);
 }

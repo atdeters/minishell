@@ -36,11 +36,11 @@ bool	is_builtin(char *name)
 bool	handle_nc_builtin(t_data *data, char **command)
 {
 	if (!ft_strcmp(command[0], "cd"))
-		return (ft_cd(command), true);
+		return (data->exit_status = ft_cd(command), true);
 	else if (!ft_strcmp(command[0], "exit"))
 		return (ft_exit(data), true);
 	else if (!ft_strcmp(command[0], "alias") && command[1])
-		return (ft_alias(data, command), true);
+		return (data->exit_status = ft_alias(data, command), true);
 	// "export" and "alias" are nc_builtins when they have
 	// other option. Else they can not be used in a child
 	return (false);

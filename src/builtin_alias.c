@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 // Feature: Sort the list
-void	ft_alias(t_data *data, char **command)
+int	ft_alias(t_data *data, char **command)
 {
 	t_env_lst	*tmp;
 	char		*entry;
@@ -31,7 +31,7 @@ void	ft_alias(t_data *data, char **command)
 		else
 		{
 			if (!check_entry(data, command[1]))
-				return ;
+				return (1);
 			entry = delimiter_add_nl(command[1]);
 			if (!entry)
 				rage_quit(data, ERR_MALLOC, true);
@@ -40,4 +40,5 @@ void	ft_alias(t_data *data, char **command)
 			free (entry);
 		}
 	}
+	return (0);
 }
