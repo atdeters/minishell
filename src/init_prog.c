@@ -21,8 +21,7 @@ char	*get_home_path_for_file(t_data *data, char *file_name)
 	tmp = data->env_lst;
 	while (tmp)
 	{
-		if (!ft_strncmp("HOME", tmp->filed,
-				ft_strlen(tmp->filed)))
+		if (!ft_strcmp("HOME", tmp->filed))
 		{
 			tmp_ad = ft_strjoin(tmp->value, "/");
 			if (!tmp_ad)
@@ -37,6 +36,28 @@ char	*get_home_path_for_file(t_data *data, char *file_name)
 	return (NULL);
 }
 
+int	set_shlvl(t_data *data, t_env_lst **lst)
+{
+	t_env_lst	*tmp;
+	int			lvl;
+
+	tmp = *lst;
+	while (tmp)
+	{
+		if (!ft_strcmp("SHLVL", tmp->filed))
+		{
+			lvl = ft_atoi(tmp->value) + 1;
+			free (tmp->value);
+			tmp->value = ft_itoa(lvl);
+			if (!tmp->value)
+				rage_quit(data, ERR_MALLOC, true);
+			
+		}
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 int	init_shell(t_data *data, int ac, char **av, char **env)
 {
 	if (ac != 1 && ac != 3 && ac != 2)
@@ -45,6 +66,7 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 	if (check_flags(data, ac, av))
 		return (data->error);
 	parse_env(data, env);
+	set_shlvl(data, &data->env_lst);
 	parser_env_into_arr(data);
 	data->alias_path = get_home_path_for_file(data, ALIAS_FILE_NAME);
 	if (!data->alias_path)
