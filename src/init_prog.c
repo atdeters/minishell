@@ -50,7 +50,7 @@ void	set_shlvl(t_data *data, t_env_lst **lst)
 			free (tmp->value);
 			tmp->value = ft_itoa(lvl);
 			if (!tmp->value)
-				rage_quit(data, ERR_MALLOC, true);
+				rage_quit(data, ERR_MALLOC, true, NULL);
 			
 		}
 		tmp = tmp->next;
@@ -69,11 +69,11 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 	parser_env_into_arr(data);
 	data->alias_path = get_home_path_for_file(data, ALIAS_FILE_NAME);
 	if (!data->alias_path)
-		rage_quit(data, data->error, false);
+		rage_quit(data, data->error, false, NULL);
 	load_alias_lst(data, data->alias_path);
 	data->hist_path = get_home_path_for_file(data, HIST_FILE_NAME);
 	if (!data->hist_path)
-		rage_quit(data, data->error, false);
+		rage_quit(data, data->error, false, NULL);
 	load_old_history(data->hist_path);
 	return (data->error);
 }

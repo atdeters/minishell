@@ -284,7 +284,7 @@ int						ft_alias(t_data *data, char **command);
 /**
  * @brief Changes the working directory
  */
-int					ft_cd(char **command);
+int						ft_cd(char **command);
 
 // builtin_echo.c
 void					ft_echo(char **arr);
@@ -343,7 +343,6 @@ char					*get_pwd_alloc(bool clean);
 void					chp(void);
 void					print_parsed_data(t_parsed *lst);
 
-
 // errors.c
 int						setnret(t_data *data, int code);
 /**
@@ -377,7 +376,8 @@ int						execute(t_data *data);
 // free.c
 void					fr_lst(char **arr);
 void					close_all(t_data *data);
-void					rage_quit(t_data *data, int exit_code, bool write_hist);
+void					rage_quit(t_data *data, int exit_code,
+							bool write_hist, char *err_cmd);
 /**
  * Stuff to free after every command
  */

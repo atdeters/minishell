@@ -15,5 +15,5 @@
 void	ft_exit(t_data *data)
 {
 	ft_printf("exit\n");
-	rage_quit(data, 0, true);
+	rage_quit(data, 0, true, NULL);
 }

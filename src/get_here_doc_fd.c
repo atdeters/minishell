@@ -64,7 +64,7 @@ void	randon_filename_gen(t_data *data, char doc_file[15])
 	while (!access(doc_file, F_OK))
 	{
 		if (add_random_end(doc_file, 5))
-			rage_quit(data, ERR_CHILD, false);
+			rage_quit(data, ERR_CHILD, false, NULL);
 	}
 }
 

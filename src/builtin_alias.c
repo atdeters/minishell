@@ -34,7 +34,7 @@ int	ft_alias(t_data *data, char **command)
 				return (1);
 			entry = delimiter_add_nl(command[1]);
 			if (!entry)
-				rage_quit(data, ERR_MALLOC, true);
+				rage_quit(data, ERR_MALLOC, true, NULL);
 			alias_to_node(data, entry);
 			add_aliases_to_file(data);
 			free (entry);

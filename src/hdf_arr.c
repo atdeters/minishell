@@ -37,7 +37,7 @@ char	*hdf_name_gen(t_data *data)
 	while (!access(doc_file, F_OK))
 	{
 		if (add_random_end(doc_file, 5))
-			rage_quit(data, ERR_CHILD, false);
+			rage_quit(data, ERR_CHILD, false, NULL);
 	}
 	return (ft_strdup(doc_file));
 }
@@ -58,7 +58,7 @@ int	create_hdf(t_data *data)
 	{
 		data->hdf_arr[i] = hdf_name_gen(data);
 		if (!data->hdf_arr[i])
-			rage_quit(data, ERR_MALLOC, true);
+			rage_quit(data, ERR_MALLOC, true, NULL);
 		fd = open(data->hdf_arr[i], O_CREAT, 0777);
 		if (fd < 0)
 			return (setnret(data, ERR_OPEN));

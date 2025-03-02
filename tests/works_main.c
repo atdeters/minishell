@@ -23,9 +23,9 @@ int	main(int ac, char **av, char **env)
 	while (true)
 	{
 		if (handle_prompt(&data, av))
-			rage_quit(&data, data.error, true);
+			rage_quit(&data, data.error, true, NULL);
 		if (data.flag_single)
-			rage_quit(&data, 0, true);
+			rage_quit(&data, 0, true, NULL);
 	}
 }
 
@@ -60,7 +60,7 @@ int	handle_prompt(t_data *data, char **av)
 	close_all(data);
 	wait_all(data);
 	if (data->exit_status == ERR_CHILD)
-		rage_quit(data, ERR_CHILD, true);
+		rage_quit(data, ERR_CHILD, true, NULL);
 	free_all_com(data);
 	return (0);
 }

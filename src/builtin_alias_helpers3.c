@@ -39,14 +39,14 @@ int	expand_alias(t_data *data, t_token **lst)
 		{
 			current = get_value_from_lst(data->alias_lst, tmp->value);
 			if (!current)
-				rage_quit(data, ERR_MALLOC, true);
+				rage_quit(data, ERR_MALLOC, true, NULL);
 			if (needs_expand(current, tmp))
 			{
 				current = rid_of_nl(current);
 				if (!lexing(current, &expanded, &data->error))
 				{
 					free(current);
-					rage_quit(data, ERR_LEXING, true);
+					rage_quit(data, ERR_LEXING, true, NULL);
 				}
 				last = ft_token_lstlast(expanded);
 				last->next = tmp->next;

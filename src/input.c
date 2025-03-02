@@ -60,13 +60,13 @@ char	*get_input(t_data *data)
 
 	rl_prompt = create_rl_prompt(data);
 	if (!rl_prompt)
-		rage_quit(data, data->error, true);
+		rage_quit(data, data->error, true, NULL);
 	input = readline(rl_prompt);
 	if (!input)
-		rage_quit(data, 0, true);
+		rage_quit(data, 0, true, NULL);
 	data->input = input;
 	if (add_full_history(data))
-		rage_quit(data, data->error, true);
+		rage_quit(data, data->error, true, NULL);
 	return (free(rl_prompt), input);
 }
 

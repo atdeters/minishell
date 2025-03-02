@@ -23,20 +23,20 @@ int	execute_subshell(t_data *data, char **command)
 
 	add_path(data, command);
 	if (get_fds(data, &fd_in, &fd_out))
-		rage_quit(data, ERR_CHILD, false);
+		rage_quit(data, ERR_CHILD, false, NULL);
 	if (check_access(data, command[0], false))
-		rage_quit(data, data->error, false);
+		rage_quit(data, data->error, false, NULL);
 	if (cool_dup(data, fd_in, fd_out))
 	{
 		pc_err(ERR_DUP2);
-		rage_quit(data, ERR_CHILD, false);
+		rage_quit(data, ERR_CHILD, false, NULL);
 	}
 	if (handle_builtin(data, command))
-		rage_quit(data, 0, false);
+		rage_quit(data, 0, false, NULL);
 	if (execve(command[0], command, data->envp) == -1)
 	{
 		pc_err(ERR_EXECVE);
-		rage_quit(data, data->error, false);
+		rage_quit(data, data->error, false, NULL);
 	}
 	return (0);
 }
@@ -47,7 +47,7 @@ int	execute(t_data *data)
 
 	command = data->parsed_lst->cmd_and_args;
 	if (!command)
-		rage_quit(data, ERR_MALLOC, true);
+		rage_quit(data, ERR_MALLOC, true, NULL);
 	if (data->pipes_amount == 0 && handle_nc_builtin(data, command))
 		return (0);
 	data->pid[data->n_pid] = fork();
