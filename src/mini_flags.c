@@ -34,7 +34,7 @@ bool	is_flag_single(char *flag)
 
 bool	is_flag_help(char *flag)
 {
-	if (!ft_strncmp(flag, "--help", ft_strlen(flag)))
+	if (!ft_strcmp(flag, "--help"))
 		return (true);
 	return (false);
 }

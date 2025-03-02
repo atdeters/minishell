@@ -36,7 +36,7 @@ char	*get_home_path_for_file(t_data *data, char *file_name)
 	return (NULL);
 }
 
-int	set_shlvl(t_data *data, t_env_lst **lst)
+void	set_shlvl(t_data *data, t_env_lst **lst)
 {
 	t_env_lst	*tmp;
 	int			lvl;
@@ -55,7 +55,6 @@ int	set_shlvl(t_data *data, t_env_lst **lst)
 		}
 		tmp = tmp->next;
 	}
-	return (0);
 }
 
 int	init_shell(t_data *data, int ac, char **av, char **env)
