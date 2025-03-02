@@ -99,10 +99,11 @@ void	free_all_global(t_data *data)
 // Supposed to free everything that can be allocated
 void	rage_quit(t_data *data, int exit_code, bool write_hist, char *err_cmd)
 {
-	if (err_cmd)
-		p_err_arg(exit_code, err_cmd);
-	else
-		pc_err(exit_code);
+	(void)err_cmd;
+	// if (err_cmd)
+	// 	p_err_arg(exit_code, err_cmd);
+	// else
+	// 	pc_err(exit_code);
 	if (write_hist)
 		write_hst_file(data, data->hist_path);
 	else
