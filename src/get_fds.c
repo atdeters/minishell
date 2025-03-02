@@ -37,10 +37,8 @@ int	get_fd_out(t_data *data, int *fd_out)
 {
 	int		out_m;
 	int		open_m;
-	char	*outfile;
 
 	out_m = data->parsed_lst->out_mode;
-	outfile = data->parsed_lst->out;
 	if (out_m == OUT_MODE_FILE_APP)
 		open_m = O_WRONLY | O_CREAT | O_APPEND;
 	else
