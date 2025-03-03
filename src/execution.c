@@ -47,7 +47,7 @@ int	execute(t_data *data)
 
 	command = data->parsed_lst->cmd_and_args;
 	if (!command)
-		rage_quit(data, ERR_MALLOC, true, NULL);
+		rage_quit(data, ERR_MALLOC, true, NULL); // ?
 	if (data->pipes_amount == 0 && handle_nc_builtin(data, command))
 		return (0);
 	data->pid[data->n_pid] = fork();

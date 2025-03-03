@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+// Check if we can rage quit the program if there is a function that is not
+// the last one being a critical error
 int	wait_all(t_data *data)
 {
 	int	i;
