@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/03 15:20:26 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:08:40 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ typedef struct s_parsed
 {
 	char				**cmd_and_args;
 	int					i_c;
+	char *in;
+	char *out;
 	char				**in_arr;
 	int					o_c;
 	char				**out_arr;
@@ -634,6 +636,7 @@ int						cool_dup(t_data *data, int fd_in, int fd_out);
 int						check_replace_input(t_data *data);
 int						quotes_problem(t_data *data);
 int						in_single_qoute(t_data *data, int pos);
+int						pipe_problen(t_data *data);
 // env func
 void					parse_env(t_data *data, char **env);
 char					*return_from_env_with_data(t_data *data, char *field);

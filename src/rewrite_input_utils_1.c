@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rewrite_input_utils_1.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:25:57 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/23 20:54:26 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/03 16:11:21 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,26 @@ int	in_single_qoute(t_data *data, int pos)
 		i++;
 	}
 	if (counter % 2 != 0)
+		return (1);
+	return (0);
+}
+
+int	pipe_problen(t_data *data)
+{
+	int	i;
+	int	flag;
+
+	i = 0;
+	flag = 1;
+	while (data->input[i])
+	{
+		if (data->input[i] == '|')
+			flag = 1;
+		if (ft_isalnum(data->input[i]))
+			flag = 0;
+		i++;
+	}
+	if (flag)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/19 18:42:02 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:40:34 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	handle_special_char(char *input, t_token **current, int *i)
 	char	*word;
 
 	word = NULL;
-	if (input[*i] == '$')
-		return (handle_dolar(input, current, i, &word));
-	else if (input[*i] == '|')
+	// if (input[*i] == '$')
+	// 	return (handle_dolar(input, current, i, &word));
+	if (input[*i] == '|')
 		*current = create_token(PIPE, NULL);
 	else if (input[*i] == '<' && input[*i + 1] != '<')
 		*current = create_token(REDIR_IN, NULL);
