@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/01 16:59:10 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/03 15:20:26 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,10 @@ typedef struct s_env_lst
 typedef struct s_parsed
 {
 	char				**cmd_and_args;
-	char				*in;
-	char				*out;
+	int					i_c;
+	char				**in_arr;
+	int					o_c;
+	char				**out_arr;
 	int					in_mode;
 	int					out_mode;
 	struct s_parsed		*prev;
@@ -131,6 +133,8 @@ typedef struct s_pars_data
 {
 	t_parsed			**parsed_lst;
 	int					cmd_amount;
+	int					in_amount;
+	int					out_amount;
 	int					parsed_amount;
 	t_token				**token_lst;
 	t_env_lst			**env_lst;
@@ -647,7 +651,7 @@ void					ft_env_lstdel_node(t_env_lst *lst, char *field);
 // parser functions
 // int					parser_main(t_token **tokens, t_data *data);
 int						parser_main(t_data *data);
-void					call_check_type(t_pars_data *pars_data, t_parsed *new);
+int						call_check_type(t_pars_data *pars_data, t_parsed *new);
 void					init_pars_data(t_pars_data *pars_data, t_data *data,
 							t_token **tokens);
 int						check_for_count(t_token *token);

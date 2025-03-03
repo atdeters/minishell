@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils_3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 15:39:01 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/28 18:10:34 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/03 15:18:14 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	init_pars_data(t_pars_data *pars_data, t_data *data, t_token **tokens)
 	pars_data->cmd_amount = pipe_counter(tokens) + 1;
 	data->pipes_amount = pipe_counter(tokens);
 	pars_data->parsed_amount = 0;
+	pars_data->in_amount = 0;
+	pars_data->out_amount = 0;
 }
 
 int	check_for_count(t_token *token)
@@ -35,7 +37,6 @@ int	check_for_count(t_token *token)
 
 int	check_for_putting_words(t_token *token)
 {
-
 	if ((token->type == WORD || token->type == DOUBLE_QOUTE
 			|| token->type == SINGLE_QOUTE) && (!token->prev || (token->prev
 				&& (token->prev->type != REDIR_APPEND

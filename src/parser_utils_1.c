@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:30 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/25 15:53:08 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:21:41 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,19 @@ t_parsed	*create_p_node(char **cmd_and_args, char *in, char *out)
 {
 	t_parsed	*new;
 
-	(void) cmd_and_args;
-	(void) in;
-	(void) out;
+	(void)cmd_and_args;
+	(void)in;
+	(void)out;
 	new = malloc(sizeof(t_parsed));
 	if (!new)
 		return (NULL);
 	new->cmd_and_args = NULL;
-	new->in = NULL;
-	new->out = NULL;
 	new->in_mode = 0;
 	new->out_mode = 0;
+	new->in_arr = NULL;
+	new->out_arr = NULL;
+	new->i_c = 0;
+	new->o_c = 0;
 	new->prev = NULL;
 	new->next = NULL;
 	return (new);
@@ -68,16 +70,26 @@ void	free_p_node(t_parsed *node)
 	int	i;
 
 	i = 0;
-	if (!node)
-		return ;
 	if (node->cmd_and_args)
 	{
 		while (node->cmd_and_args[i])
 			free(node->cmd_and_args[i++]);
 		free(node->cmd_and_args);
 	}
-	free(node->in);
-	free(node->out);
+	i = 0;
+	if (node->in_arr)
+	{
+		while (node->in_arr[i])
+			free(node->in_arr[i++]);
+		free(node->in_arr);
+	}
+	i = 0;
+	if (node->out_arr)
+	{
+		while (node->out_arr[i])
+			free(node->out_arr[i++]);
+		free(node->out_arr);
+	}
 	free(node);
 }
 
@@ -93,23 +105,7 @@ void	free_p_lst(t_parsed **lst)
 	{
 		tmp = current;
 		current = current->next;
-		free_p_node(tmp);	
+		free_p_node(tmp);
 	}
 	*lst = NULL;
-}
-
-int	pipe_counter(t_token **tokens)
-{
-	t_token	*current;
-	int		pipe_count;
-
-	current = *tokens;
-	pipe_count = 0;
-	while (current)
-	{
-		if (current->type == PIPE)
-			pipe_count++;
-		current = current->next;
-	}
-	return (pipe_count);
 }

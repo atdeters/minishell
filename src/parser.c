@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:59 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/28 18:01:20 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/03 14:44:30 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static int	parse_command(t_pars_data *pars_data)
 	new = create_p_node(NULL, NULL, NULL);
 	if (!new)
 		return (0);
-	call_check_type(pars_data, new);
+	if (!call_check_type(pars_data, new))
+		return (0);
 	(pars_data->parsed_amount)++;
 	current = pars_data->cur_head;
 	array_size = init_cmd_array(current, pars_data->cur_tail, &new);
