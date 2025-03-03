@@ -42,8 +42,7 @@ int	handle_prompt(t_data *data, char **av)
 		pnc_err(data);
 	if (expand_alias(data, &data->token_lst))
 		pnc_err(data);
-	if (create_hdf(data))
-		pnc_err(data);
+	create_hdf(data);
 	if (fill_hdf_arr(data, &data->token_lst))
 		pnc_err(data);
 	if (parser_main(data))

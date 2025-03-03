@@ -51,7 +51,7 @@ int	create_hdf(t_data *data)
 	amt = hdf_counter(data, data->token_lst);
 	data->hdf_arr = malloc(sizeof(char *) * (amt + 1));
 	if (!data->hdf_arr)
-		return (setnret(data, ERR_MALLOC));
+		rage_quit(data, ERR_MALLOC, true, NULL);
 	data->hdf_arr[amt] = NULL;
 	i = 0;
 	while (i < amt)
@@ -61,7 +61,7 @@ int	create_hdf(t_data *data)
 			rage_quit(data, ERR_MALLOC, true, NULL);
 		fd = open(data->hdf_arr[i], O_CREAT, 0777);
 		if (fd < 0)
-			return (setnret(data, ERR_OPEN));
+			rage_quit(data, ERR_OPEN, true, data->hdf_arr[i]);
 		close (fd);
 		i++;
 	}
