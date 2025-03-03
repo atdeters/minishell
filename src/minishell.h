@@ -432,6 +432,10 @@ bool					handle_builtin(t_data *data, char **command);
 // hdf_arr.c
 int						hdf_counter(t_data *data, t_token *lst);
 char					*hdf_name_gen(t_data *data);
+/**
+ * @note Does not have to be checked for success as the `rage_quit()` function
+ * is called in case of any errors.
+ */
 int						create_hdf(t_data *data);
 void					hdf_prompt(t_data *data, int nb);
 
@@ -505,6 +509,10 @@ int						init_shell(t_data *data, int ac, char **av, char **env);
 
 // init_prog.c
 void					init_command(t_data *data);
+/**
+ * @note Does not have to be checked for success as the `rage_quit()` function
+ * is called in case of any errors.
+ */
 int						pipe_maker(t_data *data);
 
 // input.c
