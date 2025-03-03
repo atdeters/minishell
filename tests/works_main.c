@@ -59,7 +59,7 @@ int	handle_prompt(t_data *data, char **av)
 	execute(data);
 	close_all(data);
 	wait_all(data);
-	if (data->exit_status == ERR_CHILD)
+	if (data->exit_status / 100 == 2)
 		rage_quit(data, ERR_CHILD, true, NULL);
 	free_all_com(data);
 	return (0);
