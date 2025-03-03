@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   works_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 15:56:57 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/01 16:57:51 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/03 16:23:45 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	handle_prompt(t_data *data, char **av)
 		pnc_err(data);
 	if (parser_main(data))
 		pnc_err(data);
+	exit(1);
 	pipe_maker(data);
 	while (data->parsed_lst->next)
 	{

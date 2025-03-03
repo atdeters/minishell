@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:59 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/28 18:01:20 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/03 16:01:34 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ static int	parse_command(t_pars_data *pars_data)
 	new = create_p_node(NULL, NULL, NULL);
 	if (!new)
 		return (0);
-	call_check_type(pars_data, new);
+	if (!call_check_type(pars_data, new))
+		return (0);
 	(pars_data->parsed_amount)++;
 	current = pars_data->cur_head;
 	array_size = init_cmd_array(current, pars_data->cur_tail, &new);
@@ -127,6 +128,6 @@ int	parser_main(t_data *data)
 	if (!parser_loop(pars_data))
 		return (setnret(data, ERR_PARS));
 	data->parsed_lst = *pars_data.parsed_lst;
-	ft_token_lstclear(&data->token_lst);
+	// ft_token_lstclear(&data->token_lst);
 	return (0);
 }

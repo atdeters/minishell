@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:11 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/25 10:53:08 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/03 15:48:17 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	process_token(char *input, t_token **current, int *i)
 {
-	if (input[*i] == '$' || input[*i] == '|' || input[*i] == '<'
+	if (input[*i] == '|' || input[*i] == '<'
 		|| input[*i] == '>')
 	{
 		if (!handle_special_char(input, current, i))

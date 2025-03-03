@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:50 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/28 17:46:36 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/03 15:12:43 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,37 @@ static void	check_type(t_token *head, t_token *tail, int flag, t_parsed **new)
 	check_type_out(head, tail, new, flag);
 }
 
-void	call_check_type(t_pars_data *pars_data, t_parsed *new)
+static int	count_size(t_token *head, t_token *tail, t_parsed *new)
 {
+	t_token	*tmp;
+	int		in_count;
+	int		out_count;
+
+	in_count = 0;
+	out_count = 0;
+	tmp = head;
+	while (tmp != tail->next)
+	{
+		if (tmp->type == REDIR_IN)
+			in_count++;
+		if (tmp->type == REDIR_OUT || tmp->type == REDIR_APPEND)
+			out_count++;
+		tmp = tmp->next;
+	}
+	new->in_arr = malloc(sizeof(char *) * (in_count + 1));
+	if (!new->in_arr)
+		return (0);
+	new->in_arr[in_count] = NULL;
+	new->out_arr = malloc(sizeof(char *) * (out_count + 1));
+	if (!new->out_arr)
+		return (0);
+	return (new->out_arr[out_count] = NULL, 1);
+}
+
+int	call_check_type(t_pars_data *pars_data, t_parsed *new)
+{
+	if (!count_size(pars_data->cur_head, pars_data->cur_tail, new))
+		return (0);
 	if (pars_data->cmd_amount == 1)
 		check_type(pars_data->cur_head, ft_token_lstlast(pars_data->cur_head),
 			0, &new);
@@ -83,4 +112,5 @@ void	call_check_type(t_pars_data *pars_data, t_parsed *new)
 		check_type(pars_data->cur_head, pars_data->cur_tail, 2, &new);
 	else
 		check_type(pars_data->cur_head, pars_data->cur_tail, 3, &new);
+	return (1);
 }

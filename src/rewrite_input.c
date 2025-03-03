@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rewrite_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/25 13:33:46 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/03 16:11:09 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,15 @@ static int	replace_word(t_data *data)
 
 int	check_replace_input(t_data *data)
 {
-		int	counter;
+	int	counter;
 	int	i;
 
 	i = 0;
 	counter = 0;
+	if (pipe_problen(data))
+		return (data->error = 2, 0);
 	if (quotes_problem(data))
-		return (data->error);
+		return (data->error = 2, 0);
 	while (data->input[i])
 	{
 		if (data->input[i] == '$')
