@@ -36,9 +36,9 @@ int	wait_all(t_data *data)
 int	cool_dup(t_data *data, int fd_in, int fd_out)
 {
 	if (fd_in != 0 && dup2(fd_in, STDIN_FILENO) == -1)
-		return (close_all(data), 1);
+		rage_quit(data, ERR_DUP2, false, NULL);
 	if (fd_out != 1 && dup2(fd_out, STDOUT_FILENO) == -1)
-		return (close_all(data), 1);
+		rage_quit(data, ERR_DUP2, false, NULL);
 	if (data->parsed_lst->out_mode != OUT_MODE_PIPE && fd_out != 1)
 		close (fd_out);
 	if (data->parsed_lst->in_mode != IN_MODE_PIPE && fd_in != 0)

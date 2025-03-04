@@ -24,11 +24,7 @@ int	execute_subshell(t_data *data, char **command)
 	add_path(data, command);
 	get_fds(data, &fd_in, &fd_out);
 	check_access(data, command[0], false);
-	if (cool_dup(data, fd_in, fd_out))
-	{
-		pc_err(ERR_DUP2);
-		rage_quit(data, ERR_CHILD, false, NULL);
-	}
+	cool_dup(data, fd_in, fd_out);
 	if (handle_builtin(data, command))
 		rage_quit(data, 0, false, NULL);
 	if (execve(command[0], command, data->envp) == -1)
