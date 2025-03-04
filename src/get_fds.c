@@ -31,13 +31,12 @@ int	get_fd_in(t_data *data, int *fd_in)
 		i = 0;
 		while (data->parsed_lst->in_arr[i])
 		{
-			if (check_access(data, data->parsed_lst->in_arr[i], true))
-				return (data->error);
+			check_access(data, data->parsed_lst->in_arr[i], true);
 			if (*fd_in != -1)
 				close (*fd_in);
 			*fd_in = open(data->parsed_lst->in_arr[i], O_RDONLY);
 			if (*fd_in == -1)
-				return (setnret(data, ERR_OPEN));
+				rage_quit(data, ERR_OPEN, false, data->parsed_lst->in_arr[i]);
 			i++;
 		}
 	}
@@ -65,13 +64,12 @@ int	get_fd_out(t_data *data, int *fd_out)
 		i = 0;
 		while (data->parsed_lst->out_arr[i])
 		{
-			if (check_access(data, data->parsed_lst->in_arr[i], true))
-				return (data->error);
+			check_access(data, data->parsed_lst->in_arr[i], true);
 			if (*fd_out != -1)
 				close (*fd_out);
 			*fd_out = open(data->parsed_lst->out_arr[i], open_m, 0644);
 			if (*fd_out == -1)
-				return (setnret(data, ERR_OPEN));
+				rage_quit(data, ERR_OPEN, false, data->parsed_lst->out_arr[i]);
 			i++;
 		}
 	}
@@ -80,11 +78,7 @@ int	get_fd_out(t_data *data, int *fd_out)
 
 int	get_fds(t_data *data, int *fd_in, int *fd_out)
 {
-	// if (check_access_files(data))
-	//	return (data->error);
-	if (get_fd_in(data, fd_in))
-		return (data->error);
-	if (get_fd_out(data, fd_out))
-		return (data->error);
+	get_fd_in(data, fd_in);
+	get_fd_out(data, fd_out);
 	return (0);
 }

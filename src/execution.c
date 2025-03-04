@@ -22,10 +22,8 @@ int	execute_subshell(t_data *data, char **command)
 	int		fd_out;
 
 	add_path(data, command);
-	if (get_fds(data, &fd_in, &fd_out))
-		rage_quit(data, data->error, false, NULL);
-	if (check_access(data, command[0], false))
-		rage_quit(data, data->error, false, NULL);
+	get_fds(data, &fd_in, &fd_out);
+	check_access(data, command[0], false);
 	if (cool_dup(data, fd_in, fd_out))
 	{
 		pc_err(ERR_DUP2);
