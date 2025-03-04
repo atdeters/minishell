@@ -18,16 +18,12 @@ int	check_access(t_data *data, char *name, bool is_file)
 		return (0);
 	if (!is_file && access(name, F_OK) == -1)
 		rage_quit(data, ERR_ACCESS, false, name);
-	// error = p_err_arg(ERR_ACCESS, name);
 	else if (!is_file && access(name, X_OK) == -1)
 		rage_quit(data, ERR_PERM, false, name);
-	// error = p_err_arg(ERR_PERM, name);
 	else if (is_file && access(name, R_OK) == -1 && !access(name, F_OK))
 		rage_quit(data, ERR_PERM, false, name);
-	// error = p_err_arg(ERR_PERM, name);
 	else if (!is_file && !ft_strchr(name, '/'))
 		rage_quit(data, ERR_ACCESS, false, name);
-	// error = p_err_arg(ERR_ACCESS, name);
 	return (0);
 }
 
