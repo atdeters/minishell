@@ -58,8 +58,8 @@ int	get_fd_out(t_data *data, int *fd_out)
 
 int	get_fds(t_data *data, int *fd_in, int *fd_out)
 {
-	if (check_access_files(data))
-		return (data->error);
+	// if (check_access_files(data))
+	//	return (data->error);
 	if (get_fd_in(data, fd_in))
 		return (data->error);
 	if (get_fd_out(data, fd_out))

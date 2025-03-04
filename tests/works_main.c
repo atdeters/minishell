@@ -47,7 +47,7 @@ int	handle_prompt(t_data *data, char **av)
 		pnc_err(data);
 	if (parser_main(data))
 		pnc_err(data);
-	exit(1);
+	// exit(1);
 	pipe_maker(data);
 	while (data->parsed_lst->next)
 	{
