@@ -32,6 +32,15 @@ void	p_err_arg_formatted(char *msg, char *arg)
 	ft_putstr_fd("\n", 2);
 }
 
+void	p_err_src(char *file, int line)
+{
+	ft_putstr_fd("source: ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putstr_fd(" line: ", 2);
+	ft_putnbr_fd(line, 2);
+	ft_putstr_fd("\n", 2);
+}
+
 int	p_err(int code)
 {
 	if (code == ERR_USAGE)

@@ -349,6 +349,7 @@ void					chp(void);
 void					print_parsed_data(t_parsed *lst);
 
 // errors.c
+void					p_err_src(char *file, int line);
 int						setnret(t_data *data, int code);
 /**
  * @brief Handles error reporting based on a given error code.
