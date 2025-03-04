@@ -23,7 +23,7 @@ int	main(int ac, char **av, char **env)
 	{
 		handle_pipeline(&data, av);
 		if (data.flag_single)
-			rage_quit(&data, 0, true, NULL);
+			rage_quit(&data, data.exit_status, true, NULL);
 	}
 }
 
