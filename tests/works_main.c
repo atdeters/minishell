@@ -36,12 +36,12 @@ int	handle_prompt(t_data *data, char **av)
 		get_input(data);
 	else
 		data->input = av[2];
-	if (!ft_strcmp(data->input, ""))
-		return (free_all_com(data), 0);
 	if (check_replace_input(data))
 		pnc_err(data);
 	if (!lexing(data->input, &data->token_lst, &data->error))
 		pnc_err(data);
+	if (!data->token_lst)
+		return (free_all_com(data), 0);
 	expand_alias(data, &data->token_lst);
 	create_hdf(data);
 	fill_hdf_arr(data, &data->token_lst);
