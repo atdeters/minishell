@@ -34,14 +34,14 @@ void	p_err_arg_formatted(char *msg, char *arg)
 
 int	p_err(int code)
 {
+	if (code == ERR_USAGE)
+		p_err_formatted(ERR_MSG_USAGE);
 	if (code == ERR_EXECVE)
 		p_err_formatted(ERR_MSG_FUNC_EXECVE);
 	if (code == ERR_DUP2)
 		p_err_formatted(ERR_MSG_FUNC_DUP2);
 	if (code == ERR_FORK)
 		p_err_formatted(ERR_MSG_FUNC_FORK);
-	if (code == ERR_USAGE)
-		p_err_formatted(ERR_MSG_USAGE);
 	if (code == ERR_PIPE)
 		p_err_formatted(ERR_MSG_FUNC_PIPE);
 	// if (code == ERR_PARS)
