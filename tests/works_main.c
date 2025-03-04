@@ -36,6 +36,8 @@ int	handle_prompt(t_data *data, char **av)
 		get_input(data);
 	else
 		data->input = av[2];
+	if (!ft_strcmp(data->input, ""))
+		return (free_all_com(data), 0);
 	if (check_replace_input(data))
 		pnc_err(data);
 	if (!lexing(data->input, &data->token_lst, &data->error))

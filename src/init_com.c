@@ -38,12 +38,6 @@ void	init_fd_arr(t_data *data)
 		data->fd_pipe[i][1] = -1;
 		i++;
 	}
-	// i = 0;
-	// while (i < FD_LIMIT * 2)
-	// {
-	// 	data->fd_file[i] = -1;
-	// 	i++;
-	// }
 }
 
 int	pipe_maker(t_data *data)
