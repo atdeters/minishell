@@ -27,7 +27,6 @@
 // non-critical errors (program does not terminate)
 # define E_NC_MSG_FUNC_PIPE "pipe could temporarily no be built"
 # define E_NC_MSG_HIST "history entry could not be added"
-# define E_NC_MSG_SPLIT "split function failed to execute"
 # define E_NC_MSG_ACCESS "command not found: "
 # define E_NC_MSG_PERM "permission denied: "
 # define E_NC_MSG_OPEN "could not open file: "

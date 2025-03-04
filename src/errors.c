@@ -18,7 +18,7 @@ int	setnret(t_data *data, int code)
 	return (code);
 }
 
-int	pc_err(int code)
+int	p_err(int code)
 {
 	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
 	if (code == ERR_INIT_PROG)
@@ -33,23 +33,15 @@ int	pc_err(int code)
 		ft_fprintf(2, "%s\n", E_MSG_FUNC_FORK);
 	if (code == ERR_USAGE)
 		ft_fprintf(2, "%s\n", E_MSG_USAGE);
-	return (code);
-}
-
-int	pnc_err(t_data *data)
-{
-	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
-	if (data->error == ERR_PIPE)
+	if (code == ERR_PIPE)
 		ft_fprintf(2, "%s", E_NC_MSG_FUNC_PIPE);
-	if (data->error == ERR_SPLIT)
-		ft_fprintf(2, "%s", E_NC_MSG_SPLIT);
-	if (data->error == ERR_PARS)
+	if (code == ERR_PARS)
 		ft_fprintf(2, "%s", E_MSG_PARSING);
-	if (data->error == ERR_PARS_SINGLE_QUTE)
+	if (code == ERR_PARS_SINGLE_QUTE)
 		ft_fprintf(2, "%s", E_MSG_SINGLE_QOUTE);
-	if (data->error == ERR_PARS_DOUBLE_QUTE)
+	if (code == ERR_PARS_DOUBLE_QUTE)
 		ft_fprintf(2, "%s", E_MSG_DOUBLE_QOUTE);
-	return (data->error);
+	return (code);
 }
 
 int	p_err_arg(int code, const char *arg)

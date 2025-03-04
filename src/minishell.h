@@ -365,7 +365,7 @@ int						setnret(t_data *data, int code);
  *
  * @return The same error code that was passed as input.
  */
-int						pc_err(int code);
+int						p_err(int code);
 /**
  * @brief Prints non-critical errors aka the program will not immediately
  * terminate after these errors.
