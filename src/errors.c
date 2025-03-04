@@ -44,8 +44,8 @@ int	p_err(int code)
 		p_err_formatted(ERR_MSG_FUNC_FORK);
 	if (code == ERR_PIPE)
 		p_err_formatted(ERR_MSG_FUNC_PIPE);
-	// if (code == ERR_PARS)
-	// 	p_err_formatted(ERR_MSG_PARSING);
+	if (code == ERR_PARS)
+		p_err_formatted(ERR_MSG_PARSING);
 	if (code == ERR_PARS_SINGLE_QUTE)
 		p_err_formatted(ERR_MSG_SINGLE_QOUTE);
 	if (code == ERR_PARS_DOUBLE_QUTE)

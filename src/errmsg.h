@@ -25,7 +25,7 @@
 # define ERR_MSG_ACCESS "command not found: "
 # define ERR_MSG_PERM "permission denied: "
 # define ERR_MSG_OPEN "could not open file: "
-# define ERR_MSG_PARSING "parse error: "
+# define ERR_MSG_PARSING "parsing error\n"
 # define ERR_MSG_SINGLE_QOUTE "parse error near \'\'\'\n"
 # define ERR_MSG_DOUBLE_QOUTE "parse error near \'\"\'\n"
 
