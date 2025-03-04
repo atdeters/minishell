@@ -23,7 +23,7 @@ int	execute_subshell(t_data *data, char **command)
 
 	add_path(data, command);
 	if (get_fds(data, &fd_in, &fd_out))
-		rage_quit(data, ERR_CHILD, false, NULL);
+		rage_quit(data, data->error, false, NULL);
 	if (check_access(data, command[0], false))
 		rage_quit(data, data->error, false, NULL);
 	if (cool_dup(data, fd_in, fd_out))
