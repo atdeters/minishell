@@ -148,7 +148,7 @@ typedef struct s_pars_data
 //// FUNCTION-FILES
 // access.c
 int						check_access(t_data *data, char *name, bool is_file);
-int						check_access_files(t_data *data);
+// int						check_access_files(t_data *data);
 
 // add_rl_prompt.c
 /**
