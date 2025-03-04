@@ -19,6 +19,7 @@ void	init_command(t_data *data)
 	data->n_pid = 0;
 	data->pipe_ind = 0;
 	data->error = 0;
+	data->pipes_amount = 0;
 	data->token_lst = NULL;
 	data->parsed_lst = NULL;
 	data->input = NULL;
