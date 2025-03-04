@@ -42,11 +42,9 @@ int	handle_prompt(t_data *data, char **av)
 		pnc_err(data);
 	expand_alias(data, &data->token_lst);
 	create_hdf(data);
-	if (fill_hdf_arr(data, &data->token_lst))
-		pnc_err(data);
+	fill_hdf_arr(data, &data->token_lst);
 	if (parser_main(data))
 		pnc_err(data);
-	// exit(1);
 	pipe_maker(data);
 	while (data->parsed_lst->next)
 	{

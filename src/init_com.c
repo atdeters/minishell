@@ -54,7 +54,10 @@ int	pipe_maker(t_data *data)
 	while (i < data->pipes_amount)
 	{
 		if (pipe(data->fd_pipe[i]) == -1)
-			return (close_all(data), rage_quit(data, ERR_PIPE, true, NULL), -1);
+		{
+			close_all(data);
+			rage_quit(data, ERR_PIPE, true, NULL);
+		}
 		i++;
 	}
 	return (0);

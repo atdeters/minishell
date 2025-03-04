@@ -21,11 +21,14 @@ int	fill_hdf(t_data *data, char *hdf, char *delim, int nb)
 	fd = open(hdf, O_WRONLY);
 	delimiter = delimiter_add_nl(delim);
 	if (!delimiter)
-		return (setnret(data, ERR_MALLOC));
+		rage_quit(data, ERR_MALLOC, true, NULL);
 	hdf_prompt(data, nb);
 	line = get_next_line(0);
 	if (!line)
-		return (free(delimiter), setnret(data, ERR_GNL));
+	{
+		free(delimiter);
+		rage_quit(data, ERR_GNL, true, NULL);
+	}
 	while (ft_strcmp(line, delimiter))
 	{
 		write(fd, line, ft_strlen(line));
@@ -33,7 +36,10 @@ int	fill_hdf(t_data *data, char *hdf, char *delim, int nb)
 		free (line);
 		line = get_next_line(0);
 		if (!line)
-			return (free(delimiter), setnret(data, ERR_GNL));
+		{
+			free(delimiter);
+			rage_quit(data, ERR_GNL, true, NULL);
+		}
 	}
 	return (free(delimiter), free(line), close(fd), 0);
 }
@@ -54,15 +60,14 @@ int	fill_hdf_arr(t_data *data, t_token **lst)
 		new = NULL;
 		if (current->type == DELIMITER)
 		{
-			if (fill_hdf(data, data->hdf_arr[i], current->value, nb))
-				return (data->error);
+			fill_hdf(data, data->hdf_arr[i], current->value, nb);
 			current->type = REDIR_IN;
 			free (current->value);
 			current->value = NULL;
 			tmp = current->next;
-			new = create_token(WORD, ft_strdup(data->hdf_arr[i]));
+			new = create_token(WORD, ft_strdup(data->hdf_arr[i])); // strdup save here?
 			if (!new)
-				return (1);
+				rage_quit(data, ERR_MALLOC, true, NULL);
 			current->next = new;
 			new->next = tmp;
 			new->prev = current;
