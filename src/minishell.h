@@ -40,8 +40,6 @@
 //// ENUMS
 enum					e_errors
 {
-	ERR_INIT_PROG = 1,
-	ERR_INIT_COM = 2,
 	ERR_EXECVE = 3,
 	ERR_DUP2 = 4,
 	ERR_FORK = 5,
