@@ -28,10 +28,7 @@ int	execute_subshell(t_data *data, char **command)
 	if (handle_builtin(data, command))
 		rage_quit(data, 0, false, NULL);
 	if (execve(command[0], command, data->envp) == -1)
-	{
-		pc_err(ERR_EXECVE);
-		rage_quit(data, data->error, false, NULL);
-	}
+		rage_quit(data, ERR_EXECVE, false, NULL);
 	return (0);
 }
 
