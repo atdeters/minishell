@@ -21,7 +21,9 @@ int	wait_all(t_data *data)
 	i = 0;
 	while (i < data->n_pid - 1)
 	{
-		waitpid(data->pid[i], NULL, 0);
+		waitpid(data->pid[i], &data->exit_status, 0);
+		if (WIFEXITED(data->exit_status))
+			data->exit_status = WEXITSTATUS(data->exit_status);
 		i++;
 	}
 	waitpid(data->pid[i], &data->exit_status, 0);

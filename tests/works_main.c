@@ -12,7 +12,7 @@
 
 #include "../src/minishell.h"
 
-int		handle_prompt(t_data *data, char **av);
+int		handle_pipeline(t_data *data, char **av);
 
 int	main(int ac, char **av, char **env)
 {
