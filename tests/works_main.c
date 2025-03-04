@@ -18,6 +18,13 @@ int	main(int ac, char **av, char **env)
 {
 	t_data	data;
 
+
+
+
+
+
+
+
 	init_shell(&data, ac, av, env);
 	while (true)
 	{

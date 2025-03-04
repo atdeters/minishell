@@ -373,7 +373,7 @@ int						pnc_err(t_data *data);
 /**
  * @brief Prints errors and adds the argument that caused the error
  */
-int						p_err_arg(int code, const char *arg);
+int						p_err_arg(int code, char *arg);
 
 // execution.c
 int						execute(t_data *data);
