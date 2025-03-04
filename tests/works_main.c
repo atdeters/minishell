@@ -22,14 +22,14 @@ int	main(int ac, char **av, char **env)
 		return (pc_err(data.error));
 	while (true)
 	{
-		if (handle_prompt(&data, av))
+		if (handle_pipeline(&data, av))
 			rage_quit(&data, data.error, true, NULL);
 		if (data.flag_single)
 			rage_quit(&data, 0, true, NULL);
 	}
 }
 
-int	handle_prompt(t_data *data, char **av)
+int	handle_pipeline(t_data *data, char **av)
 {
 	init_command(data);
 	if (!data->flag_single)
