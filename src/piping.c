@@ -16,23 +16,27 @@
 // the last one being a critical error
 int	wait_all(t_data *data)
 {
-	int	i;
+	int		i;
+	bool	quit;
+	int		quit_code;
 
 	i = 0;
-	while (i < data->n_pid - 1)
+	quit = false;
+	while (i < data->n_pid)
 	{
 		waitpid(data->pid[i], &data->exit_status, 0);
 		if (WIFEXITED(data->exit_status))
 			data->exit_status = WEXITSTATUS(data->exit_status);
+		if (data->exit_status / 100 == 2)
+		{
+			quit = true;
+			quit_code = data->exit_status;
+		}
 		i++;
 	}
-	waitpid(data->pid[i], &data->exit_status, 0);
-	if (WIFEXITED(data->exit_status))
-	{
-		data->exit_status = WEXITSTATUS(data->exit_status);
-		return (data->exit_status);
-	}
-	return (1);
+	if (quit)
+		rage_quit(data, quit_code, true, NULL);
+	return (data->exit_status);
 }
 
 int	cool_dup(t_data *data, int fd_in, int fd_out)
