@@ -40,8 +40,7 @@ int	handle_prompt(t_data *data, char **av)
 		pnc_err(data);
 	if (!lexing(data->input, &data->token_lst, &data->error))
 		pnc_err(data);
-	if (expand_alias(data, &data->token_lst))
-		pnc_err(data);
+	expand_alias(data, &data->token_lst);
 	create_hdf(data);
 	if (fill_hdf_arr(data, &data->token_lst))
 		pnc_err(data);

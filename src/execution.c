@@ -21,7 +21,7 @@ int	execute_subshell(t_data *data, char **command)
 	int		fd_in;
 	int		fd_out;
 
-	add_path(data, command);
+	add_path(data, command); // No error handling yet!
 	get_fds(data, &fd_in, &fd_out);
 	check_access(data, command[0], false);
 	cool_dup(data, fd_in, fd_out);
