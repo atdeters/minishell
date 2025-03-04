@@ -44,7 +44,7 @@ int	check_flags(t_data *data, int ac, char **av)
 	if (ac == 3 && is_flag_single(av[1]))
 		data->flag_single = true;
 	else if (ac == 3)
-		return (setnret(data, ERR_USAGE));
+		rage_quit(data, ERR_USAGE, true, NULL);
 	else
 		data->flag_single = false;
 	if (ac == 2 && is_flag_help(av[1]))
@@ -53,7 +53,7 @@ int	check_flags(t_data *data, int ac, char **av)
 		return (0);
 	}
 	else if (ac == 2)
-		return (setnret(data, ERR_USAGE));
+		rage_quit(data, ERR_USAGE, true, NULL);
 	return (0);
 }
 

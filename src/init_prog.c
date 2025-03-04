@@ -60,10 +60,9 @@ void	set_shlvl(t_data *data, t_env_lst **lst)
 int	init_shell(t_data *data, int ac, char **av, char **env)
 {
 	if (ac != 1 && ac != 3 && ac != 2)
-		return (pc_err(ERR_USAGE));
+		exit(pc_err(ERR_USAGE));
 	*data = (t_data){0};
-	if (check_flags(data, ac, av))
-		return (data->error);
+	check_flags(data, ac, av);
 	parse_env(data, env);
 	set_shlvl(data, &data->env_lst);
 	parser_env_into_arr(data);
@@ -75,5 +74,5 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 	if (!data->hist_path)
 		rage_quit(data, data->error, false, NULL);
 	load_old_history(data->hist_path);
-	return (data->error);
+	return (0);
 }

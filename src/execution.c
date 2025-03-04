@@ -43,7 +43,7 @@ int	execute(t_data *data)
 		return (0);
 	data->pid[data->n_pid] = fork();
 	if (data->pid[data->n_pid] == -1)
-		return (pc_err(ERR_FORK));
+		rage_quit(data, ERR_FORK, true, NULL);
 	if (data->pid[data->n_pid] == 0)
 		execute_subshell(data, command);
 	data->n_pid++;

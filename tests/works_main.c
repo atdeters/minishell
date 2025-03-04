@@ -18,8 +18,7 @@ int	main(int ac, char **av, char **env)
 {
 	t_data	data;
 
-	if (init_shell(&data, ac, av, env))
-		return (pc_err(data.error));
+	init_shell(&data, ac, av, env);
 	while (true)
 	{
 		if (handle_pipeline(&data, av))
