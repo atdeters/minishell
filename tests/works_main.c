@@ -21,8 +21,7 @@ int	main(int ac, char **av, char **env)
 	init_shell(&data, ac, av, env);
 	while (true)
 	{
-		if (handle_pipeline(&data, av))
-			rage_quit(&data, data.error, true, NULL);
+		handle_pipeline(&data, av);
 		if (data.flag_single)
 			rage_quit(&data, 0, true, NULL);
 	}

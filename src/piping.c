@@ -13,7 +13,7 @@
 #include "minishell.h"
 
 // List might not be complete at this point!!
-bool	is_critical(int code)
+bool	err_is_critical(int code)
 {
 	if (code == ERR_MALLOC)
 		return (true);
@@ -41,7 +41,7 @@ int	wait_all(t_data *data)
 		waitpid(data->pid[i], &data->exit_status, 0);
 		if (WIFEXITED(data->exit_status))
 			data->exit_status = WEXITSTATUS(data->exit_status);
-		if (is_critical(data->exit_status))
+		if (err_is_critical(data->exit_status))
 		{
 			quit = true;
 			quit_code = data->exit_status;

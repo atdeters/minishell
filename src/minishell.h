@@ -48,7 +48,7 @@ enum					e_errors
 	ERR_PIPE = 6,
 	ERR_HIST = 7,
 	ERR_HIST_WFILE = 8,
-	ERR_SPLIT = 9,
+	// ERR_SPLIT = 9,
 	ERR_OPEN = 10,
 	ERR_USAGE = 11,
 	ERR_MALLOC = 12,

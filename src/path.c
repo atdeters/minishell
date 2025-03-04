@@ -50,18 +50,21 @@ char	**add_path(t_data *data, char **command)
 	char	*tmp;
 	int		i;
 
-	if (!command)
-		return (NULL);
 	if (ft_strchr(command[0], '/'))
 		return (command);
 	path_str = get_pathstr(data);
 	env = ft_split(path_str, ':');
 	if (!env)
-		return (data->error = ERR_SPLIT, NULL);
+		rage_quit(data, ERR_MALLOC, false, NULL);
 	i = 0;
 	while (env[i])
 	{
 		tmp = join_path_exe(env[i], command[0]);
+		if (!tmp)
+		{
+			fr_lst(env);
+			rage_quit(data, ERR_MALLOC, false, NULL);
+		}
 		if (!access(tmp, F_OK))
 			break ;
 		free(tmp);
