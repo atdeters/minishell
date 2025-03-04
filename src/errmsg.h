@@ -17,6 +17,7 @@
 # define ERR_MSG_FUNC_EXECVE "execve function failed to execute\n"
 # define ERR_MSG_FUNC_DUP2 "dup2 function failed to execute\n"
 # define ERR_MSG_FUNC_FORK "fork function failed to execute\n"
+# define ERR_MSG_FUNC_GETCWD "getcwd function failed to execute\n"
 # define ERR_MSG_USAGE "Type `./minishell --help` for information on how to use\n"
 # define ERR_MSG_ACCESS_FILE ": No such file or directory"
 # define ERR_MSG_FUNC_PIPE "pipe function failed to execute\n"

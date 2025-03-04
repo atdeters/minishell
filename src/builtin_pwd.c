@@ -18,7 +18,7 @@ void	ft_pwd(void)
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-		ft_fprintf(2, "getcwd function failed.");
+		ft_putstr_fd(ERR_MSG_FUNC_GETCWD, 2);
 	else
 		printf("%s\n", cwd);
 	free(cwd);
