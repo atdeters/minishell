@@ -14,7 +14,7 @@
 # define ERRMSG_H
 
 // global messages
-# define VASH_ERR_IDENT "vash:"
+# define VASH_ERR_IDENT "minishell:"
 
 // critical errors (program terminates)
 # define E_MSG_INIT_PROG "failed to initialize program"
@@ -23,6 +23,7 @@
 # define E_MSG_FUNC_DUP2 "dup2 function failed to execute"
 # define E_MSG_FUNC_FORK "fork function failed to execute"
 # define E_MSG_USAGE "Type `./minishell --help` for information on how to use"
+# define ERR_MSG_ACCESS_FILE "No such file or directory"
 
 // non-critical errors (program does not terminate)
 # define E_NC_MSG_FUNC_PIPE "pipe could temporarily no be built"

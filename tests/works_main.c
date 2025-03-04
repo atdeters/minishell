@@ -35,16 +35,16 @@ int	handle_pipeline(t_data *data, char **av)
 	else
 		data->input = av[2];
 	if (check_replace_input(data))
-		pnc_err(data);
+		p_err(data->error);
 	if (!lexing(data->input, &data->token_lst, &data->error))
-		pnc_err(data);
+		p_err(data->error);
 	if (!data->token_lst)
 		return (free_all_com(data), 0);
 	expand_alias(data, &data->token_lst);
 	create_hdf(data);
 	fill_hdf_arr(data, &data->token_lst);
 	if (parser_main(data))
-		pnc_err(data);
+		p_err(data->error);
 	pipe_maker(data);
 	while (data->parsed_lst->next)
 	{

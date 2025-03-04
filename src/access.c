@@ -18,6 +18,8 @@ int	check_access(t_data *data, char *name, bool is_file)
 		return (0);
 	if (!is_file && access(name, F_OK) == -1)
 		rage_quit(data, ERR_ACCESS, false, name);
+	else if (access(name, F_OK) == -1)
+		rage_quit(data, ERR_ACCESS_FILE, false, name);
 	else if (!is_file && access(name, X_OK) == -1)
 		rage_quit(data, ERR_PERM, false, name);
 	else if (is_file && access(name, R_OK) == -1 && !access(name, F_OK))

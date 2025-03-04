@@ -49,6 +49,8 @@ int	p_err_arg(int code, const char *arg)
 	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
 	if (code == ERR_ACCESS)
 		ft_fprintf(2, "%s%s\n", E_NC_MSG_ACCESS, arg);
+	if (code == ERR_ACCESS_FILE)
+		ft_fprintf(2, "%s: %s\n", arg, ERR_MSG_ACCESS_FILE);
 	if (code == ERR_PERM)
 		ft_fprintf(2, "%s%s\n", E_NC_MSG_PERM, arg);
 	if (code == ERR_OPEN)

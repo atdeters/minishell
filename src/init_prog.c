@@ -60,7 +60,7 @@ void	set_shlvl(t_data *data, t_env_lst **lst)
 int	init_shell(t_data *data, int ac, char **av, char **env)
 {
 	if (ac != 1 && ac != 3 && ac != 2)
-		exit(pc_err(ERR_USAGE));
+		exit(p_err(ERR_USAGE));
 	*data = (t_data){0};
 	check_flags(data, ac, av);
 	parse_env(data, env);
