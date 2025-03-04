@@ -18,8 +18,33 @@ int	setnret(t_data *data, int code)
 	return (code);
 }
 
+void	p_err_formatted(char *msg)
+{
+	ft_putstr_fd(SHELL_ERR_IDENT, 2);
+	ft_putstr_fd(msg, 2);
+}
+
+void	p_err_arg_formatted_std(char *msg, char *arg, bool acc_file)
+{
+	ft_putstr_fd(SHELL_ERR_IDENT, 2);
+	if (!acc_file)
+	{
+		ft_putstr_fd(msg, 2);
+		ft_putstr_fd(arg, 2);
+	}
+	else
+	{
+		ft_putstr_fd(arg, 2);
+		ft_putstr_fd(msg, 2);
+	}
+	ft_putstr_fd("\n", 2);
+}
+
 int	p_err(int code)
 {
+	
+
+	
 	if (code == ERR_EXECVE)
 		ft_fprintf(2, "%s %s\n", SHELL_ERR_IDENT, ERR_MSG_FUNC_EXECVE);
 	if (code == ERR_DUP2)
