@@ -57,8 +57,6 @@ int	handle_pipeline(t_data *data, char **av)
 	execute(data);
 	close_all(data);
 	wait_all(data);
-	if (data->exit_status / 100 == 2)
-		rage_quit(data, data->exit_status, true, NULL);
 	free_all_com(data);
 	return (0);
 }

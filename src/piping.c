@@ -12,6 +12,20 @@
 
 #include "minishell.h"
 
+// List might not be complete at this point!!
+bool	is_critical(int code)
+{
+	if (code == ERR_MALLOC)
+		return (true);
+	if (code == ERR_OPEN)
+		return (true);
+	if (code == ERR_EXECVE)
+		return (true);
+	if (code == ERR_DUP2)
+		return (true);
+	return (false);
+}
+
 // Check if we can rage quit the program if there is a function that is not
 // the last one being a critical error
 int	wait_all(t_data *data)
@@ -27,7 +41,7 @@ int	wait_all(t_data *data)
 		waitpid(data->pid[i], &data->exit_status, 0);
 		if (WIFEXITED(data->exit_status))
 			data->exit_status = WEXITSTATUS(data->exit_status);
-		if (data->exit_status / 100 == 2)
+		if (is_critical(data->exit_status))
 		{
 			quit = true;
 			quit_code = data->exit_status;
