@@ -45,7 +45,6 @@ int	p_err(int code)
 
 int	p_err_arg(int code, const char *arg)
 {
-	ft_fprintf(2, "%s ", VASH_ERR_IDENT);
 	if (code == ERR_ACCESS)
 		ft_fprintf(2, "%s %s%s\n", VASH_ERR_IDENT, E_NC_MSG_ACCESS, arg);
 	if (code == ERR_ACCESS_FILE)
