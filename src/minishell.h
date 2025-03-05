@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 18:33:48 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 19:18:01 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ enum					e_errors
 	ERR_CHDIR = 14,
 	ERR_INVALID_ENTRY = 15,
 	ERR_DUP_ENTRY = 16,
+	ERR_GETCWD = 17,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,
@@ -310,39 +311,10 @@ void					ft_exit(t_data *data);
  */
 void					ft_pwd(void);
 /**
- * @brief Retrieves a dynamically allocated string containing the current
- * working directory and optionally cleans it.
- *
- * This function uses `getcwd()` to get the current working directory and
- * returns a dynamically allocated string representing the current directory
- * path. If the `clean` parameter is set to `true`, the function will clean
- * the directory path by extracting the last component (i.e., the folder or
- * file name after the final `/`) and returning it. If `clean` is `false`,
- * the full path is returned.
- *
- * @param clean A boolean flag that determines whether to return the full path
- * or just the last component.
- *
- *              - If `true`, returns only the last part of the current working
- * directory.
- *
- *              - If `false`, returns the full path.
- *
- * @return A pointer to the dynamically allocated string containing the desired
- * directory path or component.
- *         - If the `getcwd()` function fails or returns NULL,
- * `NULL` is returned.
- *
- *         - If `clean` is `true`, a pointer to a newly allocated string with
- * only the last component of the path.
- *
- *         - If `clean` is `false`,
- * a pointer to the full current directory path.
- *
- * @note The returned pointer should be freed
- * by the caller to avoid memory leaks.
+ * Built so if it fails it cleanly exits the program aka no check
+ * needed
  */
-char					*get_pwd_alloc(bool clean);
+char					*get_pwd_alloc(t_data *data, bool clean);
 
 // debug.c
 /**

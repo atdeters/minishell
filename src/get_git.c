@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:27:07 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 16:21:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 19:18:16 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 
 char	*create_branch(char *path);
 char	*extract_branch(int fd, char *line);
+
+void	safe_chdir(t_data *data, char *path_tmp)
+{
+	if (chdir(path_tmp) == -1)
+	{
+		free(path_tmp);
+		rage_quit(data, ERR_CHDIR, true, NULL);
+	}
+}
 
 char	*get_git_alloc(t_data *data)
 {
@@ -23,36 +32,25 @@ char	*get_git_alloc(t_data *data)
 	bool		close_flag;
 
 	close_flag = false;
-	path_tmp = get_pwd_alloc(false);
-	if (!path_tmp)
-		return (NULL);
+	path_tmp = get_pwd_alloc(data, false);
 	path = ft_strdup(path_tmp);
 	while (access(git_dir, R_OK) != 0)
 	{
-		free (path);
+		free(path);
 		if (chdir("..") == -1)
 			rage_quit(data, ERR_CHDIR, true, NULL);
-		path = get_pwd_alloc(false);
+		path = get_pwd_alloc(data, false);
 		if (!path)
-		{
-			if (chdir(path_tmp) == -1)
-				rage_quit(data, ERR_CHDIR, true, NULL);
-			return (free(path_tmp), NULL);
-		}
+			return (safe_chdir(data, path_tmp), free(path_tmp), NULL);
 		if (count_slash(path) == 1)
 		{
 			if (close_flag)
-			{
-				if (chdir(path_tmp) == -1)
-					rage_quit(data, ERR_CHDIR, true, NULL);
-				return (free(path_tmp), free(path), NULL);
-			}
+				return (safe_chdir(data, path_tmp), free(path_tmp), free(path),
+					NULL);
 			close_flag = true;
 		}
 	}
-	if (chdir(path_tmp) == -1)
-		rage_quit(data, ERR_CHDIR, true, NULL);
-	return (free(path_tmp), create_branch(path));
+	return (safe_chdir(data, path_tmp), free(path_tmp), create_branch(path));
 }
 
 char	*create_branch(char *path)
@@ -89,7 +87,7 @@ char	*extract_branch(int fd, char *line)
 	branch = ft_strrchr(line, '/') + 1;
 	branch = rid_of_nl(branch);
 	branch = ft_strdup(branch);
-	free (line);
-	close (fd);
+	free(line);
+	close(fd);
 	return (branch);
 }

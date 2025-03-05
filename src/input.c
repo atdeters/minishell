@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 16:33:39 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 19:18:31 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*create_rl_prompt(t_data *data)
 	path = NULL;
 	branch = NULL;
 	if (SHOW_FOLDER)
-		path = get_pwd_alloc(true);
+		path = get_pwd_alloc(data, true);
 	if (SHOW_FOLDER && !path)
 		return (free_helper(data, branch, path, true));
 	if (SHOW_GIT)
