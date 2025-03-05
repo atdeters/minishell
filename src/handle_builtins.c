@@ -36,7 +36,7 @@ bool	is_builtin(char *name)
 bool	handle_nc_builtin(t_data *data, char **command)
 {
 	if (!ft_strcmp(command[0], "cd"))
-		return (data->exit_status = ft_cd(command), true);
+		return (data->exit_status = ft_cd(data, command), true);
 	else if (!ft_strcmp(command[0], "exit"))
 		return (ft_exit(data), true);
 	else if (!ft_strcmp(command[0], "alias") && command[1])

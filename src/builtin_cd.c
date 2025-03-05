@@ -14,13 +14,16 @@
 
 
 
-int	ft_cd(char **command)
+int	ft_cd(t_data *data, char **command)
 {
-	// Needs a lot more shit etc.
-	// Give the below a home adress instead of the ".."
-	// if (!command[1] && chdir("..") == -1)
-	// 	return (1);
-	if (chdir(command[1]) == -1)
+	if (!command[1] && chdir(data->home_path) == -1)
+		return (1);
+	// Actually need to replace ~ with home adress for relative path
+	if (!ft_strcmp(command[1], "~") && chdir(data->home_path) == -1)
+		return (1);
+	else if (!ft_strcmp(command[1], "~"))
+		return (0);
+	if (command[1] && chdir(command[1]) == -1)
 		return (1);
 	return (0);
 }

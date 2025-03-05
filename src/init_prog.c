@@ -36,6 +36,28 @@ char	*get_home_path_for_file(t_data *data, char *file_name)
 	return (NULL);
 }
 
+void	set_home_path(t_data *data)
+{
+	t_env_lst	*tmp;
+	char		*path;
+
+	tmp = data->env_lst;
+	while (tmp)
+	{
+		if (!ft_strcmp("HOME", tmp->filed))
+		{
+			path = ft_strdup(tmp->value);
+			if (!path)
+				rage_quit(data, ERR_MALLOC, true, NULL);
+			data->home_path = path;
+			return ;
+		}
+		tmp = tmp->next;
+	}
+	data->home_path = NULL;
+	return ;
+}
+
 void	set_shlvl(t_data *data, t_env_lst **lst)
 {
 	t_env_lst	*tmp;
@@ -65,6 +87,7 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 	check_flags(data, ac, av);
 	parse_env(data, env);
 	set_shlvl(data, &data->env_lst);
+	set_home_path(data);
 	parser_env_into_arr(data);
 	data->alias_path = get_home_path_for_file(data, ALIAS_FILE_NAME);
 	if (!data->alias_path)

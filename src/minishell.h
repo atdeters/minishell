@@ -117,6 +117,7 @@ typedef struct s_data
 	char				**envp;
 	char				*hist_path;
 	char				*alias_path;
+	char				*home_path;
 	// Different for every prompt
 	// We could make a pipe_line struct out of them
 	char				*input;
@@ -289,7 +290,7 @@ int						ft_alias(t_data *data, char **command);
 /**
  * @brief Changes the working directory
  */
-int						ft_cd(char **command);
+int						ft_cd(t_data *data, char **command);
 
 // builtin_echo.c
 void					ft_echo(char **arr);
