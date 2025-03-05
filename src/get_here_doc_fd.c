@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 16:46:04 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/27 17:42:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 17:37:59 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,14 @@ void	randon_filename_gen(t_data *data, char doc_file[15])
 	}
 }
 
-int	get_here_doc_fd(t_data *data, char *delimiter)
+int	fill_hdf(int fd, char *delimiter)
 {
-	char	doc_file[15];
-	int		fd;
 	char	*line;
 
-	randon_filename_gen(data, doc_file);
-	fd = open(doc_file, O_WRONLY | O_CREAT | O_EXCL, 0600);
-	if (fd < 0)
-		return (-1);
-	delimiter = delimiter_add_nl(delimiter);
-	if (!delimiter)
-		return (0);
 	ft_printf("%s", HERE_DOC_PROMPT);
 	line = get_next_line(0);
 	if (!line)
-		return (free(delimiter), -1);
+		return (-1);
 	while (ft_strcmp(line, delimiter))
 	{
 		// Add variable expansion here
@@ -93,11 +84,33 @@ int	get_here_doc_fd(t_data *data, char *delimiter)
 		free (line);
 		line = get_next_line(0);
 		if (!line)
-			return (free(delimiter), -1);
+			return (-1);
 	}
-	free(delimiter);
 	free(line);
+	return (0);
+}
+
+int	get_here_doc_fd(t_data *data, char *delimiter)
+{
+	char	doc_file[15];
+	int		fd;
+	char	*line;
+	bool	fail;
+
+	fail = false;
+	randon_filename_gen(data, doc_file);
+	fd = open(doc_file, O_WRONLY | O_CREAT | O_EXCL, 0600);
+	if (fd < 0)
+		return (-1);
+	delimiter = delimiter_add_nl(delimiter);
+	if (!delimiter)
+		return (0);
+	if (fill_hdf(fd, delimiter) == -1)
+		fail = true;
+	free(delimiter);
 	close (fd);
+	if (fail)
+		rage_quit(data, ERR_GNL, true, NULL);
 	fd = open(doc_file, O_RDONLY);
 	if (fd < 0)
 		return (-1);
