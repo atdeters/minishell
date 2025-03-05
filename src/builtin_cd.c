@@ -17,6 +17,9 @@
 int	ft_cd(char **command)
 {
 	// Needs a lot more shit etc.
+	// Give the below a home adress instead of the ".."
+	// if (!command[1] && chdir("..") == -1)
+	// 	return (1);
 	if (chdir(command[1]) == -1)
 		return (1);
 	return (0);
