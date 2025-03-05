@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 16:42:32 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 17:49:48 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,6 @@ void	close_all(t_data *data)
 			close (data->fd_pipe[i][1]);
 		i++;
 	}
-	// i = 0;
-	// while (i < FD_LIMIT * 2)
-	// {
-	// 	if (data->fd_file[i] != -1)
-	// 		close (data->fd_file[i]);
-	// 	i++;
-	// }
 }
 
 void	free_hdf_arr(t_data *data)
@@ -96,22 +89,4 @@ void	free_all_global(t_data *data)
 		ft_env_lstclear(&data->alias_lst);
 	if (data->env_lst)
 		ft_env_lstclear(&data->env_lst);
-}
-
-// Supposed to free everything that can be allocated
-void	rage_quit(t_data *data, int exit_code, bool write_hist, char *err_cmd)
-{
-	(void)err_cmd;
-	if (err_cmd && exit_code)
-		p_err_arg(exit_code, err_cmd);
-	else if (exit_code)
-		p_err(exit_code);
-	if (write_hist)
-		write_hst_file(data, data->hist_path);
-	else
-		free_hst_list(data);
-	free_all_com(data);
-	free_all_global(data);
-	data->exit_status = exit_code;
-	exit (exit_code);
 }

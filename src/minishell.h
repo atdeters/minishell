@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 16:19:58 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:01:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ enum					e_errors
 	ERR_MALLOC = 12,
 	ERR_GNL = 13,
 	ERR_CHDIR = 14,
+	ERR_INVALID_ENTRY = 15,
+	ERR_DUP_ENTRY = 16,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,
@@ -93,8 +95,8 @@ typedef struct s_parsed
 {
 	char				**cmd_and_args;
 	int					i_c;
-	char *in;
-	char *out;
+	char				*in;
+	char				*out;
 	char				**in_arr;
 	int					o_c;
 	char				**out_arr;
@@ -277,7 +279,7 @@ bool					is_valid_entry_form(char *entry);
  * It segfaults if used without one!!
  */
 bool					is_unique_key(t_env_lst *lst, char *entry);
-bool					check_entry(t_data *data, char *entry);
+int						check_entry(t_data *data, char *entry);
 
 // builtin_alias_helpers3.c
 bool					needs_expand(char *current, t_token *tmp);
@@ -384,8 +386,7 @@ int						execute(t_data *data);
 // free.c
 void					fr_lst(char **arr);
 void					close_all(t_data *data);
-void					rage_quit(t_data *data, int exit_code,
-							bool write_hist, char *err_cmd);
+
 /**
  * Stuff to free after every command
  */
@@ -625,7 +626,6 @@ char					*get_pathstr(t_data *data);
 char					**add_path(t_data *data, char **command);
 
 // piping.c
-
 /**
  * Redirects the fd_in to STDIN and fd_out to STDOUT.
  * If fd_in is equal to STDIN or fd_out is equal to STDOUT,
@@ -633,6 +633,10 @@ char					**add_path(t_data *data, char **command);
  */
 int						wait_all(t_data *data);
 int						cool_dup(t_data *data, int fd_in, int fd_out);
+
+// rage_quit.c
+void					rage_quit(t_data *data, int exit_code,
+							bool write_hist, char *err_cmd);
 
 // replace input $
 int						check_replace_input(t_data *data);

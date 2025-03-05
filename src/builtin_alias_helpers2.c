@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:24:14 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 17:27:34 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:01:37 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,19 @@ bool	is_unique_key(t_env_lst *lst, char *entry)
 	return (free(key), false);
 }
 
-bool	check_entry(t_data *data, char *entry)
+int	check_entry(t_data *data, char *entry)
 {
 	if (!is_valid_entry_form(entry))
 	{
 		printf("Not a valid entry for alias\n");
-		return (false);
+		return (setnret(data, ERR_INVALID_ENTRY));
 	}
 	if (!is_unique_key(data->alias_lst, entry))
 	{
 		ft_printf("\"%s\" is not a unique entry.\n", entry);
 		ft_printf("Choose another one or remove this one ");
 		ft_printf("by using \"alias rm [key]\"\n");
-		return (false);
+		return (setnret(data, ERR_DUP_ENTRY));
 	}
 	return (true);
 }
