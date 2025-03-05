@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 18:34:04 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 19:20:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int	p_err(int code)
 		p_err_formatted(ERR_MSG_FUNC_FORK);
 	if (code == ERR_PIPE)
 		p_err_formatted(ERR_MSG_FUNC_PIPE);
+	if (code == ERR_CHDIR)
+		p_err_formatted(ERR_MSG_FUNC_CHDIR);
+	if (code == ERR_GETCWD)
+		p_err_formatted(ERR_MSG_FUNC_GETCWD);
 	if (code == ERR_PARS)
 		p_err_formatted(ERR_MSG_PARSING);
 	if (code == ERR_PARS_SINGLE_QUTE)
