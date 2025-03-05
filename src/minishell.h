@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 19:18:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 20:19:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <limits.h>
 
 //// HEADERFILES
 # include "./libft/libft.h"
@@ -55,6 +56,7 @@ enum					e_errors
 	ERR_INVALID_ENTRY = 15,
 	ERR_DUP_ENTRY = 16,
 	ERR_GETCWD = 17,
+	ERR_EXIT_USAGE = 18,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,
@@ -303,7 +305,7 @@ void					ft_echo(char **arr);
 void					ft_env(t_data *data);
 
 // builtin_exit.c
-void					ft_exit(t_data *data);
+void					ft_exit(t_data *data, char **command);
 
 // builtin_pwd.c
 /**
