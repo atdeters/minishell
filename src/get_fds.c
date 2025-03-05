@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:10:32 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/01 16:57:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:38:31 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,27 @@ int	get_fd_in(t_data *data, int *fd_in)
 	return (0);
 }
 
+void	check_out_arr(t_data *data, int *fd_out, int open_m)
+{
+	int	i;
+
+	i = 0;
+	while (data->parsed_lst->out_arr[i])
+	{
+		check_access(data, data->parsed_lst->out_arr[i], true);
+		if (*fd_out != -1)
+			close (*fd_out);
+		*fd_out = open(data->parsed_lst->out_arr[i], open_m, 0644);
+		if (*fd_out == -1)
+			rage_quit(data, ERR_OPEN, false, data->parsed_lst->out_arr[i]);
+		i++;
+	}
+}
+
 int	get_fd_out(t_data *data, int *fd_out)
 {
 	int		out_m;
 	int		open_m;
-	int		i;
 
 	*fd_out = -1;
 	out_m = data->parsed_lst->out_mode;
@@ -61,17 +77,7 @@ int	get_fd_out(t_data *data, int *fd_out)
 			open_m = O_WRONLY | O_CREAT | O_APPEND;
 		else
 			open_m = O_WRONLY | O_CREAT | O_TRUNC;
-		i = 0;
-		while (data->parsed_lst->out_arr[i])
-		{
-			check_access(data, data->parsed_lst->in_arr[i], true);
-			if (*fd_out != -1)
-				close (*fd_out);
-			*fd_out = open(data->parsed_lst->out_arr[i], open_m, 0644);
-			if (*fd_out == -1)
-				rage_quit(data, ERR_OPEN, false, data->parsed_lst->out_arr[i]);
-			i++;
-		}
+		check_out_arr(data, fd_out, open_m);
 	}
 	return (0);
 }

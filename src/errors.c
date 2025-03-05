@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 17:44:57 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:34:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,6 @@ void	p_err_arg_formatted(char *msg, char *arg)
 	ft_putstr_fd(msg, 2);
 	ft_putstr_fd(arg, 2);
 	ft_putstr_fd("\n", 2);
-}
-
-void	p_err_src(char *file, int line)
-{
-	ft_putstr_fd("source: ", 2);
-	ft_putstr_fd(file, 2);
-	ft_putstr_fd(" line: ", 2);
-	ft_putnbr_fd(line, 2);
-	ft_putstr_fd("\n", 2);
-	exit(0);
 }
 
 int	p_err(int code)
@@ -66,7 +56,7 @@ int	p_err(int code)
 int	p_err_arg(int code, char *arg)
 {
 	if (code == ERR_ACCESS)
-		p_err_arg_formatted(ERR_MSG_ACCESS, arg); 
+		p_err_arg_formatted(ERR_MSG_ACCESS, arg);
 	if (code == ERR_ACCESS_FILE)
 		p_err_arg_formatted(arg, ERR_MSG_ACCESS_FILE);
 	if (code == ERR_PERM)

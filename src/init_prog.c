@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_prog.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/03 16:23:39 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:32:26 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	set_shlvl(t_data *data, t_env_lst **lst)
 			tmp->value = ft_itoa(lvl);
 			if (!tmp->value)
 				rage_quit(data, ERR_MALLOC, true, NULL);
-			
 		}
 		tmp = tmp->next;
 	}
