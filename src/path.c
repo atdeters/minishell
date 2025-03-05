@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:52:51 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 16:03:53 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:16:11 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*join_path_exe(char *path, char *exe)
 
 char	*get_pathstr(t_data *data)
 {
-	t_env_lst *tmp;
+	t_env_lst	*tmp;
 
 	tmp = data->env_lst;
 	while (tmp)
@@ -43,26 +43,18 @@ char	*get_pathstr(t_data *data)
 	return (NULL);
 }
 
-char	**add_path(t_data *data, char **command)
+char	**check_env(t_data *data, char **paths_arr, char **command)
 {
-	char	**env;
-	char	*path_str;
-	char	*tmp;
 	int		i;
+	char	*tmp;
 
-	if (ft_strchr(command[0], '/'))
-		return (command);
-	path_str = get_pathstr(data);
-	env = ft_split(path_str, ':');
-	if (!env)
-		rage_quit(data, ERR_MALLOC, false, NULL);
 	i = 0;
-	while (env[i])
+	while (paths_arr[i])
 	{
-		tmp = join_path_exe(env[i], command[0]);
+		tmp = join_path_exe(paths_arr[i], command[0]);
 		if (!tmp)
 		{
-			fr_lst(env);
+			fr_lst(paths_arr);
 			rage_quit(data, ERR_MALLOC, false, NULL);
 		}
 		if (!access(tmp, F_OK))
@@ -70,7 +62,21 @@ char	**add_path(t_data *data, char **command)
 		free(tmp);
 		i++;
 	}
-	if (env[i])
-		return (free(command[0]), command[0] = tmp, fr_lst(env), command);
-	return (fr_lst(env), command);
+	if (paths_arr[i])
+		return (free(command[0]), command[0] = tmp, fr_lst(paths_arr), command);
+	return (fr_lst(paths_arr), command);
+}
+
+char	**add_path(t_data *data, char **command)
+{
+	char	**paths_arr;
+	char	*paths_str;
+
+	if (ft_strchr(command[0], '/'))
+		return (command);
+	paths_str = get_pathstr(data);
+	paths_arr = ft_split(paths_str, ':');
+	if (!paths_arr)
+		rage_quit(data, ERR_MALLOC, false, NULL);
+	return (check_env(data, paths_arr, command));
 }
