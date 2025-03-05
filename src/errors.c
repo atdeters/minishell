@@ -39,6 +39,7 @@ void	p_err_src(char *file, int line)
 	ft_putstr_fd(" line: ", 2);
 	ft_putnbr_fd(line, 2);
 	ft_putstr_fd("\n", 2);
+	exit(0);
 }
 
 int	p_err(int code)

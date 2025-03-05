@@ -53,7 +53,6 @@ char	*create_branch(char *path)
 	file = ft_strjoin(path, "/.git/HEAD");
 	if (!file)
 		return (free(path), NULL);
-	// DOUBLE FREE FOR cd ./objs HERE
 	free(path);
 	fd = open(file, O_RDONLY);
 	free(file);

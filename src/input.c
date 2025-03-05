@@ -39,15 +39,15 @@ char	*create_rl_prompt(t_data *data)
 		return (free_helper(data, branch, path, true));
 	if (SHOW_GIT)
 		branch = get_git_alloc();
-	if (SHOW_GIT && !branch)
-		return (free_helper(data, branch, path, true));
+	// if (SHOW_GIT && !branch)
+	//  	return (free_helper(data, branch, path, true));
 	rl_prompt = ft_calloc(rl_prompt_len(data, path, branch) + 1, 1);
 	if (!rl_prompt)
 		return (free_helper(data, branch, path, true));
 	add_prompt(data, rl_prompt);
 	if (SHOW_FOLDER)
 		add_folder(rl_prompt, path);
-	if (SHOW_GIT)
+	if (SHOW_GIT && branch)
 		add_branch(rl_prompt, branch);
 	add_ansi(rl_prompt, RESET);
 	return (free_helper(data, branch, path, 0), rl_prompt);

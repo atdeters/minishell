@@ -12,6 +12,8 @@
 
 #include "minishell.h"
 
+
+
 int	ft_cd(char **command)
 {
 	// Needs a lot more shit etc.
