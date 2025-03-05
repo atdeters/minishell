@@ -6,17 +6,31 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 18:00:28 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:05:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	set_alias(t_data *data, char **command)
+{
+	char	*entry;
+
+	if (!check_entry(data, command[1]))
+		return (data->error);
+	entry = delimiter_add_nl(command[1]);
+	if (!entry)
+		rage_quit(data, ERR_MALLOC, true, NULL);
+	alias_to_node(data, entry);
+	add_aliases_to_file(data);
+	free (entry);
+	return (0);
+}
+
 // Feature: Sort the list
 int	ft_alias(t_data *data, char **command)
 {
 	t_env_lst	*tmp;
-	char		*entry;
 
 	tmp = data->alias_lst;
 	if (!command[1])
@@ -29,16 +43,8 @@ int	ft_alias(t_data *data, char **command)
 			add_aliases_to_file(data);
 		}
 		else
-		{
-			if (!check_entry(data, command[1]))
+			if (set_alias(data, command))
 				return (data->error);
-			entry = delimiter_add_nl(command[1]);
-			if (!entry)
-				rage_quit(data, ERR_MALLOC, true, NULL);
-			alias_to_node(data, entry);
-			add_aliases_to_file(data);
-			free (entry);
-		}
 	}
 	return (0);
 }
