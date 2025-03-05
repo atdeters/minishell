@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/03 16:08:40 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:19:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ enum					e_errors
 	ERR_USAGE = 11,
 	ERR_MALLOC = 12,
 	ERR_GNL = 13,
+	ERR_CHDIR = 14,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,
@@ -416,7 +417,7 @@ int						get_fds(t_data *data, int *fd_in, int *fd_out);
  * @note The returned branch name is dynamically allocated and must be freed
  * by the caller to avoid memory leaks.
  */
-char					*get_git_alloc(void);
+char					*get_git_alloc(t_data *data);
 
 // get_here_doc_fd.c
 char					*delimiter_add_nl(char *delimiter_old);

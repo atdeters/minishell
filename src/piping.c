@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/01 17:10:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 16:23:44 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	cool_dup(t_data *data, int fd_in, int fd_out)
 	if (data->parsed_lst->out_mode != OUT_MODE_PIPE && fd_out != 1)
 		close (fd_out);
 	if (data->parsed_lst->in_mode != IN_MODE_PIPE && fd_in != 0)
-		close (fd_in);	
+		close (fd_in);
 	close_all(data);
 	return (0);
 }

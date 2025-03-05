@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:26:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/28 18:14:24 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 17:28:11 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,42 @@ bool	needs_expand(char *current, t_token *tmp)
 	return (false);
 }
 
+
+
+
+void	replace_alias(t_data *data, char *current, t_token **tmp)
+{
+	t_token *expanded;
+	t_token	*last;
+	t_token	*old;
+
+	current = rid_of_nl(current);
+	expanded = NULL;
+	if (!lexing(current, &expanded, &data->error))
+	{
+		free(current);
+		rage_quit(data, ERR_LEXING, true, NULL);
+	}
+	last = ft_token_lstlast(expanded);
+	last->next = (*tmp)->next;
+	expanded->prev = (*tmp)->prev;
+	if ((*tmp)->next)
+		(*tmp)->next->prev = last;
+	old = *tmp;
+	if ((*tmp)->prev)
+		(*tmp)->prev->next = expanded;
+	else
+		data->token_lst = expanded;
+	ft_token_lstdelone(old);
+	*tmp = last;
+}
+
+
+
+
 int	expand_alias(t_data *data, t_token **lst)
 {
 	t_token	*tmp;
-	t_token	*last;
-	t_token	*old;
 	t_token	*expanded;
 	char	*current;
 
@@ -41,29 +72,10 @@ int	expand_alias(t_data *data, t_token **lst)
 			if (!current)
 				rage_quit(data, ERR_MALLOC, true, NULL);
 			if (needs_expand(current, tmp))
-			{
-				current = rid_of_nl(current);
-				if (!lexing(current, &expanded, &data->error))
-				{
-					free(current);
-					rage_quit(data, ERR_LEXING, true, NULL);
-				}
-				last = ft_token_lstlast(expanded);
-				last->next = tmp->next;
-				expanded->prev = tmp->prev;
-				if (tmp->next)
-					tmp->next->prev = last;
-				old = tmp;
-				if (tmp->prev)
-					tmp->prev->next = expanded;
-				else
-					data->token_lst = expanded;
-				ft_token_lstdelone(old);
-				tmp = last;
-			}
+				replace_alias(data, current, &tmp);
 			free(current);
 		}
 		tmp = tmp->next;
-	}
+	}	
 	return (0);
 }

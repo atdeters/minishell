@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:59 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/03 16:01:34 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:43:08 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,5 @@ int	parser_main(t_data *data)
 	if (!parser_loop(pars_data))
 		return (setnret(data, ERR_PARS));
 	data->parsed_lst = *pars_data.parsed_lst;
-	// ft_token_lstclear(&data->token_lst);
 	return (0);
 }

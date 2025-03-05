@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:27:07 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/20 20:36:34 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 16:21:17 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*create_branch(char *path);
 char	*extract_branch(int fd, char *line);
 
-char	*get_git_alloc(void)
+char	*get_git_alloc(t_data *data)
 {
 	char		*path;
 	char		*path_tmp;
@@ -30,18 +30,29 @@ char	*get_git_alloc(void)
 	while (access(git_dir, R_OK) != 0)
 	{
 		free (path);
-		chdir("..");
+		if (chdir("..") == -1)
+			rage_quit(data, ERR_CHDIR, true, NULL);
 		path = get_pwd_alloc(false);
 		if (!path)
-			return (chdir(path_tmp), free(path_tmp), NULL);
+		{
+			if (chdir(path_tmp) == -1)
+				rage_quit(data, ERR_CHDIR, true, NULL);
+			return (free(path_tmp), NULL);
+		}
 		if (count_slash(path) == 1)
 		{
 			if (close_flag)
-				return (chdir(path_tmp), free(path_tmp), free(path), NULL);
+			{
+				if (chdir(path_tmp) == -1)
+					rage_quit(data, ERR_CHDIR, true, NULL);
+				return (free(path_tmp), free(path), NULL);
+			}
 			close_flag = true;
 		}
 	}
-	return (chdir(path_tmp), free(path_tmp), create_branch(path));
+	if (chdir(path_tmp) == -1)
+		rage_quit(data, ERR_CHDIR, true, NULL);
+	return (free(path_tmp), create_branch(path));
 }
 
 char	*create_branch(char *path)

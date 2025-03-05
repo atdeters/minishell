@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/23 21:12:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 16:33:39 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*create_rl_prompt(t_data *data)
 	if (SHOW_FOLDER && !path)
 		return (free_helper(data, branch, path, true));
 	if (SHOW_GIT)
-		branch = get_git_alloc();
+		branch = get_git_alloc(data);
 	// if (SHOW_GIT && !branch)
 	//  	return (free_helper(data, branch, path, true));
 	rl_prompt = ft_calloc(rl_prompt_len(data, path, branch) + 1, 1);

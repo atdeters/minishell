@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:55:11 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 18:35:53 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 16:24:54 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # define ERR_MSG_FUNC_DUP2 "dup2 function failed to execute\n"
 # define ERR_MSG_FUNC_FORK "fork function failed to execute\n"
 # define ERR_MSG_FUNC_GETCWD "getcwd function failed to execute\n"
-# define ERR_MSG_USAGE "Type `./minishell --help` for information on how to use\n"
+# define ERR_MSG_USAGE "Type `./minishell --help` for information\
+							on how to use\n"
 # define ERR_MSG_ACCESS_FILE ": No such file or directory"
 # define ERR_MSG_FUNC_PIPE "pipe function failed to execute\n"
 # define ERR_MSG_HIST "history entry could not be added\n"
