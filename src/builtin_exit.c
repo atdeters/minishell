@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 20:07:55 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 20:37:15 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 20:40:18 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	is_num_str(char *str)
 }
 
 // Make this one actually check properly
-bool	check_lloverflow(const char *str)
+bool	lloverflow(const char *str)
 {
 	if (ft_strlen(str) > 19)
 		return (true);
@@ -45,7 +45,7 @@ long long int	ft_llatoi(const char *nptr)
 	sign = 1;
 	nmb = 0;
 	i = 0;
-	if (check_lloverflow(nptr))
+	if (lloverflow(nptr))
 		return (-1);
 	if (nptr[i] == '+')
 		i++;
