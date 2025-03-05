@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:53:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/05 16:50:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:19:33 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ t_token	*create_token(int type, char *value)
 {
 	t_token	*token;
 
+	if (type == WORD && !value)
+		return (NULL);
 	token = malloc(sizeof(t_token));
 	if (!token)
 		return (NULL);

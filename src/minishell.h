@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 18:01:24 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:18:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -423,7 +423,7 @@ char					*get_git_alloc(t_data *data);
 // get_here_doc_fd.c
 char					*delimiter_add_nl(char *delimiter_old);
 int						add_random_end(char *doc_file, int amount);
-int						get_here_doc_fd(t_data *data, char *delimiter);
+// int						get_here_doc_fd(t_data *data, char *delimiter);
 
 // handle_builtins.c
 bool					is_builtin(char *name);
