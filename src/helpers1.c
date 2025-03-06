@@ -6,13 +6,13 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 16:19:25 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 17:29:39 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:32:53 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	count_slash(char *path)
+int	count_char(char *path, char c)
 {
 	int	i;
 	int	counter;
@@ -23,7 +23,7 @@ int	count_slash(char *path)
 	counter = 0;
 	while (path[i])
 	{
-		if (path[i] == '/')
+		if (path[i] == c)
 			counter++;
 		i++;
 	}

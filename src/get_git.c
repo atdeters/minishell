@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 18:27:07 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 19:18:16 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:33:08 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_git_alloc(t_data *data)
 		path = get_pwd_alloc(data, false);
 		if (!path)
 			return (safe_chdir(data, path_tmp), free(path_tmp), NULL);
-		if (count_slash(path) == 1)
+		if (count_char(path, '/') == 1)
 		{
 			if (close_flag)
 				return (safe_chdir(data, path_tmp), free(path_tmp), free(path),

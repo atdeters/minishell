@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 16:23:16 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:33:18 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -440,7 +440,7 @@ char					**lst_join(char **lst1, char **lst2);
  * It is used in the `get_git_alloc()` function to know when the current
  * working directory is the home folder
  */
-int						count_slash(char *path);
+int						count_char(char *path, char c);
 /**
  * Unsafe version of a strlcat. Just protect before the use if needed.
  */
