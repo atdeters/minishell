@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rewrite_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/03 16:11:09 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:02:14 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	check_for_special(char **word, char **res, char **start_w,
 	}
 	else if (ft_strlen(*res) == 1 && *res[0] == '?')
 	{
-		*word = ft_itoa(data->error);
+		*word = ft_itoa(data->exit_status);
 		if (!*word)
 			return (free(*start_w), free(*res), 0);
 	}
