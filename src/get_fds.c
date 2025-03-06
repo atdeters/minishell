@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:10:32 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 14:28:29 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:45:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	get_fd_in(t_data *data, int *fd_in)
 		{
 			check_access(data, data->parsed_lst->in_arr[i], true);
 			if (*fd_in != -1)
-				close (*fd_in);
+				close(*fd_in);
 			*fd_in = open(data->parsed_lst->in_arr[i], O_RDONLY);
 			if (*fd_in == -1)
 				rage_quit(data, ERR_OPEN, false, data->parsed_lst->in_arr[i]);
@@ -50,9 +50,11 @@ void	check_out_arr(t_data *data, int *fd_out, int open_m)
 	i = 0;
 	while (data->parsed_lst->out_arr[i])
 	{
-		check_access(data, data->parsed_lst->out_arr[i], true);
+		if (access(data->parsed_lst->out_arr[i], R_OK) == -1
+			&& !access(data->parsed_lst->out_arr[i], F_OK))
+			rage_quit(data, ERR_PERM, false, data->parsed_lst->out_arr[i]);
 		if (*fd_out != -1)
-			close (*fd_out);
+			close(*fd_out);
 		*fd_out = open(data->parsed_lst->out_arr[i], open_m, 0644);
 		if (*fd_out == -1)
 			rage_quit(data, ERR_OPEN, false, data->parsed_lst->out_arr[i]);
@@ -62,8 +64,8 @@ void	check_out_arr(t_data *data, int *fd_out, int open_m)
 
 int	get_fd_out(t_data *data, int *fd_out)
 {
-	int		out_m;
-	int		open_m;
+	int	out_m;
+	int	open_m;
 
 	*fd_out = -1;
 	out_m = data->parsed_lst->out_mode;
