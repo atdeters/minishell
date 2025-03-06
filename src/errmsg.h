@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:55:11 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 19:51:07 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:20:20 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define EXIT_ERR_IDENT "exit: "
 # define ERR_MSG_EXIT_ARGS "exit: too many arguments\n"
 # define ERR_MSG_EXIT_NUMS "numeric argument required\n"
+# define ERR_MSG_CD_ARGS "cd: too many arguments\n"
 # define ERR_MSG_PARSING "parsing error\n"
 # define ERR_MSG_SINGLE_QOUTE "parse error near \'\'\'\n"
 # define ERR_MSG_DOUBLE_QOUTE "parse error near \'\"\'\n"
