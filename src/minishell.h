@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 14:21:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:53:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_data
 	char				*hist_path;
 	char				*alias_path;
 	char				*home_path;
+	bool				p_err;
 	// Different for every prompt
 	// We could make a pipe_line struct out of them
 	char				*input;

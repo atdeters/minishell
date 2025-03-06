@@ -6,15 +6,12 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:10:32 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 14:45:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:48:05 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// File fds need to be put into the fds_file array so they can be closed
-// properly (not that bad right now as they never open in the parent proc)
-// Add here_doc
 int	get_fd_in(t_data *data, int *fd_in)
 {
 	int	in_m;

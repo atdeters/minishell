@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 20:07:55 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 14:40:36 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:54:00 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_exit(t_data *data, char **command)
 			exit_err_nums(data, command);
 		else
 			code = ft_atoll(command[1]) % 256;
+		data->p_err = false;
 		rage_quit(data, code, true, NULL);
 	}
 	if (!is_num_str(command[1]))

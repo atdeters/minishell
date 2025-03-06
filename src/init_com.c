@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:45:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/01 16:59:16 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:52:37 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_command(t_data *data)
 {
 	data->n_pid = 0;
 	data->pipe_ind = 0;
+	data->p_err = true;
 	data->error = 0;
 	data->pipes_amount = 0;
 	data->token_lst = NULL;

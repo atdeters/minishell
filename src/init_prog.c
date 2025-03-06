@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 18:32:26 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:52:53 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 	if (ac != 1 && ac != 3 && ac != 2)
 		exit(p_err(ERR_USAGE));
 	*data = (t_data){0};
+	data->p_err = true;
 	check_flags(data, ac, av);
 	parse_env(data, env);
 	set_shlvl(data, &data->env_lst);
