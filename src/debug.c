@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 17:08:41 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 18:33:29 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:17:44 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	print_parsed_data(t_parsed *lst)
 		i++;
 	}
 	printf("cmd_and_args[%d] = %s\n", i, lst->cmd_and_args[i]);
-	printf("in: %s\n", lst->in);
-	printf("out: %s\n", lst->out);
 	printf("in_mode: %d\n", lst->in_mode);
 	printf("out_mode: %d\n", lst->out_mode);
 }

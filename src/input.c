@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 14:43:32 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:17:10 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static char	*free_helper(t_data *data, char *branch, char *path, bool error)
 	return (NULL);
 }
 
+// Check if branch = get_git_alloc fail is completely safe or could segfault
 char	*create_rl_prompt(t_data *data)
 {
 	char	*path;
@@ -39,8 +40,6 @@ char	*create_rl_prompt(t_data *data)
 		return (free_helper(data, branch, path, true));
 	if (SHOW_GIT)
 		branch = get_git_alloc(data);
-	// if (SHOW_GIT && !branch)
-	//  	return (free_helper(data, branch, path, true));
 	rl_prompt = ft_calloc(rl_prompt_len(data, path, branch) + 1, 1);
 	if (!rl_prompt)
 		return (free_helper(data, branch, path, true));
