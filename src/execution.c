@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/01 16:59:49 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:08:19 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ int	execute(t_data *data)
 {
 	char	**command;
 
-	command = data->parsed_lst->cmd_and_args;
-	if (!command)
-		rage_quit(data, ERR_MALLOC, true, NULL); // ?
+	if (data->parsed_lst)
+		command = data->parsed_lst->cmd_and_args;
+	else
+		return (0);
 	if (data->pipes_amount == 0 && handle_nc_builtin(data, command))
 		return (0);
 	data->pid[data->n_pid] = fork();

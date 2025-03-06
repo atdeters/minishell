@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 14:58:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:11:01 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ typedef struct s_parsed
 {
 	char				**cmd_and_args;
 	int					i_c;
-	char				*in;
-	char				*out;
+	// char				*in;
+	// char				*out;
 	char				**in_arr;
 	int					o_c;
 	char				**out_arr;
