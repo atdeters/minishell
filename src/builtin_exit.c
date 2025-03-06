@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 20:07:55 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 14:54:00 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:24:55 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,18 @@ void	exit_err_nums(t_data *data, char **command)
 	rage_quit(data, ERR_EXIT_USAGE, true, NULL);
 }
 
-void	ft_exit(t_data *data, char **command)
+int	check_exit_args(char **command)
+{
+	if (count_opts(command) > 2)
+	{
+		ft_putstr_fd(SHELL_ERR_IDENT, 2);
+		ft_putstr_fd(ERR_MSG_EXIT_ARGS, 2);
+		return (ERR_EXIT_USAGE);
+	}
+	return (0);
+}
+
+int	ft_exit(t_data *data, char **command)
 {
 	long long int	code;
 
@@ -47,11 +58,5 @@ void	ft_exit(t_data *data, char **command)
 	}
 	if (!is_num_str(command[1]))
 		exit_err_nums(data, command);
-	if (count_opts(command) > 2)
-	{
-		ft_putstr_fd(SHELL_ERR_IDENT, 2);
-		ft_putstr_fd(ERR_MSG_EXIT_ARGS, 2);
-		data->exit_status = ERR_EXIT_USAGE;
-		return ;
-	}
+	return (check_exit_args(command));
 }

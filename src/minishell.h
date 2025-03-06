@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 16:20:41 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:23:16 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,7 +308,7 @@ void					ft_echo(char **arr);
 void					ft_env(t_data *data);
 
 // builtin_exit.c
-void					ft_exit(t_data *data, char **command);
+int						ft_exit(t_data *data, char **command);
 
 // builtin_pwd.c
 /**
