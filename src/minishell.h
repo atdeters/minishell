@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 14:53:07 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:58:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ enum					e_errors
 	ERR_DUP_ENTRY = 16,
 	ERR_GETCWD = 17,
 	ERR_EXIT_USAGE = 18,
+	ERR_INVALID_PATH = 19,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,

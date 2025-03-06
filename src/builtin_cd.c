@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 18:06:56 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 15:59:51 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int	ft_cd(t_data *data, char **command)
 	else if (!ft_strcmp(command[1], "~"))
 		return (0);
 	if (command[1] && chdir(command[1]) == -1)
-		rage_quit(data, ERR_CHDIR, true, NULL);
+		return (ERR_INVALID_PATH);
 	return (0);
 }
