@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 20:07:55 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 14:18:11 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:40:36 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_exit(t_data *data, char **command)
 	long long int	code;
 
 	code = 0;
-	ft_printf("exit\n");
+	ft_putstr_fd("exit\n", 2);
 	if (!command[1])
 		rage_quit(data, 0, true, NULL);
 	if (is_num_str(command[1]) && count_opts(command) == 2)

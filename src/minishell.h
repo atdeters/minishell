@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 14:19:37 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:21:30 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -474,8 +474,6 @@ int						ft_isnum(int c);
 bool					lloverflow(const char *str);
 long long int			ft_atoll(const char *nptr);
 int						count_opts(char **command);
-
-
 
 // history.c
 /**
