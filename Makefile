@@ -41,10 +41,6 @@ $(OPATH)%.o: src/%.c
 	@mkdir -p $(OFOLDER)
 	@$(COMP) $(CFLAGS) $(DEFINES) -c $< -o $@
 
-%.o: %.c
-	@mkdir -p $(OFOLDER)
-	@$(COMP) $(CFLAGS) $(DEFINES) -c $< -o $@
-
 $(ARCH):
 	@make --no-print-directory -C ./src/libft > /dev/null
 	@cp ./src/libft/libft.a ./src/libft.a
