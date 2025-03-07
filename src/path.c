@@ -72,6 +72,8 @@ char	**add_path(t_data *data, char **command)
 	char	**paths_arr;
 	char	*paths_str;
 
+	if (is_builtin(command[0]))
+		return (command);
 	if (ft_strchr(command[0], '/'))
 		return (command);
 	paths_str = get_pathstr(data);

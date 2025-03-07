@@ -1,3 +1,9 @@
 *NAME*
+    pwd - print name of current/working directory
+
 *USAGE*
+    pwd [flags]
+
 *FLAGS*
+    --help          display this help
+    --clean / -c    only display the current folder (without path)

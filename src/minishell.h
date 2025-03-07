@@ -321,7 +321,7 @@ int						ft_exit(t_data *data, char **command);
 /**
  * @brief Prints name of current/working directory
  */
-void					ft_pwd(void);
+void					ft_pwd(t_data *data, char **command);
 /**
  * Built so if it fails it cleanly exits the program aka no check
  * needed
