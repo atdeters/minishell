@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/07 18:42:20 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/07 18:47:39 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	set_alias(t_data *data, char **command)
 		print_usage(data, ALIAS_HELP_FILE_PATH);
 		return (setnret(data, ERR_ALIAS_USAGE));
 	}
-	if (!check_entry(data, command[1]))
+	if (check_entry(data, command[1]))
 		return (data->error);
 	entry = delimiter_add_nl(command[1]);
 	if (!entry)

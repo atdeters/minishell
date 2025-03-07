@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_alias_helpers2.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:24:14 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 18:01:37 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/07 18:47:33 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,5 @@ int	check_entry(t_data *data, char *entry)
 		ft_printf("by using \"alias rm [key]\"\n");
 		return (setnret(data, ERR_DUP_ENTRY));
 	}
-	return (true);
+	return (0);
 }
