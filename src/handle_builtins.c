@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_builtins.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:16:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 16:22:55 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/07 18:25:36 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	handle_nc_builtin(t_data *data, char **command)
 		return (data->exit_status = ft_cd(data, command), true);
 	else if (!ft_strcmp(command[0], "exit"))
 		return (data->exit_status = ft_exit(data, command), true);
-	else if (!ft_strcmp(command[0], "alias") && command[1])
+	else if (!ft_strcmp(command[0], "alias") && is_nc_alias(command))
 		return (data->exit_status = ft_alias(data, command), true);
 	// "export" and "alias" are nc_builtins when they have
 	// other option. Else they can not be used in a child
@@ -57,7 +57,7 @@ bool	handle_builtin(t_data *data, char **command)
 		return (true);
 	else if (!ft_strcmp(command[0], "exit"))
 		return (true);
-	else if (!ft_strcmp(command[0], "alias") && command[1])
+	else if (!ft_strcmp(command[0], "alias") && is_nc_alias(command))
 		return (true);
 	else if (!ft_strcmp(command[0], "alias"))
 		return (ft_alias(data, command), true);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 16:33:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/07 18:19:59 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ enum					e_errors
 	ERR_EXIT_USAGE = 18,
 	ERR_INVALID_PATH = 19,
 	ERR_CD_USAGE = 20,
+	ERR_ALIAS_USAGE = 21,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,
@@ -301,6 +302,7 @@ int						expand_alias(t_data *data, t_token **lst);
 // builtin_alias.c
 int						load_alias_lst(t_data *data, char *path);
 int						ft_alias(t_data *data, char **command);
+bool					is_nc_alias(char **command);
 
 // builtin_cd.c
 /**

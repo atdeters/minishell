@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_alias.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 18:05:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/07 18:29:22 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,39 @@ int	set_alias(t_data *data, char **command)
 	return (0);
 }
 
+bool	has_flag_rm_alias(char **command)
+{
+	if (count_opts(command) != 3)
+		return (false);
+	if (!ft_strcmp(command[1], "-r"))
+		return (true);
+	if (!ft_strcmp(command[1], "--remove"))
+		return (true);
+	return (false);
+}
+
+bool	has_flag_help_alias(char **command)
+{
+	if (count_opts(command) != 2)
+		return (false);
+	if (!ft_strcmp(command[1], "--help"))
+		return (true);
+	if (!ft_strcmp(command[1], "-h"))
+		return (true);
+	return (false);
+}
+
+bool	is_nc_alias(char **command)
+{
+	if (count_opts(command) == 1)
+		return (true);
+	if (has_flag_rm_alias(command))
+		return (true);
+	if (count_opts(command) == 2 && count_char(command[1], '='))
+		return (true);
+	return (false);
+}
+
 // Feature: Sort the list
 int	ft_alias(t_data *data, char **command)
 {
@@ -37,14 +70,22 @@ int	ft_alias(t_data *data, char **command)
 		print_aliases(tmp);
 	else
 	{
-		if (command[2] && !strcmp(command[1], "rm"))
+		if (has_flag_rm_alias(command))
 		{
 			remove_alias(&data->alias_lst, command[2]);
 			add_aliases_to_file(data);
 		}
-		else
+		else if (has_flag_help_alias(command))
+			return (print_usage(data, ALIAS_HELP_FILE_PATH), 0);
+		else if (count_opts(command) == 2)
+		{
 			if (set_alias(data, command))
 				return (data->error);
+			else
+				return (0);
+		}
+		else
+			return (print_usage(data, ALIAS_HELP_FILE_PATH), ERR_ALIAS_USAGE);
 	}
 	return (0);
 }
