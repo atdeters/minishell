@@ -45,16 +45,6 @@
 # define EXIT_HELP_FILE_PATH "docs/exit_usage.txt"
 # define ALIAS_HELP_FILE_PATH "docs/alias_usage.txt"
 
-
-echo with option -n
-◦ cd with only a relative or absolute path
-◦ pwd with no options
-◦ export with no options
-◦ unset with no options
-◦ env with no options or arguments
-◦ exit with no options
-
-
 ////* ENUMS
 enum					e_errors
 {
@@ -634,6 +624,9 @@ char					**add_path(t_data *data, char **command);
  */
 int						wait_all(t_data *data);
 int						cool_dup(t_data *data, int fd_in, int fd_out);
+
+// print_usage.c
+void					print_usage(t_data *data, char *path);
 
 // rage_quit.c
 void					rage_quit(t_data *data, int exit_code,

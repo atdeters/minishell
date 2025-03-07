@@ -1,10 +1,8 @@
-NAME
+*NAME*
     alias – Create, list, or remove command aliases, allowing command substitution with support for pipes and redirections.
 
-USAGE
+*USAGE*
     alias [flags] [alias=expansion]
 
-
-
-flags:
+*FLAGS*
     -rm             Removes an alias (if it already exists)

@@ -1,1 +1,4 @@
-Usage: cd [relative or absolute path to directory]
+*NAME*
+*USAGE*
+    cd [relative or absolute path to directory]
+*FLAGS*

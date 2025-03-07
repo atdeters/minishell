@@ -1,5 +1,6 @@
-Usage: exit [exit-code]
+*Usage* 
+    exit [exit-code]
 
-Note:
+*Note*
     If the chosen exit code is part of the ones that are built into minishell
     it will not print out the corresponding error message.

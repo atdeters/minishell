@@ -49,7 +49,8 @@ int	check_flags(t_data *data, int ac, char **av)
 		data->flag_single = false;
 	if (ac == 2 && is_flag_help(av[1]))
 	{
-		print_help();
+		// print_help();
+		print_usage(data, HELP_FILE_PATH);
 		return (0);
 	}
 	else if (ac == 2)
