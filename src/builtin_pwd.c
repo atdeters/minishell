@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:04 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 19:16:43 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/07 17:53:17 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	is_pwd_clean_flag(char **command)
+bool	has_flag_clean_pwd(char **command)
 {
 	if (!command[1])
 		return (false);
@@ -23,7 +23,7 @@ bool	is_pwd_clean_flag(char **command)
 	return (false);
 }
 
-bool	is_pwd_help_flag(char **command)
+bool	has_flag_help_pwd(char **command)
 {
 	if (!command[1])
 		return (false);
@@ -40,18 +40,14 @@ void	ft_pwd(t_data *data, char **command)
 
 	if (!command[1])
 		cwd = get_pwd_alloc(data, false);
-	else if (is_pwd_clean_flag(command))
+	else if (has_flag_clean_pwd(command))
 		cwd = get_pwd_alloc(data, true);
-	else if (is_pwd_help_flag(command))
-	{
-		print_usage(data, PWD_HELP_FILE_PATH);
-		return ;
-	}
+	else if (has_flag_help_pwd(command))
+		return (print_usage(data, PWD_HELP_FILE_PATH));
+	else if (command[1])
+		return (print_usage(data, PWD_HELP_FILE_PATH));
 	if (!cwd)
-	{
-		ft_putstr_fd(ERR_MSG_FUNC_GETCWD, 2);
-		return ;
-	}
+		return (ft_putstr_fd(ERR_MSG_FUNC_GETCWD, 2));
 	else
 		printf("%s\n", cwd);
 	free(cwd);
