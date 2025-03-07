@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_usage.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/07 17:49:03 by andreas           #+#    #+#             */
+/*   Updated: 2025/03/07 17:49:04 by andreas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 #define BOLD  "\033[1m"
@@ -7,7 +19,6 @@ void	print_with_bold(char *str)
 {
 	bool	flag;
 	int		i;
-
 
 	i = 0;
 	flag = false;
@@ -46,7 +57,6 @@ void	print_usage(t_data *data, char *path)
 	}
 	while (line)
 	{
-		// printf("%s", line);
 		print_with_bold(line);
 		free (line);
 		line = get_next_line(fd);
