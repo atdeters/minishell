@@ -34,7 +34,26 @@
 # define MAX_PROCS 1024
 # define HIST_FILE_NAME ".vash_history"
 # define ALIAS_FILE_NAME ".vash_alias"
-# define HELP_FILE_PATH "docs/usage"
+
+////* HELP FILES
+# define HELP_FILE_PATH "docs/msh_usage.txt"
+# define CD_HELP_FILE_PATH "docs/cd_usage.txt"
+# define PWD_HELP_FILE_PATH "docs/pwd_usage.txt"
+# define EXPORT_HELP_FILE_PATH "docs/export_usage.txt"
+# define UNSET_HELP_FILE_PATH "docs/unset_usage.txt"
+# define ENV_HELP_FILE_PATH "docs/env_usage.txt"
+# define EXIT_HELP_FILE_PATH "docs/exit_usage.txt"
+# define ALIAS_HELP_FILE_PATH "docs/alias_usage.txt"
+
+
+echo with option -n
+◦ cd with only a relative or absolute path
+◦ pwd with no options
+◦ export with no options
+◦ unset with no options
+◦ env with no options or arguments
+◦ exit with no options
+
 
 ////* ENUMS
 enum					e_errors
