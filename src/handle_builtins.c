@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:16:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/07 18:25:36 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/07 18:38:19 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ bool	handle_builtin(t_data *data, char **command)
 	else if (!ft_strcmp(command[0], "alias") && is_nc_alias(command))
 		return (true);
 	else if (!ft_strcmp(command[0], "alias"))
-		return (ft_alias(data, command), true);
+		return (data->exit_status = ft_alias(data, command), true);
 	// else if (!ft_strcmp(command[0], "export"))
 	// 	return (ft_export(command), true);
 	// else if (!ft_strcmp(command[0], "unset"))

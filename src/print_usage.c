@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:49:03 by andreas           #+#    #+#             */
-/*   Updated: 2025/03/07 17:49:04 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/07 18:42:35 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,4 @@ void	print_usage(t_data *data, char *path)
 		line = get_next_line(fd);
 	}
 	close (fd);
-	exit (0);
 }
