@@ -13,7 +13,7 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-//// LIBRARIES
+////* LIBRARIES
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdbool.h>
@@ -23,20 +23,20 @@
 # include <unistd.h>
 # include <limits.h>
 
-//// HEADERFILES
+////* HEADERFILES
 # include "./libft/libft.h"
 # include "config.h"
 # include "errmsg.h"
 # include "lexing.h"
 
-//// MAKROS
+////* MAKROS
 # define FD_LIMIT 508
 # define MAX_PROCS 1024
 # define HIST_FILE_NAME ".vash_history"
-# define HELP_FILE_PATH "docs/minishell_help"
 # define ALIAS_FILE_NAME ".vash_alias"
+# define HELP_FILE_PATH "docs/usage"
 
-//// ENUMS
+////* ENUMS
 enum					e_errors
 {
 	ERR_EXECVE = 3,
@@ -83,7 +83,7 @@ enum					e_out_mode
 	OUT_MODE_PIPE = 4,
 };
 
-//// STRUCTS
+////* STRUCTS
 typedef struct s_env_lst
 {
 	char				*filed;
@@ -152,7 +152,7 @@ typedef struct s_pars_data
 
 }						t_pars_data;
 
-//// FUNCTION-FILES
+////* FUNCTION-FILES
 // access.c
 int						check_access(t_data *data, char *name, bool is_file);
 // int						check_access_files(t_data *data);
