@@ -53,11 +53,11 @@ void	replace_alias(t_data *data, char *current, t_token **tmp)
 int	expand_alias(t_data *data, t_token **lst)
 {
 	t_token	*tmp;
-	t_token	*expanded;
+	// t_token	*expanded;
 	char	*current;
 
 	tmp = *lst;
-	expanded = NULL;
+	// expanded = NULL;
 	while (tmp)
 	{
 		if (tmp->type == WORD)

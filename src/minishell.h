@@ -32,10 +32,8 @@
 //// MAKROS
 # define FD_LIMIT 508
 # define MAX_PROCS 1024
-// # define HIST_FILE_PATH ".vash_history"
 # define HIST_FILE_NAME ".vash_history"
-# define HELP_FILE_PATH ".vash_help"
-# define HELP_FILE_NAME ".vash_help"
+# define HELP_FILE_PATH "docs/minishell_help"
 # define ALIAS_FILE_NAME ".vash_alias"
 
 //// ENUMS
