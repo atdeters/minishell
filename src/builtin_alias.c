@@ -6,11 +6,44 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/07 18:47:39 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/08 22:53:35 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int		count_env_list_nodes(t_env_lst *lst)
+{
+	t_env_lst	*tmp;
+	int			counter;
+
+	tmp = lst;
+	counter = 0;
+	while (tmp)
+	{
+		counter++;
+		tmp = tmp->next;
+	}
+	return (counter);
+}
+
+void	sort_env_list(t_env_lst **lst)
+{
+	t_env_lst	*cur;
+	t_env_lst	*pre;
+
+	cur = *lst;
+	if (count_env_list_nodes(cur) <= 1)
+		return ;
+	pre = NULL;
+ 	while (cur && cur->next)
+	{
+		if (ft_strcmp(cur->value, cur->next->value) > 0)
+		{
+			if ()
+		}
+	}
+}
 
 int	set_alias(t_data *data, char **command)
 {
@@ -27,6 +60,7 @@ int	set_alias(t_data *data, char **command)
 	if (!entry)
 		rage_quit(data, ERR_MALLOC, true, NULL);
 	alias_to_node(data, entry);
+	sort_env_list(&data->alias_lst);
 	add_aliases_to_file(data);
 	free (entry);
 	return (0);
@@ -83,12 +117,7 @@ int	ft_alias(t_data *data, char **command)
 		else if (has_flag_help_alias(command))
 			return (print_usage(data, ALIAS_HELP_FILE_PATH), 0);
 		else if (count_opts(command) == 2)
-		{
-			if (set_alias(data, command))
-				return (data->error);
-			else
-				return (0);
-		}
+			return (set_alias(data, command));
 		else
 			return (print_usage(data, ALIAS_HELP_FILE_PATH), ERR_ALIAS_USAGE);
 	}

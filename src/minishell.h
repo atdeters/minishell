@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/07 18:19:59 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/08 22:52:23 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ enum					e_errors
 	ERR_PIPE = 6,
 	ERR_HIST = 7,
 	ERR_HIST_WFILE = 8,
-	// ERR_SPLIT = 9,
 	ERR_OPEN = 10,
 	ERR_USAGE = 11,
 	ERR_MALLOC = 12,
