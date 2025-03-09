@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:49:03 by andreas           #+#    #+#             */
-/*   Updated: 2025/03/09 21:12:46 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/09 21:20:48 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,19 @@ void	print_with_bold(char *str)
 	flag = false;
 	while (str[i])
 	{
-		if (str[i] == '*' && !flag)
+		if (str[i] == '*')
 		{
-			printf(BOLD);
-			flag = true;
-		}
-		else if (str[i] == '*' && flag)
-		{
-			printf(RESET);
-			flag = false;
+			if (!flag)
+				printf(BOLD);
+			else
+				printf(RESET);
+			flag = !flag;
 		}
 		else if (str[i] == '\\' && str[i + 1] == '*')
 		{
 			printf("*");
 			i++;
-		}	
+		}
 		else
 			printf("%c", str[i]);
 		i++;
