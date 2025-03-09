@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:49:03 by andreas           #+#    #+#             */
-/*   Updated: 2025/03/08 22:51:33 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/09 21:12:46 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ void	print_with_bold(char *str)
 			printf(RESET);
 			flag = false;
 		}
+		else if (str[i] == '\\' && str[i + 1] == '*')
+		{
+			printf("*");
+			i++;
+		}	
 		else
 			printf("%c", str[i]);
 		i++;
