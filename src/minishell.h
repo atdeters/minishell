@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/08 22:52:23 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/09 12:06:51 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ enum					e_errors
 	ERR_INVALID_PATH = 19,
 	ERR_CD_USAGE = 20,
 	ERR_ALIAS_USAGE = 21,
+	ERR_ALIAS_INV_RM = 22,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,

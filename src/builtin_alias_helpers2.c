@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:24:14 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/07 18:47:33 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/09 11:57:20 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,14 @@ bool	is_unique_key(t_env_lst *lst, char *entry)
 
 	if (!lst)
 		return (true);
-	eq_ind = ft_strchr(entry, '=') - entry;
 	key = ft_strdup(entry);
 	if (!key)
 		return (false);
-	key[eq_ind] = '\0';
+	if (ft_strchr(entry, '='))
+	{
+		eq_ind = ft_strchr(entry, '=') - entry;
+		key[eq_ind] = '\0';
+	}
 	check = get_value_from_lst(lst, key);
 	if (!ft_strcmp(check, key))
 		return (free(key), true);

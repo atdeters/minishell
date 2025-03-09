@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/09 02:23:26 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/09 12:07:01 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,15 @@ bool	is_nc_alias(char **command)
 	return (false);
 }
 
+int	p_err_alias_inv_rm(char *command)
+{
+	ft_putstr_fd(SHELL_ERR_IDENT, 2);
+	ft_putstr_fd("alias: ", 2);
+	ft_putstr_fd(command, 2);
+	ft_putstr_fd(": entry does not exist\n", 2);
+	return (ERR_ALIAS_INV_RM);
+}
+
 int	ft_alias(t_data *data, char **command)
 {
 	t_env_lst	*tmp;
@@ -77,6 +86,8 @@ int	ft_alias(t_data *data, char **command)
 	{
 		if (has_flag_rm_alias(command))
 		{
+			if (is_unique_key(data->alias_lst, command[2]))
+				return (p_err_alias_inv_rm(command[2]));
 			remove_alias(&data->alias_lst, command[2]);
 			add_aliases_to_file(data);
 		}
