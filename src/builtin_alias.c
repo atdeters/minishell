@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/09 12:42:47 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/09 12:48:59 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ int	set_alias(t_data *data, char **command)
 	return (0);
 }
 
-bool	has_flag_rm_alias(char **command)
+bool	is_nc_alias(char **command)
 {
-	if (count_opts(command) != 3)
-		return (false);
-	if (!ft_strcmp(command[1], "-r"))
+	if (count_opts(command) == 1)
 		return (true);
-	if (!ft_strcmp(command[1], "--remove"))
+	if (has_flag_rm_alias(command))
+		return (true);
+	if (count_opts(command) == 2 && count_char(command[1], '='))
 		return (true);
 	return (false);
 }
