@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 18:51:33 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/07 18:43:05 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/09 13:00:42 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ bool	is_flag_single(char *flag)
 bool	is_flag_help(char *flag)
 {
 	if (!ft_strcmp(flag, "--help"))
+		return (true);
+	if (!ft_strcmp(flag, "-h"))
 		return (true);
 	return (false);
 }
