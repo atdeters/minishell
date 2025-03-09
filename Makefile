@@ -65,7 +65,7 @@ re: fclean all
 
 tidy: all clean
 
-basic: PROMPT='"vash>"'
+basic: PROMPT='"msh>"'
 basic: PROMPT_SPACE='" "'
 basic: SHOW_EXIT_COL=false
 basic: SHOW_FOLDER=false

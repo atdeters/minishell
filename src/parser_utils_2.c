@@ -58,13 +58,6 @@ static void	check_type_out(t_token *head, t_token *tail, t_parsed **new,
 	}
 }
 
-/*
-FLAGS:
-0 = IN = STDIN, OUT = STDOUT
-1 -> IN = STDIN, OUT = PIPE
-2 -> IN = PIPE, OUT = PIPE
-3 -> IN PIPE, OUT = STDOUT
-*/
 static void	check_type(t_token *head, t_token *tail, int flag, t_parsed **new)
 {
 	check_type_in(head, tail, new, flag);
