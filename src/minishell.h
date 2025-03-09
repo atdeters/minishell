@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/10 00:28:18 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/10 00:32:20 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,20 @@
 # include "lexing.h"
 
 ////* MAKROS
-# define FD_LIMIT 508
-# define MAX_PROCS 1024
-# define HIST_FILE_NAME ".vash_history"
-# define ALIAS_FILE_NAME ".vash_alias"
+# define FD_LIMIT			508
+# define MAX_PROCS 			1024
+# define HIST_FILE_NAME		".vash_history"
+# define ALIAS_FILE_NAME	".vash_alias"
 
 ////* HELP FILES
-# define HELP_FILE_PATH "/docs/msh_usage.txt"
-# define CD_HELP_FILE_PATH "/docs/cd_usage.txt"
-# define PWD_HELP_FILE_PATH "/docs/pwd_usage.txt"
-# define EXPORT_HELP_FILE_PATH "/docs/export_usage.txt"
-# define UNSET_HELP_FILE_PATH "/docs/unset_usage.txt"
-# define ENV_HELP_FILE_PATH "/docs/env_usage.txt"
-# define EXIT_HELP_FILE_PATH "/docs/exit_usage.txt"
-# define ALIAS_HELP_FILE_PATH "/docs/alias_usage.txt"
+# define HELP_FILE_PATH			"/docs/msh_usage.txt"
+# define CD_HELP_FILE_PATH		"/docs/cd_usage.txt"
+# define PWD_HELP_FILE_PATH		"/docs/pwd_usage.txt"
+# define EXPORT_HELP_FILE_PATH	"/docs/export_usage.txt"
+# define UNSET_HELP_FILE_PATH	"/docs/unset_usage.txt"
+# define ENV_HELP_FILE_PATH		"/docs/env_usage.txt"
+# define EXIT_HELP_FILE_PATH	"/docs/exit_usage.txt"
+# define ALIAS_HELP_FILE_PATH	"/docs/alias_usage.txt"
 
 ////* ENUMS
 enum					e_errors
@@ -101,15 +101,10 @@ typedef struct s_env_lst
 	struct s_env_lst	*next;
 }						t_env_lst;
 
-// Maybe make outfile a list and open
-// all of them, keeping the last one 
-// to write into
 typedef struct s_parsed
 {
 	char				**cmd_and_args;
 	int					i_c;
-	// char				*in;
-	// char				*out;
 	char				**in_arr;
 	int					o_c;
 	char				**out_arr;
@@ -136,13 +131,11 @@ typedef struct s_data
 	char				*msh_path;
 	char				*home_path;
 	bool				p_err;
-	// Different for every prompt
-	// We could make a pipe_line struct out of them
+	// Local
 	char				*input;
 	int					pipe_ind;
 	int					pipes_amount;
 	int					fd_pipe[FD_LIMIT][2];
-	// int					fd_file[FD_LIMIT * 2];
 	char				**hdf_arr;
 	int					hdf_amt;
 	t_parsed			*parsed_lst;
