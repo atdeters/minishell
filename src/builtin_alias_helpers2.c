@@ -100,7 +100,7 @@ int	check_entry(t_data *data, char *entry)
 	{
 		ft_printf("\"%s\" is not a unique entry.\n", entry);
 		ft_printf("Choose another one or remove this one ");
-		ft_printf("by using \"alias rm [key]\"\n");
+		ft_printf("by using \"alias -r [key]\"\n");
 		return (setnret(data, ERR_DUP_ENTRY));
 	}
 	return (0);
