@@ -651,6 +651,9 @@ void					ft_env_lstadd_back(t_env_lst **lst, t_env_lst *new);
 void					ft_env_lstdelone(t_env_lst *lst);
 void					ft_env_lstclear(t_env_lst **lst);
 void					ft_env_lstdel_node(t_env_lst *lst, char *field);
+int						count_env_list_nodes(t_env_lst *lst);
+void					swap_env_nodes(t_env_lst *node1, t_env_lst *node2);
+void					sort_env_list(t_env_lst **lst);
 
 // parser functions
 // int					parser_main(t_token **tokens, t_data *data);
