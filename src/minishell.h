@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/09 12:06:51 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/09 12:43:40 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,6 +278,13 @@ char					*add_folder(char *rl_prompt, char *path);
  *
  */
 char					*add_branch(char *rl_prompt, char *branch);
+
+// ask_user.c
+bool					user_agrees(t_data *data);
+
+// builtin_alias_flags.c
+bool					has_flag_help_alias(char **command);
+bool					is_nc_alias(char **command);
 
 // builtin_alias_helpers.c
 void					alias_to_node(t_data *data, char *entry);
