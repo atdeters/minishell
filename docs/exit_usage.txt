@@ -1,5 +1,5 @@
 *NAME*
-    exit    -   cause normal process termination
+    exit - cause normal process termination
 
 *Usage* 
     exit [exit-code]
