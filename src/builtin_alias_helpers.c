@@ -78,6 +78,7 @@ int	load_alias_lst(t_data *data, char *path)
 		free (entry);
 		entry = get_next_line(fd);
 	}
+	sort_env_list(&data->alias_lst);
 	close (fd);
 	return (0);
 }

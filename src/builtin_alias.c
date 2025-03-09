@@ -66,7 +66,6 @@ bool	is_nc_alias(char **command)
 	return (false);
 }
 
-// Feature: Sort the list
 int	ft_alias(t_data *data, char **command)
 {
 	t_env_lst	*tmp;
