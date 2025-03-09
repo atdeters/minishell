@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/08 22:53:35 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/09 02:18:43 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,46 @@ int		count_env_list_nodes(t_env_lst *lst)
 	return (counter);
 }
 
+void	swap_env_nodes(t_env_lst *node1, t_env_lst *node2)
+{
+	char *tmp_filed;
+	char *tmp_value;
+
+	tmp_filed = node1->filed;
+	tmp_value = node1->value;
+	node1->filed = node2->filed;
+	node1->value = node2->value;
+	node2->filed = tmp_filed;
+	node2->value = tmp_value;
+}
+
 void	sort_env_list(t_env_lst **lst)
 {
+	int			len;
+	int			i;
+	int			j;
 	t_env_lst	*cur;
-	t_env_lst	*pre;
 
-	cur = *lst;
-	if (count_env_list_nodes(cur) <= 1)
+	len = count_env_list_nodes(*lst);
+	if (len <= 1)
 		return ;
-	pre = NULL;
- 	while (cur && cur->next)
+	if (len == 2 && ft_strcmp((*lst)->filed, (*lst)->next->filed) > 0)
+		return (swap_env_nodes(*lst, (*lst)->next));
+	else if (len == 2)
+		return ;
+	i = 0;
+	while (i < len)
 	{
-		if (ft_strcmp(cur->value, cur->next->value) > 0)
+		cur = *lst;
+		j = 0;
+		while(cur && cur->next && j < len - i)
 		{
-			if ()
+			if (ft_strcmp(cur->filed, cur->next->filed) > 0)
+				swap_env_nodes(cur, cur->next);
+			cur = cur->next;
+			j++;
 		}
+		i++;
 	}
 }
 
@@ -60,7 +85,7 @@ int	set_alias(t_data *data, char **command)
 	if (!entry)
 		rage_quit(data, ERR_MALLOC, true, NULL);
 	alias_to_node(data, entry);
-	sort_env_list(&data->alias_lst);
+	// sort_env_list(&data->alias_lst);
 	add_aliases_to_file(data);
 	free (entry);
 	return (0);
@@ -105,6 +130,7 @@ int	ft_alias(t_data *data, char **command)
 	t_env_lst	*tmp;
 
 	tmp = data->alias_lst;
+	sort_env_list(&data->alias_lst);
 	if (!command[1])
 		print_aliases(tmp);
 	else
