@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/09 12:49:18 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/10 00:28:18 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@
 # define ALIAS_FILE_NAME ".vash_alias"
 
 ////* HELP FILES
-# define HELP_FILE_PATH "docs/msh_usage.txt"
-# define CD_HELP_FILE_PATH "docs/cd_usage.txt"
-# define PWD_HELP_FILE_PATH "docs/pwd_usage.txt"
-# define EXPORT_HELP_FILE_PATH "docs/export_usage.txt"
-# define UNSET_HELP_FILE_PATH "docs/unset_usage.txt"
-# define ENV_HELP_FILE_PATH "docs/env_usage.txt"
-# define EXIT_HELP_FILE_PATH "docs/exit_usage.txt"
-# define ALIAS_HELP_FILE_PATH "docs/alias_usage.txt"
+# define HELP_FILE_PATH "/docs/msh_usage.txt"
+# define CD_HELP_FILE_PATH "/docs/cd_usage.txt"
+# define PWD_HELP_FILE_PATH "/docs/pwd_usage.txt"
+# define EXPORT_HELP_FILE_PATH "/docs/export_usage.txt"
+# define UNSET_HELP_FILE_PATH "/docs/unset_usage.txt"
+# define ENV_HELP_FILE_PATH "/docs/env_usage.txt"
+# define EXIT_HELP_FILE_PATH "/docs/exit_usage.txt"
+# define ALIAS_HELP_FILE_PATH "/docs/alias_usage.txt"
 
 ////* ENUMS
 enum					e_errors
@@ -131,8 +131,9 @@ typedef struct s_data
 	int					pid[MAX_PROCS];
 	int					n_pid;
 	char				**envp;
-	char				*hist_path;
-	char				*alias_path;
+	char				*hist_path; //? Needed?
+	char				*alias_path; //? Needed?
+	char				*msh_path;
 	char				*home_path;
 	bool				p_err;
 	// Different for every prompt

@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:49:03 by andreas           #+#    #+#             */
-/*   Updated: 2025/03/09 21:20:48 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/10 00:27:12 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,16 @@ void	print_with_bold(char *str)
 void	print_usage(t_data *data, char *path)
 {
 	char	*line;
+	char	*full_path;
 	int		fd;
 
-	fd = open(path, O_RDONLY);
+	full_path = ft_strjoin(data->msh_path, path);
+	if (!full_path)
+		rage_quit(data, ERR_MALLOC, true, NULL);
+	fd = open(full_path, O_RDONLY);
+	free (full_path);
 	if (fd < 0)
-		exit (ERR_OPEN);
+		rage_quit(data, ERR_OPEN, true, path);
 	line = get_next_line(fd);
 	if (!line)
 	{
