@@ -1,3 +1,9 @@
 *NAME*
+    echo    -   display a line of text on the standart output
+
 *USAGE*
+    echo [FLAGS] [STRING]
+
 *FLAGS*
+    -n                  do not output the trailing newline
+    --help / -h         display this help

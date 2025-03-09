@@ -1,4 +1,12 @@
 *NAME*
+    cd  -   Change the shell working directory
+
 *USAGE*
     cd [relative or absolute path to directory]
+
 *FLAGS*
+    --help / -h         display this help
+
+*Examples"
+    cd ~    -   working directory to home
+    cd ..   -   goes up folder structure by one level

@@ -1,6 +1,8 @@
+*NAME*
+    exit    -   cause normal process termination
+
 *Usage* 
     exit [exit-code]
 
 *Note*
-    If the chosen exit code is part of the ones that are built into minishell
-    it will not print out the corresponding error message.
+    Will not print error messages linked to certain error codes
