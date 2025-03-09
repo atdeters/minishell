@@ -6,5 +6,5 @@
 
 *FLAGS*
 	-- single / -s	Takes as third argument a string including the command that needs to be executed. 
-			Opens minishell for this single command and exits afterwards
+					Opens minishell for this single command and exits afterwards
 	-- help	/ -h	Prints this help file to the STDOUT
