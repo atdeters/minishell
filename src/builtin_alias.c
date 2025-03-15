@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/09 12:48:59 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/15 18:45:25 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_alias(t_data *data, char **command)
 		}
 		else if (has_flag_help_alias(command))
 			return (print_usage(data, ALIAS_HELP_FILE_PATH), 0);
-		//TODO: Add option here to show a specific alias (e.g. "alias st")
+		// TODO: Add option here to show a specific alias (e.g. "alias st")
 		else if (count_opts(command) == 2)
 			return (set_alias(data, command));
 		else
