@@ -71,6 +71,7 @@ int	ft_alias(t_data *data, char **command)
 		}
 		else if (has_flag_help_alias(command))
 			return (print_usage(data, ALIAS_HELP_FILE_PATH), 0);
+		//TODO: Add option here to show a specific alias (e.g. "alias st")
 		else if (count_opts(command) == 2)
 			return (set_alias(data, command));
 		else
