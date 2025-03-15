@@ -85,6 +85,8 @@ void	free_all_global(t_data *data)
 		fr_lst(data->envp);
 	if (data->home_path)
 		free (data->home_path);
+	if (data->msh_path)
+		free (data->msh_path);
 	if (data->alias_lst)
 		ft_env_lstclear(&data->alias_lst);
 	if (data->env_lst)
