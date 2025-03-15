@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 17:49:48 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/15 18:46:28 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,6 @@ void	free_all_com(t_data *data)
 
 void	free_all_global(t_data *data)
 {
-	// if (data->hist_path)
-	// 	free (data->hist_path);
-	// if (data->alias_path)
-	// 	free (data->alias_path);
-	// if (data->home_path)
-	// 	free (data->home_path);
-	// if (data->msh_path)
-	// 	free (data->msh_path);
 	cool_free(data->hist_path);
 	cool_free(data->alias_path);
 	cool_free(data->home_path);

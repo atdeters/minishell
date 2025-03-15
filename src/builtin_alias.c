@@ -6,21 +6,36 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/15 18:45:25 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/15 18:58:28 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	p_alias_single(t_data *data, char **command)
+{
+	t_env_lst *tmp;
+
+	tmp = data->alias_lst;
+	while(tmp)
+	{
+		if (!ft_strcmp(tmp->filed, command[1]))
+		{
+			printf("%s", tmp->value);
+			return (0);
+		}
+		tmp = tmp->next;
+	}
+	print_usage(data, ALIAS_HELP_FILE_PATH);
+	return (setnret(data, ERR_ALIAS_USAGE));
+}
 
 int	set_alias(t_data *data, char **command)
 {
 	char	*entry;
 
 	if (!count_char(command[1], '='))
-	{
-		print_usage(data, ALIAS_HELP_FILE_PATH);
-		return (setnret(data, ERR_ALIAS_USAGE));
-	}
+		return (p_alias_single(data, command));
 	if (check_entry(data, command[1]))
 		return (data->error);
 	entry = delimiter_add_nl(command[1]);
@@ -71,7 +86,6 @@ int	ft_alias(t_data *data, char **command)
 		}
 		else if (has_flag_help_alias(command))
 			return (print_usage(data, ALIAS_HELP_FILE_PATH), 0);
-		// TODO: Add option here to show a specific alias (e.g. "alias st")
 		else if (count_opts(command) == 2)
 			return (set_alias(data, command));
 		else
