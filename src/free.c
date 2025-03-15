@@ -29,6 +29,13 @@ void	fr_lst(char **arr)
 	}
 }
 
+void	cool_free(void *ptr)
+{
+	if (ptr)
+		free(ptr);
+	ptr = NULL;
+}
+
 void	close_all(t_data *data)
 {
 	int	i;
@@ -62,10 +69,10 @@ void	free_hdf_arr(t_data *data)
 
 void	free_all_com(t_data *data)
 {
-	if (data->input && data->flag_single == false)
-		free (data->input);
 	while (data->parsed_lst && data->parsed_lst->prev)
-		data->parsed_lst = data->parsed_lst->prev;
+	data->parsed_lst = data->parsed_lst->prev;
+	if (data->flag_single == false)
+		cool_free(data->input);
 	if (data->parsed_lst)
 		free_p_lst(&data->parsed_lst);
 	if (data->token_lst)
@@ -77,16 +84,20 @@ void	free_all_com(t_data *data)
 
 void	free_all_global(t_data *data)
 {
-	if (data->hist_path)
-		free (data->hist_path);
-	if (data->alias_path)
-		free (data->alias_path);
+	// if (data->hist_path)
+	// 	free (data->hist_path);
+	// if (data->alias_path)
+	// 	free (data->alias_path);
+	// if (data->home_path)
+	// 	free (data->home_path);
+	// if (data->msh_path)
+	// 	free (data->msh_path);
+	cool_free(data->hist_path);
+	cool_free(data->alias_path);
+	cool_free(data->home_path);
+	cool_free(data->msh_path);
 	if (data->envp)
 		fr_lst(data->envp);
-	if (data->home_path)
-		free (data->home_path);
-	if (data->msh_path)
-		free (data->msh_path);
 	if (data->alias_lst)
 		ft_env_lstclear(&data->alias_lst);
 	if (data->env_lst)

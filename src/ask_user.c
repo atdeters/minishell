@@ -50,14 +50,17 @@ bool	user_agrees(t_data *data)
 	while (line)
 	{
 		if (input_is_yes(line))
-			return (free(line), true);
+			return (get_next_line(-1), free(line), true);
 		if (input_is_no(line))
-			return (free(line), false);
+			return (get_next_line(-1), free(line), false);
 		ft_printf("Invalid input. Please enter Y or n ");
 		free(line);
 		line = get_next_line(0);
 		if (!line)
+		{
+			get_next_line(-1);
 			rage_quit(data, ERR_MALLOC, true, NULL);
+		}
 	}
-	return (free(line), false);
+	return (free(line), get_next_line(-1), false);
 }
