@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 19:09:29 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 19:41:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -337,6 +337,9 @@ void					ft_pwd(t_data *data, char **command);
  * needed
  */
 char					*get_pwd_alloc(t_data *data, bool clean);
+
+// builtin_unset.c
+int						ft_unset(t_data *data, char **command);
 
 // debug.c
 /**
