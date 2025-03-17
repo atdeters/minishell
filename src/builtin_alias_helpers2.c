@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:24:14 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 14:08:22 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 14:10:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	check_entry(t_data *data, char *entry)
 	}
 	if (!is_unique_key(data->alias_lst, entry))
 	{
-		// ! Make this print to stderr
+		//! Make this print to stderr
 		ft_printf("\"%s\" is not a unique entry.\n", entry);
 		ft_printf("Do you want to overwrite it? [Y/n] ");
 		if (user_agrees(data))

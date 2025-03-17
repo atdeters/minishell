@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/10 00:32:20 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/17 14:29:21 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ typedef struct s_data
 	int					pid[MAX_PROCS];
 	int					n_pid;
 	char				**envp;
-	char				*hist_path; //? Needed?
-	char				*alias_path; //? Needed?
+	char				*hist_path; //! Needed?
+	char				*alias_path; //! Needed?
 	char				*msh_path;
 	char				*home_path;
 	bool				p_err;

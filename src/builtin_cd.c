@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 16:44:21 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 14:29:48 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*replace_home(t_data *data, char **command)
 	return (command[1]);
 }
 
+// TODO: Still needs to update the PWD env variable!
 int	ft_cd(t_data *data, char **command)
 {
 	if (count_opts(command) > 2)
