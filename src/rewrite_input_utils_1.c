@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:25:57 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/17 21:24:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 21:51:01 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,17 @@ int	pipe_problem(t_data *data)
 	if (flag)
 		return (1);
 	return (0);
+}
+
+int	special_case_pid(char **word)
+{
+	char	*res;
+	int		pid;
+
+	pid = getpid();
+	res = ft_itoa(pid);
+	if (!res)
+		return (0);
+	*word = res;
+	return (1);
 }

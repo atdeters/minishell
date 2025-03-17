@@ -6,24 +6,11 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/17 21:42:48 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 21:50:56 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static int	special_case_pid(char **word)
-{
-	char	*res;
-	int		pid;
-
-	pid = getpid();
-	res = ft_itoa(pid);
-	if (!res)
-		return (0);
-	*word = res;
-	return (1);
-}
 
 static int	check_for_special(char **word, char **res, char **start_w,
 		t_data *data)
@@ -128,35 +115,9 @@ int	expand_env_var(t_data *data, char **input)
 
 int	check_replace_input(t_data *data)
 {
-	// int	counter;
-	// int	i;
-
-	// i = 0;
-	// counter = 0;
 	if (pipe_problem(data))
 		return (data->error = 2, 0);
 	if (quotes_problem(data))
 		return (data->error = 2, 0);
-
 	return (expand_env_var(data, &data->input));
-
-
-
-
-	// while (data->input[i])
-	// {
-	// 	if (data->input[i] == '$')
-	// 		counter++;
-	// 	i++;
-	// }
-	// i = 0;
-	// while (i != counter)
-	// {
-	// 	if (!replace_word(data))
-	// 		return (1);
-	// 	i++;
-	// }
-	// return (0);
-
-
 }
