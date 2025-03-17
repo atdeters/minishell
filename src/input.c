@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 19:06:48 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:13:19 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char	*get_input(t_data *data)
 	if (!input)
 	{
 		ft_putstr_fd("exit\n", 2);
+		free(rl_prompt);
 		rage_quit(data, 0, true, NULL);
 	}
 	data->input = input;

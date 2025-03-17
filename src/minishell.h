@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:59:49 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:13:53 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 # define MINISHELL_H
 
 ////* LIBRARIES
+# include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <signal.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# include <limits.h>
 
 ////* HEADERFILES
 # include "./libft/libft.h"
@@ -30,10 +31,10 @@
 # include "lexing.h"
 
 ////* MAKROS
-# define FD_LIMIT			508
-# define MAX_PROCS 			1024
-# define HIST_FILE_NAME		".vash_history"
-# define ALIAS_FILE_NAME	".vash_alias"
+# define FD_LIMIT 508
+# define MAX_PROCS 1024
+# define HIST_FILE_NAME ".vash_history"
+# define ALIAS_FILE_NAME ".vash_alias"
 
 ////* HELP FILES
 # define HELP_FILE_PATH			"/docs/msh_usage.txt"
@@ -127,8 +128,8 @@ typedef struct s_data
 	int					pid[MAX_PROCS];
 	int					n_pid;
 	char				**envp;
-	char				*hist_path; //! Needed?
-	char				*alias_path; //! Needed?
+	char *hist_path;  //! Needed?
+	char *alias_path; //! Needed?
 	char				*msh_path;
 	char				*home_path;
 	bool				p_err;
@@ -649,8 +650,8 @@ int						cool_dup(t_data *data, int fd_in, int fd_out);
 void					print_usage(t_data *data, char *path);
 
 // rage_quit.c
-void					rage_quit(t_data *data, int exit_code,
-							bool write_hist, char *err_cmd);
+void					rage_quit(t_data *data, int exit_code, bool write_hist,
+							char *err_cmd);
 
 // replace input $
 int						check_replace_input(t_data *data);
@@ -702,6 +703,9 @@ int						pipe_counter(t_token **tokens);
 
 // lexing
 int						lexing(char *input, t_token **list, int *err_code);
-// int						lexing(t_data *data);
 
+// signal stuff
+void					signal_handler(int signum);
+t_data					*pointer_to_data(t_data *data);
+int	handle_pipeline(t_data *data, char **av);
 #endif
