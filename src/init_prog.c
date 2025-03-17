@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_prog.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/10 00:23:03 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/17 18:10:30 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 		exit(p_err(ERR_USAGE));
 	*data = (t_data){0};
 	data->p_err = true;
+	data->msh_path = get_pwd_alloc(data, false);
 	check_flags(data, ac, av);
 	parse_env(data, env);
 	set_shlvl(data, &data->env_lst);
 	set_home_path(data);
 	parser_env_into_arr(data);
-	data->msh_path = get_pwd_alloc(data, false);
 	data->alias_path = get_home_path_for_file(data, ALIAS_FILE_NAME);
 	if (!data->alias_path)
 		rage_quit(data, data->error, false, NULL);

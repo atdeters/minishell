@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 18:51:33 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 17:54:26 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 18:11:51 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,33 +52,33 @@ int	check_flags(t_data *data, int ac, char **av)
 	if (ac == 2 && is_flag_help(av[1]))
 	{
 		print_usage(data, HELP_FILE_PATH);
-		return (exit(0), 0);
+		rage_quit(data, 0, true, NULL);
 	}
 	else if (ac == 2)
 		rage_quit(data, ERR_USAGE, true, NULL);
 	return (0);
 }
 
-void	print_help(void)
-{
-	char	*line;
-	int		fd;
+// void	print_help(void)
+// {
+// 	char	*line;
+// 	int		fd;
 
-	fd = open(HELP_FILE_PATH, O_RDONLY);
-	if (fd < 0)
-		exit (ERR_OPEN);
-	line = get_next_line(fd);
-	if (!line)
-	{
-		close (fd);
-		exit (ERR_MALLOC);
-	}
-	while (line)
-	{
-		printf("%s", line);
-		free (line);
-		line = get_next_line(fd);
-	}
-	close (fd);
-	exit (0);
-}
+// 	fd = open(HELP_FILE_PATH, O_RDONLY);
+// 	if (fd < 0)
+// 		exit (ERR_OPEN);
+// 	line = get_next_line(fd);
+// 	if (!line)
+// 	{
+// 		close (fd);
+// 		exit (ERR_MALLOC);
+// 	}
+// 	while (line)
+// 	{
+// 		printf("%s", line);
+// 		free (line);
+// 		line = get_next_line(fd);
+// 	}
+// 	close (fd);
+// 	exit (0);
+// }
