@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-// Not fully correct (doesn't include newly added stuff)
 void	ft_env(t_data *data)
 {
 	print_env_lst(data->env_lst);
