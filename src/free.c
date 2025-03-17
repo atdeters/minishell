@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/15 18:46:28 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/17 18:48:50 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	free_hdf_arr(t_data *data)
 void	free_all_com(t_data *data)
 {
 	while (data->parsed_lst && data->parsed_lst->prev)
-	data->parsed_lst = data->parsed_lst->prev;
+		data->parsed_lst = data->parsed_lst->prev;
 	if (data->flag_single == false)
 		cool_free(data->input);
 	if (data->parsed_lst)
