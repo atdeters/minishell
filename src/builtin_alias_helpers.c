@@ -95,10 +95,7 @@ void	add_aliases_to_file(t_data *data)
 		return ;
 	tmp = data->alias_lst;
 	if (!tmp)
-	{
-		close (fd);
-		return ;
-	}
+		return ((void)close (fd));
 	while (tmp)
 	{
 		write(fd, tmp->filed, ft_strlen(tmp->filed));
