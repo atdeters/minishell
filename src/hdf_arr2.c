@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:43:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 18:31:42 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 21:45:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ void	fill_hdf_help(t_data *data, int nb, char *delimiter, int fd)
 	}
 	while (ft_strcmp(line, delimiter))
 	{
+		// TODO: Expand env variables for line in here
+		expand_env_var(data, &line);
 		write(fd, line, ft_strlen(line));
 		hdf_prompt(data, nb);
 		free (line);
-		line = get_next_line(0);
+		line = get_next_line(0);	
 		if (!line)
 		{
 			free(delimiter);

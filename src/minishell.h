@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 19:59:22 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 21:40:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -654,8 +654,9 @@ void					rage_quit(t_data *data, int exit_code,
 // replace input $
 int						check_replace_input(t_data *data);
 int						quotes_problem(t_data *data);
-int						in_single_qoute(t_data *data, int pos);
+int						in_single_qoute(int pos, char *input);
 int						pipe_problem(t_data *data);
+int						expand_env_var(t_data *data, char **input);
 
 // env func
 void					parse_env(t_data *data, char **env);

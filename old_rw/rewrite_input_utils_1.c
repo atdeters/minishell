@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:25:57 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/17 21:24:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 19:58:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	quotes_problem(t_data *data)
 	return (0);
 }
 
-int	in_single_qoute(int pos, char *input)
+int	in_single_qoute(t_data *data, int pos)
 {
 	int	i;
 	int	counter;
@@ -45,7 +45,7 @@ int	in_single_qoute(int pos, char *input)
 	i = 0;
 	while (i != pos)
 	{
-		if (input[i] == '\'')
+		if (data->input[i] == '\'')
 			counter++;
 		i++;
 	}
