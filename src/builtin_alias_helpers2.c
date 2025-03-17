@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:24:14 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 17:52:14 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 19:07:54 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,6 @@ void	remove_alias(t_env_lst **lst, char *key)
 			return ;
 		}
 		current = current->next;
-	}
-}
-
-void	print_aliases(t_env_lst *lst)
-{
-	if (!lst)
-		printf("alias list currently emtpy\n");
-	while (lst)
-	{
-		ft_printf("%s=%s\n", lst->filed, lst->value); //! Added nl to printing
-		lst = lst->next;
 	}
 }
 
@@ -92,11 +81,31 @@ bool	is_unique_key(t_env_lst *lst, char *entry)
 	return (free(key), free(check), false);
 }
 
-int	check_entry(t_data *data, char *entry)
+void	extract_and_remove(t_data *data, char *entry)
 {
 	int		eq_ind;
 	char	*dupe;
 
+	if (ft_strchr(entry, '='))
+	{
+		eq_ind = ft_strchr(entry, '=') - entry;
+		dupe = ft_strdup(entry);
+		if (!dupe)
+			rage_quit(data, ERR_MALLOC, true, NULL);
+		dupe[eq_ind] = '\0';
+	}
+	else
+	{
+		dupe = ft_strdup(entry);
+		if (!dupe)
+			rage_quit(data, ERR_MALLOC, true, NULL);
+	}
+	remove_alias(&data->alias_lst, dupe);
+	free(dupe);
+}
+
+int	check_entry(t_data *data, char *entry)
+{
 	if (!is_valid_entry_form(entry))
 	{
 		printf("Not a valid entry for alias\n");
@@ -108,23 +117,7 @@ int	check_entry(t_data *data, char *entry)
 		ft_printf("\"%s\" is not a unique entry.\n", entry);
 		ft_printf("Do you want to overwrite it? [Y/n] ");
 		if (user_agrees(data))
-		{
-			if (ft_strchr(entry, '='))
-			{
-				eq_ind = ft_strchr(entry, '=') - entry;
-				dupe = ft_strdup(entry);
-				if (!dupe)
-					rage_quit(data, ERR_MALLOC, true, NULL);
-				dupe[eq_ind] = '\0';
-			}
-			else
-			{
-				dupe = ft_strdup(entry);
-				if (!dupe)
-					rage_quit(data, ERR_MALLOC, true, NULL);
-			}
-			return (remove_alias(&data->alias_lst, dupe), free(dupe), 0);
-		}
+			return (extract_and_remove(data, entry), 0);
 		else
 			return (setnret(data, ERR_DUP_ENTRY));
 	}

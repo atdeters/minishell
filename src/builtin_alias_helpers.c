@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 12:36:59 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 17:51:42 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 19:04:49 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	add_aliases_to_file(t_data *data)
 		write(fd, tmp->filed, ft_strlen(tmp->filed));
 		write(fd, "=", 1);
 		write(fd, tmp->value, ft_strlen(tmp->value));
-		write(fd, "\n", 1); //! Adding nl for file
+		write(fd, "\n", 1);
 		tmp = tmp->next;
 	}
 	write(fd, "\n", 1);
