@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_alias_helpers2.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:24:14 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/09 12:36:13 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/17 14:08:22 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,12 @@ int	check_entry(t_data *data, char *entry)
 				if (!dupe)
 					rage_quit(data, ERR_MALLOC, true, NULL);
 				dupe[eq_ind] = '\0';
+			}
+			else
+			{
+				dupe = ft_strdup(entry);
+				if (!dupe)
+					rage_quit(data, ERR_MALLOC, true, NULL);
 			}
 			return (remove_alias(&data->alias_lst, dupe), free(dupe), 0);
 		}

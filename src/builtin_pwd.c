@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:04 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/07 17:53:17 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/17 14:07:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_pwd(t_data *data, char **command)
 		cwd = get_pwd_alloc(data, true);
 	else if (has_flag_help_pwd(command))
 		return (print_usage(data, PWD_HELP_FILE_PATH));
-	else if (command[1])
+	else
 		return (print_usage(data, PWD_HELP_FILE_PATH));
 	if (!cwd)
 		return (ft_putstr_fd(ERR_MSG_FUNC_GETCWD, 2));
