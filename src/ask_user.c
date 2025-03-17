@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ask_user.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:38:57 by andreas           #+#    #+#             */
-/*   Updated: 2025/03/09 12:39:07 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/17 19:15:53 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	user_agrees(t_data *data)
 			return (get_next_line(-1), free(line), true);
 		if (input_is_no(line))
 			return (get_next_line(-1), free(line), false);
-		ft_printf("Invalid input. Please enter Y or n ");
+		ft_putstr_fd("Invalid input. Please enter Y or n ", 2);
 		free(line);
 		line = get_next_line(0);
 		if (!line)

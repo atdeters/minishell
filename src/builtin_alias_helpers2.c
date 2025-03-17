@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:24:14 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 19:13:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 19:23:11 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ bool	is_unique_key(t_env_lst *lst, char *entry)
 	return (free(key), free(check), false);
 }
 
-void	extract_and_remove(t_data *data, char *entry)
+char	*extract_alias_key(t_data *data, char *entry)
 {
 	int		eq_ind;
 	char	*dupe;
@@ -100,8 +100,29 @@ void	extract_and_remove(t_data *data, char *entry)
 		if (!dupe)
 			rage_quit(data, ERR_MALLOC, true, NULL);
 	}
+	return (dupe);
+}
+
+void	extract_and_remove(t_data *data, char *entry)
+{
+	char	*dupe;
+
+	dupe = extract_alias_key(data, entry);
 	remove_alias(&data->alias_lst, dupe);
 	free(dupe);
+}
+
+void	p_alias_dup(t_data *data, char *entry)
+{
+	char *dupe;
+
+	dupe = extract_alias_key(data, entry);
+	ft_putstr_fd("\"", 2);
+	ft_putstr_fd(dupe, 2);
+	ft_putstr_fd("\"", 2);
+	ft_putstr_fd(" is not a unique entry.\n", 2);
+	ft_putstr_fd("Do you want to overwrite it? [Y/n] ", 2);
+	free (dupe);
 }
 
 int	check_entry(t_data *data, char *entry)
@@ -113,9 +134,7 @@ int	check_entry(t_data *data, char *entry)
 	}
 	if (!is_unique_key(data->alias_lst, entry))
 	{
-		//! Make this print to stderr
-		ft_printf("\"%s\" is not a unique entry.\n", entry);
-		ft_printf("Do you want to overwrite it? [Y/n] ");
+		p_alias_dup(data, entry);
 		if (user_agrees(data))
 			return (extract_and_remove(data, entry), 0);
 		else
