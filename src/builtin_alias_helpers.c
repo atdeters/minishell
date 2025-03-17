@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 12:36:59 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/24 17:24:45 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 17:51:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	load_alias_lst(t_data *data, char *path)
 		return (close(fd), 1);
 	while (entry)
 	{
+		entry = rid_of_nl(entry);
 		if (ft_strchr(entry, '='))
 			alias_to_node(data, entry);
 		free (entry);
@@ -103,6 +104,7 @@ void	add_aliases_to_file(t_data *data)
 		write(fd, tmp->filed, ft_strlen(tmp->filed));
 		write(fd, "=", 1);
 		write(fd, tmp->value, ft_strlen(tmp->value));
+		write(fd, "\n", 1); //! Adding nl for file
 		tmp = tmp->next;
 	}
 	write(fd, "\n", 1);

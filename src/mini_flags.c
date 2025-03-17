@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_flags.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 18:51:33 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/09 13:00:42 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/17 17:54:26 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	check_flags(t_data *data, int ac, char **av)
 		data->flag_single = false;
 	if (ac == 2 && is_flag_help(av[1]))
 	{
-		// print_help();
 		print_usage(data, HELP_FILE_PATH);
 		return (exit(0), 0);
 	}

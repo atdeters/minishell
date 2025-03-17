@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:24:14 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 14:10:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 17:52:14 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	print_aliases(t_env_lst *lst)
 		printf("alias list currently emtpy\n");
 	while (lst)
 	{
-		ft_printf("%s=%s", lst->filed, lst->value);
+		ft_printf("%s=%s\n", lst->filed, lst->value); //! Added nl to printing
 		lst = lst->next;
 	}
 }

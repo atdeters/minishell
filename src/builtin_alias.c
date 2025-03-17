@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_alias.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/15 18:58:28 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/17 17:52:37 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ int	set_alias(t_data *data, char **command)
 		return (p_alias_single(data, command));
 	if (check_entry(data, command[1]))
 		return (data->error);
-	entry = delimiter_add_nl(command[1]);
-	if (!entry)
-		rage_quit(data, ERR_MALLOC, true, NULL);
+	// entry = delimiter_add_nl(command[1]);
+	// if (!entry)
+	// 	rage_quit(data, ERR_MALLOC, true, NULL);
+	entry = ft_strdup(command[1]);
 	alias_to_node(data, entry);
 	sort_env_list(&data->alias_lst);
 	add_aliases_to_file(data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_builtins.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:16:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/07 18:38:19 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/17 17:47:56 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ bool	handle_builtin(t_data *data, char **command)
 	// 	return (ft_export(command), true);
 	// else if (!ft_strcmp(command[0], "unset"))
 	// 	return (ft_unset(command), true);
-	// else if (!ft_strcmp(command[0], "env"))
-	// 	return (ft_env(data), true);
+	else if (!ft_strcmp(command[0], "env"))
+		return (ft_env(data), true);
 	else
 		return (false);
 }
