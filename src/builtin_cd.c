@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 14:29:48 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 18:29:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,23 @@ char	*replace_home(t_data *data, char **command)
 	return (command[1]);
 }
 
-// TODO: Still needs to update the PWD env variable!
+void	replace_pwd_env(t_data *data)
+{
+	t_env_lst	*tmp;
+
+	tmp = data->env_lst;
+	while (tmp)
+	{
+		if (!ft_strcmp(tmp->filed, "PWD"))
+		{
+			free (tmp->value);
+			tmp->value = get_pwd_alloc(data, false);
+			return ;
+		}
+		tmp = tmp->next;
+	}
+}
+
 int	ft_cd(t_data *data, char **command)
 {
 	if (count_opts(command) > 2)
@@ -46,5 +62,8 @@ int	ft_cd(t_data *data, char **command)
 	replace_home(data, command);
 	if (command[1] && chdir(command[1]) == -1)
 		return (ERR_INVALID_PATH);
+
+	replace_pwd_env(data);
+	
 	return (0);
 }
