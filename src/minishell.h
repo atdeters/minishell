@@ -300,6 +300,10 @@ bool					needs_expand(char *current, t_token *tmp);
 int						expand_alias(t_data *data, t_token **lst);
 void					print_env_lst(t_env_lst *lst);
 
+// builtin_alias_helpers4.c
+bool					is_valid_entry_form(char *entry);
+bool					is_unique_key(t_env_lst *lst, char *entry);
+
 // builtin_alias.c
 int						load_alias_lst(t_data *data, char *path);
 int						ft_alias(t_data *data, char **command);
