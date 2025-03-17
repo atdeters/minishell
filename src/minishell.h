@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 14:29:21 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 18:59:36 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -373,6 +373,10 @@ int						execute(t_data *data);
 // free.c
 void					fr_lst(char **arr);
 void					close_all(t_data *data);
+
+// free2.c
+void					free_all_com(t_data *data);
+void					free_all_global(t_data *data);
 
 /**
  * Stuff to free after every command
