@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:04 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 14:07:15 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 18:44:46 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ char	*get_pwd_alloc(t_data *data, bool clean)
 			tmp++;
 		else
 			tmp = cwd;
-		cl_buff = ft_strdup(tmp);
+		if (!ft_strcmp(tmp, ""))
+			cl_buff = ft_strdup("/");
+		else
+			cl_buff = ft_strdup(tmp);
 		if (!cl_buff)
 		{
 			free (cwd);
