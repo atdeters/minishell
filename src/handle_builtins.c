@@ -41,6 +41,8 @@ bool	handle_nc_builtin(t_data *data, char **command)
 		return (data->exit_status = ft_exit(data, command), true);
 	else if (!ft_strcmp(command[0], "alias") && is_nc_alias(command))
 		return (data->exit_status = ft_alias(data, command), true);
+	else if (!ft_strcmp(command[0], "export") && command[1])
+		return (data->exit_status = ft_export(data, command), true);
 	// "export" and "alias" are nc_builtins when they have
 	// other option. Else they can not be used in a child
 	return (false);
@@ -61,8 +63,10 @@ bool	handle_builtin(t_data *data, char **command)
 		return (true);
 	else if (!ft_strcmp(command[0], "alias"))
 		return (data->exit_status = ft_alias(data, command), true);
-	// else if (!ft_strcmp(command[0], "export"))
-	// 	return (ft_export(command), true);
+	else if (!ft_strcmp(command[0], "export") && command[1])
+		return (true);
+	else if (!ft_strcmp(command[0], "export"))
+		return (ft_export(data, command), true);
 	// else if (!ft_strcmp(command[0], "unset"))
 	// 	return (ft_unset(command), true);
 	else if (!ft_strcmp(command[0], "env"))

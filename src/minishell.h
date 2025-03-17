@@ -324,6 +324,9 @@ void					ft_env(t_data *data);
 // builtin_exit.c
 int						ft_exit(t_data *data, char **command);
 
+// builtin_export.c
+int						ft_export(t_data *data, char **command);
+
 // builtin_pwd.c
 /**
  * @brief Prints name of current/working directory

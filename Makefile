@@ -17,7 +17,7 @@ COMP		=	cc
 CFLAGS		?=	-Wall -Wextra -Werror -g
 LDFLAGS		=	-lreadline
 
-SRC_FILES	=	builtin_cd.c builtin_pwd.c builtin_env.c init_com.c init_prog.c get_here_doc_fd.c builtin_alias_helpers3.c ask_user.c\
+SRC_FILES	=	builtin_cd.c builtin_pwd.c builtin_env.c init_com.c init_prog.c get_here_doc_fd.c builtin_alias_helpers3.c ask_user.c builtin_export.c\
 				input.c errors.c env_lst_func.c env_parser.c helpers1.c add_rl_prompt.c builtin_alias.c rage_quit.c print_usage.c\
 				get_git.c lexing.c lexing_utils.c lexing_utils_2.c lexing_utils_3.c builtin_exit.c builtin_alias_helpers2.c builtin_alias_flags.c\
 				piping.c builtin_echo.c history.c parser_utils_1.c parser_utils_2.c builtin_alias_helpers.c hdf_arr.c hdf_arr2.c\
