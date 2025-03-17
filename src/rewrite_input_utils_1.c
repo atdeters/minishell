@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rewrite_input_utils_1.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:25:57 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/03 16:11:21 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:58:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	in_single_qoute(t_data *data, int pos)
 	return (0);
 }
 
-int	pipe_problen(t_data *data)
+int	pipe_problem(t_data *data)
 {
 	int	i;
 	int	flag;

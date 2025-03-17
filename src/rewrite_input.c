@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/06 16:02:14 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/17 19:58:55 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	check_replace_input(t_data *data)
 
 	i = 0;
 	counter = 0;
-	if (pipe_problen(data))
+	if (pipe_problem(data))
 		return (data->error = 2, 0);
 	if (quotes_problem(data))
 		return (data->error = 2, 0);
