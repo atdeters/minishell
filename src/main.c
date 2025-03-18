@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:33:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:14:15 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	main(int ac, char **av, char **env)
 	t_data	data;
 
 	init_shell(&data, ac, av, env);
+	pointer_to_data(&data);
+	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, NULL);
 	while (true)
 	{
 		handle_pipeline(&data, av);
