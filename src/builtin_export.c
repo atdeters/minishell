@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:32:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 16:45:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:59:29 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	add_env(t_data *data, char *entry)
 			tmp = ft_substr(entry, 0, j);
 			if (!tmp)
 				rage_quit(data, ERR_MALLOC, true, NULL);
-			remove_alias(&data->env_lst, tmp);
+			remove_env_node(&data->env_lst, tmp);
 			free(tmp);
 			transfer_into_node(entry, data, j);
 			break ;

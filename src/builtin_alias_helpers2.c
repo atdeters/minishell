@@ -6,13 +6,13 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:24:14 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 19:25:21 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:59:17 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	remove_alias(t_env_lst **lst, char *key)
+void	remove_env_node(t_env_lst **lst, char *key)
 {
 	t_env_lst	*head;
 	t_env_lst	*tmp;
@@ -68,7 +68,7 @@ void	extract_and_remove(t_data *data, char *entry)
 	char	*dupe;
 
 	dupe = extract_alias_key(data, entry);
-	remove_alias(&data->alias_lst, dupe);
+	remove_env_node(&data->alias_lst, dupe);
 	free(dupe);
 }
 

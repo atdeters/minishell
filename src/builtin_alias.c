@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:24:45 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:59:23 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_alias(t_data *data, char **command)
 		{
 			if (is_unique_key(data->alias_lst, command[2]))
 				return (p_err_alias_inv_rm(command[2]));
-			remove_alias(&data->alias_lst, command[2]);
+			remove_env_node(&data->alias_lst, command[2]);
 			add_aliases_to_file(data);
 		}
 		else if (count_opts(command) == 2)

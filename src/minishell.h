@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 16:40:23 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 17:01:56 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,7 +280,6 @@ char					*add_branch(char *rl_prompt, char *branch);
 bool					user_agrees(t_data *data);
 
 // builtin_alias_flags.c
-// bool					has_flag_help_alias(char **command);
 bool					has_flag_rm_alias(char **command);
 
 // builtin_alias_helpers.c
@@ -289,12 +288,9 @@ int						load_alias_lst(t_data *data, char *path);
 void					add_aliases_to_file(t_data *data);
 
 // builtin_alias_helpers2.c
-void					remove_alias(t_env_lst **lst, char *key);
+/* More of a env function than an alias helper */
+void					remove_env_node(t_env_lst **lst, char *key);
 bool					is_valid_entry_form(char *entry);
-/**
- * This function assumes that the entry has exactly one "="
- * It segfaults if used without one!!
- */
 bool					is_unique_key(t_env_lst *lst, char *entry);
 int						check_entry(t_data *data, char *entry);
 
@@ -305,6 +301,7 @@ void					print_env_lst(t_env_lst *lst, bool is_export);
 
 // builtin_alias_helpers4.c
 bool					is_valid_entry_form(char *entry);
+/* More of a env function than an alias helper */
 bool					is_unique_key(t_env_lst *lst, char *entry);
 
 // builtin_alias.c
