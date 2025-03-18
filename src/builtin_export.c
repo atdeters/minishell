@@ -6,12 +6,11 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:32:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:59:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:12:38 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 // Already exists + no redefinition -> nothing happens
 // Already exists + redefinition -> overwriting
@@ -39,6 +38,7 @@ void	export_envs(t_data *data, char **command)
 				}
 				j++;
 			}
+			transfer_into_node(command[i], data, j);
 			i++;
 		}
 	}
