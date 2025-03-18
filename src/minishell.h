@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 16:13:53 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:40:23 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ typedef struct s_parsed
 	struct s_parsed		*next;
 }						t_parsed;
 
+// TODO: check hist and alias path still needed?
 typedef struct s_data
 {
 	// Global
@@ -128,8 +129,8 @@ typedef struct s_data
 	int					pid[MAX_PROCS];
 	int					n_pid;
 	char				**envp;
-	char *hist_path;  //! Needed?
-	char *alias_path; //! Needed?
+	char				*hist_path;
+	char				*alias_path;
 	char				*msh_path;
 	char				*home_path;
 	bool				p_err;
@@ -707,5 +708,5 @@ int						lexing(char *input, t_token **list, int *err_code);
 // signal stuff
 void					signal_handler(int signum);
 t_data					*pointer_to_data(t_data *data);
-int	handle_pipeline(t_data *data, char **av);
+int						handle_pipeline(t_data *data, char **av);
 #endif
