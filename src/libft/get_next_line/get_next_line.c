@@ -6,11 +6,12 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:12:06 by adeters           #+#    #+#             */
-/*   Updated: 2025/01/14 18:43:45 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 13:36:03 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "stdio.h"
 
 static int	ft_check_nl(char *str);
 static char	*free_foo(char **buffer, char *line);

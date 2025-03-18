@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/07 18:37:36 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/18 13:39:18 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	execute_subshell(t_data *data, char **command)
 	int		fd_in;
 	int		fd_out;
 
+	parser_env_into_arr(data);
 	add_path(data, command);
 	get_fds(data, &fd_in, &fd_out);
 	check_access(data, command[0], false);

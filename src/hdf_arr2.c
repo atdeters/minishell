@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:43:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 21:50:08 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 13:37:49 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	fill_hdf_help(t_data *data, int nb, char *delimiter, int fd)
 		free(delimiter);
 		rage_quit(data, ERR_GNL, true, NULL);
 	}
-	while (ft_strcmp(line, delimiter))
+	while (ft_strcmp(line, delimiter) && line != NULL)
 	{
 		expand_env_var(data, &line);
 		write(fd, line, ft_strlen(line));

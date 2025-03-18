@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:47:41 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/22 19:56:54 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 13:38:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	parser_env_into_arr(t_data *data)
 	t_env_lst	*tmp;
 	int			i;
 
+	if (data->envp)
+		fr_lst(data->envp);
 	i = 0;
 	res = ft_calloc((count_arr_size(data) + 1), sizeof(char *));
 	if (!res)
