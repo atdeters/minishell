@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils_3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:24:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/03 15:39:51 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:56:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexing.h"
+
+bool	is_word_char(int i, char *input)
+{
+	if (!input[i] | !input[i + 1])
+		return (false);
+	if (ft_is_space(input[i + 1]))
+		return (false);
+	if (input[i + 1] == '\'')
+		return (false);
+	if (input[i + 1] == '"')
+		return (false);
+	if (input[i + 1] == '$')
+		return (false);
+	if (input[i + 1] == '|')
+		return (false);
+	if (input[i + 1] == '<')
+		return (false);
+	if (input[i + 1] == '>')
+		return (false);
+	return (true);
+}
 
 int	ft_is_space(char ch)
 {

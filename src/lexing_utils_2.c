@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/18 16:54:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:56:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,38 +116,13 @@ int	handle_double_quotes(int *i, char *input, t_token **current)
 	return (handle_nested_double_quotes(i, input, current));
 }
 
-bool is_norm_char(int i,  char *input)
-{
-	if (!input[i] | !input[i + 1])
-		return (false);
-	if (ft_is_space(input[i + 1]))
-		return (false);
-	if (input[i+ 1] == '\'')
-		return (false);
-	if (input[i + 1] == '"')
-		return (false);
-	if (input[i + 1] == '$')
-		return (false);
-	if (input[i+ 1] == '|')
-		return (false);
-	if (input[i + 1] == '<')
-		return (false); 
-	if (input[i + 1] == '>')
-		return (false);
-	return (true);
-}
-
 int	handle_word(int *i, char *input, t_token **current)
 {
 	int		start;
 	char	*word;
 
 	start = *i;
-	// while (input[*i] && input[*i + 1] && !ft_is_space(input[*i + 1]) && input[*i
-	// 	+ 1] != '\'' && input[*i + 1] != '"' && input[*i + 1] != '$' && input[*i
-	// 	+ 1] != '|' && input[*i + 1] != '<' && input[*i + 1] != '>')
-	// 	(*i)++;
-	while (is_norm_char(*i, input))
+	while (is_word_char(*i, input))
 		(*i)++;
 	word = ft_substr(input, start, (*i) - start + 1);
 	if (!word)
