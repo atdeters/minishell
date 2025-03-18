@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:18 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/25 10:53:33 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:50:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <ctype.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <string.h>
 
 // STRUCTS & ENUMS
