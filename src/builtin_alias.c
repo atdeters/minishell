@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 19:05:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 13:49:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_alias(t_data *data, char **command)
 
 	tmp = data->alias_lst;
 	if (!command[1])
-		print_env_lst(tmp);
+		print_env_lst(tmp, false);
 	else
 	{
 		if (has_flag_rm_alias(command))

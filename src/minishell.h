@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 21:51:14 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 13:49:26 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -298,7 +298,7 @@ int						check_entry(t_data *data, char *entry);
 // builtin_alias_helpers3.c
 bool					needs_expand(char *current, t_token *tmp);
 int						expand_alias(t_data *data, t_token **lst);
-void					print_env_lst(t_env_lst *lst);
+void					print_env_lst(t_env_lst *lst, bool is_export);
 
 // builtin_alias_helpers4.c
 bool					is_valid_entry_form(char *entry);

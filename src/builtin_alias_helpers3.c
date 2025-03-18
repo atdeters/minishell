@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:26:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 19:02:56 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 13:48:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,19 @@ int	expand_alias(t_data *data, t_token **lst)
 	return (0);
 }
 
-void	print_env_lst(t_env_lst *lst)
+void	print_env_lst(t_env_lst *lst, bool is_export)
 {
 	if (!lst)
 		printf("alias list currently emtpy\n");
 	while (lst)
 	{
-		ft_printf("%s=%s\n", lst->filed, lst->value);
+		if (is_export)
+		{
+			ft_printf("declare -x ");
+			ft_printf("%s=\"%s\"\n", lst->filed, lst->value);
+		}
+		else
+			ft_printf("%s=%s\n", lst->filed, lst->value);
 		lst = lst->next;
 	}
 }
