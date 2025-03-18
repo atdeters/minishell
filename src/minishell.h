@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 14:55:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:19:18 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@
 # define CD_HELP_FILE_PATH		"/docs/cd_usage.txt"
 # define PWD_HELP_FILE_PATH		"/docs/pwd_usage.txt"
 # define EXPORT_HELP_FILE_PATH	"/docs/export_usage.txt"
+# define ECHO_HELP_FILE_PATH	"/docs/echo_usage.txt"
 # define UNSET_HELP_FILE_PATH	"/docs/unset_usage.txt"
 # define ENV_HELP_FILE_PATH		"/docs/env_usage.txt"
 # define EXIT_HELP_FILE_PATH	"/docs/exit_usage.txt"
 # define ALIAS_HELP_FILE_PATH	"/docs/alias_usage.txt"
+# define BIMAN_HELP_FILE_PATH	"/docs/biman_usage.txt"
 
 ////* ENUMS
 enum					e_errors
@@ -65,6 +67,7 @@ enum					e_errors
 	ERR_BUILTIN_USAGE = 18,
 	ERR_INVALID_PATH = 19,
 	ERR_ALIAS_INV_RM = 22,
+	ERR_INV_BUILTIN = 23,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,
@@ -314,7 +317,7 @@ bool					is_nc_alias(char **command);
 int						ft_cd(t_data *data, char **command);
 
 // builtin_echo.c
-int						ft_echo(char **arr);
+int						ft_echo(char **command);
 
 // builtin_env.c
 int						ft_env(t_data *data, char **command);

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:44:09 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 14:54:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:13:45 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ bool	check_echo_flag(char *str)
 	return (true);
 }
 
-int	ft_echo(char **arr)
+int	ft_echo(char **command)
 {
 	int		i;
 	bool	flag;
 
 	i = 1;
-	flag = check_echo_flag(arr[i]);
+	flag = check_echo_flag(command[i]);
 	if (flag)
 		i++;
-	while (arr[i])
+	while (command[i])
 	{
-		ft_printf("%s", arr[i]);
+		ft_printf("%s", command[i]);
 		i++;
-		if (arr[i])
+		if (command[i])
 			ft_printf(" ");
 	}
 	if (!flag)

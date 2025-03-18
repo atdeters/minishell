@@ -1,0 +1,5 @@
+*NAME*
+	biman - display a manual for minishell builtin functions
+
+*USAGE*
+	biman [builtin name]
