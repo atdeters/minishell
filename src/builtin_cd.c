@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 14:40:08 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:55:50 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_cd(t_data *data, char **command)
 	{
 		ft_putstr_fd(SHELL_ERR_IDENT, 2);
 		ft_putstr_fd(ERR_MSG_CD_ARGS, 2);
-		return (ERR_CD_USAGE);
+		return (ERR_BUILTIN_USAGE);
 	}
 	if (!command[1] && chdir(data->home_path) == -1)
 		rage_quit(data, ERR_CHDIR, true, NULL);

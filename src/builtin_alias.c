@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 13:49:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:55:45 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	p_alias_single(t_data *data, char **command)
 		tmp = tmp->next;
 	}
 	print_usage(data, ALIAS_HELP_FILE_PATH);
-	return (setnret(data, ERR_ALIAS_USAGE));
+	return (setnret(data, ERR_BUILTIN_USAGE));
 }
 
 int	set_alias(t_data *data, char **command)
@@ -87,7 +87,7 @@ int	ft_alias(t_data *data, char **command)
 		else if (count_opts(command) == 2)
 			return (set_alias(data, command));
 		else
-			return (print_usage(data, ALIAS_HELP_FILE_PATH), ERR_ALIAS_USAGE);
+			return (print_usage(data, ALIAS_HELP_FILE_PATH), ERR_BUILTIN_USAGE);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:04 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 14:52:11 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:56:18 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_pwd(t_data *data, char **command)
 	else if (has_flag_help_pwd(command))
 		return (print_usage(data, PWD_HELP_FILE_PATH), 0);
 	else
-		return (print_usage(data, PWD_HELP_FILE_PATH), ERR_PWD_USAGE);
+		return (print_usage(data, PWD_HELP_FILE_PATH), ERR_BUILTIN_USAGE);
 	printf("%s\n", cwd);
 	return (free(cwd), 0);
 }

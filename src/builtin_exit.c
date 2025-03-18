@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 20:07:55 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 16:24:55 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:56:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	exit_err_nums(t_data *data, char **command)
 	ft_putstr_fd(command[1], 2);
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(ERR_MSG_EXIT_NUMS, 2);
-	rage_quit(data, ERR_EXIT_USAGE, true, NULL);
+	rage_quit(data, ERR_BUILTIN_USAGE, true, NULL);
 }
 
 int	check_exit_args(char **command)
@@ -32,7 +32,7 @@ int	check_exit_args(char **command)
 	{
 		ft_putstr_fd(SHELL_ERR_IDENT, 2);
 		ft_putstr_fd(ERR_MSG_EXIT_ARGS, 2);
-		return (ERR_EXIT_USAGE);
+		return (ERR_BUILTIN_USAGE);
 	}
 	return (0);
 }

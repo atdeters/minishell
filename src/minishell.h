@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 14:51:12 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:55:18 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,9 @@ enum					e_errors
 	ERR_INVALID_ENTRY = 15,
 	ERR_DUP_ENTRY = 16,
 	ERR_GETCWD = 17,
-	ERR_EXIT_USAGE = 18,
+	ERR_BUILTIN_USAGE = 18,
 	ERR_INVALID_PATH = 19,
-	ERR_CD_USAGE = 20,
-	ERR_ALIAS_USAGE = 21,
 	ERR_ALIAS_INV_RM = 22,
-	ERR_ENV_USAGE = 23,
-	ERR_PWD_USAGE = 24,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,
@@ -318,7 +314,7 @@ bool					is_nc_alias(char **command);
 int						ft_cd(t_data *data, char **command);
 
 // builtin_echo.c
-void					ft_echo(char **arr);
+int						ft_echo(char **arr);
 
 // builtin_env.c
 int						ft_env(t_data *data, char **command);

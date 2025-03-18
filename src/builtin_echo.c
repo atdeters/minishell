@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:44:09 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/22 17:47:00 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:54:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	check_echo_flag(char *str)
 	return (true);
 }
 
-void	ft_echo(char **arr)
+int	ft_echo(char **arr)
 {
 	int		i;
 	bool	flag;
@@ -46,4 +46,5 @@ void	ft_echo(char **arr)
 	}
 	if (!flag)
 		ft_printf("\n");
+	return (0);
 }
