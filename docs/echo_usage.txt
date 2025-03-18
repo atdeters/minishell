@@ -6,4 +6,3 @@
 
 *FLAGS*
     -n                  do not output the trailing newline
-    --help / -h         display this help

@@ -4,9 +4,6 @@
 *USAGE*
     cd [relative or absolute path to directory]
 
-*FLAGS*
-    --help / -h         display this help
-
 *Examples"
     cd ~                change working directory to home
     cd                  change working directory to home

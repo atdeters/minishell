@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:33:57 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:59:49 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,7 +278,7 @@ char					*add_branch(char *rl_prompt, char *branch);
 bool					user_agrees(t_data *data);
 
 // builtin_alias_flags.c
-bool					has_flag_help_alias(char **command);
+// bool					has_flag_help_alias(char **command);
 bool					has_flag_rm_alias(char **command);
 
 // builtin_alias_helpers.c
@@ -676,6 +676,7 @@ void					ft_env_lstdel_node(t_env_lst *lst, char *field);
 int						count_env_list_nodes(t_env_lst *lst);
 void					swap_env_nodes(t_env_lst *node1, t_env_lst *node2);
 void					sort_env_list(t_env_lst **lst);
+void					transfer_into_node(char *str, t_data *data, int j);
 
 // parser functions
 // int					parser_main(t_token **tokens, t_data *data);

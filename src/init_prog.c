@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:33:24 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:57:28 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 	parse_env(data, env);
 	set_shlvl(data, &data->env_lst);
 	set_home_path(data);
-	// parser_env_into_arr(data);
 	data->alias_path = get_home_path_for_file(data, ALIAS_FILE_NAME);
 	if (!data->alias_path)
 		rage_quit(data, data->error, false, NULL);

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:44:09 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:13:45 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:11:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	ft_echo(char **command)
 	bool	flag;
 
 	i = 1;
+	if (count_opts(command) == 1)
+		return (printf("\n"), 0);
 	flag = check_echo_flag(command[i]);
 	if (flag)
 		i++;

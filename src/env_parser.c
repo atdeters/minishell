@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:59:25 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/22 21:44:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:59:41 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	error_exit_env(char *f, char *v, t_env_lst *lst, int exit_code)
 }
 
 // should i really exit? I should add here return 0 instead
-static void	transfer_into_node(char *str, t_data *data, int j)
+void	transfer_into_node(char *str, t_data *data, int j)
 {
 	char		*field;
 	char		*value;

@@ -6,7 +6,6 @@
 
 *FLAGS*
     --remove / -r       Removes an alias (if it already exists)
-    --help / -h         display this help
 
 *EXAMPLES*
     alias               Display all available aliases

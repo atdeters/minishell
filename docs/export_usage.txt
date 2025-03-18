@@ -3,5 +3,3 @@
 
 *USAGE*
     export name[=word]
-
-*FLAGS*
