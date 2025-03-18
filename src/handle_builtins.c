@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:16:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 17:47:56 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:46:23 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ bool	handle_builtin(t_data *data, char **command)
 	else if (!ft_strcmp(command[0], "unset"))
 		return (true);
 	else if (!ft_strcmp(command[0], "env"))
-		return (ft_env(data), true);
+		return (data->exit_status = ft_env(data, command), true);
 	else
 		return (false);
 }

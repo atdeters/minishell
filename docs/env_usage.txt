@@ -1,3 +1,8 @@
 *NAME*
+	export - display environment variables
+
 *USAGE*
+	env [flags]
+
 *FLAGS*
+    --help / -h         display this help
