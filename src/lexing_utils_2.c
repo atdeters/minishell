@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/03 15:40:34 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/18 16:10:28 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	handle_special_char(char *input, t_token **current, int *i)
 }
 
 // shoud return (some error code in case of unclosed quote?
-// (if (!input[*i]) 
-//return (0));)
-//should think about every error code in case of not closed quote
+// (if (!input[*i])
+// return (0));)
+// should think about every error code in case of not closed quote
 int	handle_single_quote(int *i, char *input, t_token **current)
 {
 	int		start;
@@ -122,10 +122,9 @@ int	handle_word(int *i, char *input, t_token **current)
 	char	*word;
 
 	start = *i;
-	while (input[*i] && input[*i + 1] &&!ft_is_space(input[*i + 1])
-		&& input[*i + 1] != '\'' && input[*i + 1] != '"'
-		&& input[*i + 1] != '$' && input[*i + 1] != '|'
-		&& input[*i + 1] != '<' && input[*i + 1] != '>')
+	while (input[*i] && input[*i + 1] && !ft_is_space(input[*i + 1]) && input[*i
+		+ 1] != '\'' && input[*i + 1] != '"' && input[*i + 1] != '$' && input[*i
+		+ 1] != '|' && input[*i + 1] != '<' && input[*i + 1] != '>')
 		(*i)++;
 	word = ft_substr(input, start, (*i) - start + 1);
 	if (!word)
