@@ -6,16 +6,12 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 20:07:55 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 14:56:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:24:32 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/**
- * Exits the program with a warning that exit was used wrongly
- * aka it didn't get a numeric argument
- */
 void	exit_err_nums(t_data *data, char **command)
 {
 	ft_putstr_fd(SHELL_ERR_IDENT, 2);

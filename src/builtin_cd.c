@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:21:33 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:24:41 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ int	ft_cd(t_data *data, char **command)
 	if (!command[1] && chdir(data->home_path) == -1)
 		rage_quit(data, ERR_CHDIR, true, NULL);
 	replace_home(data, command);
-	// if (has_flag_help_alias(command))
-	// 	return (print_usage(data, CD_HELP_FILE_PATH), 0);
 	if (command[1] && chdir(command[1]) == -1)
 		return (ERR_INVALID_PATH);
 	replace_pwd_env(data);

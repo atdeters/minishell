@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 13:39:24 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:33:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	set_shlvl(t_data *data, t_env_lst **lst)
 int	init_shell(t_data *data, int ac, char **av, char **env)
 {
 	if (ac != 1 && ac != 3 && ac != 2)
-		exit(p_err(ERR_USAGE));
+		exit(p_err(data, ERR_USAGE));
 	*data = (t_data){0};
 	data->p_err = true;
 	data->msh_path = get_pwd_alloc(data, false);

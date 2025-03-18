@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:19:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:33:57 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -367,7 +367,7 @@ int						setnret(t_data *data, int code);
  *
  * @return The same error code that was passed as input.
  */
-int						p_err(int code);
+int						p_err(t_data *data, int code);
 /**
  * @brief Prints non-critical errors aka the program will not immediately
  * terminate after these errors.

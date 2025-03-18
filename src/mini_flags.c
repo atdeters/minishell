@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 18:51:33 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 18:11:51 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:30:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,22 @@ bool	is_flag_single(char *flag)
 
 bool	is_flag_help(char *flag)
 {
+	int	i;
+
 	if (!ft_strcmp(flag, "--help"))
 		return (true);
 	if (!ft_strcmp(flag, "-h"))
 		return (true);
-	return (false);
+	i = 1;
+	if (flag[0] != '-')
+		return (false);
+	while (flag[i])
+	{
+		if (flag[i] != 'h')
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 int	check_flags(t_data *data, int ac, char **av)
@@ -58,27 +69,3 @@ int	check_flags(t_data *data, int ac, char **av)
 		rage_quit(data, ERR_USAGE, true, NULL);
 	return (0);
 }
-
-// void	print_help(void)
-// {
-// 	char	*line;
-// 	int		fd;
-
-// 	fd = open(HELP_FILE_PATH, O_RDONLY);
-// 	if (fd < 0)
-// 		exit (ERR_OPEN);
-// 	line = get_next_line(fd);
-// 	if (!line)
-// 	{
-// 		close (fd);
-// 		exit (ERR_MALLOC);
-// 	}
-// 	while (line)
-// 	{
-// 		printf("%s", line);
-// 		free (line);
-// 		line = get_next_line(fd);
-// 	}
-// 	close (fd);
-// 	exit (0);
-// }

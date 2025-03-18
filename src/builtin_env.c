@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 21:57:21 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:23:25 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:24:16 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ft_env(t_data *data, char **command)
 {
-	// if (has_flag_help_alias(command))
-	// 	return (print_usage(data, ENV_HELP_FILE_PATH), 0);
 	if (command[1])
 		return (print_usage(data, ENV_HELP_FILE_PATH), ERR_BUILTIN_USAGE);
 	return (print_env_lst(data->env_lst, false), 0);
