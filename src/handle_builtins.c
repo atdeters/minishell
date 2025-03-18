@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:16:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 14:46:23 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:48:53 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	handle_builtin(t_data *data, char **command)
 	if (!ft_strcmp(command[0], "echo"))
 		return (ft_echo(command), true);
 	else if (!ft_strcmp(command[0], "pwd"))
-		return (ft_pwd(data, command), true);
+		return (data->exit_status = ft_pwd(data, command), true);
 	else if (!ft_strcmp(command[0], "cd"))
 		return (true);
 	else if (!ft_strcmp(command[0], "exit"))

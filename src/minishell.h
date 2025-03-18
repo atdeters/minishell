@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 14:45:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/18 14:51:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ enum					e_errors
 	ERR_ALIAS_USAGE = 21,
 	ERR_ALIAS_INV_RM = 22,
 	ERR_ENV_USAGE = 23,
+	ERR_PWD_USAGE = 24,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,
@@ -332,7 +333,7 @@ int						ft_export(t_data *data, char **command);
 /**
  * @brief Prints name of current/working directory
  */
-void					ft_pwd(t_data *data, char **command);
+int						ft_pwd(t_data *data, char **command);
 /**
  * Built so if it fails it cleanly exits the program aka no check
  * needed
