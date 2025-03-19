@@ -3,55 +3,112 @@
 /*                                                        :::      ::::::::   */
 /*   hdf_arr2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:43:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 16:14:07 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/19 14:20:08 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// void	fill_hdf_help(t_data *data, int nb, char *delimiter, int fd)
+// {
+// 	char	*line;
+
+// 	hdf_prompt(data, nb);
+// 	line = get_next_line(0);
+// 	if (!line)
+// 	{
+// 		get_next_line(-1);
+// 		free(delimiter);
+// 		rage_quit(data, ERR_GNL, true, NULL);
+// 	}
+// 	while (ft_strcmp(line, delimiter) && line != NULL)
+// 	{
+// 		expand_env_var(data, &line);
+// 		write(fd, line, ft_strlen(line));
+// 		free (line);
+// 		hdf_prompt(data, nb);
+// 		line = get_next_line(0);
+// 		if (!line)
+// 		{
+// 			get_next_line(-1);
+// 			free(delimiter);
+// 			rage_quit(data, ERR_GNL, true, NULL);
+// 		}
+// 	}
+// 	return (get_next_line(-1), free (line));
+// }
+
+char	*hdf_prompt_alloc(t_data *data, int nb)
+{
+	char	*nb_str;
+	char	*prompt;
+	int		size;
+
+	if (data->hdf_amt == 1)
+		return (ft_strdup(HERE_DOC_PROMPT));
+	else
+	{
+		nb_str = ft_itoa(nb);
+		if (!nb_str)
+			return (NULL);
+		size = ft_strlen(HERE_DOC_PROMPT) + ft_strlen(nb_str) + 4;
+		prompt = ft_calloc(sizeof(char), size);
+		if (!prompt)
+			return (NULL);
+		ft_strcpy(prompt, "[");
+		ft_strcat(prompt, nb_str);
+		ft_strcat(prompt, "] ");
+		ft_strcat(prompt, HERE_DOC_PROMPT);
+		return (free(nb_str), prompt);
+	}
+}
+
+void	p_hdf_int_warn(char *delimiter)
+{
+	ft_putstr_fd(SHELL_ERR_IDENT, 2);
+	ft_putstr_fd("warning: ", 2);
+	ft_putstr_fd("here-document delimited by end-of-file ", 2);
+	ft_putstr_fd("(wanted \'", 2);
+	ft_putstr_fd(delimiter, 2);
+	ft_putstr_fd("\')\n", 2);
+}
+
 void	fill_hdf_help(t_data *data, int nb, char *delimiter, int fd)
 {
 	char	*line;
+	char	*prompt;
 
-	hdf_prompt(data, nb);
-	line = get_next_line(0);
-	if (!line)
-	{
-		get_next_line(-1);
-		free(delimiter);
-		rage_quit(data, ERR_GNL, true, NULL);
-	}
-	while (ft_strcmp(line, delimiter) && line != NULL)
+	prompt = hdf_prompt_alloc(data, nb);
+	if (!prompt)
+		return (free(delimiter), rage_quit(data, ERR_MALLOC, true, NULL));
+	line = readline(prompt);
+	while (ft_strcmp(line, delimiter))
 	{
 		expand_env_var(data, &line);
 		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
 		free (line);
-		hdf_prompt(data, nb);
-		line = get_next_line(0);
-		if (!line)
-		{
-			get_next_line(-1);
-			free(delimiter);
-			rage_quit(data, ERR_GNL, true, NULL);
-		}
+		free (prompt);
+		prompt = hdf_prompt_alloc(data, nb);
+		if (!prompt)
+			return (free(delimiter), rage_quit(data, ERR_MALLOC, true, NULL));
+		line = readline(prompt);
 	}
-	return (get_next_line(-1), free (line));
+	if (!line)
+		p_hdf_int_warn(delimiter);
+	return (free (line));
 }
 
 int	fill_hdf(t_data *data, char *hdf, char *delim, int nb)
 {
 	int		fd;
-	char	*delimiter;
 
 	fd = open(hdf, O_WRONLY);
-	delimiter = delimiter_add_nl(delim);
-	if (!delimiter)
-		rage_quit(data, ERR_MALLOC, true, NULL);
-	fill_hdf_help(data, nb, delimiter, fd);
-	return (free(delimiter), close(fd), 0);
+	fill_hdf_help(data, nb, delim, fd);
+	return (close(fd), 0);
 }
 
 void	fill_hdf_arr_help(t_data *data, t_token **current, int i)
