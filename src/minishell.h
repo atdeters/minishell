@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 17:01:56 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/19 14:26:39 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -382,7 +382,7 @@ int						execute(t_data *data);
 
 // free.c
 void					fr_lst(char **arr);
-void					cool_free(void *ptr);
+void					cool_free(char **ptr);
 void					close_all(t_data *data);
 void					free_hdf_arr(t_data *data);
 

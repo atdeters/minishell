@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:00:46 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 18:59:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/19 14:29:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ void	fr_lst(char **arr)
 	}
 }
 
-void	cool_free(void *ptr)
+void	cool_free(char **ptr)
 {
-	if (ptr)
-		free(ptr);
-	ptr = NULL;
+	if (*ptr)
+		free(*ptr);
+	*ptr = NULL;
 }
 
 void	close_all(t_data *data)
