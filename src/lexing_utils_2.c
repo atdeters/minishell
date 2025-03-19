@@ -12,13 +12,14 @@
 
 #include "lexing.h"
 
+// Moved here because of norminette
+// if (input[*i] == '$')
+// 	return (handle_dolar(input, current, i, &word));
 int	handle_special_char(char *input, t_token **current, int *i)
 {
 	char	*word;
 
 	word = NULL;
-	// if (input[*i] == '$')
-	// 	return (handle_dolar(input, current, i, &word));
 	if (input[*i] == '|')
 		*current = create_token(PIPE, NULL);
 	else if (input[*i] == '<' && input[*i + 1] != '<')

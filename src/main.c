@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 16:14:15 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:03:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../src/minishell.h"
-
-int		handle_pipeline(t_data *data, char **av);
 
 int	main(int ac, char **av, char **env)
 {
@@ -24,19 +22,19 @@ int	main(int ac, char **av, char **env)
 	signal(SIGQUIT, NULL);
 	while (true)
 	{
-		handle_pipeline(&data, av);
+		init_command(&data);
+		if (!(&data)->flag_single)
+			get_input(&data);
+		else
+			(&data)->input = av[2];
+		handle_pipeline(&data);
 		if (data.flag_single)
 			rage_quit(&data, data.exit_status, true, NULL);
 	}
 }
 
-int	handle_pipeline(t_data *data, char **av)
+int	handle_pipeline(t_data *data)
 {
-	init_command(data);
-	if (!data->flag_single)
-		get_input(data);
-	else
-		data->input = av[2];
 	if (check_replace_input(data))
 		p_err(data, data->error);
 	if (!lexing(data->input, &data->token_lst, &data->error))

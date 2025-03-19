@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:43:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/19 14:21:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/19 15:03:18 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,6 @@ char	*hdf_prompt_alloc(t_data *data, int nb)
 		ft_strcat(prompt, HERE_DOC_PROMPT);
 		return (free(nb_str), prompt);
 	}
-}
-
-void	p_hdf_int_warn(char *delimiter)
-{
-	ft_putstr_fd(SHELL_ERR_IDENT, 2);
-	ft_putstr_fd("warning: ", 2);
-	ft_putstr_fd("here-document delimited by end-of-file ", 2);
-	ft_putstr_fd("(wanted \'", 2);
-	ft_putstr_fd(delimiter, 2);
-	ft_putstr_fd("\')\n", 2);
 }
 
 void	fill_hdf_help(t_data *data, int nb, char *delimiter, int fd)

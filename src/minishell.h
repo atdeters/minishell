@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/19 14:26:39 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/19 15:02:03 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -455,6 +455,9 @@ void					hdf_prompt(t_data *data, int nb);
 int						fill_hdf(t_data *data, char *hdf, char *delim, int nb);
 int						fill_hdf_arr(t_data *data, t_token **lst);
 
+// hdf_error.c
+void					p_hdf_int_warn(char *delimiter);
+
 // helpers_lst.c
 char					*get_value_from_lst(t_env_lst *lst, char *key);
 char					**lst_join(char **lst1, char **lst2);
@@ -705,5 +708,5 @@ int						lexing(char *input, t_token **list, int *err_code);
 // signal stuff
 void					signal_handler(int signum);
 t_data					*pointer_to_data(t_data *data);
-int						handle_pipeline(t_data *data, char **av);
+int						handle_pipeline(t_data *data);
 #endif
