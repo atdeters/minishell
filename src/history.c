@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 18:36:15 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 17:52:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/19 15:17:28 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,17 @@ int	add_full_history(t_data *data)
 	char	*lst_entry;
 	t_list	*node;
 
-	add_history(data->input);
-	lst_entry = ft_strdup(data->input);
-	if (!lst_entry)
-		return (setnret(data, ERR_HIST));
-	node = ft_lstnew(lst_entry);
-	if (!node)
-		return (free(lst_entry), setnret(data, ERR_HIST));
-	ft_lstadd_back(&data->hstlst, node);
+	if (ft_strcmp(data->input, ""))
+	{
+		add_history(data->input);
+		lst_entry = ft_strdup(data->input);
+		if (!lst_entry)
+			return (setnret(data, ERR_HIST));
+		node = ft_lstnew(lst_entry);
+		if (!node)
+			return (free(lst_entry), setnret(data, ERR_HIST));
+		ft_lstadd_back(&data->hstlst, node);
+	}
 	return (0);
 }
 
