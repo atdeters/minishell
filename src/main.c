@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/19 17:14:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/19 17:31:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	handle_pipeline(t_data *data)
 	if (!lexing(data->input, &data->token_lst, &data->error))
 		p_err(data, data->error);
 	expand_alias(data, &data->token_lst);
+	// Make create_hdf return bool to check for SIGINT
 	create_hdf(data);
 	fill_hdf_arr(data, &data->token_lst);
 	if (parser_main(data))

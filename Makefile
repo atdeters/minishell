@@ -15,7 +15,7 @@ DEFINES		 =	-D SHOW_FOLDER=$(SHOW_FOLDER)\
 
 COMP		=	cc
 CFLAGS		?=	-Wall -Wextra -Werror -g
-LDFLAGS		=	-lreadline
+LDFLAGS		=	-lreadline -lcurses 
 
 SRC_FILES	=	builtin_cd.c builtin_pwd.c builtin_env.c init_com.c init_prog.c get_here_doc_fd.c builtin_alias_helpers3.c ask_user.c builtin_export.c\
 				input.c errors.c env_lst_func.c env_parser.c helpers1.c add_rl_prompt.c builtin_alias.c rage_quit.c print_usage.c builtin_unset.c\
