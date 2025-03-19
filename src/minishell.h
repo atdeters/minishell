@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/19 15:02:03 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/19 18:08:39 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ typedef struct s_data
 	char				*msh_path;
 	char				*home_path;
 	bool				p_err;
-	bool				block_sig;
 	// Local
 	char				*input;
 	int					pipe_ind;
