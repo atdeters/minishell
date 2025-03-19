@@ -80,6 +80,7 @@ void	set_shlvl(t_data *data, t_env_lst **lst)
 
 int	init_shell(t_data *data, int ac, char **av, char **env)
 {
+	data->block_sig = 0;
 	if (ac != 1 && ac != 3 && ac != 2)
 		exit(p_err(data, ERR_USAGE));
 	*data = (t_data){0};

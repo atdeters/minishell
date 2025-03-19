@@ -134,6 +134,7 @@ typedef struct s_data
 	char				*msh_path;
 	char				*home_path;
 	bool				p_err;
+	bool				block_sig;
 	// Local
 	char				*input;
 	int					pipe_ind;

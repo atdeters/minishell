@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:43:32 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/19 14:49:48 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/19 16:59:53 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	signal_handler(int signum)
 	t_data	*data;
 
 	data = pointer_to_data(NULL);
-	if (signum == SIGINT)
+	if (signum == SIGINT && !data->block_sig)
 	{
-		ft_printf("\n");
+		write(STDOUT_FILENO, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();

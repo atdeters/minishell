@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/19 15:03:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/19 17:14:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	handle_pipeline(t_data *data)
 	if (parser_main(data))
 		p_err(data, data->error);
 	pipe_maker(data);
+	data->block_sig = true;
 	while (data->parsed_lst && data->parsed_lst->next)
 	{
 		execute(data);
@@ -55,5 +56,6 @@ int	handle_pipeline(t_data *data)
 	close_all(data);
 	wait_all(data);
 	free_all_com(data);
+	data->block_sig = false;
 	return (0);
 }
