@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rewrite_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/21 16:24:56 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 20:05:00 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ static int	check_for_special(char **word, char **res, char **start_w,
 	if (ft_strlen(*res) == 1 && *res[0] == '$')
 	{
 		if (!special_case_pid(word))
-			return (free(*start_w), free(*res), 0);
+			return (free(*start_w), free(*res), data->error = ERR_MALLOC, 0);
 	}
 	else if (ft_strlen(*res) == 1 && *res[0] == '?')
 	{
 		*word = ft_itoa(data->exit_status);
 		if (!*word)
-			return (free(*start_w), free(*res), 0);
+			return (free(*start_w), free(*res), data->error = ERR_MALLOC, 0);
 	}
 	else
 	{
 		*word = return_from_env_with_data(data, *res);
 		if (!*word)
-			return (free(*start_w), free(*res), 0);
+			return (free(*start_w), free(*res), data->error = ERR_MALLOC, 0);
 	}
 	return (1);
 }
@@ -43,24 +43,24 @@ static int	sub_replace(t_data *data, int start, int finish, char **input)
 
 	start_w = ft_substr(*input, 0, start);
 	if (!start_w)
-		return (0);
+		return (data->error = ERR_MALLOC, 0);
 	res = ft_substr(*input, start + 1, finish - start);
 	if (!res)
-		return (free(start_w), 0);
+		return (free(start_w), data->error = ERR_MALLOC, 0);
 	if (!check_for_special(&word, &res, &start_w, data))
 		return (0);
 	free(res);
 	res = ft_strjoin(start_w, word);
 	if (!res)
-		return (free(start_w), free(word), 0);
+		return (free(start_w), free(word), data->error = ERR_MALLOC, 0);
 	free(start_w);
 	free(word);
 	word = ft_substr(*input, finish + 1, ft_strlen(*input) - finish);
 	if (!word)
-		return (free(res), 0);
+		return (free(res), data->error = ERR_MALLOC, 0);
 	start_w = ft_strjoin(res, word);
 	if (!start_w)
-		return (free(word), free(res), 0);
+		return (free(word), free(res), data->error = ERR_MALLOC, 0);
 	return (free(*input), free(word), free(res), *input = start_w, 1);
 }
 
@@ -115,9 +115,14 @@ int	expand_env_var(t_data *data, char **input)
 
 int	check_replace_input(t_data *data)
 {
+	int	i;
+	
 	if (pipe_problem(data))
 		return (0);
 	if (quotes_problem(data))
 		return (0);
-	return (expand_env_var(data, &data->input));
+	i = expand_env_var(data, &data->input);
+	if (data->error == ERR_MALLOC)
+		rage_quit(data, data->error = ERR_MALLOC, true, NULL);
+	return (i);
 }
