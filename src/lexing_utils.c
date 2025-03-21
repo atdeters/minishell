@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:53:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/05 18:19:33 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 17:42:23 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexing.h"
+#include "minishell.h"
 
 t_token	*create_token(int type, char *value)
 {
