@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:11 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/21 15:48:01 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:34:40 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	lexing(char *input, t_token **list, int *err_code)
 	if (!input[i])
 		return (1);
 	if (input[i] == '|')
-		return (*err_code = 130, 0);
+		return (*err_code = ERR_PARS, 0);
 	while (input[i])
 	{
 		while (input[i] && ft_is_space(input[i]))
@@ -58,7 +58,7 @@ int	lexing(char *input, t_token **list, int *err_code)
 		if (!input[i])
 			return (1);
 		if (!process_token(input, &current, &i))
-			return (*err_code = 130, 0);
+			return (*err_code = ERR_PARS, 0);
 		ft_token_lstadd_back(list, current);
 		if (input[i])
 			i++;

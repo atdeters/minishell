@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/21 16:15:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 16:32:01 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,14 @@ int	handle_pipeline(t_data *data)
 	if (!check_replace_input(data))
 		return (cmd_abort(data));
 	if (!lexing(data->input, &data->token_lst, &data->error))
-		p_err(data, data->error);
+		return (cmd_abort(data));
 	expand_alias(data, &data->token_lst);
 	// Make create_hdf return bool to check for SIGINT
 	create_hdf(data);
-	fill_hdf_arr(data, &data->token_lst);
+	if (fill_hdf_arr(data, &data->token_lst))
+		return (cmd_abort(data));
 	if (parser_main(data))
-		p_err(data, data->error);
+	 	p_err(data, data->error);
 	pipe_maker(data);
 	signal(SIGINT, SIG_IGN);
 	while (data->parsed_lst && data->parsed_lst->next)
