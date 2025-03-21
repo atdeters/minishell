@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 16:59:23 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 17:16:51 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	p_alias_single(t_data *data, char **command)
 	{
 		if (!ft_strcmp(tmp->filed, command[1]))
 		{
-			printf("%s", tmp->value);
+			printf("%s\n", tmp->value);
 			return (0);
 		}
 		tmp = tmp->next;
