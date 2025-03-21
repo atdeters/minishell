@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:16:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:19:07 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 18:19:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	ft_biman(t_data *data, char **command)
 
 bool	handle_nc_builtin(t_data *data, char **command)
 {
+	if (!command[0])
+		return (false);
 	if (!ft_strcmp(command[0], "cd"))
 		return (data->exit_status = ft_cd(data, command), true);
 	else if (!ft_strcmp(command[0], "exit"))

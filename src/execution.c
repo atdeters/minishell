@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/19 18:07:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 18:24:35 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,17 @@ int	execute_subshell(t_data *data, char **command)
 	int		fd_out;
 
 	signal(SIGINT, signal_handler);
+	get_fds(data, &fd_in, &fd_out);
+	if (!command[0])
+	{
+		if (fd_in != -1)
+			close(fd_in);
+		if (fd_out != -1)
+			close(fd_out);
+		rage_quit(data, 0, false, NULL);
+	}
 	parser_env_into_arr(data);
 	add_path(data, command);
-	get_fds(data, &fd_in, &fd_out);
 	check_access(data, command[0], false);
 	cool_dup(data, fd_in, fd_out);
 	if (handle_builtin(data, command))
