@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/21 20:06:48 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/21 20:07:04 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -702,24 +702,26 @@ void					sort_env_list(t_env_lst **lst);
 void					transfer_into_node(char *str, t_data *data, int j);
 
 // parser functions
-// int					parser_main(t_token **tokens, t_data *data);
 int						parser_main(t_data *data);
 int						call_check_type(t_pars_data *pars_data, t_parsed *new);
 void					init_pars_data(t_pars_data *pars_data, t_data *data,
 							t_token **tokens);
 int						check_for_count(t_token *token);
 int						check_for_putting_words(t_token *token);
-int						check_for_putting_dollar(t_token *token);
+// int						check_for_putting_dollar(t_token *token);
 char					*return_from_env(t_pars_data pars_data, char *field);
-int						parse_in_out(t_token *current, t_parsed **new);
-int						parse_in_out_part_2(t_token *current, t_parsed **new);
-void					clear_parsing(t_data *data);
+int						parse_in_out(t_token *current, t_parsed **new,
+							t_data *data);
+int						parse_in_out_part_2(t_token *current, t_parsed **new,
+							t_data *data);
+// void					clear_parsing(t_data *data);
 
 // parser utils functions
 t_parsed				*create_p_node(char **cmd_and_args, char *in,
 							char *out);
-t_parsed				*get_p_last(t_parsed *lst);
+// t_parsed				*get_p_last(t_parsed *lst);
 void					add_p_back(t_parsed **lst, t_parsed *new);
+void					free_p_node(t_parsed *node);
 void					free_p_lst(t_parsed **lst);
 int						pipe_counter(t_token **tokens);
 

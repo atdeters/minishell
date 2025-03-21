@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:43:32 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/21 17:07:15 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 20:07:11 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Work only on standart mode
 // Should handle here_doc and execution mode
 
-int g_signal;
+int		g_signal;
 
 void	signal_handler(int signum)
 {
@@ -32,7 +32,7 @@ void	signal_handler(int signum)
 		rl_replace_line("", 0);
 		rl_redisplay();
 		free_all_com(data);
-	ft_printf("signal recived, value updated\n");
+		ft_printf("signal recived, value updated\n");
 	}
 }
 

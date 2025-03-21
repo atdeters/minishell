@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 15:39:01 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/03 15:18:14 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/21 20:00:48 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,36 +47,52 @@ int	check_for_putting_words(t_token *token)
 	return (0);
 }
 
-int	check_for_putting_dollar(t_token *token)
+int	pipe_counter(t_token **tokens)
 {
-	if (token->type == DOLAR_SIGN && (!token->prev || (token->prev
-				&& (token->prev->type != REDIR_APPEND
-					&& token->prev->type != REDIR_OUT
-					&& token->prev->type != REDIR_IN
-					&& token->prev->type != DELIMITER))))
-		return (1);
-	return (0);
-}
+	t_token	*current;
+	int		pipe_count;
 
-char	*return_from_env(t_pars_data pars_data, char *field)
-{
-	t_env_lst	*tmp;
-	char		*res;
-
-	res = NULL;
-	tmp = *pars_data.env_lst;
-	while (tmp)
+	current = *tokens;
+	pipe_count = 0;
+	while (current)
 	{
-		if (ft_strncmp(tmp->filed, field, ft_strlen(tmp->filed)) == 0)
-		{
-			res = ft_strdup(tmp->value);
-			if (!res)
-				return (NULL);
-			return (res);
-		}
-		tmp = tmp->next;
+		if (current->type == PIPE)
+			pipe_count++;
+		current = current->next;
 	}
-	res = malloc(sizeof(char));
-	res[0] = '\0';
-	return (res);
+	return (pipe_count);
 }
+
+// int	check_for_putting_dollar(t_token *token)
+// {
+// 	if (token->type == DOLAR_SIGN && (!token->prev || (token->prev
+// 				&& (token->prev->type != REDIR_APPEND
+// 					&& token->prev->type != REDIR_OUT
+// 					&& token->prev->type != REDIR_IN
+// 					&& token->prev->type != DELIMITER))))
+// 		return (1);
+// 	return (0);
+// }
+
+// char	*return_from_env(t_pars_data pars_data, char *field)
+// {
+// 	t_env_lst	*tmp;
+// 	char		*res;
+
+// 	res = NULL;
+// 	tmp = *pars_data.env_lst;
+// 	while (tmp)
+// 	{
+// 		if (ft_strncmp(tmp->filed, field, ft_strlen(tmp->filed)) == 0)
+// 		{
+// 			res = ft_strdup(tmp->value);
+// 			if (!res)
+// 				return (NULL);
+// 			return (res);
+// 		}
+// 		tmp = tmp->next;
+// 	}
+// 	res = malloc(sizeof(char));
+// 	res[0] = '\0';
+// 	return (res);
+// }

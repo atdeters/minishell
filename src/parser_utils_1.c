@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:30 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/03 15:21:41 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/21 20:01:38 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_parsed	*create_p_node(char **cmd_and_args, char *in, char *out)
 	return (new);
 }
 
-t_parsed	*get_p_last(t_parsed *lst)
+static t_parsed	*get_p_last(t_parsed *lst)
 {
 	t_parsed	*last;
 

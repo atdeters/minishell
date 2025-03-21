@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:50 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/03 15:12:43 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:37:50 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,13 @@ static int	count_size(t_token *head, t_token *tail, t_parsed *new)
 			out_count++;
 		tmp = tmp->next;
 	}
-	new->in_arr = malloc(sizeof(char *) * (in_count + 1));
+	new->in_arr = ft_calloc((in_count + 1), sizeof(char *));
 	if (!new->in_arr)
 		return (0);
-	new->in_arr[in_count] = NULL;
-	new->out_arr = malloc(sizeof(char *) * (out_count + 1));
+	new->out_arr = ft_calloc((out_count + 1), sizeof(char *));
 	if (!new->out_arr)
 		return (0);
-	return (new->out_arr[out_count] = NULL, 1);
+	return (1);
 }
 
 int	call_check_type(t_pars_data *pars_data, t_parsed *new)
