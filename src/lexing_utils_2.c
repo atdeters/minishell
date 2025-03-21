@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/21 15:18:50 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:33:04 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int	handle_single_quote(int *i, char *input, t_token **current)
 		free(word);
 		return (0);
 	}
-	(*i)++;
+	if (input[*i + 1] && (input[*i + 1] == ' ' || input[*i + 1] == '\''))
+		(*i)++;
 	return (1);
 }
 
