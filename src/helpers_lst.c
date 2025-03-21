@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:20:41 by adeters           #+#    #+#             */
-/*   Updated: 2025/02/25 11:58:07 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 17:26:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ char	**lst_join(char **lst1, char **lst2)
 	i = 0;
 	j = 0;
 	while (lst1 && lst1[i])
-		new[j++] = strdup(lst1[i++]);
+		new[j++] = ft_strdup(lst1[i++]);
 	i = 0;
 	while (lst2 && lst2[i])
-		new[j++] = strdup(lst2[i++]);
+		new[j++] = ft_strdup(lst2[i++]);
 	new[j] = NULL;
 	return (new);
 }
