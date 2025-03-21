@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/21 16:32:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 20:06:32 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	cmd_abort(t_data *data)
 int	handle_pipeline(t_data *data)
 {
 	if (!check_replace_input(data))
-		return (cmd_abort(data));
-	if (!lexing(data->input, &data->token_lst, &data->error))
-		return (cmd_abort(data));
+		return (p_err(data, data->error), free_all_com(data), 0);
+	if (!lexing(data->input, &data->token_lst, data))
+		p_err(data, data->error);
 	expand_alias(data, &data->token_lst);
 	// Make create_hdf return bool to check for SIGINT
 	create_hdf(data);

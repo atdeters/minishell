@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/21 16:32:41 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 20:07:04 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # include "./libft/libft.h"
 # include "config.h"
 # include "errmsg.h"
-# include "lexing.h"
 
 ////* MAKROS
 # define FD_LIMIT 508
@@ -37,16 +36,16 @@
 # define ALIAS_FILE_NAME ".vash_alias"
 
 ////* HELP FILES
-# define HELP_FILE_PATH			"/docs/msh_usage.txt"
-# define CD_HELP_FILE_PATH		"/docs/cd_usage.txt"
-# define PWD_HELP_FILE_PATH		"/docs/pwd_usage.txt"
-# define EXPORT_HELP_FILE_PATH	"/docs/export_usage.txt"
-# define ECHO_HELP_FILE_PATH	"/docs/echo_usage.txt"
-# define UNSET_HELP_FILE_PATH	"/docs/unset_usage.txt"
-# define ENV_HELP_FILE_PATH		"/docs/env_usage.txt"
-# define EXIT_HELP_FILE_PATH	"/docs/exit_usage.txt"
-# define ALIAS_HELP_FILE_PATH	"/docs/alias_usage.txt"
-# define BIMAN_HELP_FILE_PATH	"/docs/biman_usage.txt"
+# define HELP_FILE_PATH "/docs/msh_usage.txt"
+# define CD_HELP_FILE_PATH "/docs/cd_usage.txt"
+# define PWD_HELP_FILE_PATH "/docs/pwd_usage.txt"
+# define EXPORT_HELP_FILE_PATH "/docs/export_usage.txt"
+# define ECHO_HELP_FILE_PATH "/docs/echo_usage.txt"
+# define UNSET_HELP_FILE_PATH "/docs/unset_usage.txt"
+# define ENV_HELP_FILE_PATH "/docs/env_usage.txt"
+# define EXIT_HELP_FILE_PATH "/docs/exit_usage.txt"
+# define ALIAS_HELP_FILE_PATH "/docs/alias_usage.txt"
+# define BIMAN_HELP_FILE_PATH "/docs/biman_usage.txt"
 
 ////* ENUMS
 enum					e_errors
@@ -95,6 +94,19 @@ enum					e_out_mode
 	OUT_MODE_PIPE = 4,
 };
 
+enum					e_token_type
+{
+	WORD,
+	SINGLE_QOUTE,
+	DOUBLE_QOUTE,
+	DOLAR_SIGN,
+	PIPE,
+	REDIR_IN,
+	REDIR_OUT,
+	DELIMITER,
+	REDIR_APPEND
+};
+
 ////* STRUCTS
 typedef struct s_env_lst
 {
@@ -115,6 +127,14 @@ typedef struct s_parsed
 	struct s_parsed		*prev;
 	struct s_parsed		*next;
 }						t_parsed;
+
+typedef struct s_token
+{
+	int					type;
+	char				*value;
+	struct s_token		*next;
+	struct s_token		*prev;
+}						t_token;
 
 // TODO: check hist and alias path still needed?
 typedef struct s_data
@@ -682,29 +702,52 @@ void					sort_env_list(t_env_lst **lst);
 void					transfer_into_node(char *str, t_data *data, int j);
 
 // parser functions
-// int					parser_main(t_token **tokens, t_data *data);
 int						parser_main(t_data *data);
 int						call_check_type(t_pars_data *pars_data, t_parsed *new);
 void					init_pars_data(t_pars_data *pars_data, t_data *data,
 							t_token **tokens);
 int						check_for_count(t_token *token);
 int						check_for_putting_words(t_token *token);
-int						check_for_putting_dollar(t_token *token);
+// int						check_for_putting_dollar(t_token *token);
 char					*return_from_env(t_pars_data pars_data, char *field);
-int						parse_in_out(t_token *current, t_parsed **new);
-int						parse_in_out_part_2(t_token *current, t_parsed **new);
-void					clear_parsing(t_data *data);
+int						parse_in_out(t_token *current, t_parsed **new,
+							t_data *data);
+int						parse_in_out_part_2(t_token *current, t_parsed **new,
+							t_data *data);
+// void					clear_parsing(t_data *data);
 
 // parser utils functions
 t_parsed				*create_p_node(char **cmd_and_args, char *in,
 							char *out);
-t_parsed				*get_p_last(t_parsed *lst);
+// t_parsed				*get_p_last(t_parsed *lst);
 void					add_p_back(t_parsed **lst, t_parsed *new);
+void					free_p_node(t_parsed *node);
 void					free_p_lst(t_parsed **lst);
 int						pipe_counter(t_token **tokens);
 
 // lexing
-int						lexing(char *input, t_token **list, int *err_code);
+int						lexing(char *input, t_token **list, t_data *data);
+int						ft_is_space(char ch);
+t_token					*create_token(int type, char *value);
+t_token					*ft_token_lstlast(t_token *lst);
+void					ft_token_lstadd_back(t_token **lst, t_token *new);
+void					ft_token_lstdelone(t_token *lst);
+void					ft_token_lstclear(t_token **lst);
+int						handle_special_char(char *input, t_token **current,
+							int *i, t_data *data);
+int						handle_single_quote(int *i, char *input,
+							t_token **current);
+int						handle_nested_double_quotes(int *i, char *input,
+							t_token **current);
+int						handle_double_quotes(int *i, char *input,
+							t_token **current);
+int						handle_word(int *i, char *input, t_token **current,
+							t_data *data);
+bool					is_word_char(int i, char *input);
+int						handle_dolar(char *input, t_token **current, int *i,
+							char **word);
+int						handle_delim(t_data *data, t_token **current, int *i,
+							char **word);
 
 // signal stuff
 void					signal_handler(int signum);
