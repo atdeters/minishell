@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils_3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:24:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/18 16:56:43 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 15:20:54 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,15 @@ int	handle_delim(char *input, t_token **current, int *i, char **word)
 	int	j;
 
 	*i += 2;
+	while (ft_is_space(input[*i]))
+		(*i)++;
 	j = *i;
 	while (input[*i] && input[*i + 1] && !ft_is_space(input[*i + 1])
 		&& input[*i + 1] != '<' && input[*i + 1] != '>'
 		&& input[*i + 1] != '|' && input[*i + 1] != '$'
 		&& input[*i + 1] != '\"' && input[*i + 1] != '\'')
 		(*i)++;
-	*word = ft_substr(input, j + 1, *i - j);
+	*word = ft_substr(input, j, *i - j + 1);
 	if (!*word)
 		return (*word = NULL, 0);
 	*current = create_token(DELIMITER, *word);

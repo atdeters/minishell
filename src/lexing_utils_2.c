@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/18 16:56:40 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 15:18:50 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,9 @@ int	handle_double_quotes(int *i, char *input, t_token **current)
 		free(word);
 		return (0);
 	}
-	(*i)++;
-	return (handle_nested_double_quotes(i, input, current));
+	if (input[*i + 1] && (input[*i + 1] == ' ' || input[*i + 1] == '\"'))
+		return ((*i)++, handle_nested_double_quotes(i, input, current));
+	return (1);
 }
 
 int	handle_word(int *i, char *input, t_token **current)
