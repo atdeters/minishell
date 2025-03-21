@@ -12,3 +12,7 @@
     alias    [name]     Display the aliases with the corresponding expansion
     alias -r [name]     Remove a specific alias
     alias -h            Display this help
+
+*NOTE*
+    It expects a single command as input. So make sure to format it with quotes.
+    - 'alias "st=git status"' instead of 'alias st=git status' or 'alias st="git status"'
