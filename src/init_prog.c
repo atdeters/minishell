@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_prog.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/19 18:08:35 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 14:01:09 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 	if (!data->hist_path)
 		rage_quit(data, data->error, false, NULL);
 	load_old_history(data->hist_path);
+	data->stage_flag = 0;
 	return (0);
 }

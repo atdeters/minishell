@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:43:32 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/19 18:09:29 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 15:21:55 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 // Work only on standart mode
 // Should handle here_doc and execution mode
+
+int g_signal;
+
 void	signal_handler(int signum)
 {
 	t_data	*data;
@@ -21,11 +24,15 @@ void	signal_handler(int signum)
 	data = pointer_to_data(NULL);
 	if (signum == SIGINT)
 	{
+		g_signal = SIGINT;
+		if (!data->stage_flag)
+			return ;
 		write(STDOUT_FILENO, "\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
 		free_all_com(data);
+	ft_printf("signal recived, value updated\n");
 	}
 }
 
