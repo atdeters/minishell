@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/21 15:33:04 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:46:35 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,40 @@ int	handle_double_quotes(int *i, char *input, t_token **current)
 	return (1);
 }
 
+char *remove_quotes(char *word)
+{
+	int		i;
+	char	*new_new;
+	int		j;
+
+	j = 0;
+	i = 0;
+	while (word[i])
+	{
+		if (word[i] != '\"' && word[i] != '\'')
+			j++;
+		i++;
+	}
+	new_new = malloc((j + 1) * sizeof(char));
+	if (!new_new)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (word[i])
+	{
+		if (word[i] != '\"' && word[i] != '\'')
+			new_new[j++] = word[i];
+		i++;
+	}
+	new_new[j] = '\0';
+	return (new_new);
+}
+
 int	handle_word(int *i, char *input, t_token **current)
 {
 	int		start;
 	char	*word;
+	char 	*final_word;
 
 	start = *i;
 	while (is_word_char(*i, input))
@@ -130,10 +160,14 @@ int	handle_word(int *i, char *input, t_token **current)
 	word = ft_substr(input, start, (*i) - start + 1);
 	if (!word)
 		return (0);
-	*current = create_token(WORD, word);
+	final_word = remove_quotes(word);
+	free(word);
+	if (!final_word)
+		return(0);
+	*current = create_token(WORD, final_word);
 	if (!*current)
 	{
-		free(word);
+		free(final_word);
 		return (0);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:11 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/21 15:21:19 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:48:01 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ static int	process_token(char *input, t_token **current, int *i)
 		if (!handle_special_char(input, current, i))
 			return (0);
 	}
-	else if (input[*i] == '\'')
-	{
-		if (!handle_single_quote(i, input, current))
-			return (0);
-	}
-	else if (input[*i] == '"')
-	{
-		if (!handle_double_quotes(i, input, current))
-			return (0);
-	}
+	// else if (input[*i] == '\'')
+	// {
+	// 	if (!handle_single_quote(i, input, current))
+	// 		return (0);
+	// }
+	// else if (input[*i] == '"')
+	// {
+	// 	if (!handle_double_quotes(i, input, current))
+	// 		return (0);
+	// }
 	else
 	{
 		if (!handle_word(i, input, current))
@@ -63,5 +63,13 @@ int	lexing(char *input, t_token **list, int *err_code)
 		if (input[i])
 			i++;
 	}
+	// t_token *tmp;
+	// tmp = *list;
+	// while (tmp)
+	// {
+	// 	printf("tmp-value = |%s|, tmp->type = |%d|\n", tmp->value, tmp->type);
+	// 	tmp = tmp->next;
+	// }
+	// exit (100);
 	return (1);
 }

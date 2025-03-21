@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/19 18:08:29 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/21 16:04:53 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	main(int ac, char **av, char **env)
 
 int	handle_pipeline(t_data *data)
 {
-	if (check_replace_input(data))
-		p_err(data, data->error);
+	if (!check_replace_input(data))
+		return (p_err(data, data->error), free_all_com(data), 0);
 	if (!lexing(data->input, &data->token_lst, &data->error))
 		p_err(data, data->error);
 	expand_alias(data, &data->token_lst);
