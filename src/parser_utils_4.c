@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-staitc int	parse_out_redir(t_token *current, t_parsed **new, t_data *data)
+static int	parse_out_redir(t_token *current, t_parsed **new, t_data *data)
 {
 	(*new)->out_arr[(*new)->o_c] = ft_strdup(current->next->value);
 	if (!(*new)->out_arr[(*new)->o_c])
