@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:38:57 by andreas           #+#    #+#             */
-/*   Updated: 2025/03/24 15:48:08 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/24 18:17:32 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	input_is_no(char *input)
 bool	user_agrees(t_data *data)
 {
 	char	*line;
-
+	
 	line = get_next_line(0);
 	if (!line)
 		rage_quit(data, ERR_MALLOC, true, NULL);

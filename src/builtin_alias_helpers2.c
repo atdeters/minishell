@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:24:14 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 16:59:17 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/24 18:20:02 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,25 @@ int	check_entry(t_data *data, char *entry)
 		return (setnret(data, ERR_INVALID_ENTRY));
 	}
 	if (!is_unique_key(data->alias_lst, entry))
-	{
-		p_alias_dup(data, entry);
-		if (user_agrees(data))
-			return (extract_and_remove(data, entry), 0);
-		else
-			return (setnret(data, ERR_DUP_ENTRY));
-	}
+		return (extract_and_remove(data, entry), 0);
 	return (0);
 }
+
+//* Version that asks the user for permission to overwrite
+// int	check_entry(t_data *data, char *entry)
+// {
+// 	if (!is_valid_entry_form(entry))
+// 	{
+// 		printf("Not a valid entry for alias\n");
+// 		return (setnret(data, ERR_INVALID_ENTRY));
+// 	}
+// 	if (!is_unique_key(data->alias_lst, entry))
+// 	{
+// 		p_alias_dup(data, entry);
+// 		if (user_agrees(data))
+// 			return (extract_and_remove(data, entry), 0);
+// 		else
+// 			return (setnret(data, ERR_DUP_ENTRY));
+// 	}
+// 	return (0);
+// }
