@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:38:57 by andreas           #+#    #+#             */
-/*   Updated: 2025/03/21 17:16:05 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/24 15:48:08 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ bool	input_is_yes(char *input)
 	if (!ft_strcmp(input, "y\n"))
 		return (true);
 	if (!ft_strcmp(input, "Y\n"))
-		return (true);
-	if (!ft_strcmp(input, "\n"))
 		return (true);
 	return (false);
 }
