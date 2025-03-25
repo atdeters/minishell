@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 20:41:33 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 21:04:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,6 @@ typedef struct s_pars_data
 ////* FUNCTION-FILES
 // access.c
 int						check_access(t_data *data, char *name, bool is_file);
-// int						check_access_files(t_data *data);
 
 // add_rl_prompt.c
 /**
