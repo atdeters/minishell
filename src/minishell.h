@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 16:49:22 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 18:43:21 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -749,7 +749,7 @@ int						handle_double_quotes(int *i, char *input,
 							t_token **current);
 int						handle_word(int *i, char *input, t_token **current,
 							t_data *data);
-bool					is_word_char(int i, char *input);
+bool					is_word_char(int i, char *input, int *flag);
 int						handle_dolar(char *input, t_token **current, int *i,
 							char **word);
 int						handle_delim(t_data *data, t_token **current, int *i,

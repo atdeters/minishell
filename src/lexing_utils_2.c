@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/21 17:55:44 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:40:26 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,33 +124,69 @@ int	handle_special_char(char *input, t_token **current, int *i, t_data *data)
 // 	return (1);
 // }
 
+void	transfer_str_in_rq(char *word, int flag, char *new_new)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (word[i])
+	{
+		if ((word[i] != '\"' && flag == 2) || (word[i] != '\'' && flag == 1)
+			|| (word[i] != '\'' && word[i] != '"'))
+			new_new[j++] = word[i];
+		i++;
+	}
+	new_new[j] = '\0';
+}
+
 char	*remove_quotes(char *word)
 {
 	int		i;
 	char	*new_new;
 	int		j;
+	int		flag;
 
 	j = 0;
 	i = 0;
+	flag = 0;
 	while (word[i])
 	{
-		if (word[i] != '\"' && word[i] != '\'')
+		if (word[i] == '\"' && !flag)
+			flag = 2;
+		else if (word[i] == '\'' && !flag)
+			flag = 1;
+		if ((word[i] != '\"' && flag == 2) || (word[i] != '\'' && flag == 1)
+			|| (word[i] != '\"' && word[i] != '\''))
 			j++;
 		i++;
 	}
 	new_new = malloc((j + 1) * sizeof(char));
 	if (!new_new)
 		return (NULL);
-	i = 0;
-	j = 0;
-	while (word[i])
-	{
-		if (word[i] != '\"' && word[i] != '\'')
-			new_new[j++] = word[i];
-		i++;
-	}
-	new_new[j] = '\0';
+	transfer_str_in_rq(word, flag, new_new);
 	return (new_new);
+}
+
+int	iterate_word(int *i, char *input)
+{
+	static int	flag = 0;
+
+	while (is_word_char(*i, input, &flag))
+	{
+		if (input[*i] == '\'' && flag == 0)
+			flag = 1;
+		else if (input[*i] == '"' && flag == 0)
+			flag = 2;
+		else if (input[*i] == '\'' && flag == 1)
+			flag = 0;
+		else if (input[*i] == '"' && flag == 2)
+			flag = 0;
+		(*i)++;
+	}
+	flag = 0;
+	return (1);
 }
 
 int	handle_word(int *i, char *input, t_token **current, t_data *data)
@@ -160,8 +196,7 @@ int	handle_word(int *i, char *input, t_token **current, t_data *data)
 	char	*final_word;
 
 	start = *i;
-	while (is_word_char(*i, input))
-		(*i)++;
+	iterate_word(i, input);
 	word = ft_substr(input, start, (*i) - start + 1);
 	if (!word)
 		return (data->error = ERR_MALLOC, 0);
