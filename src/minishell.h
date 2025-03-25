@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/21 20:07:04 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:12:30 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ enum					e_errors
 	ERR_INVALID_PATH = 19,
 	ERR_ALIAS_INV_RM = 22,
 	ERR_INV_BUILTIN = 23,
+	ERR_DIR = 24,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,
