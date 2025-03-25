@@ -6,11 +6,13 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/22 19:27:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 16:50:01 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int		g_signal;
 
 char	*get_home_path_for_file(t_data *data, char *file_name)
 {
@@ -80,6 +82,7 @@ void	set_shlvl(t_data *data, t_env_lst **lst)
 
 int	init_shell(t_data *data, int ac, char **av, char **env)
 {
+	g_signal = 0;
 	if (ac != 1 && ac != 3 && ac != 2)
 		exit(p_err(data, ERR_USAGE));
 	*data = (t_data){0};

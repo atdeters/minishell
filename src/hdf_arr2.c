@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hdf_arr2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:43:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/21 20:05:33 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/25 17:14:39 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	fill_hdf_help(t_data *data, int nb, char *delimiter, int fd)
 	if (!prompt)
 		return (free(delimiter), rage_quit(data, ERR_MALLOC, true, NULL));
 	line = readline(prompt);
-	while (ft_strcmp(line, delimiter))
+	while (ft_strcmp(line, delimiter) && !g_signal)
 	{
 		expand_env_var(data, &line);
 		write(fd, line, ft_strlen(line));

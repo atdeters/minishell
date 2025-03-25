@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 16:41:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 16:49:22 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@
 # define EXIT_HELP_FILE_PATH "/docs/exit_usage.txt"
 # define ALIAS_HELP_FILE_PATH "/docs/alias_usage.txt"
 # define BIMAN_HELP_FILE_PATH "/docs/biman_usage.txt"
+
+////* GLOBAL VARIABLE
+extern int	g_signal;
 
 ////* ENUMS
 enum					e_errors
