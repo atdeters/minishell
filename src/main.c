@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 20:17:15 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 20:55:56 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ int	handle_pipeline(t_data *data)
 	if (!check_replace_input(data))
 		return (cmd_abort(data, false));
 	if (!lexing(data->input, &data->token_lst, data))
-		p_err(data, data->error);
+		return (cmd_abort(data, false));
 	expand_alias(data, &data->token_lst);
 	create_hdf(data);
 	if (fill_hdf_arr(data, &data->token_lst))
 		return (cmd_abort(data, true));
 	if (parser_main(data))
-		p_err(data, data->error);
+		return (cmd_abort(data, false));
 	pipe_maker(data);
 	signal(SIGINT, SIG_IGN);
 	while (data->parsed_lst && data->parsed_lst->next)
