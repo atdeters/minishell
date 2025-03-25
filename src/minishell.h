@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 16:26:51 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 16:41:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ typedef struct s_data
 	t_parsed			*parsed_lst;
 	t_token				*token_lst;
 	int					stage_flag;
+	char				*prog_path;
 }						t_data;
 
 typedef struct s_pars_data
@@ -659,7 +660,7 @@ char					*get_pathstr(t_data *data);
  * - No checks about the accessibility of the executables is done in
  * this function
  */
-char					**add_path(t_data *data, char **command);
+char					*add_path(t_data *data, char **command);
 
 // piping.c
 /**

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 16:28:44 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 16:41:39 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ int	execute_subshell(t_data *data, char **command)
 		rage_quit(data, 0, false, NULL);
 	}
 	parser_env_into_arr(data);
-	add_path(data, command);
-	check_access(data, command[0], false);
+	data->prog_path = add_path(data, command);
+	if (!data->prog_path)
+		rage_quit(data, ERR_MALLOC, false, NULL);
+	check_access(data, data->prog_path, false);
 	cool_dup(data, fd_in, fd_out);
 	if (handle_builtin(data, command))
 		rage_quit(data, data->exit_status, false, NULL);
-	if (execve(command[0], command, data->envp) == -1)
+	if (execve(data->prog_path, command, data->envp) == -1)
 		rage_quit(data, ERR_EXECVE, false, NULL);
 	return (0);
 }

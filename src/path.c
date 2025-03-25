@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:52:51 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 18:16:11 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 16:40:46 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_pathstr(t_data *data)
 	return (NULL);
 }
 
-char	**check_env(t_data *data, char **paths_arr, char **command)
+char	*check_env(t_data *data, char **paths_arr, char **command)
 {
 	int		i;
 	char	*tmp;
@@ -63,19 +63,19 @@ char	**check_env(t_data *data, char **paths_arr, char **command)
 		i++;
 	}
 	if (paths_arr[i])
-		return (free(command[0]), command[0] = tmp, fr_lst(paths_arr), command);
-	return (fr_lst(paths_arr), command);
+		return (fr_lst(paths_arr), tmp);
+	return (fr_lst(paths_arr), ft_strdup(command[0]));
 }
 
-char	**add_path(t_data *data, char **command)
+char	*add_path(t_data *data, char **command)
 {
 	char	**paths_arr;
 	char	*paths_str;
 
 	if (is_builtin(command[0]))
-		return (command);
+		return (ft_strdup(command[0]));
 	if (ft_strchr(command[0], '/'))
-		return (command);
+		return (ft_strdup(command[0]));
 	paths_str = get_pathstr(data);
 	paths_arr = ft_split(paths_str, ':');
 	if (!paths_arr)

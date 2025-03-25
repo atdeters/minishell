@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:58:19 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/19 14:26:55 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 16:37:35 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	free_all_com(t_data *data)
 		ft_token_lstclear(&data->token_lst);
 	if (data->hdf_arr)
 		free_hdf_arr(data);
+	if (data->prog_path)
+		cool_free(&data->prog_path);
 	close_all(data);
 }
 
