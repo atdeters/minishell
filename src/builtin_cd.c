@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:24:41 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 14:07:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_cd(t_data *data, char **command)
 		rage_quit(data, ERR_CHDIR, true, NULL);
 	replace_home(data, command);
 	if (command[1] && chdir(command[1]) == -1)
-		return (ERR_INVALID_PATH);
+		return (p_err_arg(ERR_INVALID_PATH, command[1]));
 	replace_pwd_env(data);
 	return (0);
 }
