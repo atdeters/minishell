@@ -25,10 +25,10 @@ bool	is_valid_ident(char *entry)
 		return (false);
 	while (entry[i])
 	{
-		if (!ft_isalnum(entry[i]) && entry[i] != '_')
-			return (false);
 		if (entry[i] == '=')
 			return (true);
+		if (!ft_isalnum(entry[i]) && entry[i] != '_')
+			return (false);
 		i++;
 	}
 	return (true);
