@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 18:43:21 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/25 20:41:33 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/wait.h>
+# include <sys/ioctl.h>
 # include <unistd.h>
 
 ////* HEADERFILES
@@ -477,6 +478,7 @@ char					*hdf_name_gen(t_data *data);
  */
 int						create_hdf(t_data *data);
 void					hdf_prompt(t_data *data, int nb);
+char					*hdf_prompt_alloc(t_data *data, int nb);
 
 // hdf_arr2.c
 int						fill_hdf(t_data *data, char *hdf, char *delim, int nb);
@@ -756,7 +758,8 @@ int						handle_delim(t_data *data, t_token **current, int *i,
 							char **word);
 
 // signal stuff
-void					signal_handler(int signum);
+void					sig_handle_here_doc(int signum);
+void					sig_handle_basic(int signum);
 t_data					*pointer_to_data(t_data *data);
 int						handle_pipeline(t_data *data);
 #endif

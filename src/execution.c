@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 16:41:39 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 20:03:19 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	execute_subshell(t_data *data, char **command)
 	int		fd_in;
 	int		fd_out;
 
-	signal(SIGINT, signal_handler);
+	signal(SIGINT, sig_handle_basic);
 	get_fds(data, &fd_in, &fd_out);
 	if (!command[0])
 	{

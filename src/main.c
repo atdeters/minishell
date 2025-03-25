@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 18:43:12 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/25 20:17:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av, char **env)
 
 	init_shell(&data, ac, av, env);
 	pointer_to_data(&data);
-	signal(SIGINT, signal_handler);
+	signal(SIGINT, sig_handle_basic);
 	signal(SIGQUIT, NULL);
 	while (true)
 	{
@@ -34,9 +34,12 @@ int	main(int ac, char **av, char **env)
 	}
 }
 
-int	cmd_abort(t_data *data)
+int	cmd_abort(t_data *data, bool mute)
 {
-	data->exit_status = p_err(data, data->error);
+	if (mute)
+		data->exit_status = data->error;
+	else
+		data->exit_status = p_err(data, data->error);
 	free_all_com(data);
 	return (data->error);
 }
@@ -44,13 +47,13 @@ int	cmd_abort(t_data *data)
 int	handle_pipeline(t_data *data)
 {
 	if (!check_replace_input(data))
-		return (cmd_abort(data));
+		return (cmd_abort(data, false));
 	if (!lexing(data->input, &data->token_lst, data))
 		p_err(data, data->error);
 	expand_alias(data, &data->token_lst);
 	create_hdf(data);
 	if (fill_hdf_arr(data, &data->token_lst))
-		return (cmd_abort(data));
+		return (cmd_abort(data, true));
 	if (parser_main(data))
 		p_err(data, data->error);
 	pipe_maker(data);
@@ -65,6 +68,6 @@ int	handle_pipeline(t_data *data)
 	close_all(data);
 	wait_all(data);
 	free_all_com(data);
-	signal(SIGINT, signal_handler);
+	signal(SIGINT, sig_handle_basic);
 	return (0);
 }

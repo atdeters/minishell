@@ -6,71 +6,61 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:43:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 17:14:39 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 20:42:10 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*hdf_prompt_alloc(t_data *data, int nb)
+void	write_and_free(int fd, char *line, char *prompt)
 {
-	char	*nb_str;
-	char	*prompt;
-	int		size;
-
-	if (data->hdf_amt == 1)
-		return (ft_strdup(HERE_DOC_PROMPT));
-	else
-	{
-		nb_str = ft_itoa(nb);
-		if (!nb_str)
-			return (NULL);
-		size = ft_strlen(HERE_DOC_PROMPT) + ft_strlen(nb_str) + 4;
-		prompt = ft_calloc(sizeof(char), size);
-		if (!prompt)
-			return (NULL);
-		ft_strcpy(prompt, "[");
-		ft_strcat(prompt, nb_str);
-		ft_strcat(prompt, "] ");
-		ft_strcat(prompt, HERE_DOC_PROMPT);
-		return (free(nb_str), prompt);
-	}
+	write(fd, line, ft_strlen(line));
+	write(fd, "\n", 1);
+	free(line);
+	free(prompt);
 }
 
-void	fill_hdf_help(t_data *data, int nb, char *delimiter, int fd)
+int	fill_hdf_help(t_data *data, int nb, char *delimiter, int fd)
 {
 	char	*line;
 	char	*prompt;
 
 	prompt = hdf_prompt_alloc(data, nb);
 	if (!prompt)
-		return (free(delimiter), rage_quit(data, ERR_MALLOC, true, NULL));
+		return (close(fd), free(delimiter), rage_quit(data, ERR_MALLOC, true,
+				NULL), 0);
 	line = readline(prompt);
 	while (ft_strcmp(line, delimiter) && !g_signal)
 	{
-		expand_env_var(data, &line);
-		write(fd, line, ft_strlen(line));
-		write(fd, "\n", 1);
-		free (line);
-		free (prompt);
+		if (!expand_env_var(data, &line))
+			return (free(line), free(prompt), close(fd), free(delimiter),
+				rage_quit(data, ERR_MALLOC, true, NULL), 0);
+		write_and_free(fd, line, prompt);
 		prompt = hdf_prompt_alloc(data, nb);
 		if (!prompt)
-			return (free(delimiter), rage_quit(data, ERR_MALLOC, true, NULL));
+			return (close(fd), free(delimiter), rage_quit(data, ERR_MALLOC,
+					true, NULL), 0);
 		line = readline(prompt);
 	}
-	free (prompt);
+	if (g_signal)
+		return (free(prompt), free(line), setnret(data, ERR_PARS), 1);
 	if (!line)
 		p_hdf_int_warn(delimiter);
-	return (free (line));
+	return (free(prompt), free(line), 0);
 }
 
 int	fill_hdf(t_data *data, char *hdf, char *delim, int nb)
 {
-	int		fd;
+	int	fd;
+	int	ret;
 
 	fd = open(hdf, O_WRONLY);
-	fill_hdf_help(data, nb, delim, fd);
-	return (close(fd), 0);
+	if (fd < 0)
+		rage_quit(data, ERR_OPEN, true, NULL);
+	signal(SIGINT, sig_handle_here_doc);
+	ret = fill_hdf_help(data, nb, delim, fd);
+	signal(SIGINT, sig_handle_basic);
+	return (close(fd), ret);
 }
 
 void	fill_hdf_arr_help(t_data *data, t_token **current, int i)
@@ -80,7 +70,7 @@ void	fill_hdf_arr_help(t_data *data, t_token **current, int i)
 
 	new = NULL;
 	(*current)->type = REDIR_IN;
-	free ((*current)->value);
+	free((*current)->value);
 	(*current)->value = NULL;
 	tmp = (*current)->next;
 	new = create_token(WORD, ft_strdup(data->hdf_arr[i]));
@@ -106,7 +96,8 @@ int	fill_hdf_arr(t_data *data, t_token **lst)
 	{
 		if (current->type == DELIMITER)
 		{
-			fill_hdf(data, data->hdf_arr[i], current->value, nb);
+			if (fill_hdf(data, data->hdf_arr[i], current->value, nb))
+				return (data->error);
 			fill_hdf_arr_help(data, &current, i);
 			i++;
 			nb++;

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:32:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 16:17:43 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 20:12:23 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	is_valid_ident(char *entry)
 	return (true);
 }
 
-int add_env(t_data *data, char *entry)
+int	add_env(t_data *data, char *entry)
 {
 	int		j;
 	char	*tmp;

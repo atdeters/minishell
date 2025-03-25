@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hdf_arr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:29:01 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/21 14:01:49 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/25 20:41:14 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,29 @@ void	hdf_prompt(t_data *data, int nb)
 		ft_printf("%s", HERE_DOC_PROMPT);
 	else
 		ft_printf("[%d] %s", nb, HERE_DOC_PROMPT);
+}
+
+char	*hdf_prompt_alloc(t_data *data, int nb)
+{
+	char	*nb_str;
+	char	*prompt;
+	int		size;
+
+	if (data->hdf_amt == 1)
+		return (ft_strdup(HERE_DOC_PROMPT));
+	else
+	{
+		nb_str = ft_itoa(nb);
+		if (!nb_str)
+			return (NULL);
+		size = ft_strlen(HERE_DOC_PROMPT) + ft_strlen(nb_str) + 4;
+		prompt = ft_calloc(sizeof(char), size);
+		if (!prompt)
+			return (NULL);
+		ft_strcpy(prompt, "[");
+		ft_strcat(prompt, nb_str);
+		ft_strcat(prompt, "] ");
+		ft_strcat(prompt, HERE_DOC_PROMPT);
+		return (free(nb_str), prompt);
+	}
 }
