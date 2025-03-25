@@ -6,14 +6,18 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:53:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/06 14:29:22 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 14:12:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "sys/stat.h"
 
 int	check_access(t_data *data, char *name, bool is_file)
 {
+	struct stat path_stat;
+
+	stat(name, &path_stat);
 	if (is_builtin(name))
 		return (0);
 	if (!is_file && access(name, F_OK) == -1)
@@ -26,6 +30,8 @@ int	check_access(t_data *data, char *name, bool is_file)
 		rage_quit(data, ERR_PERM, false, name);
 	else if (!is_file && !ft_strchr(name, '/'))
 		rage_quit(data, ERR_ACCESS, false, name);
+    else if (S_ISDIR(path_stat.st_mode))
+		rage_quit(data, ERR_DIR, false, name);
 	return (0);
 }
 

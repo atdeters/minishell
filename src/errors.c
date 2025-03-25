@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 14:07:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 14:13:05 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,7 @@ int	p_err(t_data *data, int code)
 			p_err_arg_formatted(ERR_MSG_OPEN, arg);
 		if (code == ERR_INVALID_PATH)
 			p_err_arg_formatted(ERR_MSG_INVALID_PATH, arg);
+		if (code == ERR_DIR)
+			p_err_arg_formatted(ERR_MSG_DIR, arg);
 	return (code);
 }
