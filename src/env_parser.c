@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 13:59:25 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/18 15:59:41 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 19:05:48 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*return_from_env_with_data(t_data *data, char *field)
 	tmp = data->env_lst;
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->filed, field, ft_strlen(field)) == 0)
+		if (ft_strcmp(tmp->filed, field) == 0)
 		{
 			res = ft_strdup(tmp->value);
 			if (!res)
@@ -97,12 +97,12 @@ int	del_env_var(t_env_lst *lst, char *field)
 	t_env_lst	*tmp;
 
 	tmp = lst;
-	while (tmp && ft_strncmp(tmp->value, field, ft_strlen(field) != 0))
+	while (tmp && ft_strcmp(tmp->value, field) != 0)
 	{
 		prev = tmp;
 		tmp = tmp->next;
 	}
-	if (ft_strncmp(tmp->value, field, ft_strlen(field) == 0))
+	if (ft_strcmp(tmp->value, field) == 0)
 	{
 		prev->next = tmp->next;
 		ft_env_lstdelone(tmp);

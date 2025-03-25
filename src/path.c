@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:52:51 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 16:40:46 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 19:06:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ char	*get_pathstr(t_data *data)
 	tmp = data->env_lst;
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->filed, "PATH",
-				ft_strlen(tmp->filed)))
+		if (!ft_strcmp(tmp->filed, "PATH"))
 			return (tmp->value);
 		tmp = tmp->next;
 	}
