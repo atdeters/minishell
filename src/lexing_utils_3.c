@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:24:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/21 18:05:43 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:03:24 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /*
 DONT wanna lose it
 It was part of is_word_char. Now i dont need it
-
 	// if (input[i + 1] == '\'')
 	// 	return (false);
 	// if (input[i + 1] == '"')
@@ -23,17 +22,17 @@ It was part of is_word_char. Now i dont need it
 	// if (input[i + 1] == '$')
 	// 	return (false);
 */
-bool	is_word_char(int i, char *input)
+bool	is_word_char(int i, char *input, int *flag)
 {
 	if (!input[i] | !input[i + 1])
 		return (false);
-	if (ft_is_space(input[i + 1]))
+	if (ft_is_space(input[i + 1]) && !(*flag))
 		return (false);
-	if (input[i + 1] == '|')
+	if (input[i + 1] == '|' && !(*flag))
 		return (false);
-	if (input[i + 1] == '<')
+	if (input[i + 1] == '<' && !(*flag))
 		return (false);
-	if (input[i + 1] == '>')
+	if (input[i + 1] == '>' && !(*flag))
 		return (false);
 	return (true);
 }
@@ -80,8 +79,8 @@ int	handle_delim(t_data *data, t_token **current, int *i, char **word)
 		(*i)++;
 	j = *i;
 	while (data->input[*i] && data->input[*i + 1] && !ft_is_space(data->input[*i
-				+ 1])
-		&& data->input[*i + 1] != '<' && data->input[*i + 1] != '>'
+				+ 1]) && data->input[*i + 1] != '<'
+		&& data->input[*i + 1] != '>'
 		&& data->input[*i + 1] != '|' && data->input[*i + 1] != '$'
 		&& data->input[*i + 1] != '\"' && data->input[*i + 1] != '\'')
 		(*i)++;

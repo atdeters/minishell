@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:11 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/21 20:06:03 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:30:31 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ Used to be a part of process_token between if and else:
 */
 static int	process_token(char *input, t_token **current, int *i, t_data *data)
 {
-	(void)data;
 	if (input[*i] == '|' || input[*i] == '<' || input[*i] == '>')
 	{
 		if (!handle_special_char(input, current, i, data))
