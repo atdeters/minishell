@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:32:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 16:59:29 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 16:17:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,32 @@
 // Already exists + redefinition -> overwriting
 // Doesn't exit + no definition -> will be implemented without a value
 
-static void	add_env(t_data *data, char *entry)
+bool	is_valid_ident(char *entry)
+{
+	int	i;
+
+	i = 1;
+	if (!ft_isalpha(entry[0]) && entry[0] != '_')
+		return (false);
+	while (entry[i])
+	{
+		if (!ft_isalnum(entry[i]) && entry[i] != '_')
+			return (false);
+		if (entry[i] == '=')
+			return (true);
+		i++;
+	}
+	return (true);
+}
+
+int add_env(t_data *data, char *entry)
 {
 	int		j;
 	char	*tmp;
 
 	j = 0;
+	if (!is_valid_ident(entry))
+		return (p_err_arg(ERR_VALID_IDENT, entry));
 	while (entry[j])
 	{
 		if (entry[j] == '=')
@@ -38,23 +58,31 @@ static void	add_env(t_data *data, char *entry)
 	}
 	if (!ft_strchr(entry, '=') && is_unique_key(data->env_lst, entry))
 		transfer_into_node(entry, data, j);
+	return (0);
 }
 
-void	export_envs(t_data *data, char **command)
+int	export_envs(t_data *data, char **command)
 {
 	int		var_count;
 	int		i;
+	bool	flag;
 
+	flag = false;
 	var_count = count_opts(command);
 	i = 1;
 	while (i < var_count)
 	{
 		while (command[i])
 		{
-			add_env(data, command[i]);
+			if (add_env(data, command[i]))
+				flag = true;
 			i++;
 		}
 	}
+	if (flag)
+		return (ERR_VALID_IDENT);
+	else
+		return (0);
 }
 
 int	ft_export(t_data *data, char **command)
@@ -66,8 +94,8 @@ int	ft_export(t_data *data, char **command)
 	{
 		sort_env_list(&export_lst);
 		print_env_lst(export_lst, true);
+		return (0);
 	}
 	else
-		export_envs(data, command);
-	return (0);
+		return (export_envs(data, command));
 }

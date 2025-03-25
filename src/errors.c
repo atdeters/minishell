@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 14:13:05 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 16:18:30 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	p_err_arg_formatted(char *msg, char *arg)
 {
 	ft_putstr_fd(SHELL_ERR_IDENT, 2);
 	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\'", 2);
 	ft_putstr_fd(arg, 2);
+	ft_putstr_fd("\'", 2);
 	ft_putstr_fd("\n", 2);
 }
 
@@ -71,5 +73,7 @@ int	p_err(t_data *data, int code)
 			p_err_arg_formatted(ERR_MSG_INVALID_PATH, arg);
 		if (code == ERR_DIR)
 			p_err_arg_formatted(ERR_MSG_DIR, arg);
+		if (code == ERR_VALID_IDENT)
+			p_err_arg_formatted(ERR_MSG_VALID_IDENT, arg);
 	return (code);
 }

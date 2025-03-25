@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:55:11 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 14:14:08 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/25 16:13:14 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@
 # define ERR_MSG_DOUBLE_QOUTE "parse error near \'\"\'\n"
 # define ERR_MSG_INVALID_PATH "cd: No such file or directory: "
 # define ERR_MSG_DIR "Is a directory: "
+# define ERR_MSG_VALID_IDENT "Not a valid identifier: "
 
 #endif
