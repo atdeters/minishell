@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 20:55:56 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/26 15:30:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char **av, char **env)
 	init_shell(&data, ac, av, env);
 	pointer_to_data(&data);
 	signal(SIGINT, sig_handle_basic);
-	signal(SIGQUIT, NULL);
+	signal(SIGQUIT, SIG_IGN);
 	while (true)
 	{
 		init_command(&data);
