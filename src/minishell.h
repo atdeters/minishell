@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 21:04:15 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/26 12:45:38 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <sys/wait.h>
 # include <sys/ioctl.h>
+# include <sys/wait.h>
 # include <unistd.h>
 
 ////* HEADERFILES
@@ -49,7 +49,7 @@
 # define BIMAN_HELP_FILE_PATH "/docs/biman_usage.txt"
 
 ////* GLOBAL VARIABLE
-extern int	g_signal;
+extern int				g_signal;
 
 ////* ENUMS
 enum					e_errors
@@ -689,6 +689,7 @@ int						in_single_qoute(int pos, char *input);
 int						pipe_problem(t_data *data);
 int						expand_env_var(t_data *data, char **input);
 int						special_case_pid(char **word);
+int						check_for_triple(char *input);
 
 // env func
 void					parse_env(t_data *data, char **env);
@@ -715,18 +716,15 @@ void					init_pars_data(t_pars_data *pars_data, t_data *data,
 							t_token **tokens);
 int						check_for_count(t_token *token);
 int						check_for_putting_words(t_token *token);
-// int						check_for_putting_dollar(t_token *token);
 char					*return_from_env(t_pars_data pars_data, char *field);
 int						parse_in_out(t_token *current, t_parsed **new,
 							t_data *data);
 int						parse_in_out_part_2(t_token *current, t_parsed **new,
 							t_data *data);
-// void					clear_parsing(t_data *data);
 
 // parser utils functions
 t_parsed				*create_p_node(char **cmd_and_args, char *in,
 							char *out);
-// t_parsed				*get_p_last(t_parsed *lst);
 void					add_p_back(t_parsed **lst, t_parsed *new);
 void					free_p_node(t_parsed *node);
 void					free_p_lst(t_parsed **lst);

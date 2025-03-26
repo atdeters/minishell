@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rewrite_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/25 20:30:47 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/26 12:45:49 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,8 @@ int	check_replace_input(t_data *data)
 		return (data->error = ERR_PARS, 0);
 	if (quotes_problem(data))
 		return (0);
+	if (check_for_triple(data->input))
+		return (data->error = ERR_PARS, 0);
 	i = expand_env_var(data, &data->input);
 	if (data->error == ERR_MALLOC)
 		rage_quit(data, data->error = ERR_MALLOC, true, NULL);
