@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 20:03:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/26 15:37:38 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	execute_subshell(t_data *data, char **command)
 	cool_dup(data, fd_in, fd_out);
 	if (handle_builtin(data, command))
 		rage_quit(data, data->exit_status, false, NULL);
+	signal(SIGQUIT, SIG_DFL);
 	if (execve(data->prog_path, command, data->envp) == -1)
 		rage_quit(data, ERR_EXECVE, false, NULL);
 	return (0);

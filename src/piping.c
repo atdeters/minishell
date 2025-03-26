@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/05 16:23:44 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/26 15:48:48 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,18 @@ bool	err_is_critical(int code)
 	return (false);
 }
 
-// Check if we can rage quit the program if there is a function that is not
-// the last one being a critical error
+static void	check_sigquit(int exit_status)
+{
+	int	sig;
+
+	if (WIFSIGNALED(exit_status))
+	{
+		sig = WTERMSIG(exit_status);
+		if (sig == SIGQUIT)
+			printf("Quit (core dumped)\n");
+	}
+}
+
 int	wait_all(t_data *data)
 {
 	int		i;
@@ -46,6 +56,7 @@ int	wait_all(t_data *data)
 			quit = true;
 			quit_code = data->exit_status;
 		}
+		check_sigquit(data->exit_status);
 		i++;
 	}
 	if (quit)
