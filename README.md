@@ -20,7 +20,7 @@ the minishell using [docker](https://docs.docker.com/engine/install/).
 git clone https://github.com/atdeters/minishell.git && cd minishell && docker build -t msh . && docker run -it msh
 ```
 **Note:**
-The alias (.msh_alias) and history (.msh_history) files will not be stored when exiting and reopening this docker image. 
+The `alias-` (.msh_alias) and `history-` (.msh_history) files will not be stored when exiting and reopening this docker image. 
 Use the following installation to try those features.
 
 ## One-Liner Installation Command
