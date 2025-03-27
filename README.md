@@ -16,9 +16,6 @@ The minishell program requires the following to compile and run:
 ## Running Minishell with Docker Made Easy
 If you do not want to deal with dependencies than using this link will be the easiest way to try
 the minishell using [docker](https://docs.docker.com/engine/install/).
-
-<a href="https://docs.docker.com/engine/install/" target="_blank">docker</a>
-
 ```sh
 git clone https://github.com/atdeters/minishell.git && cd minishell && docker build -t msh . && docker run -it msh
 ```
