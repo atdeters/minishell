@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/26 15:51:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 12:13:19 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 ////* MAKROS
 # define FD_LIMIT 508
 # define MAX_PROCS 1024
-# define HIST_FILE_NAME ".vash_history"
-# define ALIAS_FILE_NAME ".vash_alias"
+# define HIST_FILE_NAME ".msh_history"
+# define ALIAS_FILE_NAME ".msh_alias"
 
 ////* GLOBAL VARIABLE
 extern int				g_signal;
