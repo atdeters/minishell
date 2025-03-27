@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 18:36:15 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/19 15:17:28 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 12:46:38 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,26 @@ int	add_full_history(t_data *data)
 int	write_hst_file(t_data *data, char *hist_file_path)
 {
 	int		fd;
-	t_list	*pre;
+	t_list	*tmp;
 
+	tmp = data->hstlst;
 	if (!hist_file_path)
 		return (setnret(data, ERR_HIST_WFILE));
 	fd = open(hist_file_path, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (fd < 0)
 		return (setnret(data, ERR_HIST_WFILE));
-	while (data->hstlst && data->hstlst->next)
+	while (tmp && tmp->next)
 	{
-		write(fd, data->hstlst->content, ft_strlen(data->hstlst->content));
-		free(data->hstlst->content);
+		write(fd, tmp->content, ft_strlen(tmp->content));
 		write(fd, "\n", 1);
-		pre = data->hstlst;
-		data->hstlst = data->hstlst->next;
-		free (pre);
+		tmp = tmp->next;
 	}
-	if (data->hstlst)
+	if (tmp)
 	{
-		write(fd, data->hstlst->content, ft_strlen(data->hstlst->content));
+		write(fd, tmp->content, ft_strlen(tmp->content));
 		write(fd, "\n", 1);
-		free(data->hstlst->content);
-		free (data->hstlst);
 	}
-	return (data->hstlst = NULL, close(fd), 0);
+	return (close(fd), 0);
 }
 
 int	free_hst_list(t_data *data)

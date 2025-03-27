@@ -58,9 +58,9 @@ For displaying a usage file in the terminal run it with the `-h` flag
 ```
 
 
-# Features
+# Features Overview
 - **Environment Variable Management**: Easily access and modify environment variables.
-- **Signal Handling**: Properly handles signals like `SIGINT` and `SIGQUIT`.
+- **Signal Handling**: Properly handles the signals `SIGINT` and `SIGQUIT`.
 - **Pipes and Redirections**: Supports piping between commands and file redirection.
   - `>`: Redirects the output to a file.
   - `>>`: Redirects the output to a file in append mode.
