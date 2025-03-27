@@ -13,8 +13,6 @@ Your minishell requires the following to compile and run:
 
 - Readline library (for command-line input handling)
 
-They will be installed with the following One-Liner Installation Command
-
 ### One-Liner Installation Command
 #### For Debian-based systems (Ubuntu, Debian, etc.)
 
