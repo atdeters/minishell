@@ -23,9 +23,18 @@ sudo apt update && sudo apt install -y build-essential libreadline-dev && git cl
 ```sh
 brew install readline && git clone https://github.com/atdeters/minishell.git && cd minishell && make
 ```
-Once compiled, start the shell with:
+Once compiled, start the shell with
 ```sh
 ./minishell
+```
+To run minishell in single-command mode run it with the `-s` flag.
+It will execute the command and exit afterwards.
+```sh
+./minishell -s [command]
+```
+For displaying a usage file in the terminal run it with the `-h` flag
+```sh
+./minishell -h
 ```
 
 
