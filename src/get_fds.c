@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:10:32 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 16:26:46 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 16:38:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ void	check_out_arr(t_data *data, int *fd_out, int open_m)
 	i = 0;
 	while (data->parsed_lst->out_arr[i])
 	{
-		if (access(data->parsed_lst->out_arr[i], R_OK) == -1
+		// TODO: Does not work properly
+		if (access(data->parsed_lst->out_arr[i], W_OK) == -1
 			&& !access(data->parsed_lst->out_arr[i], F_OK))
 			rage_quit(data, ERR_PERM, false, data->parsed_lst->out_arr[i]);
+		// TODO: Check valid directory (like ./ instead of just /)
 		if (*fd_out != -1)
 			close(*fd_out);
 		*fd_out = open(data->parsed_lst->out_arr[i], open_m, 0644);
