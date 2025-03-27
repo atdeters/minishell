@@ -3,6 +3,11 @@ Say hello and welcome to the project blahblahblah
 
 
 # Installation & Setup
+## Running Minishell with Docker Made Easy
+```sh
+git clone https://github.com/atdeters/minishell.git && cd minishell && docker build -t msh . && docker run -it msh
+```
+
 ### Dependencies
 
 The minishell program requires the following to compile and run:
@@ -36,10 +41,6 @@ It will execute the command and exit afterwards.
 For displaying a usage file in the terminal run it with the `-h` flag
 ```sh
 ./minishell -h
-```
-## Alternatively run minishell with the following one-liner command using **docker**
-```sh
-git clone https://github.com/atdeters/minishell.git && cd minishell && docker build -t msh . && docker run -it my_ima
 ```
 
 
