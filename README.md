@@ -16,11 +16,11 @@ Usage: `alias [flags] alias[=expansion]`
 -	`alias "st= git status"` sets "st" as alias for "git status"
 -	`alias st` displays the corresponding alias with its expansion
 
-**biman**
+### biman
 Display a short manual for built-in commands.
 Usage: `biman [builtin name]`
 
-**cd**
+### cd
 Change the shell working directory.  
 Usage: `cd [directory]`
 -   `cd` (without arguments) changes to the home directory.
@@ -29,30 +29,30 @@ Usage: `cd [directory]`
 -	`cd ..` moves up one directory.
 -	`cd /usr/bin`  moves to /usr/bin.
 
- **echo**
+### echo
 Prints a line of text to the standard output.  
 Usage: `echo [-n] [string...]`
 -   `-n` : Omits the trailing newline.
 
- **env**
+### env
 Displays the current environment variables.
 
-**exit**
+### exit
 Exits the shell with an optional exit code.  
 Usage: `exit [status]`
 -   If no status is given, it exits with the status of the last executed command.
 
-**export**
+### export
 Set or display environment variables.  
 Usage: `export name[=value]`
 -   `export` (without arguments) lists all exported variables in alphabetical order.
 -   `export VAR=value` : Sets an environment variable.
 
-**pwd**
+### pwd
 Prints the absolute path of the current directory.
 Usage: `pwd [-c]`
 -   `-c / --clean` : Only displays the current folder (without path).
 
- **unset**
+### unset
 Removes environment variables.
 Usage: `unset [VAR]`
