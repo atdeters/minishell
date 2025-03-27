@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:04 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/27 14:44:37 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 16:09:26 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ bool	has_flag_clean_pwd(char **command)
 			i++;
 		}
 	}
+	else
+		return (false);
 	return (true);
 }
 
