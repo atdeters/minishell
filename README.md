@@ -65,7 +65,7 @@ For displaying a usage file in the terminal run it with the `-h` flag
 - **Environment Variable Management**: Easily access and modify environment variables.
 - **Signal Handling**: Properly handles the signals `SIGINT` and `SIGQUIT`.
 - **Pipes and Redirections**: Supports piping between commands and file redirection.
-  - '|': Connects the output of one command to the input of the next.
+  - `|`: Connects the output of one command to the input of the next.
   - `>`: Redirects the output to a file.
   - `>>`: Redirects the output to a file in append mode.
   - `<`: Redirects the input from a file.
