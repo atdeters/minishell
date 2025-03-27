@@ -80,7 +80,7 @@ For displaying a usage file in the terminal run it with the `-h` flag
 
 ## Built-in Commands
 ### alias [bonus feature]
-Set or display aliases for commands.
+Set or display aliases for commands.  
 Usage: `alias [flags] alias[=expansion]`
 -	`alias` (without arguments) displays all active aliases.
 -	`alias -r` removes alias permanently.
@@ -88,7 +88,7 @@ Usage: `alias [flags] alias[=expansion]`
 -	`alias st` displays the corresponding alias with its expansion
 
 ### biman [bonus feature]
-Display a short manual for built-in commands.
+Display a short manual for built-in commands.  
 Usage: `biman [builtin name]`
 
 ### cd
@@ -101,7 +101,7 @@ Usage: `cd [directory]`
 -	`cd /usr/bin`  moves to /usr/bin.
 
 ### echo
-Prints a line of text to the standard output.  
+Prints a line of text to the standard output.   
 Usage: `echo [-n] [string...]`
 -   `-n` : Omits the trailing newline.
 
@@ -120,10 +120,10 @@ Usage: `export name[=value]`
 -   `export VAR=value` : Sets an environment variable.
 
 ### pwd
-Prints the absolute path of the current directory.
+Prints the absolute path of the current directory.  
 Usage: `pwd [-c]`
 -   `-c / --clean` : Only displays the current folder (without path).
 
 ### unset
-Removes environment variables.
+Removes environment variables.  
 Usage: `unset [VAR]`
