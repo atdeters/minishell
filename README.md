@@ -1,4 +1,9 @@
 # Welcome to our Minishell!
+
+<details>
+<summary><b><u><font size="+1">Header-Like Text</font></u></b></summary>
+</details>
+
 Hey there, welcome to our Minishell project! 🎉
 
 This is a simplified shell program developed as part of the curriculum at the 42 School. The goal of this project is to recreate a basic Unix shell with features that mimic the behavior of a typical shell, while also offering the flexibility to extend it with custom commands and functionalities.
