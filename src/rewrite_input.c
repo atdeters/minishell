@@ -122,7 +122,7 @@ int	check_replace_input(t_data *data)
 	if (quotes_problem(data))
 		return (0);
 	if (check_for_triple(data->input))
-		return (data->error = ERR_PARS, 0);
+		return (data->error = ERR_INVALID_REDIR, 0);
 	i = expand_env_var(data, &data->input);
 	if (data->error == ERR_MALLOC)
 		rage_quit(data, data->error = ERR_MALLOC, true, NULL);

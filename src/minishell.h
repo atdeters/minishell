@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/27 12:13:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 15:33:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ enum					e_errors
 	ERR_INV_BUILTIN = 23,
 	ERR_DIR = 24,
 	ERR_VALID_IDENT = 25,
+	ERR_INVALID_REDIR = 26,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,
