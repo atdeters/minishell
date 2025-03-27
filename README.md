@@ -9,6 +9,7 @@ Descripe which features are in it.
 
 ## Built-in Functions
 **alias**
+
 Set or display aliases for commands.
 Usage: `alias [flags] alias[=expansion]`
 -	`alias` (without arguments) displays all active aliases.
