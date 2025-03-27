@@ -39,7 +39,7 @@ For displaying a usage file in the terminal run it with the `-h` flag
 ```
 ## Alternatively run minishell with the following one-liner command using **docker**
 ```sh
-git clone https://github.com/atdeters/minishell.git && cd minishell && docker build -t my_image . && docker run -it my_image
+git clone https://github.com/atdeters/minishell.git && cd minishell && docker build -t msh . && docker run -it my_ima
 ```
 
 
