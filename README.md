@@ -8,8 +8,7 @@ Descripe which features are in it.
 - Permanent Alias List
 
 ## Built-in Functions
-**alias**
-
+### alias
 Set or display aliases for commands.
 Usage: `alias [flags] alias[=expansion]`
 -	`alias` (without arguments) displays all active aliases.
