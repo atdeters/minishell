@@ -97,9 +97,8 @@ Usage: `biman [builtin name]`
 ### cd
 Change the shell working directory.  
 Usage: `cd [directory]`
--   `cd` (without arguments) changes to the home directory.
+- `cd` (without arguments) changes to the home directory.
 -	`cd ~` also changes to the home directory.
--   `cd ..` switches to the previous directory.
 -	`cd ..` moves up one directory.
 -	`cd /usr/bin`  moves to /usr/bin.
 
