@@ -62,7 +62,7 @@ int	check_flags(t_data *data, int ac, char **av)
 		data->flag_single = false;
 	if (ac == 2 && is_flag_help(av[1]))
 	{
-		print_usage(data, HELP_FILE_PATH);
+		p_use_msh();
 		rage_quit(data, 0, true, NULL);
 	}
 	else if (ac == 2)

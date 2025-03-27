@@ -15,6 +15,6 @@
 int	ft_env(t_data *data, char **command)
 {
 	if (command[1])
-		return (print_usage(data, ENV_HELP_FILE_PATH), ERR_BUILTIN_USAGE);
+		return (p_use_env(), ERR_BUILTIN_USAGE);
 	return (print_env_lst(data->env_lst, false), 0);
 }

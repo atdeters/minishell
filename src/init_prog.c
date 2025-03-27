@@ -84,7 +84,7 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 {
 	g_signal = 0;
 	if (ac != 1 && ac != 3 && ac != 2)
-		exit(p_err(data, ERR_USAGE));
+		exit(p_err(ERR_USAGE));
 	*data = (t_data){0};
 	data->p_err = true;
 	data->msh_path = get_pwd_alloc(data, false);

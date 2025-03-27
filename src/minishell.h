@@ -36,18 +36,6 @@
 # define HIST_FILE_NAME ".vash_history"
 # define ALIAS_FILE_NAME ".vash_alias"
 
-////* HELP FILES
-# define HELP_FILE_PATH "/docs/msh_usage.txt"
-# define CD_HELP_FILE_PATH "/docs/cd_usage.txt"
-# define PWD_HELP_FILE_PATH "/docs/pwd_usage.txt"
-# define EXPORT_HELP_FILE_PATH "/docs/export_usage.txt"
-# define ECHO_HELP_FILE_PATH "/docs/echo_usage.txt"
-# define UNSET_HELP_FILE_PATH "/docs/unset_usage.txt"
-# define ENV_HELP_FILE_PATH "/docs/env_usage.txt"
-# define EXIT_HELP_FILE_PATH "/docs/exit_usage.txt"
-# define ALIAS_HELP_FILE_PATH "/docs/alias_usage.txt"
-# define BIMAN_HELP_FILE_PATH "/docs/biman_usage.txt"
-
 ////* GLOBAL VARIABLE
 extern int				g_signal;
 
@@ -336,6 +324,10 @@ int						load_alias_lst(t_data *data, char *path);
 int						ft_alias(t_data *data, char **command);
 bool					is_nc_alias(char **command);
 
+// builtin_biman.c
+int						p_err_biman_invalid(char **command);
+int						ft_biman(char **command);
+
 // builtin_cd.c
 /**
  * @brief Changes the working directory
@@ -393,7 +385,7 @@ int						setnret(t_data *data, int code);
  *
  * @return The same error code that was passed as input.
  */
-int						p_err(t_data *data, int code);
+int						p_err(int code);
 /**
  * @brief Prints non-critical errors aka the program will not immediately
  * terminate after these errors.
@@ -676,7 +668,18 @@ int						wait_all(t_data *data);
 int						cool_dup(t_data *data, int fd_in, int fd_out);
 
 // print_usage.c
-void					print_usage(t_data *data, char *path);
+void					p_use_alias(void);
+void					p_use_echo(void);
+void					p_use_biman(void);
+void					p_use_cd(void);
+void					p_use_env(void);
+
+// print_usage2.c
+void					p_use_exit(void);
+void					p_use_export(void);
+void					p_use_pwd(void);
+void					p_use_unset(void);
+void					p_use_msh(void);
 
 // rage_quit.c
 void					rage_quit(t_data *data, int exit_code, bool write_hist,

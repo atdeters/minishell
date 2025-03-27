@@ -26,7 +26,7 @@ int	p_alias_single(t_data *data, char **command)
 		}
 		tmp = tmp->next;
 	}
-	print_usage(data, ALIAS_HELP_FILE_PATH);
+	p_use_alias();
 	return (setnret(data, ERR_BUILTIN_USAGE));
 }
 
@@ -85,7 +85,7 @@ int	ft_alias(t_data *data, char **command)
 		else if (count_opts(command) == 2)
 			return (set_alias(data, command));
 		else
-			return (print_usage(data, ALIAS_HELP_FILE_PATH), ERR_BUILTIN_USAGE);
+			return (p_use_alias(), ERR_BUILTIN_USAGE);
 	}
 	return (0);
 }

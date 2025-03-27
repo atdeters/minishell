@@ -43,7 +43,7 @@ int	ft_pwd(t_data *data, char **command)
 	else if (has_flag_clean_pwd(command))
 		cwd = get_pwd_alloc(data, true);
 	else
-		return (print_usage(data, PWD_HELP_FILE_PATH), ERR_BUILTIN_USAGE);
+		return (p_use_pwd(), ERR_BUILTIN_USAGE);
 	printf("%s\n", cwd);
 	return (free(cwd), 0);
 }

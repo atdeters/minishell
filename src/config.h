@@ -22,6 +22,8 @@
 #  define SUCC_COLOR "\033[1;32m"
 # endif
 
+# define BOLD "\033[1m"
+
 # ifndef FAIL_COLOR
 /**
  * @brief Color of the prompt `PROMPT` if the option SHOW_EXIT_COL is true and

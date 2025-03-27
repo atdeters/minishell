@@ -12,62 +12,64 @@
 
 #include "minishell.h"
 
-#define BOLD  "\033[1m"
-#define RESET "\033[0m"
-
-void	print_with_bold(char *str)
+void	p_use_alias(void)
 {
-	bool	flag;
-	int		i;
-
-	i = 0;
-	flag = false;
-	while (str[i])
-	{
-		if (str[i] == '*')
-		{
-			if (!flag)
-				printf(BOLD);
-			else
-				printf(RESET);
-			flag = !flag;
-		}
-		else if (str[i] == '\\' && str[i + 1] == '*')
-		{
-			printf("*");
-			i++;
-		}
-		else
-			printf("%c", str[i]);
-		i++;
-	}
-	printf(RESET);
+	printf("%sNAME%s\n", BOLD, RESET);
+	printf("\talias – Create, list, or remove command aliases, allowing ");
+	printf("command substitution with support for pipes and redirections.\n");
+	printf("\n%sUSAGE%s\n", BOLD, RESET);
+	printf("\talias [flags] alias[=expansion]\n");
+	printf("\n%sFLAGS%s\n", BOLD, RESET);
+	printf("\t--remove / -r       Removes an alias (if it already exists)\n");
+	printf("\n%sEXAMPLES%s\n", BOLD, RESET);
+	printf("\talias               Display all available aliases\n");
+	printf("\talias    [name]     Display the aliases with the");
+	printf("corresponding expansion\n");
+	printf("\talias -r [name]     Remove a specific alias\n");
+	printf("\talias -h            Display this help\n");
+	printf("\n%sNOTE%s\n", BOLD, RESET);
+	printf("\tIt expects a single command as input.");
+	printf("So make sure to format it with quotes.\n");
+	printf("\t- 'alias \"st=git status\"' instead of ");
+	printf("'alias st=git status' or 'alias st=\"git status\"'\n");
 }
 
-void	print_usage(t_data *data, char *path)
+void	p_use_echo(void)
 {
-	char	*line;
-	char	*full_path;
-	int		fd;
+	printf("%sNAME%s\n", BOLD, RESET);
+	printf("\techo - display a line of text on the standart output\n");
+	printf("\n%sUSAGE%s\n", BOLD, RESET);
+	printf("\techo [FLAGS] [STRING]\n");
+	printf("\n%sFLAGS%s\n", BOLD, RESET);
+	printf("\t-n                  do not output the trailing newline\n");
+}
 
-	full_path = ft_strjoin(data->msh_path, path);
-	if (!full_path)
-		rage_quit(data, ERR_MALLOC, true, NULL);
-	fd = open(full_path, O_RDONLY);
-	free (full_path);
-	if (fd < 0)
-		rage_quit(data, ERR_OPEN, true, path);
-	line = get_next_line(fd);
-	if (!line)
-	{
-		close (fd);
-		rage_quit(data, ERR_GNL, true, NULL);
-	}
-	while (line)
-	{
-		print_with_bold(line);
-		free (line);
-		line = get_next_line(fd);
-	}
-	close (fd);
+void	p_use_biman(void)
+{
+	printf("%sNAME%s\n", BOLD, RESET);
+	printf("\tbiman - display a manual for minishell builtin functions\n");
+	printf("\n%sUSAGE%s\n", BOLD, RESET);
+	printf("\tbiman [builtin name]\n");
+}
+
+void	p_use_cd(void)
+{
+	printf("%sNAME%s\n", BOLD, RESET);
+	printf("\tcd - Change the shell working directory\n");
+	printf("\n%sUSAGE%s\n", BOLD, RESET);
+	printf("\tcd [relative or absolute path to directory]\n");
+	printf("\n%sEXAMPLES%s\n", BOLD, RESET);
+	printf("\tcd ~                change working directory to home\n");
+	printf("\tcd                  change working directory to home\n");
+	printf("\tcd ..               goes up folder structure by one level\n");
+	printf("\tcd ~/minishell      change working directory to the ");
+	printf("minishell directory in home\n");
+}
+
+void	p_use_env(void)
+{
+	printf("%sNAME%s\n", BOLD, RESET);
+	printf("\tenv - display environment variables\n");
+	printf("\n%sUSAGE%s\n", BOLD, RESET);
+	printf("\tenv\n");
 }

@@ -24,7 +24,7 @@ SRC_FILES	=	builtin_cd.c builtin_pwd.c builtin_env.c init_com.c init_prog.c get_
 				piping.c builtin_echo.c history.c parser_utils_1.c parser_utils_2.c builtin_alias_helpers.c hdf_arr.c hdf_arr2.c\
 				parser.c parser_utils_3.c parser_utils_4.c access.c path.c execution.c free.c free2.c handle_builtins.c main.c env_lst_helpers.c\
 				rewrite_input.c env_lst_to_arr.c rewrite_input_utils_1.c mini_flags.c get_fds.c helpers_lst.c debug.c helpers2.c builtin_alias_helpers4.c\
-				sig_handler.c hdf_error.c rewrite_input_utils_2.c\
+				sig_handler.c hdf_error.c rewrite_input_utils_2.c builtin_biman.c print_usage2.c\
 
 SRCS = $(addprefix src/, $(SRC_FILES))
 

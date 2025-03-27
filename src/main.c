@@ -39,7 +39,7 @@ int	cmd_abort(t_data *data, bool mute)
 	if (mute)
 		data->exit_status = data->error;
 	else
-		data->exit_status = p_err(data, data->error);
+		data->exit_status = p_err(data->error);
 	free_all_com(data);
 	return (data->error);
 }

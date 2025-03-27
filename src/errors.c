@@ -34,10 +34,10 @@ void	p_err_arg_formatted(char *msg, char *arg)
 	ft_putstr_fd("\n", 2);
 }
 
-int	p_err(t_data *data, int code)
+int	p_err(int code)
 {
 	if (code == ERR_USAGE)
-		print_usage(data, HELP_FILE_PATH);
+		p_use_msh();
 	if (code == ERR_EXECVE)
 		p_err_formatted(ERR_MSG_FUNC_EXECVE);
 	if (code == ERR_DUP2)
