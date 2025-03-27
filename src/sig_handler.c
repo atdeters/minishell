@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:43:32 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/25 19:59:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 11:09:47 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@
 
 void	sig_handle_here_doc(int signum)
 {
-	t_data	*data;
 	char	nl;
 
 	nl = '\n';
-	data = pointer_to_data(NULL);
 	if (signum == SIGINT)
 	{
 		g_signal = signum;
