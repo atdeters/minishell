@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:53:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/27 19:58:03 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 20:16:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	check_access_command(t_data *data, char *command)
 {
 	struct stat	path_stat;
 
+	if (is_builtin(command))
+		return ;
 	if (stat(command, &path_stat) == -1 && errno == EACCES)
 		rage_quit(data, ERR_PERM, false, command);
 	if (path_stat.st_size == 0)
