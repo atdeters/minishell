@@ -18,13 +18,66 @@ COMP		=	cc
 CFLAGS		?=	-Wall -Wextra -Werror -g
 LDFLAGS		=	-lreadline -lcurses 
 
-SRC_FILES	=	builtin_cd.c builtin_pwd.c builtin_env.c init_com.c init_prog.c get_here_doc_fd.c builtin_alias_helpers3.c builtin_export.c\
-				input.c errors.c env_lst_func.c env_parser.c helpers1.c add_rl_prompt.c builtin_alias.c rage_quit.c print_usage.c builtin_unset.c\
-				get_git.c lexing.c lexing_utils.c lexing_utils_2.c lexing_utils_3.c builtin_exit.c builtin_alias_helpers2.c builtin_alias_flags.c\
-				piping.c builtin_echo.c history.c parser_utils_1.c parser_utils_2.c builtin_alias_helpers.c hdf_arr.c hdf_arr2.c\
-				parser.c parser_utils_3.c parser_utils_4.c access.c path.c execution.c free.c free2.c handle_builtins.c main.c env_lst_helpers.c\
-				rewrite_input.c env_lst_to_arr.c rewrite_input_utils_1.c mini_flags.c get_fds.c helpers_lst.c debug.c helpers2.c builtin_alias_helpers4.c\
-				sig_handler.c hdf_error.c rewrite_input_utils_2.c builtin_biman.c print_usage2.c\
+SRC_FILES	=	access.c \
+				add_rl_prompt.c \
+				builtin_alias.c \
+				builtin_alias_flags.c \
+				builtin_alias_helpers2.c \
+				builtin_alias_helpers3.c \
+				builtin_alias_helpers4.c \
+				builtin_alias_helpers.c \
+				builtin_biman.c \
+				builtin_cd.c \
+				builtin_echo.c \
+				builtin_env.c \
+				builtin_exit.c \
+				builtin_export.c \
+				builtin_pwd.c \
+				builtin_unset.c \
+				debug.c \
+				env_lst_func.c \
+				env_lst_helpers.c \
+				env_lst_to_arr.c \
+				env_parser.c \
+				errors.c \
+				execution.c \
+				free2.c \
+				free.c \
+				get_fds.c \
+				get_git.c \
+				get_here_doc_fd.c \
+				handle_builtins.c \
+				hdf_arr2.c \
+				hdf_arr.c \
+				hdf_error.c \
+				helpers1.c \
+				helpers2.c \
+				helpers_lst.c \
+				history.c \
+				init_com.c \
+				init_prog.c \
+				input.c \
+				lexing.c \
+				lexing_utils_2.c \
+				lexing_utils_3.c \
+				lexing_utils.c \
+				main.c \
+				mini_flags.c \
+				parser.c \
+				parser_utils_1.c \
+				parser_utils_2.c \
+				parser_utils_3.c \
+				parser_utils_4.c \
+				path.c \
+				piping.c \
+				print_usage2.c \
+				print_usage.c \
+				rage_quit.c \
+				rewrite_input.c \
+				rewrite_input_utils_1.c \
+				rewrite_input_utils_2.c \
+				sig_handler.c
+
 
 SRCS = $(addprefix src/, $(SRC_FILES))
 
