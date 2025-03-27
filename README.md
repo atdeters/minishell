@@ -23,6 +23,7 @@ sudo apt update && sudo apt install -y build-essential libreadline-dev && git cl
 ```sh
 brew install readline && git clone https://github.com/atdeters/minishell.git && cd minishell && make
 ```
+### Running the minishell program
 Once compiled, start the shell with
 ```sh
 ./minishell
