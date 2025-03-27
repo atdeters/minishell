@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:42:22 by andreas           #+#    #+#             */
-/*   Updated: 2025/03/18 17:02:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 14:48:37 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,21 @@
 
 bool	has_flag_rm_alias(char **command)
 {
+	int	i;
+
 	if (count_opts(command) != 3)
 		return (false);
-	if (!ft_strcmp(command[1], "-r"))
-		return (true);
 	if (!ft_strcmp(command[1], "--remove"))
 		return (true);
-	return (false);
+	if (command[1][0] == '-')
+	{
+		i = 1;
+		while (command[1][i])
+		{
+			if (command[1][i] != 'r')
+				return (false);
+			i++;
+		}
+	}
+	return (true);
 }
