@@ -59,15 +59,17 @@ For displaying a usage file in the terminal run it with the `-h` flag
 
 
 # Features
-- Environment Variable Management: Easily access and modify environment variables.
-- Signal Handling: Properly handles signals like `SIGINT` and `SIGQUIT`.
-- Pipes and Redirections: Supports piping between commands and file redirection.
-- Forking and Execution: Executes external programs and commands.
-- Built-in Commands: Like `cd`, `echo`, `exit`, `pwd`, and more!
-- **bonus:** Permanently saves history in a file
-- **bonus:** Permanently saves aliases in a file
-- **bonus:** Show the current working directory in folder
-- **bonus:** Show the current git repository in folder
+- **Environment Variable Management**: Easily access and modify environment variables.
+- **Signal Handling**: Properly handles signals like `SIGINT` and `SIGQUIT`.
+- **Pipes and Redirections**: Supports piping between commands and file redirection.
+- **Forking and Execution**: Executes external programs and commands.
+- **Built-in Commands**: Includes essential commands like `cd`, `echo`, `exit`, `pwd`, and more!
+- **Bonus Features**:
+  - **Persistent History**: Automatically saves command history in a file.
+  - **Persistent Aliases**: Automatically saves aliases in a file.
+  - **Current Working Directory Display**: Displays the current working directory in the prompt.
+  - **Git Repository Info**: Displays the current git repository (if applicable) in the prompt.
+
 
 ## Built-in Commands
 ### alias [bonus feature]
