@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 12:36:59 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 19:04:49 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 16:00:56 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,11 @@ void	add_aliases_to_file(t_data *data)
 
 	fd = open(data->alias_path, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
+	{
+		ft_putstr_fd("Couldn't open alias file. ", 2);
+		ft_putstr_fd("Nothing written to file!\n", 2);
 		return ;
+	}
 	tmp = data->alias_lst;
 	if (!tmp)
 		return ((void)close (fd));
