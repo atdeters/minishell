@@ -28,7 +28,6 @@ int	get_fd_in(t_data *data, int *fd_in)
 		i = 0;
 		while (data->parsed_lst->in_arr[i])
 		{
-			// check_access(data, data->parsed_lst->in_arr[i], true);
 			check_access_infile(data, data->parsed_lst->in_arr[i]);
 			if (*fd_in != -1)
 				close(*fd_in);
@@ -48,9 +47,6 @@ void	check_out_arr(t_data *data, int *fd_out, int open_m)
 	i = 0;
 	while (data->parsed_lst->out_arr[i])
 	{
-		// if (access(data->parsed_lst->out_arr[i], W_OK) == -1
-		// 	&& !access(data->parsed_lst->out_arr[i], F_OK))
-		// 	rage_quit(data, ERR_PERM, false, data->parsed_lst->out_arr[i]);
 		check_access_outfile(data, data->parsed_lst->out_arr[i]);
 		if (*fd_out != -1)
 			close(*fd_out);

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/27 19:36:23 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 20:11:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,6 @@ typedef struct s_pars_data
 
 ////* FUNCTION-FILES
 // access.c
-int						check_access(t_data *data, char *name, bool is_file);
 void					check_access_infile(t_data *data, char *filename);
 void					check_access_outfile(t_data *data, char *filename);
 void					check_access_command(t_data *data, char *command);

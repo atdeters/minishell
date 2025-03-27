@@ -6,41 +6,42 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/26 15:37:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 20:11:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	handle_nc_builtin(t_data *data, char **command);
-
-// Check for the ERR_CHILD that it is always correct or the prog will quit
-// for non crititcal errors
-int	execute_subshell(t_data *data, char **command)
+void	close_fd_and_quit(t_data *data, int fd_in, int fd_out)
 {
-	int		fd_in;
-	int		fd_out;
+	if (fd_in != -1)
+		close(fd_in);
+	if (fd_out != -1)
+		close(fd_out);
+	rage_quit(data, 0, false, NULL);
+}
+
+int	execute_subshell(t_data *data, char **cmd)
+{
+	int	fd_in;
+	int	fd_out;
 
 	signal(SIGINT, sig_handle_basic);
 	get_fds(data, &fd_in, &fd_out);
-	if (!command[0])
-	{
-		if (fd_in != -1)
-			close(fd_in);
-		if (fd_out != -1)
-			close(fd_out);
-		rage_quit(data, 0, false, NULL);
-	}
+	if (!cmd[0])
+		close_fd_and_quit(data, fd_in, fd_out);
 	parser_env_into_arr(data);
-	data->prog_path = add_path(data, command);
+	data->prog_path = add_path(data, cmd);
 	if (!data->prog_path)
 		rage_quit(data, ERR_MALLOC, false, NULL);
-	check_access(data, data->prog_path, false);
+	check_access_command(data, data->prog_path);
 	cool_dup(data, fd_in, fd_out);
-	if (handle_builtin(data, command))
+	if (handle_builtin(data, cmd))
 		rage_quit(data, data->exit_status, false, NULL);
 	signal(SIGQUIT, SIG_DFL);
-	if (execve(data->prog_path, command, data->envp) == -1)
+	if (execve(data->prog_path, cmd, data->envp) == -1 && errno == ENOEXEC)
+		rage_quit(data, 0, false, NULL);
+	else
 		rage_quit(data, ERR_EXECVE, false, NULL);
 	return (0);
 }
