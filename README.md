@@ -70,7 +70,7 @@ For displaying a usage file in the terminal run it with the `-h` flag
 - **bonus:** Show the current git repository in folder
 
 ## Built-in Commands
-### alias
+### alias [bonus feature]
 Set or display aliases for commands.
 Usage: `alias [flags] alias[=expansion]`
 -	`alias` (without arguments) displays all active aliases.
@@ -78,7 +78,7 @@ Usage: `alias [flags] alias[=expansion]`
 -	`alias "st= git status"` sets "st" as alias for "git status"
 -	`alias st` displays the corresponding alias with its expansion
 
-### biman
+### biman [bonus feature]
 Display a short manual for built-in commands.
 Usage: `biman [builtin name]`
 
