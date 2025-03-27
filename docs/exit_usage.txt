@@ -1,8 +1,0 @@
-*NAME*
-    exit - cause normal process termination
-
-*Usage* 
-    exit [exit-code]
-
-*Note*
-    Will not print error messages linked to certain error codes

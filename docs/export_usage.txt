@@ -1,5 +1,0 @@
-*NAME*
-    export - set the export attribute for variables
-
-*USAGE*
-    export name[=word]

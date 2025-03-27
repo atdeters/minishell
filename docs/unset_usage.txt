@@ -1,5 +1,0 @@
-*NAME*
-    unset - unset values and attributes of variables
-
-*USAGE*
-    unset [name]

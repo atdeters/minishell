@@ -1,5 +1,0 @@
-*NAME*
-	export - display environment variables
-
-*USAGE*
-	env

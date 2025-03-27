@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 09:36:47 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/27 09:36:53 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 10:11:38 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	p_use_exit(void)
 	printf("\texit [exit-code]\n");
 	printf("\n%sNOTE%s\n", BOLD, RESET);
 	printf("\tWill not print error messages linked to certain error codes\n");
+	printf("\tIf no status is given, it exits with the status ");
+	printf("of the last executed command.\n");
 }
 
 void	p_use_export(void)

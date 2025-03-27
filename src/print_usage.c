@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_usage.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 17:49:03 by andreas           #+#    #+#             */
-/*   Updated: 2025/03/10 00:27:12 by andreas          ###   ########.fr       */
+/*   Updated: 2025/03/27 10:09:45 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	p_use_alias(void)
 	printf("\n%sFLAGS%s\n", BOLD, RESET);
 	printf("\t--remove / -r       Removes an alias (if it already exists)\n");
 	printf("\n%sEXAMPLES%s\n", BOLD, RESET);
-	printf("\talias               Display all available aliases\n");
+	printf("\talias               Displays all active aliases\n");
 	printf("\talias    [name]     Display the aliases with the");
 	printf("corresponding expansion\n");
 	printf("\talias -r [name]     Remove a specific alias\n");
@@ -61,7 +61,7 @@ void	p_use_cd(void)
 	printf("\n%sEXAMPLES%s\n", BOLD, RESET);
 	printf("\tcd ~                change working directory to home\n");
 	printf("\tcd                  change working directory to home\n");
-	printf("\tcd ..               goes up folder structure by one level\n");
+	printf("\tcd ..               moves up one directory\n");
 	printf("\tcd ~/minishell      change working directory to the ");
 	printf("minishell directory in home\n");
 }
