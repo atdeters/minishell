@@ -3,11 +3,6 @@ Say hello and welcome to the project blahblahblah
 
 
 # Installation & Setup
-## Running Minishell with Docker Made Easy
-```sh
-git clone https://github.com/atdeters/minishell.git && cd minishell && docker build -t msh . && docker run -it msh
-```
-
 ### Dependencies
 
 The minishell program requires the following to compile and run:
@@ -17,6 +12,13 @@ The minishell program requires the following to compile and run:
 - GCC or Clang
 
 - Readline library (for command-line input handling)
+
+## Running Minishell with Docker Made Easy
+If you do not want to deal with dependencies than using this link will be the easiest way to try
+the minishell using [docker](https://docs.docker.com/engine/install/).
+```sh
+git clone https://github.com/atdeters/minishell.git && cd minishell && docker build -t msh . && docker run -it msh
+```
 
 ## One-Liner Installation Command
 #### For Debian-based systems (Ubuntu, Debian, etc.)
@@ -28,7 +30,8 @@ sudo apt update && sudo apt install -y build-essential libreadline-dev && git cl
 ```sh
 brew install readline && git clone https://github.com/atdeters/minishell.git && cd minishell && make
 ```
-## Running the minishell program
+
+# Running the minishell program
 Once compiled, start the shell with
 ```sh
 ./minishell
