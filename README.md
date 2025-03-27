@@ -1,5 +1,9 @@
 # Welcome to our Minishell!
-Say hello and welcome to the project blahblahblah
+Hey there, welcome to our Minishell project! 🎉
+
+This is a simplified shell program developed as part of the curriculum at the 42 School. The goal of this project is to recreate a basic Unix shell with features that mimic the behavior of a typical shell, while also offering the flexibility to extend it with custom commands and functionalities.
+
+Minishell serves as a great exercise in system programming, process management, and working with signals, all within the context of Unix-based systems. Whether you're interested in learning how shells work under the hood or you're just looking for a fun project to play around with, Minishell has you covered!
 
 
 # Installation & Setup
