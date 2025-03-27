@@ -1,3 +1,3 @@
 #! /bin/bash
 
-ls src | grep .c | awk '{print $0 " \\"}' > files_sorted
+ls src | grep .c | awk '{printf "%s ", $0; if (NR % 3 == 0) print "\\"}' > files_sorted
