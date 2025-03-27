@@ -3,7 +3,6 @@ Say hello and welcome to the project blahblahblah
 
 
 # Installation & Setup
-To get the program and compile it, run the following command in your terminal:
 ## Dependencies
 
 Your minishell requires the following to compile and run:
