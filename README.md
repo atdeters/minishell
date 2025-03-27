@@ -21,14 +21,12 @@ Install Dependencies (Debian-based systems like Ubuntu):
 
 ```sh
 
-sudo  apt  update && sudo  apt  install  -y  build-essential  libreadline-dev
+sudo apt update && sudo apt install -y build-essential libreadline-dev
 ```
 Install  Dependencies (MacOS –  Homebrew  required):
 ```sh
 
-brew  install  readline
-
-Running  the  Shell
+brew install readline
 
 ```
 
