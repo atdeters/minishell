@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 12:36:59 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/27 16:00:56 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 16:01:44 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ int	load_alias_lst(t_data *data, char *path)
 	return (0);
 }
 
-// Add error messages
 void	add_aliases_to_file(t_data *data)
 {
 	int			fd;
