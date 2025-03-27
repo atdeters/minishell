@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:02:04 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/18 15:24:21 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 14:44:37 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,23 @@
 
 bool	has_flag_clean_pwd(char **command)
 {
+	int	i;
+
 	if (!command[1])
 		return (false);
-	if (!ft_strcmp(command[1], "-c"))
-		return (true);
 	if (!ft_strcmp(command[1], "--clean"))
 		return (true);
-	return (false);
-}
-
-bool	has_flag_help_pwd(char **command)
-{
-	if (!command[1])
-		return (false);
-	if (!ft_strcmp(command[1], "-h"))
-		return (true);
-	if (!ft_strcmp(command[1], "--help"))
-		return (true);
-	return (false);
+	if (command[1][0] == '-')
+	{
+		i = 1;
+		while (command[1][i])
+		{
+			if (command[1][i] != 'c')
+				return (false);
+			i++;
+		}
+	}
+	return (true);
 }
 
 int	ft_pwd(t_data *data, char **command)
