@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 20:10:32 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/27 16:38:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 19:12:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	get_fd_in(t_data *data, int *fd_in)
 		i = 0;
 		while (data->parsed_lst->in_arr[i])
 		{
-			check_access(data, data->parsed_lst->in_arr[i], true);
+			// check_access(data, data->parsed_lst->in_arr[i], true);
+			check_access_infile(data, data->parsed_lst->in_arr[i]);
 			if (*fd_in != -1)
 				close(*fd_in);
 			*fd_in = open(data->parsed_lst->in_arr[i], O_RDONLY);
@@ -47,11 +48,10 @@ void	check_out_arr(t_data *data, int *fd_out, int open_m)
 	i = 0;
 	while (data->parsed_lst->out_arr[i])
 	{
-		// TODO: Does not work properly
-		if (access(data->parsed_lst->out_arr[i], W_OK) == -1
-			&& !access(data->parsed_lst->out_arr[i], F_OK))
-			rage_quit(data, ERR_PERM, false, data->parsed_lst->out_arr[i]);
-		// TODO: Check valid directory (like ./ instead of just /)
+		// if (access(data->parsed_lst->out_arr[i], W_OK) == -1
+		// 	&& !access(data->parsed_lst->out_arr[i], F_OK))
+		// 	rage_quit(data, ERR_PERM, false, data->parsed_lst->out_arr[i]);
+		check_access_outfile(data, data->parsed_lst->out_arr[i]);
 		if (*fd_out != -1)
 			close(*fd_out);
 		*fd_out = open(data->parsed_lst->out_arr[i], open_m, 0644);

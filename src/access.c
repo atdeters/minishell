@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:53:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 20:18:21 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 19:40:07 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,46 @@ int	check_access(t_data *data, char *name, bool is_file)
 	else if (S_ISDIR(path_stat.st_mode))
 		rage_quit(data, ERR_DIR, false, name);
 	return (0);
+}
+
+void	check_access_infile(t_data *data, char *filename)
+{
+	struct stat	path_stat;
+
+	if (stat(filename, &path_stat) == -1 && errno == EACCES)
+		rage_quit(data, ERR_PERM, false, filename);
+	if (!access(filename, F_OK) && access(filename, R_OK) == -1)
+		rage_quit(data, ERR_PERM, false, filename);
+	if (access(filename, F_OK) == -1)
+		rage_quit(data, ERR_ACCESS_FILE, false, filename);
+	if (S_ISDIR(path_stat.st_mode))
+		rage_quit(data, ERR_DIR, false, filename);
+}
+
+void	check_access_outfile(t_data *data, char *filename)
+{
+	struct stat	path_stat;
+
+	if (stat(filename, &path_stat) == -1 && errno == EACCES)
+		rage_quit(data, ERR_PERM, false, filename);
+	if (!access(filename, F_OK) && access(filename, W_OK) == -1)
+		rage_quit(data, ERR_PERM, false, filename);
+	if (S_ISDIR(path_stat.st_mode))
+		rage_quit(data, ERR_DIR, false, filename);
+}
+
+void	check_access_command(t_data *data, char *command)
+{
+	struct stat	path_stat;
+
+	if (stat(command, &path_stat) == -1 && errno == EACCES)
+		rage_quit(data, ERR_PERM, false, command);
+	if (!access(command, F_OK) && access(command, X_OK) == -1)
+		rage_quit(data, ERR_PERM, false, command);
+	if (access(command, F_OK) == -1)
+		rage_quit(data, ERR_ACCESS, false, command);
+	if (!ft_strchr(command, '/'))
+		rage_quit(data, ERR_ACCESS, false, command);
+	if (S_ISDIR(path_stat.st_mode))
+		rage_quit(data, ERR_DIR, false, command);
 }

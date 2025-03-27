@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/27 15:33:07 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 19:36:23 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/ioctl.h>
 # include <sys/wait.h>
 # include <unistd.h>
+# include <errno.h>
 
 ////* HEADERFILES
 # include "./libft/libft.h"
@@ -63,6 +64,7 @@ enum					e_errors
 	ERR_DIR = 24,
 	ERR_VALID_IDENT = 25,
 	ERR_INVALID_REDIR = 26,
+	ERR_NOTDIR = 27,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
 	ERR_ACCESS_FILE = 1,
@@ -179,6 +181,9 @@ typedef struct s_pars_data
 ////* FUNCTION-FILES
 // access.c
 int						check_access(t_data *data, char *name, bool is_file);
+void					check_access_infile(t_data *data, char *filename);
+void					check_access_outfile(t_data *data, char *filename);
+void					check_access_command(t_data *data, char *command);
 
 // add_rl_prompt.c
 /**

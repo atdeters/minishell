@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 17:01:48 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 16:18:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 19:35:49 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ int	p_err_arg(int code, char *arg)
 {
 	if (code == ERR_ACCESS)
 		p_err_arg_formatted(ERR_MSG_ACCESS, arg);
+	if (code == ERR_NOTDIR)
+		p_err_arg_formatted(ERR_MSG_NOTDIR, arg);
 	if (code == ERR_ACCESS_FILE)
-		p_err_arg_formatted(arg, ERR_MSG_ACCESS_FILE);
+		p_err_arg_formatted(ERR_MSG_ACCESS_FILE, arg);
 	if (code == ERR_PERM)
 		p_err_arg_formatted(ERR_MSG_PERM, arg);
 	if (code == ERR_OPEN)
