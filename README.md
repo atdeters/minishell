@@ -5,7 +5,7 @@ Say hello and welcome to the project blahblahblah
 # Installation & Setup
 To get the program and compile it, run the following command in your terminal:
 ```sh
-git  clone https://github.com/atdeters/minishell.git && cd minishell && make
+git  clone <your-repo-link> && cd <repo-folder> && make
 ```
 ## Dependencies
 
@@ -17,19 +17,17 @@ Your minishell requires the following to compile and run:
 
 - Readline library (for command-line input handling)
 
-Install Dependencies (Debian-based systems like Ubuntu):
+
+### **One-Liner Installation Command **
+#### **For Debian-based systems (Ubuntu, Debian, etc.):**
 
 ```sh
-
-sudo apt update && sudo apt install -y build-essential libreadline-dev
+`sudo apt update && sudo apt install -y build-essential libreadline-dev libncurses-dev && git clone https://github.com/atdeters/minishell.git && cd minishell && make` 
 ```
-Install  Dependencies (MacOS –  Homebrew  required):
+#### **For MacOS (with Homebrew):**
 ```sh
-
-brew install readline
-
+`brew install readline && git clone https://github.com/atdeters/minishell.git && cd minishell && make`
 ```
-
 Once compiled, start the shell with:
 ```sh
 ./minishell
