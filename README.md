@@ -67,6 +67,9 @@ For displaying a usage file in the terminal run it with the `-h` flag
   - `<`: Redirects the input from a file.
   - `<< DELIMITER`: Creates a temporary here document, which is terminated by the specified `DELIMITER`.
 - **Forking and Execution**: Executes external programs and commands.
+- **Quotes Handling**: Properly handles strings with quotes:
+  - **Single Quotes (`'`)**: The characters inside single quotes are treated literally, meaning **no expansion** occurs (including environment variables).
+  - **Double Quotes (`"`)**: The characters inside double quotes are treated as a string, and **environment variables will be expanded**. For example, `$HOME` will be expanded to the user's home directory.
 - **Built-in Commands**: Includes essential commands like `cd`, `echo`, `exit`, `pwd`, and more!
 - **Bonus Features**:
   - **Persistent History**: Automatically saves command history in a file.
