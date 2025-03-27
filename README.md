@@ -1,11 +1,50 @@
 # Welcome to our Minishell!
 Say hello and welcome to the project blahblahblah
-# Features
 
+
+# Installation & Setup
+To get the program and compile it, run the following command in your terminal:
+```sh
+git  clone <your-repo-link> && cd <repo-folder> && make
+```
+## Dependencies
+
+Your minishell requires the following to compile and run:
+
+- GNU Make
+
+- GCC or Clang
+
+- Readline library (for command-line input handling)
+
+Install Dependencies (Debian-based systems like Ubuntu):
+
+```sh
+
+sudo  apt  update && sudo  apt  install  -y  build-essential  libreadline-dev
+```
+Install  Dependencies (MacOS –  Homebrew  required):
+```sh
+
+brew  install  readline
+
+Running  the  Shell
+
+```
+
+Once compiled, start the shell with:
+```sh
+./minishell
+```
+
+
+# Features
 Descripe which features are in it.
 - Built-in Functions
 - Permanent History List
 - Permanent Alias List
+- Show Folder in Prompt
+- Show Git in Prompt
 
 ## Built-in Functions
 ### alias
