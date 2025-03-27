@@ -62,6 +62,10 @@ For displaying a usage file in the terminal run it with the `-h` flag
 - **Environment Variable Management**: Easily access and modify environment variables.
 - **Signal Handling**: Properly handles signals like `SIGINT` and `SIGQUIT`.
 - **Pipes and Redirections**: Supports piping between commands and file redirection.
+  - `>`: Redirects the output to a file.
+  - `>>`: Redirects the output to a file in append mode.
+  - `<`: Redirects the input from a file.
+  - `<< DELIMITER`: Creates a temporary here document, which is terminated by the specified `DELIMITER`.
 - **Forking and Execution**: Executes external programs and commands.
 - **Built-in Commands**: Includes essential commands like `cd`, `echo`, `exit`, `pwd`, and more!
 - **Bonus Features**:
