@@ -106,7 +106,7 @@ Usage: `echo [-n] [string...]`
 -   `-n` : Omits the trailing newline.
 
 ### env
-Displays the current environment variables.
+Displays the current environment variables.  
 Usage: `env`
 
 ### exit
