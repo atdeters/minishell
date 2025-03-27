@@ -61,14 +61,17 @@ For displaying a usage file in the terminal run it with the `-h` flag
 
 
 # Features
-Descripe which features are in it.
-- Built-in Functions
-- Permanent History List
-- Permanent Alias List
-- Show Folder in Prompt
-- Show Git in Prompt
+- Environment Variable Management: Easily access and modify environment variables.
+- Signal Handling: Properly handles signals like `SIGINT` and `SIGQUIT`.
+- Pipes and Redirections: Supports piping between commands and file redirection.
+- Forking and Execution: Executes external programs and commands.
+- Built-in Commands: Like `cd`, `echo`, `exit`, `pwd`, and more!
+- Permanently saves history in a file [bonus feature]
+- Permanently saves aliases in a file [bonus feature]
+- Show the current working directory in folder [bonus feature]
+- Show the current git repository in folder [bonus feature]
 
-## Built-in Functions
+## Built-in Commands
 ### alias
 Set or display aliases for commands.
 Usage: `alias [flags] alias[=expansion]`
