@@ -107,6 +107,7 @@ Usage: `echo [-n] [string...]`
 
 ### env
 Displays the current environment variables.
+Usage: `env`
 
 ### exit
 Exits the shell with an optional exit code.  
