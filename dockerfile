@@ -11,7 +11,7 @@ COPY . /minishell
 WORKDIR /minishell
 
 # Build the Minishell program
-RUN make
+RUN make omg
 
 # Run Minishell when the container starts
 CMD ["./minishell"]

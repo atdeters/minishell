@@ -67,13 +67,6 @@ re: fclean all
 
 tidy: all clean
 
-# basic: PROMPT='"msh>"'
-# basic: PROMPT_SPACE='" "'
-# basic: SHOW_EXIT_COL=false
-# basic: SHOW_FOLDER=false
-# basic: SHOW_GIT=false
-# basic: all
-
 omg: fclean
 	@make --no-print-directory PROMPT="'\"\001\001➜\002\002\"'" PROMPT_SPACE="'\"  \"'" SHOW_EXIT_COL=true SHOW_FOLDER=true SHOW_GIT=true
 
