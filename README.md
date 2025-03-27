@@ -5,10 +5,8 @@ This is a simplified shell program developed as part of the curriculum at the 42
 
 Minishell serves as a great exercise in system programming, process management, and working with signals, all within the context of Unix-based systems. Whether you're interested in learning how shells work under the hood or you're just looking for a fun project to play around with, Minishell has you covered!
 
-#### Disclaimer for other 42 students:
-This project is intended to be a learning exercise for 42 students. Please do not copy, fork, or steal code from this repository to submit as your own. The aim of the project is to help you learn, not just complete the assignment. If you’re stuck, work through the problem, ask for help, or discuss it with peers, but do not simply use other students' solutions.
-
-We believe in the value of learning through challenges, and that’s the only way you’ll truly grow and succeed at 42. Let’s keep it fair and fun!
+#### Disclaimer for other 42 students
+This project is intended to be a learning exercise for 42 students. Please do not copy, fork, or steal code from this repository to submit as your own. The aim of the project is to help you learn, not just complete the assignment. If you’re stuck, work through the problem, ask for help, or discuss it with peers, but do not simply use other students' solutions. We believe in the value of learning through challenges, and that’s the only way you’ll truly grow and succeed at 42. Let’s keep it fair and fun!
 
 # Installation & Setup
 ### Dependencies
@@ -66,10 +64,10 @@ For displaying a usage file in the terminal run it with the `-h` flag
 - Pipes and Redirections: Supports piping between commands and file redirection.
 - Forking and Execution: Executes external programs and commands.
 - Built-in Commands: Like `cd`, `echo`, `exit`, `pwd`, and more!
-- Permanently saves history in a file [bonus feature]
-- Permanently saves aliases in a file [bonus feature]
-- Show the current working directory in folder [bonus feature]
-- Show the current git repository in folder [bonus feature]
+- **bonus:** Permanently saves history in a file
+- **bonus:** Permanently saves aliases in a file
+- **bonus:** Show the current working directory in folder
+- **bonus:** Show the current git repository in folder
 
 ## Built-in Commands
 ### alias
