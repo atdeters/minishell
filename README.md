@@ -13,14 +13,15 @@ Your minishell requires the following to compile and run:
 
 - Readline library (for command-line input handling)
 
+They will be installed with the following One-Liner Installation Command
 
-### One-Liner Installation Command
-#### For Debian-based systems (Ubuntu, Debian, etc.)
+## One-Liner Installation Command
+### For Debian-based systems (Ubuntu, Debian, etc.)
 
 ```sh
 sudo apt update && sudo apt install -y build-essential libreadline-dev libncurses-dev && git clone https://github.com/atdeters/minishell.git && cd minishell && make
 ```
-#### For MacOS (with Homebrew)
+### For MacOS (with Homebrew)
 ```sh
 brew install readline && git clone https://github.com/atdeters/minishell.git && cd minishell && make
 ```
