@@ -1,17 +1,17 @@
 NAME = minishell
 
 # Config Makros
-SHOW_FOLDER		?=	true
-SHOW_GIT		?=	true
-PROMPT			?=	'"\001\001➜\002\002"'
-PROMPT_SPACE	?=	'"  "'
-SHOW_EXIT_COL 	?=	true
+SHOW_FOLDER		?=	false
+SHOW_GIT		?=	false
+PROMPT			?=	'"msh>"'
+PROMPT_SPACE	?=	'" "'
+SHOW_EXIT_COL 	?=	false
 
 DEFINES		 =	-D PROMPT=$(PROMPT)\
  				-D PROMPT_SPACE=$(PROMPT_SPACE)\
+				-D SHOW_FOLDER=$(SHOW_FOLDER)\
 				-D SHOW_GIT=$(SHOW_GIT)\
 				-D PROMPT=$(PROMPT)\
-				-D PROMPT_SPACE=$(PROMPT_SPACE)\
 				-D SHOW_EXIT_COL=$(SHOW_EXIT_COL)
 
 COMP		=	cc
@@ -67,17 +67,17 @@ re: fclean all
 
 tidy: all clean
 
-basic: PROMPT='"msh>"'
-basic: PROMPT_SPACE='" "'
-basic: SHOW_EXIT_COL=false
-basic: SHOW_FOLDER=false
-basic: SHOW_GIT=false
-basic: all
+# basic: PROMPT='"msh>"'
+# basic: PROMPT_SPACE='" "'
+# basic: SHOW_EXIT_COL=false
+# basic: SHOW_FOLDER=false
+# basic: SHOW_GIT=false
+# basic: all
 
-nw: CFLAGS=-Wall -Wextra -g
-nw: all
+omg: fclean
+	@make --no-print-directory PROMPT="'\"\001\001➜\002\002\"'" PROMPT_SPACE="'\"  \"'" SHOW_EXIT_COL=true SHOW_FOLDER=true SHOW_GIT=true
 
-nf: CFLAGS=""
-nf: all
+nf: 
+	@make --no-print-directory CFLAGS=""
 
 .PHONY: all clean fclean re tidy basic nw nf
