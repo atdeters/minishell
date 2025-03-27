@@ -5,7 +5,7 @@ Say hello and welcome to the project blahblahblah
 # Installation & Setup
 ### Dependencies
 
-Your minishell requires the following to compile and run:
+The minishell program requires the following to compile and run:
 
 - GNU Make
 
