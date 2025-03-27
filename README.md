@@ -13,7 +13,7 @@ The minishell program requires the following to compile and run:
 
 - Readline library (for command-line input handling)
 
-### One-Liner Installation Command
+## One-Liner Installation Command
 #### For Debian-based systems (Ubuntu, Debian, etc.)
 
 ```sh
@@ -23,7 +23,7 @@ sudo apt update && sudo apt install -y build-essential libreadline-dev && git cl
 ```sh
 brew install readline && git clone https://github.com/atdeters/minishell.git && cd minishell && make
 ```
-### Running the minishell program
+## Running the minishell program
 Once compiled, start the shell with
 ```sh
 ./minishell
@@ -37,7 +37,7 @@ For displaying a usage file in the terminal run it with the `-h` flag
 ```sh
 ./minishell -h
 ```
-### Alternatively run minishell with the following one-liner command using **docker**
+## Alternatively run minishell with the following one-liner command using **docker**
 ```sh
 git clone https://github.com/atdeters/minishell.git && cd minishell && docker build -t my_image . && docker run --rm my_image
 ```
