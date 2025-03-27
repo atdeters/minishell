@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:42:22 by andreas           #+#    #+#             */
-/*   Updated: 2025/03/27 14:48:37 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/27 16:10:34 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ bool	has_flag_rm_alias(char **command)
 			i++;
 		}
 	}
+	else
+		return (false);
 	return (true);
 }
