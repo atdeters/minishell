@@ -6,14 +6,14 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/28 16:18:59 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:50:30 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-////* LIBRARIES
+////* EXT LIBRARIES
 # include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
@@ -26,7 +26,7 @@
 # include <unistd.h>
 # include <errno.h>
 
-////* HEADERFILES
+////* INT LIBRARIES
 # include "./libft/libft.h"
 # include "config.h"
 # include "errmsg.h"
@@ -687,6 +687,11 @@ void					p_use_msh(void);
 void					rage_quit(t_data *data, int exit_code, bool write_hist,
 							char *err_cmd);
 
+// sig_handler.c
+void					sig_handle_here_doc(int signum);
+void					sig_handle_basic(int signum);
+t_data					*pointer_to_data(t_data *data);
+
 // replace input $
 int						check_replace_input(t_data *data);
 int						quotes_problem(t_data *data);
@@ -737,6 +742,11 @@ int						pipe_counter(t_token **tokens);
 
 // lexing
 int						lexing(char *input, t_token **list, t_data *data);
+/**
+ * @brief Checks if character is a whitespace
+ * @param ch Character to check
+ * @return 1 if whitespace, 0 otherwise
+ */
 int						ft_is_space(char ch);
 t_token					*create_token(int type, char *value);
 t_token					*ft_token_lstlast(t_token *lst);
@@ -753,15 +763,33 @@ int						handle_double_quotes(int *i, char *input,
 							t_token **current);
 int						handle_word(int *i, char *input, t_token **current,
 							t_data *data);
+/**
+ * @brief Checks if character at position is part of a word
+ * @param i Current position in input
+ * @param input Input string
+ * @param flag Quote status flag
+ * @return true if character is part of word, false otherwise
+ * DONT wanna lose it
+ * It was part of is_word_char. Now i dont need it
+ * // if (input[i + 1] == '\'')
+ * // 	return (false);
+ * // if (input[i + 1] == '"')
+ * // 	return (false);
+ * // if (input[i + 1] == '$')
+ * // 	return (false);
+ */
 bool					is_word_char(int i, char *input, int *flag);
 int						handle_dolar(char *input, t_token **current, int *i,
 							char **word);
+/**
+ * @brief Handles here-document delimiter token
+ * @param data Shell data structure
+ * @param current Pointer to store created token
+ * @param i Current position in input
+ * @param word Pointer to store delimiter word
+ * @return 1 on success, 0 on failure
+ */
 int						handle_delim(t_data *data, t_token **current, int *i,
 							char **word);
 
-// signal stuff
-void					sig_handle_here_doc(int signum);
-void					sig_handle_basic(int signum);
-t_data					*pointer_to_data(t_data *data);
-int						handle_pipeline(t_data *data);
 #endif

@@ -13,27 +13,6 @@
 #include "../src/minishell.h"
 #include "signal.h"
 
-int	main(int ac, char **av, char **env)
-{
-	t_data	data;
-
-	init_shell(&data, ac, av, env);
-	pointer_to_data(&data);
-	signal(SIGINT, sig_handle_basic);
-	signal(SIGQUIT, SIG_IGN);
-	while (true)
-	{
-		init_command(&data);
-		if (!(&data)->flag_single)
-			get_input(&data);
-		else
-			(&data)->input = av[2];
-		handle_pipeline(&data);
-		if (data.flag_single)
-			rage_quit(&data, data.exit_status, true, NULL);
-	}
-}
-
 int	cmd_abort(t_data *data, bool mute)
 {
 	if (mute)
@@ -70,4 +49,25 @@ int	handle_pipeline(t_data *data)
 	free_all_com(data);
 	signal(SIGINT, sig_handle_basic);
 	return (0);
+}
+
+int	main(int ac, char **av, char **env)
+{
+	t_data	data;
+
+	init_shell(&data, ac, av, env);
+	pointer_to_data(&data);
+	signal(SIGINT, sig_handle_basic);
+	signal(SIGQUIT, SIG_IGN);
+	while (true)
+	{
+		init_command(&data);
+		if (!(&data)->flag_single)
+			get_input(&data);
+		else
+			(&data)->input = av[2];
+		handle_pipeline(&data);
+		if (data.flag_single)
+			rage_quit(&data, data.exit_status, true, NULL);
+	}
 }
