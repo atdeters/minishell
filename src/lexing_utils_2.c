@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/28 17:25:28 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:41:54 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,29 @@ int	handle_special_char(char *input, t_token **current, int *i, t_data *data)
 }
 
 /**
+ * @brief Helper function to copy string without quotes
+ * @param word Source string
+ * @param flag Quote type flag
+ * @param new_new Destination string
+ */
+void	transfer_str_in_rq(char *word, int flag, char *new_new)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (word[i])
+	{
+		if ((word[i] != '\"' && flag == 2) || (word[i] != '\'' && flag == 1)
+			|| (word[i] != '\'' && word[i] != '"'))
+			new_new[j++] = word[i];
+		i++;
+	}
+	new_new[j] = '\0';
+}
+
+/**
  * @brief Removes quotes from a string while preserving content
  * @param word Input string containing quotes
  * @return New string with quotes removed, NULL on failure
@@ -74,29 +97,6 @@ char	*remove_quotes(char *word)
 		return (NULL);
 	transfer_str_in_rq(word, flag, new_new);
 	return (new_new);
-}
-
-/**
- * @brief Helper function to copy string without quotes
- * @param word Source string
- * @param flag Quote type flag
- * @param new_new Destination string
- */
-void	transfer_str_in_rq(char *word, int flag, char *new_new)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (word[i])
-	{
-		if ((word[i] != '\"' && flag == 2) || (word[i] != '\'' && flag == 1)
-			|| (word[i] != '\'' && word[i] != '"'))
-			new_new[j++] = word[i];
-		i++;
-	}
-	new_new[j] = '\0';
 }
 
 /**
