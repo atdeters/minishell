@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/28 19:09:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/28 19:15:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -706,9 +706,40 @@ void					p_use_msh(void);
 void					rage_quit(t_data *data, int exit_code, bool write_hist,
 							char *err_cmd);
 
-// sig_handler.c
+//* sig_handler.c
+/**
+ * @brief Handles the SIGINT signal during here-document creation.
+ * 
+ * This function is called when the SIGINT signal is received during the
+ * creation of a here-document. It sets a global signal flag, resets
+ * the readline input, and inserts a newline character into the input
+ * buffer to exit the readline function.
+ * 
+ * @param signum The signal number (expected to be SIGINT).
+ */
 void					sig_handle_here_doc(int signum);
+/**
+ * @brief Default SIGINT signal handler in interactive mode.
+ * 
+ * This function is called when the SIGINT signal is received in interactive
+ * mode. It writes a newline, resets the readline input, triggers a reprompt,
+ * and frees allocated resources before displaying the shell prompt again.
+ * 
+ * @param signum The signal number (expected to be SIGINT).
+ */
 void					sig_handle_basic(int signum);
+/**
+ * @brief Retrieves or sets the static pointer to the shell data.
+ * 
+ * This function returns the static pointer to the shell's data structure. 
+ * If a non-NULL `data` argument is provided, it updates the pointer to 
+ * reference the new data. It is used in the signal handler to access or 
+ * modify the shell's data.
+ * 
+ * @param data A pointer to the shell's data structure
+ * (or NULL to retrieve the current pointer).
+ * @return The current pointer to the shell's data structure.
+ */
 t_data					*pointer_to_data(t_data *data);
 
 // replace input $
