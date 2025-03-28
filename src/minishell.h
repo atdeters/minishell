@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/28 19:02:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/28 19:03:20 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -406,9 +406,6 @@ void					close_all(t_data *data);
 void					free_hdf_arr(t_data *data);
 
 // free2.c
-void					free_all_com(t_data *data);
-void					free_all_global(t_data *data);
-
 /**
  * Stuff to free after every command
  */
