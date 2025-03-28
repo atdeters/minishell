@@ -5,12 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 19:54:11 by vsenniko          #+#    #+#             */
+/*   Created: 2025/02/10 19:54:11 by vsenniko          #+#                #+#             */
 /*   Updated: 2025/03/25 18:30:31 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/**
+ * @brief Processes a single token from the input string
+ * @param input The input string to process
+ * @param current Pointer to store the created token
+ * @param i Current position in the input string
+ * @param data Shell data structure containing error handling info
+ * @return 1 on success, 0 on failure
+ */
+static int process_token(char *input, t_token **current, int *i, t_data *data);
+
+/**
+ * @brief Main lexical analysis function that tokenizes the input string
+ * @param input The input string to tokenize
+ * @param list Pointer to the token list head
+ * @param data Shell data structure containing error handling info
+ * @return 1 on success, 0 on failure with error set in data->error
+ */
+int lexing(char *input, t_token **list, t_data *data);
 
 /*
 Used to be a part of process_token between if and else:

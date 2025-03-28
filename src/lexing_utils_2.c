@@ -6,20 +6,20 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/25 18:40:26 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:23:13 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Moved here because of norminette
-// if (input[*i] == '$')
-// 	return (handle_dolar(input, current, i, &word));
-
-/*
-	in case of malloc error in handle_delim,
-		we will check it with if (!*current)
-*/
+/**
+ * @brief Handles special characters (|, <, >, <<, >>)
+ * @param input Input string
+ * @param current Pointer to store created token
+ * @param i Current position in input
+ * @param data Shell data structure
+ * @return 1 on success, 0 on failure
+ */
 int	handle_special_char(char *input, t_token **current, int *i, t_data *data)
 {
 	char	*word;
@@ -43,104 +43,11 @@ int	handle_special_char(char *input, t_token **current, int *i, t_data *data)
 	return (1);
 }
 
-// shoud return (some error code in case of unclosed quote?
-// (if (!input[*i])
-// return (0));)
-// should think about every error code in case of not closed quote
-// int	handle_single_quote(int *i, char *input, t_token **current)
-// {
-// 	int		start;
-// 	char	*word;
-
-// 	start = ++(*i);
-// 	while (input[*i] && input[*i] != '\'')
-// 		(*i)++;
-// 	if (!input[*i])
-// 		return (0);
-// 	word = ft_substr(input, start, (*i) - start);
-// 	if (!word)
-// 		return (0);
-// 	*current = create_token(SINGLE_QOUTE, word);
-// 	if (!*current)
-// 	{
-// 		free(word);
-// 		return (0);
-// 	}
-// 	if (input[*i + 1] && (input[*i + 1] == ' ' || input[*i + 1] == '\''))
-// 		(*i)++;
-// 	return (1);
-// }
-
-// int	handle_nested_double_quotes(int *i, char *input, t_token **current)
-// {
-// 	int		start;
-// 	char	*word;
-// 	char	*tmp;
-
-// 	if (input[*i] == '\"')
-// 	{
-// 		start = ++(*i);
-// 		while (input[*i] && input[*i] != '\"')
-// 			(*i)++;
-// 		if (!input[*i])
-// 			return (0);
-// 		word = ft_substr(input, start, (*i) - start);
-// 		if (!word)
-// 			return (0);
-// 		tmp = (*current)->value;
-// 		(*current)->value = ft_strjoin(tmp, word);
-// 		free(tmp);
-// 		if (!(*current)->value)
-// 		{
-// 			free(word);
-// 			return (0);
-// 		}
-// 		(*i)++;
-// 	}
-// 	return (1);
-// }
-
-// int	handle_double_quotes(int *i, char *input, t_token **current)
-// {
-// 	int		start;
-// 	char	*word;
-
-// 	start = ++(*i);
-// 	while (input[*i] && input[*i] != '\"')
-// 		(*i)++;
-// 	if (!input[*i])
-// 		return (0);
-// 	word = ft_substr(input, start, (*i) - start);
-// 	if (!word)
-// 		return (0);
-// 	*current = create_token(DOUBLE_QOUTE, word);
-// 	if (!*current)
-// 	{
-// 		free(word);
-// 		return (0);
-// 	}
-// 	if (input[*i + 1] && (input[*i + 1] == ' ' || input[*i + 1] == '\"'))
-// 		return ((*i)++, handle_nested_double_quotes(i, input, current));
-// 	return (1);
-// }
-
-void	transfer_str_in_rq(char *word, int flag, char *new_new)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (word[i])
-	{
-		if ((word[i] != '\"' && flag == 2) || (word[i] != '\'' && flag == 1)
-			|| (word[i] != '\'' && word[i] != '"'))
-			new_new[j++] = word[i];
-		i++;
-	}
-	new_new[j] = '\0';
-}
-
+/**
+ * @brief Removes quotes from a string while preserving content
+ * @param word Input string containing quotes
+ * @return New string with quotes removed, NULL on failure
+ */
 char	*remove_quotes(char *word)
 {
 	int		i;
@@ -169,6 +76,35 @@ char	*remove_quotes(char *word)
 	return (new_new);
 }
 
+/**
+ * @brief Helper function to copy string without quotes
+ * @param word Source string
+ * @param flag Quote type flag
+ * @param new_new Destination string
+ */
+void	transfer_str_in_rq(char *word, int flag, char *new_new)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (word[i])
+	{
+		if ((word[i] != '\"' && flag == 2) || (word[i] != '\'' && flag == 1)
+			|| (word[i] != '\'' && word[i] != '"'))
+			new_new[j++] = word[i];
+		i++;
+	}
+	new_new[j] = '\0';
+}
+
+/**
+ * @brief Iterates through word characters handling quotes
+ * @param i Current position in input
+ * @param input Input string
+ * @return Always returns 1
+ */
 int	iterate_word(int *i, char *input)
 {
 	static int	flag = 0;
@@ -189,6 +125,14 @@ int	iterate_word(int *i, char *input)
 	return (1);
 }
 
+/**
+ * @brief Handles word token creation including quote removal
+ * @param i Current position in input
+ * @param input Input string
+ * @param current Pointer to store created token
+ * @param data Shell data structure
+ * @return 1 on success, 0 on failure
+ */
 int	handle_word(int *i, char *input, t_token **current, t_data *data)
 {
 	int		start;
@@ -198,9 +142,11 @@ int	handle_word(int *i, char *input, t_token **current, t_data *data)
 	start = *i;
 	iterate_word(i, input);
 	word = ft_substr(input, start, (*i) - start + 1);
+	printf("word = |%s|\n", word);
 	if (!word)
 		return (data->error = ERR_MALLOC, 0);
 	final_word = remove_quotes(word);
+	printf("final_word = |%s|\n", final_word);
 	free(word);
 	if (!final_word)
 		return (data->error = ERR_MALLOC, 0);

@@ -6,12 +6,18 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:53:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/21 17:42:23 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:22:42 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/**
+ * @brief Creates a new token with given type and value
+ * @param type Token type (WORD, PIPE, etc.)
+ * @param value String value for the token
+ * @return Pointer to new token or NULL on failure
+ */
 t_token	*create_token(int type, char *value)
 {
 	t_token	*token;
@@ -28,6 +34,11 @@ t_token	*create_token(int type, char *value)
 	return (token);
 }
 
+/**
+ * @brief Finds the last token in a token list
+ * @param lst Head of the token list
+ * @return Pointer to last token or NULL if list is empty
+ */
 t_token	*ft_token_lstlast(t_token *lst)
 {
 	if (lst == NULL)
@@ -37,6 +48,11 @@ t_token	*ft_token_lstlast(t_token *lst)
 	return (lst);
 }
 
+/**
+ * @brief Adds a new token to the end of the token list
+ * @param lst Pointer to token list head
+ * @param new Token to add
+ */
 void	ft_token_lstadd_back(t_token **lst, t_token *new)
 {
 	t_token	*current;
@@ -53,6 +69,10 @@ void	ft_token_lstadd_back(t_token **lst, t_token *new)
 	new->prev = current;
 }
 
+/**
+ * @brief Deletes a single token and frees its memory
+ * @param lst Token to delete
+ */
 void	ft_token_lstdelone(t_token *lst)
 {
 	if (lst == NULL)
@@ -62,6 +82,10 @@ void	ft_token_lstdelone(t_token *lst)
 	free(lst);
 }
 
+/**
+ * @brief Clears entire token list and frees all memory
+ * @param lst Pointer to token list head
+ */
 void	ft_token_lstclear(t_token **lst)
 {
 	t_token	*current;
