@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/28 19:03:20 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/28 19:09:19 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -387,11 +387,6 @@ int						setnret(t_data *data, int code);
  */
 int						p_err(int code);
 /**
- * @brief Prints non-critical errors aka the program will not immediately
- * terminate after these errors.
- */
-int						pnc_err(t_data *data);
-/**
  * @brief Prints errors and adds the argument that caused the error
  */
 int						p_err_arg(int code, char *arg);
@@ -599,7 +594,6 @@ char					*get_input(t_data *data);
 bool					is_flag_single(char *flag);
 bool					is_flag_help(char *flag);
 int						check_flags(t_data *data, int ac, char **av);
-void					print_help(void);
 
 // path.c
 /**
@@ -664,18 +658,48 @@ char					*add_path(t_data *data, char **command);
 int						wait_all(t_data *data);
 int						cool_dup(t_data *data, int fd_in, int fd_out);
 
-// print_usage.c
+//* print_usage.c
+/**
+ * @brief Displays the manual page for the built-in `alias` command.
+ */
 void					p_use_alias(void);
+/**
+ * @brief Displays the manual page for the built-in `echo` command.
+ */
 void					p_use_echo(void);
+/**
+ * @brief Displays the manual page for the built-in `biman` command.
+ */
 void					p_use_biman(void);
+/**
+ * @brief Displays the manual page for the built-in `cd` command.
+ */
 void					p_use_cd(void);
+/**
+ * @brief Displays the manual page for the built-in `env` command.
+ */
 void					p_use_env(void);
 
-// print_usage2.c
+//* print_usage2.c
+/**
+ * @brief Displays the manual page for the built-in `exit` command.
+ */
 void					p_use_exit(void);
+/**
+ * @brief Displays the manual page for the built-in `export` command.
+ */
 void					p_use_export(void);
+/**
+ * @brief Displays the manual page for the built-in `pwd` command.
+ */
 void					p_use_pwd(void);
+/**
+ * @brief Displays the manual page for the built-in `unset` command.
+ */
 void					p_use_unset(void);
+/**
+ * @brief Displays the manual page for the minishell program.
+ */
 void					p_use_msh(void);
 
 // rage_quit.c
