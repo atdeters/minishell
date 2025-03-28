@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/28 16:16:54 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/28 16:18:59 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,9 +295,6 @@ char					*add_folder(char *rl_prompt, char *path);
  *
  */
 char					*add_branch(char *rl_prompt, char *branch);
-
-// ask_user.c
-bool					user_agrees(t_data *data);
 
 // builtin_alias_flags.c
 bool					has_flag_rm_alias(char **command);
