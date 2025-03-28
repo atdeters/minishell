@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/28 17:23:13 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:25:28 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,11 +142,9 @@ int	handle_word(int *i, char *input, t_token **current, t_data *data)
 	start = *i;
 	iterate_word(i, input);
 	word = ft_substr(input, start, (*i) - start + 1);
-	printf("word = |%s|\n", word);
 	if (!word)
 		return (data->error = ERR_MALLOC, 0);
 	final_word = remove_quotes(word);
-	printf("final_word = |%s|\n", final_word);
 	free(word);
 	if (!final_word)
 		return (data->error = ERR_MALLOC, 0);
