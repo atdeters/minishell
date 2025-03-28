@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:58:19 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 16:37:35 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/28 19:02:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	free_all_global(t_data *data)
 	cool_free(&data->hist_path);
 	cool_free(&data->alias_path);
 	cool_free(&data->home_path);
-	cool_free(&data->msh_path);
 	if (data->envp)
 		fr_lst(data->envp);
 	if (data->alias_lst)

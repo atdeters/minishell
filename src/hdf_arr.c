@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:29:01 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 20:41:14 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/28 19:00:24 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	create_hdf(t_data *data)
 	data->hdf_arr = malloc(sizeof(char *) * (amt + 1));
 	if (!data->hdf_arr)
 		rage_quit(data, ERR_MALLOC, true, NULL);
-	data->stage_flag = 1;
 	data->hdf_arr[amt] = NULL;
 	i = 0;
 	while (i < amt)

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/28 18:50:30 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/28 19:02:01 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ typedef struct s_token
 // TODO: check hist and alias path still needed?
 typedef struct s_data
 {
-	// Global
+	// Scope: Program
 	int					exit_status;
 	enum e_errors		error;
 	bool				flag_single;
@@ -148,10 +148,9 @@ typedef struct s_data
 	char				**envp;
 	char				*hist_path;
 	char				*alias_path;
-	char				*msh_path;
 	char				*home_path;
 	bool				p_err;
-	// Local
+	// Scope: Command
 	char				*input;
 	int					pipe_ind;
 	int					pipes_amount;
@@ -160,7 +159,6 @@ typedef struct s_data
 	int					hdf_amt;
 	t_parsed			*parsed_lst;
 	t_token				*token_lst;
-	int					stage_flag;
 	char				*prog_path;
 }						t_data;
 
@@ -769,14 +767,15 @@ int						handle_word(int *i, char *input, t_token **current,
  * @param input Input string
  * @param flag Quote status flag
  * @return true if character is part of word, false otherwise
+ *
  * DONT wanna lose it
  * It was part of is_word_char. Now i dont need it
- * // if (input[i + 1] == '\'')
- * // 	return (false);
- * // if (input[i + 1] == '"')
- * // 	return (false);
- * // if (input[i + 1] == '$')
- * // 	return (false);
+ * if (input[i + 1] == '\'')
+ * 	return (false);
+ * if (input[i + 1] == '"')
+ * 	return (false);
+ * if (input[i + 1] == '$')
+ * 	return (false);
  */
 bool					is_word_char(int i, char *input, int *flag);
 int						handle_dolar(char *input, t_token **current, int *i,

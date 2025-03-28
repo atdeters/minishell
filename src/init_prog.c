@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 16:50:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/28 19:02:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 		exit(p_err(ERR_USAGE));
 	*data = (t_data){0};
 	data->p_err = true;
-	data->msh_path = get_pwd_alloc(data, false);
 	check_flags(data, ac, av);
 	parse_env(data, env);
 	set_shlvl(data, &data->env_lst);
@@ -100,6 +99,5 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 	if (!data->hist_path)
 		rage_quit(data, data->error, false, NULL);
 	load_old_history(data->hist_path);
-	data->stage_flag = 0;
 	return (0);
 }

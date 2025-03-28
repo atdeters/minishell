@@ -6,14 +6,11 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:43:32 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/27 11:09:47 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:58:10 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// Work only on standart mode
-// Should handle here_doc and execution mode
 
 void	sig_handle_here_doc(int signum)
 {
