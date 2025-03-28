@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 19:54:11 by vsenniko          #+#                #+#             */
-/*   Updated: 2025/03/25 18:30:31 by vsenniko         ###   ########.fr       */
+/*   Created: 2025/03/28 19:16:55 by adeters           #+#    #+#             */
+/*   Updated: 2025/03/28 19:20:04 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,20 @@
  * @param i Current position in the input string
  * @param data Shell data structure containing error handling info
  * @return 1 on success, 0 on failure
+ * 
+ * Used to be a part of process_token between if and else:
+ * 
+ * 		else if (input[*i] == '\'')
+ * 		{
+ * 		if (!handle_single_quote(i, input, current))
+ * 			return (0);
+ * 		}
+ * 		else if (input[*i] == '"')
+ * 		{
+ * 			if (!handle_double_quotes(i, input, current))
+ * 				return (0);
+ * 		}
  */
-static int process_token(char *input, t_token **current, int *i, t_data *data);
-
-/**
- * @brief Main lexical analysis function that tokenizes the input string
- * @param input The input string to tokenize
- * @param list Pointer to the token list head
- * @param data Shell data structure containing error handling info
- * @return 1 on success, 0 on failure with error set in data->error
- */
-int lexing(char *input, t_token **list, t_data *data);
-
-/*
-Used to be a part of process_token between if and else:
-		else if (input[*i] == '\'')
-		{
-		if (!handle_single_quote(i, input, current))
-			return (0);
-		}
-		else if (input[*i] == '"')
-		{
-		if (!handle_double_quotes(i, input, current))
-			return (0);
-		}
-*/
 static int	process_token(char *input, t_token **current, int *i, t_data *data)
 {
 	if (input[*i] == '|' || input[*i] == '<' || input[*i] == '>')

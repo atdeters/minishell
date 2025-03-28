@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/28 19:15:58 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/28 19:18:14 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -791,6 +791,13 @@ void					free_p_lst(t_parsed **lst);
 int						pipe_counter(t_token **tokens);
 
 // lexing
+/**
+ * @brief Main lexical analysis function that tokenizes the input string
+ * @param input The input string to tokenize
+ * @param list Pointer to the token list head
+ * @param data Shell data structure containing error handling info
+ * @return 1 on success, 0 on failure with error set in data->error
+ */
 int						lexing(char *input, t_token **list, t_data *data);
 /**
  * @brief Checks if character is a whitespace
