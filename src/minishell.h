@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/27 20:11:52 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/28 16:16:54 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,9 @@ enum					e_errors
 	ERR_VALID_IDENT = 25,
 	ERR_INVALID_REDIR = 26,
 	ERR_NOTDIR = 27,
+	ERR_ACCESS_FILE = 28,
 	ERR_PERM = 126,
 	ERR_ACCESS = 127,
-	ERR_ACCESS_FILE = 1,
 	ERR_PARS = 130,
 	ERR_LEXING = 132,
 	ERR_PARS_SINGLE_QUTE = 135,
@@ -119,15 +119,15 @@ typedef struct s_parsed
 	char				**in_arr;
 	int					o_c;
 	char				**out_arr;
-	int					in_mode;
-	int					out_mode;
+	enum e_in_mode		in_mode;
+	enum e_out_mode		out_mode;
 	struct s_parsed		*prev;
 	struct s_parsed		*next;
 }						t_parsed;
 
 typedef struct s_token
 {
-	int					type;
+	enum e_token_type	type;
 	char				*value;
 	struct s_token		*next;
 	struct s_token		*prev;
@@ -138,7 +138,7 @@ typedef struct s_data
 {
 	// Global
 	int					exit_status;
-	int					error;
+	enum e_errors		error;
 	bool				flag_single;
 	t_env_lst			*env_lst;
 	t_env_lst			*alias_lst;
