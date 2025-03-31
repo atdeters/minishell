@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:24:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/28 17:40:34 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/31 15:29:35 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ bool	is_word_char(int i, char *input, int *flag)
 {
 	if (!input[i] | !input[i + 1])
 		return (false);
-	if ((input[i] == '"' || input[i] == '\'') && ft_is_space(input[i + 1]))
+	if ((input[i] == '"' || input[i] == '\'') && ft_is_space(input[i + 1]) && *flag)
 		return (false);
 	if (ft_is_space(input[i + 1]) && *flag)
 		return (true);
-	if (ft_is_space(input[i + 1]))
-		return (false);
 	if (input[i + 1] == '|' && !(*flag))
 		return (true);
 	if (input[i + 1] == '<' && !(*flag))
