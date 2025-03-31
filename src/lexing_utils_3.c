@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:24:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/31 15:45:26 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/31 19:46:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ bool	is_word_char(int i, char *input, int *flag)
 {
 	if (!input[i] | !input[i + 1])
 		return (false);
-	if ((input[i] == '"' || input[i] == '\'') && ft_is_space(input[i + 1]) && *flag)
+	if ((input[i] == '"' || input[i] == '\'') && ft_is_space(input[i + 1])
+		&& *flag)
 		return (false);
 	if (ft_is_space(input[i + 1]) && *flag)
 		return (true);
@@ -48,8 +49,7 @@ int	handle_delim(t_data *data, t_token **current, int *i, char **word)
 		(*i)++;
 	j = *i;
 	while (data->input[*i] && data->input[*i + 1] && !ft_is_space(data->input[*i
-				+ 1]) && data->input[*i + 1] != '<'
-		&& data->input[*i + 1] != '>'
+			+ 1]) && data->input[*i + 1] != '<' && data->input[*i + 1] != '>'
 		&& data->input[*i + 1] != '|' && data->input[*i + 1] != '$'
 		&& data->input[*i + 1] != '\"' && data->input[*i + 1] != '\'')
 		(*i)++;

@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/28 19:02:06 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/31 19:43:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,13 @@ void	set_shlvl(t_data *data, t_env_lst **lst)
 	{
 		if (!ft_strcmp("SHLVL", tmp->filed))
 		{
-			lvl = ft_atoi(tmp->value) + 1;
+			if (check_overflow(tmp->value))
+				lvl = 0;
+			else
+				lvl = ft_atoi(tmp->value) + 1;
 			free (tmp->value);
+			if (lvl < 0)
+				lvl = 0;
 			tmp->value = ft_itoa(lvl);
 			if (!tmp->value)
 				rage_quit(data, ERR_MALLOC, true, NULL);
