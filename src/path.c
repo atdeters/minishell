@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:52:51 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/31 21:01:42 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/31 21:29:37 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char	*check_env(t_data *data, char **paths_arr, char *cmd)
 	char	*tmp;
 
 	i = 0;
+	if (!ft_strcmp("", cmd))
+		return (cmd);
 	while (paths_arr[i])
 	{
 		tmp = join_path_exe(paths_arr[i], cmd);
