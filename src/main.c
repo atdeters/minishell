@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/28 17:30:41 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/03/31 15:48:30 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	main(int ac, char **av, char **env)
 	t_data	data;
 
 	init_shell(&data, ac, av, env);
-	pointer_to_data(&data);
 	signal(SIGINT, sig_handle_basic);
 	signal(SIGQUIT, SIG_IGN);
 	while (true)

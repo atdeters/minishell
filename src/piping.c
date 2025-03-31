@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/27 19:42:33 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/31 15:54:12 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static void	check_sigquit(int exit_status)
 		sig = WTERMSIG(exit_status);
 		if (sig == SIGQUIT)
 			printf("Quit (core dumped)\n");
+		if (sig == SIGINT)
+			printf("\n");
 	}
 }
 
