@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/28 19:18:14 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/31 13:34:26 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 ////* EXT LIBRARIES
+# include <errno.h>
 # include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
@@ -24,7 +25,6 @@
 # include <sys/ioctl.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# include <errno.h>
 
 ////* INT LIBRARIES
 # include "./libft/libft.h"
@@ -709,33 +709,33 @@ void					rage_quit(t_data *data, int exit_code, bool write_hist,
 //* sig_handler.c
 /**
  * @brief Handles the SIGINT signal during here-document creation.
- * 
+ *
  * This function is called when the SIGINT signal is received during the
  * creation of a here-document. It sets a global signal flag, resets
  * the readline input, and inserts a newline character into the input
  * buffer to exit the readline function.
- * 
+ *
  * @param signum The signal number (expected to be SIGINT).
  */
 void					sig_handle_here_doc(int signum);
 /**
  * @brief Default SIGINT signal handler in interactive mode.
- * 
+ *
  * This function is called when the SIGINT signal is received in interactive
  * mode. It writes a newline, resets the readline input, triggers a reprompt,
  * and frees allocated resources before displaying the shell prompt again.
- * 
+ *
  * @param signum The signal number (expected to be SIGINT).
  */
 void					sig_handle_basic(int signum);
 /**
  * @brief Retrieves or sets the static pointer to the shell data.
- * 
- * This function returns the static pointer to the shell's data structure. 
- * If a non-NULL `data` argument is provided, it updates the pointer to 
- * reference the new data. It is used in the signal handler to access or 
+ *
+ * This function returns the static pointer to the shell's data structure.
+ * If a non-NULL `data` argument is provided, it updates the pointer to
+ * reference the new data. It is used in the signal handler to access or
  * modify the shell's data.
- * 
+ *
  * @param data A pointer to the shell's data structure
  * (or NULL to retrieve the current pointer).
  * @return The current pointer to the shell's data structure.
@@ -750,6 +750,7 @@ int						pipe_problem(t_data *data);
 int						expand_env_var(t_data *data, char **input);
 int						special_case_pid(char **word);
 int						check_for_triple(char *input);
+int						split_and_add(char **word);
 
 // env func
 void					parse_env(t_data *data, char **env);
@@ -826,15 +827,6 @@ int						handle_word(int *i, char *input, t_token **current,
  * @param input Input string
  * @param flag Quote status flag
  * @return true if character is part of word, false otherwise
- *
- * DONT wanna lose it
- * It was part of is_word_char. Now i dont need it
- * if (input[i + 1] == '\'')
- * 	return (false);
- * if (input[i + 1] == '"')
- * 	return (false);
- * if (input[i + 1] == '$')
- * 	return (false);
  */
 bool					is_word_char(int i, char *input, int *flag);
 int						handle_dolar(char *input, t_token **current, int *i,
