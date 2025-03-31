@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 20:21:33 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/31 20:25:35 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/31 20:33:02 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ void	replace_oldpwd_env(t_data *data, char *oldpwd)
 		rage_quit(data, ERR_MALLOC, true, NULL);
 }
 
+/**
+ * Has call to replace the oldpwd in the process and set it if it doesn't exist yet
+ */
 void	replace_pwd_env(t_data *data)
 {
 	t_env_lst	*tmp;
