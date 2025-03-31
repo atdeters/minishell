@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:34:50 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/31 15:34:18 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/31 21:03:21 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	execute_subshell(t_data *data, char **cmd)
 		close_fd_and_quit(data, fd_in, fd_out);
 	parser_env_into_arr(data);
 	data->prog_path = add_path(data, cmd);
-	if (!data->prog_path)
-		rage_quit(data, ERR_MALLOC, false, NULL);
 	check_access_command(data, data->prog_path);
 	cool_dup(data, fd_in, fd_out);
 	if (handle_builtin(data, cmd))
