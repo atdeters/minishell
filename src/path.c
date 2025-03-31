@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:52:51 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 19:06:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/31 21:01:42 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_pathstr(t_data *data)
 	return (NULL);
 }
 
-char	*check_env(t_data *data, char **paths_arr, char **command)
+char	*check_env(t_data *data, char **paths_arr, char *cmd)
 {
 	int		i;
 	char	*tmp;
@@ -50,10 +50,11 @@ char	*check_env(t_data *data, char **paths_arr, char **command)
 	i = 0;
 	while (paths_arr[i])
 	{
-		tmp = join_path_exe(paths_arr[i], command[0]);
+		tmp = join_path_exe(paths_arr[i], cmd);
 		if (!tmp)
 		{
 			fr_lst(paths_arr);
+			free (cmd);
 			rage_quit(data, ERR_MALLOC, false, NULL);
 		}
 		if (!access(tmp, F_OK))
@@ -62,22 +63,31 @@ char	*check_env(t_data *data, char **paths_arr, char **command)
 		i++;
 	}
 	if (paths_arr[i])
-		return (fr_lst(paths_arr), tmp);
-	return (fr_lst(paths_arr), ft_strdup(command[0]));
+		return (free(cmd), fr_lst(paths_arr), tmp);
+	return (fr_lst(paths_arr), cmd);
 }
 
 char	*add_path(t_data *data, char **command)
 {
 	char	**paths_arr;
 	char	*paths_str;
+	char	*tmp;
 
+	tmp = ft_strdup(command[0]);
+	if (!tmp)
+		rage_quit(data, ERR_MALLOC, false, NULL);
 	if (is_builtin(command[0]))
-		return (ft_strdup(command[0]));
+		return (tmp);
 	if (ft_strchr(command[0], '/'))
-		return (ft_strdup(command[0]));
+		return (tmp);
 	paths_str = get_pathstr(data);
+	if (!paths_str)
+		return (tmp);
 	paths_arr = ft_split(paths_str, ':');
 	if (!paths_arr)
+	{
+		free (tmp);
 		rage_quit(data, ERR_MALLOC, false, NULL);
-	return (check_env(data, paths_arr, command));
+	}
+	return (check_env(data, paths_arr, tmp));
 }
