@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:24:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/31 19:46:58 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/31 20:28:01 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ int	handle_delim(t_data *data, t_token **current, int *i, char **word)
 	while (ft_is_space(data->input[*i]))
 		(*i)++;
 	j = *i;
-	while (data->input[*i] && data->input[*i + 1] && !ft_is_space(data->input[*i
-			+ 1]) && data->input[*i + 1] != '<' && data->input[*i + 1] != '>'
-		&& data->input[*i + 1] != '|' && data->input[*i + 1] != '$'
-		&& data->input[*i + 1] != '\"' && data->input[*i + 1] != '\'')
+	while (data->input[*i] && data->input[*i + 1]
+		&& !ft_is_space(data->input[*i + 1]) && data->input[*i + 1] != '<'
+		&& data->input[*i + 1] != '>' && data->input[*i + 1] != '|'
+		&& data->input[*i + 1] != '$' && data->input[*i + 1] != '\"'
+		&& data->input[*i + 1] != '\'')
 		(*i)++;
 	*word = ft_substr(data->input, j, *i - j + 1);
 	if (!*word)

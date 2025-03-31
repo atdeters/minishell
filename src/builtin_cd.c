@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/27 19:44:19 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/31 20:21:53 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,6 @@ char	*replace_home(t_data *data, char **command)
 	free (command[1]);
 	command[1] = new;
 	return (command[1]);
-}
-
-void	replace_pwd_env(t_data *data)
-{
-	t_env_lst	*tmp;
-
-	tmp = data->env_lst;
-	while (tmp)
-	{
-		if (!ft_strcmp(tmp->filed, "PWD"))
-		{
-			free (tmp->value);
-			tmp->value = get_pwd_alloc(data, false);
-			return ;
-		}
-		tmp = tmp->next;
-	}
 }
 
 int	p_err_cd(char *command)

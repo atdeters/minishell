@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/31 19:39:24 by adeters          ###   ########.fr       */
+/*   Updated: 2025/03/31 20:23:08 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -705,6 +705,9 @@ void					p_use_unset(void);
  * @brief Displays the manual page for the minishell program.
  */
 void					p_use_msh(void);
+
+// pwd_envs.c
+void					replace_pwd_env(t_data *data);
 
 // rage_quit.c
 void					rage_quit(t_data *data, int exit_code, bool write_hist,
