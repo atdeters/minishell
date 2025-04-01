@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/01 16:58:35 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:01:44 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -654,6 +654,7 @@ char					*get_pathstr(t_data *data);
 char					*add_path(t_data *data, char **command);
 
 // piping.c
+bool					err_is_critical(int code);
 /**
  * Redirects the fd_in to STDIN and fd_out to STDOUT.
  * If fd_in is equal to STDIN or fd_out is equal to STDOUT,

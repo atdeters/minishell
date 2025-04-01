@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/01 16:56:18 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:05:21 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 int	cmd_abort(t_data *data, bool mute)
 {
+	if (err_is_critical(data->error))
+	{
+		data->exit_status = data->error;
+		rage_quit(data, data->error, true, NULL);
+	}
 	if (mute)
 		data->exit_status = data->error;
 	else

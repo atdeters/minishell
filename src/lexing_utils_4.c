@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils_4.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:23:35 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/04/01 16:58:39 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/04/01 17:07:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ static int	check_p_and_c(int p_type, char *p_value, int c_type, char *c_value)
 static int	check_single_case(t_token *prev)
 {
 	if (prev->type == DELIMITER && prev->value && (prev->value[0] == '>'
-		|| prev->value[0] == '<' || prev->value[0] == '|'
-		|| prev->value[0] == '\0'))
+			|| prev->value[0] == '<' || prev->value[0] == '|'
+			|| prev->value[0] == '\0'))
 		return (1);
 	return (0);
 }
