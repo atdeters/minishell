@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/31 20:23:08 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/01 16:58:35 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -828,6 +828,7 @@ int						handle_double_quotes(int *i, char *input,
 							t_token **current);
 int						handle_word(int *i, char *input, t_token **current,
 							t_data *data);
+int						check_patern(t_data *data);
 /**
  * @brief Checks if character at position is part of a word
  * @param i Current position in input

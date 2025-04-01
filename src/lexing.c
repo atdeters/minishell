@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 19:16:55 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/28 19:20:04 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/01 15:32:24 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ int	lexing(char *input, t_token **list, t_data *data)
 		if (input[i])
 			i++;
 	}
+	if (!check_patern(data))
+		return (data->error = ERR_PARS, 0);
 	return (1);
 }
