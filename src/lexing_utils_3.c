@@ -12,25 +12,7 @@
 
 #include "minishell.h"
 
-bool	is_word_char(int i, char *input, int *flag)
-{
-	if (!input[i] | !input[i + 1])
-		return (false);
-	if ((input[i] == '"' || input[i] == '\'') && ft_is_space(input[i + 1])
-		&& *flag)
-		return (false);
-	if (ft_is_space(input[i + 1]) && *flag)
-		return (true);
-	if (ft_is_space(input[i + 1]) && input[i] != '"' && input[i] != '\'')
-		return (false);
-	if (input[i + 1] == '|' && !(*flag))
-		return (true);
-	if (input[i + 1] == '<' && !(*flag))
-		return (true);
-	if (input[i + 1] == '>' && !(*flag))
-		return (true);
-	return (true);
-}
+
 
 int	ft_is_space(char ch)
 {
