@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils_4.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:23:35 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/04/01 17:07:15 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/03 17:08:13 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	check_p_and_c(int p_type, char *p_value, int c_type, char *c_value)
 			|| p_value[0] == '<' || p_value[0] == '|'))
 		return (1);
 	if (c_type == DELIMITER && c_value && (c_value[0] == '>'
-			|| c_value[0] == '<' || c_value[0] == '|'))
+			|| c_value[0] == '<' || c_value[0] == '|' || c_value[0] == '\0'))
 		return (1);
 	if (p_type == PIPE && c_type == PIPE)
 		return (1);
@@ -35,7 +35,7 @@ static int	check_single_case(t_token *prev)
 {
 	if (prev->type == DELIMITER && prev->value && (prev->value[0] == '>'
 			|| prev->value[0] == '<' || prev->value[0] == '|'
-			|| prev->value[0] == '\0'))
+			|| prev->value[0] == '\0' || prev->value == NULL))
 		return (1);
 	return (0);
 }
