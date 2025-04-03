@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils_3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:24:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/31 20:28:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/03 16:35:42 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@ bool	is_word_char(int i, char *input, int *flag)
 		return (true);
 	if (ft_is_space(input[i + 1]) && input[i] != '"' && input[i] != '\'')
 		return (false);
-	if (input[i + 1] == '|' && !(*flag))
-		return (true);
-	if (input[i + 1] == '<' && !(*flag))
-		return (true);
-	if (input[i + 1] == '>' && !(*flag))
-		return (true);
 	if (input[i + 1] == '>' && *flag && (input[i] == '"' || input[i] == '\''))
 		return (false);
 	if (input[i + 1] == '<' && *flag && (input[i] == '"' || input[i] == '\''))
 		return (false);
 	if (input[i + 1] == '|' && *flag && (input[i] == '"' || input[i] == '\''))
 		return (false);
+	if (input[i + 1] == '|' && !(*flag))
+		return (false);
+	if (input[i + 1] == '<' && !(*flag))
+		return (false);
+	if (input[i + 1] == '>' && !(*flag))
+		return (false);
 	return (true);
- }
+}
 
 int	ft_is_space(char ch)
 {
@@ -55,10 +55,10 @@ int	handle_delim(t_data *data, t_token **current, int *i, char **word)
 		(*i)++;
 	j = *i;
 	while (data->input[*i] && data->input[*i + 1]
-		&& !ft_is_space(data->input[*i + 1]) && data->input[*i + 1] != '<'
-		&& data->input[*i + 1] != '>' && data->input[*i + 1] != '|'
-		&& data->input[*i + 1] != '$' && data->input[*i + 1] != '\"'
-		&& data->input[*i + 1] != '\'')
+		&& !ft_is_space(data->input[*i + 1])
+		&& data->input[*i + 1] != '<' && data->input[*i + 1] != '>'
+		&& data->input[*i + 1] != '|' && data->input[*i + 1] != '$'
+		&& data->input[*i + 1] != '\"' && data->input[*i + 1] != '\'')
 		(*i)++;
 	*word = ft_substr(data->input, j, *i - j + 1);
 	if (!*word)

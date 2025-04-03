@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/01 17:01:44 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/03 16:26:58 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -754,11 +754,11 @@ t_data					*pointer_to_data(t_data *data);
 int						check_replace_input(t_data *data);
 int						quotes_problem(t_data *data);
 int						in_single_qoute(int pos, char *input);
-int						pipe_problem(t_data *data);
 int						expand_env_var(t_data *data, char **input);
 int						special_case_pid(char **word);
-int						check_for_triple(char *input);
 int						split_and_add(char **word);
+// int						pipe_problem(t_data *data);
+// int						check_for_triple(char *input);
 
 // env func
 void					parse_env(t_data *data, char **env);

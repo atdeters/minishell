@@ -6,11 +6,38 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 16:25:57 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/04/01 15:17:15 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:28:16 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	in_single_qoute(int pos, char *input)
+{
+	int	i;
+	int	counter;
+	int	flag;
+
+	counter = 0;
+	i = 0;
+	flag = 0;
+	while (i != pos)
+	{
+		if (input[i] == '"' && flag == 0)
+			flag = 2;
+		else if (input[i] == '"' && flag == 2)
+			flag = 0;
+		if (input[i] == '\'' && flag != 2)
+		{
+			flag = 1;
+			counter++;
+		}
+		i++;
+	}
+	if (counter % 2 != 0)
+		return (1);
+	return (0);
+}
 
 static void	else_if_for_loop(char ch, int *flag, int *sing, int *dob)
 {
@@ -64,49 +91,22 @@ int	quotes_problem(t_data *data)
 	return (0);
 }
 
-int	in_single_qoute(int pos, char *input)
-{
-	int	i;
-	int	counter;
-	int	flag;
+// int	pipe_problem(t_data *data)
+// {
+// 	int	i;
+// 	int	flag;
 
-	counter = 0;
-	i = 0;
-	flag = 0;
-	while (i != pos)
-	{
-		if (input[i] == '"' && flag == 0)
-			flag = 2;
-		else if (input[i] == '"' && flag == 2)
-			flag = 0;
-		if (input[i] == '\'' && flag != 2)
-		{
-			flag = 1;
-			counter++;
-		}
-		i++;
-	}
-	if (counter % 2 != 0)
-		return (1);
-	return (0);
-}
-
-int	pipe_problem(t_data *data)
-{
-	int	i;
-	int	flag;
-
-	i = 0;
-	flag = 0;
-	while (data->input[i])
-	{
-		if (data->input[i] == '|')
-			flag = 1;
-		if (ft_isalnum(data->input[i]))
-			flag = 0;
-		i++;
-	}
-	if (flag)
-		return (1);
-	return (0);
-}
+// 	i = 0;
+// 	flag = 0;
+// 	while (data->input[i])
+// 	{
+// 		if (data->input[i] == '|')
+// 			flag = 1;
+// 		if (ft_isalnum(data->input[i]))
+// 			flag = 0;
+// 		i++;
+// 	}
+// 	if (flag)
+// 		return (1);
+// 	return (0);
+// }
