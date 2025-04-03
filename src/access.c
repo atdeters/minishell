@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   access.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:53:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/31 21:36:25 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/03 14:13:38 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	check_access_outfile(t_data *data, char *filename)
 		rage_quit(data, ERR_PERM, false, filename);
 	if (!access(filename, F_OK) && access(filename, W_OK) == -1)
 		rage_quit(data, ERR_PERM, false, filename);
-	if (S_ISDIR(path_stat.st_mode))
+	if (!access(filename, F_OK) && S_ISDIR(path_stat.st_mode))
 		rage_quit(data, ERR_DIR, false, filename);
 }
 
