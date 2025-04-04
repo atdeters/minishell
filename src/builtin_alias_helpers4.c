@@ -6,17 +6,29 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 19:25:03 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/17 19:25:23 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/04 16:47:01 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	check_empty_alias(char *entry)
+{
+	char	*c;
+
+	c = ft_strrchr(entry, '=') + 1;
+	if (count_char(entry, '=') == 1 && *c == '\0')
+		return (1);
+	return (0);
+}
 
 bool	is_valid_entry_form(char *entry)
 {
 	int	eq_count;
 	int	i;
 
+	if (check_empty_alias(entry))
+		return (false);
 	eq_count = 0;
 	i = 0;
 	while (entry[i])
@@ -25,7 +37,7 @@ bool	is_valid_entry_form(char *entry)
 			eq_count++;
 		i++;
 	}
-	if (eq_count != 1)
+	if (eq_count < 1)
 		return (false);
 	return (true);
 }
