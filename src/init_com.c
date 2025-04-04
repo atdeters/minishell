@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:45:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/31 19:39:45 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:59:33 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_command(t_data *data)
 	data->hdf_arr = NULL;
 	data->prog_path = NULL;
 	init_fd_arr(data);
-	set_shlvl(data, &data->env_lst);
+	set_shlvl(data, &data->env_lst, 0);
 	data->pipes_amount = 0;
 }
 

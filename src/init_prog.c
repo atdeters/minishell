@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/31 19:43:58 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:05:47 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	set_home_path(t_data *data)
 	return ;
 }
 
-void	set_shlvl(t_data *data, t_env_lst **lst)
+void	set_shlvl(t_data *data, t_env_lst **lst, int increase)
 {
 	t_env_lst	*tmp;
 	int			lvl;
@@ -73,16 +73,19 @@ void	set_shlvl(t_data *data, t_env_lst **lst)
 			if (check_overflow(tmp->value))
 				lvl = 0;
 			else
-				lvl = ft_atoi(tmp->value) + 1;
+				lvl = ft_atoi(tmp->value) + increase;
 			free (tmp->value);
 			if (lvl < 0)
 				lvl = 0;
 			tmp->value = ft_itoa(lvl);
 			if (!tmp->value)
 				rage_quit(data, ERR_MALLOC, true, NULL);
+			break ;
 		}
 		tmp = tmp->next;
 	}
+	if (!tmp)
+		add_env(data, "SHLVL=0");
 }
 
 int	init_shell(t_data *data, int ac, char **av, char **env)
@@ -94,7 +97,7 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 	data->p_err = true;
 	check_flags(data, ac, av);
 	parse_env(data, env);
-	set_shlvl(data, &data->env_lst);
+	set_shlvl(data, &data->env_lst, 1);
 	set_home_path(data);
 	data->alias_path = get_home_path_for_file(data, ALIAS_FILE_NAME);
 	if (!data->alias_path)

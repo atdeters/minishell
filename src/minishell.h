@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/03 16:26:58 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:04:37 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -344,6 +344,7 @@ int						ft_env(t_data *data, char **command);
 int						ft_exit(t_data *data, char **command);
 
 // builtin_export.c
+int						add_env(t_data *data, char *entry);
 int						ft_export(t_data *data, char **command);
 
 // builtin_pwd.c
@@ -545,7 +546,7 @@ int						free_hst_list(t_data *data);
 int						init_shell(t_data *data, int ac, char **av, char **env);
 
 // init_prog.c
-void					set_shlvl(t_data *data, t_env_lst **lst);
+void					set_shlvl(t_data *data, t_env_lst **lst, int increase);
 void					init_command(t_data *data);
 /**
  * @note Does not have to be checked for success as the `rage_quit()` function
