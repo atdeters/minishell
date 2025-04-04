@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:03:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/04 15:05:47 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:41:33 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	init_shell(t_data *data, int ac, char **av, char **env)
 		exit(p_err(ERR_USAGE));
 	*data = (t_data){0};
 	data->p_err = true;
+	data->quotes_flag = true;
 	check_flags(data, ac, av);
 	parse_env(data, env);
 	set_shlvl(data, &data->env_lst, 1);

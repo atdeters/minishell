@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:45:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/04 14:59:33 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:41:46 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	init_command(t_data *data)
 	init_fd_arr(data);
 	set_shlvl(data, &data->env_lst, 0);
 	data->pipes_amount = 0;
+	data->quotes_flag = true;
 }
 
 void	init_fd_arr(t_data *data)

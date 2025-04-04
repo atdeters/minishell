@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils_3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:24:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/04/03 16:35:42 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:55:31 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ bool	is_word_char(int i, char *input, int *flag)
 		return (false);
 	if (input[i + 1] == '|' && *flag && (input[i] == '"' || input[i] == '\''))
 		return (false);
-	if (input[i + 1] == '|' && !(*flag))
+	if (input[i + 1] == '|' && !(*flag) && input[i] != '"' && input[i] != '\'')
 		return (false);
-	if (input[i + 1] == '<' && !(*flag))
+	if (input[i + 1] == '<' && !(*flag) && input[i] != '"' && input[i] != '\'')
 		return (false);
-	if (input[i + 1] == '>' && !(*flag))
+	if (input[i + 1] == '>' && !(*flag) && input[i] != '"' && input[i] != '\'')
 		return (false);
 	return (true);
 }

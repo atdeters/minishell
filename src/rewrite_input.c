@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rewrite_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/04/03 16:26:28 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/04/04 16:03:15 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	check_for_special(char **word, char **res, char **start_w,
 		*word = return_from_env_with_data(data, *res);
 		if (!*word)
 			return (free(*start_w), free(*res), data->error = ERR_MALLOC, 0);
-		if (!split_and_add(word))
+		if (data->quotes_flag && !split_and_add(word))
 			return (free(*start_w), free(*res), data->error = ERR_MALLOC, 0);
 	}
 	return (1);

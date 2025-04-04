@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/04 15:04:37 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/04 16:03:09 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ typedef struct s_data
 	char				*alias_path;
 	char				*home_path;
 	bool				p_err;
+	bool				quotes_flag;
 	// Scope: Command
 	char				*input;
 	int					pipe_ind;

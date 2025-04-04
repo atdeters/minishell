@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:43:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/25 20:42:10 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:42:52 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	fill_hdf_arr(t_data *data, t_token **lst)
 	{
 		if (current->type == DELIMITER)
 		{
+			data->quotes_flag = false;
 			if (fill_hdf(data, data->hdf_arr[i], current->value, nb))
 				return (data->error);
 			fill_hdf_arr_help(data, &current, i);
@@ -104,5 +105,5 @@ int	fill_hdf_arr(t_data *data, t_token **lst)
 		}
 		current = current->next;
 	}
-	return (0);
+	return (data->quotes_flag = true, 0);
 }

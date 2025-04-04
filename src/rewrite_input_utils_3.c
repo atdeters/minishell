@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rewrite_input_utils_3.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 13:39:32 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/31 13:47:53 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/04/04 16:02:58 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ int	split_and_add(char **word)
 	splitted = ft_split(*word, ' ');
 	if (!splitted)
 		return (free(*word), 0);
-	free(*word);
-	*word = NULL;
+	cool_free(word);
 	while (splitted[i])
 	{
 		not_final = malloc(sizeof(char) * (ft_strlen(splitted[i]) + 4));
