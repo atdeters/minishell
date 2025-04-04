@@ -1,0 +1,15 @@
+# Quotes with expansion
+"'"$USER"'"
+'"'$USER'"'
+"'$USER"
+'"$USER'
+""$USER
+''$USER
+
+# Quptes without expansion
+"'"hello"'"
+'"'hello'"'
+'"hello'
+"'hello"
+""hello
+''hello
