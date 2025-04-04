@@ -6,7 +6,7 @@
 ""$USER
 ''$USER
 
-# Quptes without expansion
+# Quotes without expansion
 "'"hello"'"
 '"'hello'"'
 '"hello'
