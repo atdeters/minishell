@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 09:36:47 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/27 10:11:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/07 13:18:08 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,4 @@ void	p_use_msh(void)
 	printf("the command that needs to be executed. ");
 	printf("Opens minishell for this single command and exits afterwards\n");
 	printf("\t-- help	/ -h	Prints this help file to the STDOUT\n");
-	printf("\n%sRETURNS%s\n", BOLD, RESET);
-	printf("\tAdd all error codes here\n");
 }
