@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/08 13:45:41 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:08:37 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -759,7 +759,6 @@ int						in_single_qoute(int pos, char *input);
 int						expand_env_var(t_data *data, char **input);
 int						special_case_pid(char **word);
 int						split_and_add(char **word);
-
 
 // env func
 void					parse_env(t_data *data, char **env);

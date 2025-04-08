@@ -6,7 +6,7 @@
 /*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/08 13:48:10 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/04/08 14:07:48 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@ int	handle_pipeline(t_data *data)
 		return (cmd_abort(data, false));
 	if (!lexing(data->input, &data->token_lst, data))
 		return (cmd_abort(data, false));
-	t_token *tmp;
-	tmp = data->token_lst;
-	while (tmp)
-	{
-		printf("token->value = |%s|, token->type = %d\n", tmp->value, tmp->type);
-		tmp = tmp->next;
-	}
 	expand_alias(data, &data->token_lst);
 	create_hdf(data);
 	if (fill_hdf_arr(data, &data->token_lst))
