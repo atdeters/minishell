@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/04 16:03:09 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/08 13:45:41 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -759,8 +759,7 @@ int						in_single_qoute(int pos, char *input);
 int						expand_env_var(t_data *data, char **input);
 int						special_case_pid(char **word);
 int						split_and_add(char **word);
-// int						pipe_problem(t_data *data);
-// int						check_for_triple(char *input);
+
 
 // env func
 void					parse_env(t_data *data, char **env);
@@ -810,11 +809,6 @@ int						pipe_counter(t_token **tokens);
  * @return 1 on success, 0 on failure with error set in data->error
  */
 int						lexing(char *input, t_token **list, t_data *data);
-/**
- * @brief Checks if character is a whitespace
- * @param ch Character to check
- * @return 1 if whitespace, 0 otherwise
- */
 int						ft_is_space(char ch);
 t_token					*create_token(int type, char *value);
 t_token					*ft_token_lstlast(t_token *lst);
@@ -832,24 +826,7 @@ int						handle_double_quotes(int *i, char *input,
 int						handle_word(int *i, char *input, t_token **current,
 							t_data *data);
 int						check_patern(t_data *data);
-/**
- * @brief Checks if character at position is part of a word
- * @param i Current position in input
- * @param input Input string
- * @param flag Quote status flag
- * @return true if character is part of word, false otherwise
- */
-bool					is_word_char(int i, char *input, int *flag);
-int						handle_dolar(char *input, t_token **current, int *i,
-							char **word);
-/**
- * @brief Handles here-document delimiter token
- * @param data Shell data structure
- * @param current Pointer to store created token
- * @param i Current position in input
- * @param word Pointer to store delimiter word
- * @return 1 on success, 0 on failure
- */
+char					*remove_quotes(char *word);
 int						handle_delim(t_data *data, t_token **current, int *i,
 							char **word);
 

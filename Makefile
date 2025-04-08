@@ -38,7 +38,7 @@ SRC_FILES	=	access.c add_rl_prompt.c builtin_alias.c \
 				piping.c print_usage2.c print_usage.c \
 				rage_quit.c rewrite_input.c rewrite_input_utils_1.c \
 				rewrite_input_utils_2.c sig_handler.c rewrite_input_utils_3.c \
-				check_overflow.c pwd_envs.c lexing_utils_4.c
+				check_overflow.c pwd_envs.c lexing_utils_4.c lexing_utils_5.c
 
 SRCS = $(addprefix src/, $(SRC_FILES))
 

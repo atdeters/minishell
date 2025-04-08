@@ -3,40 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils_3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:24:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/04/04 17:52:22 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/08 13:45:15 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-bool	is_word_char(int i, char *input, int *flag)
-{
-	if (!input[i] | !input[i + 1])
-		return (false);
-	if ((input[i] == '"' || input[i] == '\'') && ft_is_space(input[i + 1])
-		&& *flag)
-		return (false);
-	if (ft_is_space(input[i + 1]) && *flag)
-		return (true);
-	if (ft_is_space(input[i + 1]) && input[i] != '"' && input[i] != '\'')
-		return (false);
-	if (input[i + 1] == '>' && *flag && (input[i] == '"' || input[i] == '\''))
-		return (false);
-	if (input[i + 1] == '<' && *flag && (input[i] == '"' || input[i] == '\''))
-		return (false);
-	if (input[i + 1] == '|' && *flag && (input[i] == '"' || input[i] == '\''))
-		return (false);
-	if (input[i + 1] == '|' && !(*flag) && input[i] != '"' && input[i] != '\'')
-		return (false);
-	if (input[i + 1] == '<' && !(*flag) && input[i] != '"' && input[i] != '\'')
-		return (false);
-	if (input[i + 1] == '>' && !(*flag) && input[i] != '"' && input[i] != '\'')
-		return (false);
-	return (true);
-}
 
 int	ft_is_space(char ch)
 {
@@ -64,5 +38,36 @@ int	handle_delim(t_data *data, t_token **current, int *i, char **word)
 	if (!*word)
 		return (*word = NULL, data->error = ERR_MALLOC, 0);
 	*current = create_token(DELIMITER, *word);
+	return (1);
+}
+
+/**
+ * @brief Handles special characters (|, <, >, <<, >>)
+ * @param input Input string
+ * @param current Pointer to store created token
+ * @param i Current position in input
+ * @param data Shell data structure
+ * @return 1 on success, 0 on failure
+ */
+int	handle_special_char(char *input, t_token **current, int *i, t_data *data)
+{
+	char	*word;
+
+	word = NULL;
+	if (input[*i] == '|')
+		*current = create_token(PIPE, NULL);
+	else if (input[*i] == '<' && input[*i + 1] != '<')
+		*current = create_token(REDIR_IN, NULL);
+	else if (input[*i] == '<' && input[*i + 1] == '<')
+		handle_delim(data, current, i, &word);
+	else if (input[*i] == '>' && input[*i + 1] != '>')
+		*current = create_token(REDIR_OUT, NULL);
+	else if (input[*i] == '>' && input[*i + 1] == '>')
+	{
+		(*i)++;
+		*current = create_token(REDIR_APPEND, NULL);
+	}
+	if (!(*current))
+		return (free(word), data->error = ERR_MALLOC, 0);
 	return (1);
 }
