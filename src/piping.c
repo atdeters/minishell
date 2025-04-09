@@ -6,7 +6,7 @@
 /*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/09 00:02:33 by andreas          ###   ########.fr       */
+/*   Updated: 2025/04/09 15:14:51 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ int	wait_all(t_data *data)
 		// if (err_is_critical(data->exit_status))
 		// {
 		// 	quit = true;
-		// 	quit_code = data->exit_status;
+		// 	
+		// quit_code = data->exit_status;
 		// }
 		check_sigquit(data->exit_status);
 		i++;
