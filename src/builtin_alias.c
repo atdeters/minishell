@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:45:36 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/04 16:46:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/10 14:40:54 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	set_alias(t_data *data, char **command)
 
 bool	is_nc_alias(char **command)
 {
-	if (count_opts(command) == 1)
+	if (count_opts(command) != 1)
 		return (true);
 	if (has_flag_rm_alias(command))
 		return (true);
