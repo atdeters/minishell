@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   piping.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/09 15:14:51 by andreas          ###   ########.fr       */
+/*   Updated: 2025/04/10 14:24:10 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,27 +43,16 @@ static void	check_sigquit(int exit_status)
 int	wait_all(t_data *data)
 {
 	int		i;
-	// bool	quit;
-	// int		quit_code;
 
 	i = 0;
-	// quit = false;
 	while (i < data->n_pid)
 	{
 		waitpid(data->pid[i], &data->exit_status, 0);
 		if (WIFEXITED(data->exit_status))
 			data->exit_status = WEXITSTATUS(data->exit_status);
-		// if (err_is_critical(data->exit_status))
-		// {
-		// 	quit = true;
-		// 	
-		// quit_code = data->exit_status;
-		// }
 		check_sigquit(data->exit_status);
 		i++;
 	}
-	// if (quit)
-	// 	rage_quit(data, quit_code, true, NULL);
 	return (data->exit_status);
 }
 
