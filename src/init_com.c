@@ -16,6 +16,7 @@ void	init_fd_arr(t_data *data);
 
 void	init_command(t_data *data)
 {
+	g_signal = 0;
 	data->n_pid = 0;
 	data->pipe_ind = 0;
 	data->p_err = true;
