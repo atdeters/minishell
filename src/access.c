@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   access.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:53:22 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/03 14:13:38 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:31:21 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	check_access_command(t_data *data, char *command)
 		rage_quit(data, ERR_ACCESS, false, command);
 	if (stat(command, &path_stat) == -1 && errno == EACCES)
 		rage_quit(data, ERR_PERM, false, command);
-	if (path_stat.st_size == 0)
-		rage_quit(data, 0, false, NULL);
 	if (!access(command, F_OK) && access(command, X_OK) == -1)
 		rage_quit(data, ERR_PERM, false, command);
+	if (path_stat.st_size == 0)
+		rage_quit(data, 0, false, NULL);
 	if (access(command, F_OK) == -1)
 		rage_quit(data, ERR_ACCESS, false, command);
 	if (S_ISDIR(path_stat.st_mode))
