@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_builtins.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:16:54 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/10 14:39:36 by adeters          ###   ########.fr       */
+/*   Updated: 2025/04/19 00:04:31 by andreas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	handle_nc_builtin(t_data *data, char **command)
 	if (!command[0])
 		return (false);
 	if (!ft_strcmp(command[0], "cd"))
-		return (data->exit_status = ft_cd(data, command), true);
+		return (data->exit_status = ft_cd(data, command), true); // TODO: Make it ragequit here on critical errors 
 	else if (!ft_strcmp(command[0], "exit"))
 		return (data->exit_status = ft_exit(data, command), true);
 	else if (!ft_strcmp(command[0], "alias") && is_nc_alias(command))
