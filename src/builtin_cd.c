@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/31 20:21:53 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:34:22 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*replace_home(t_data *data, char **command)
 	return (command[1]);
 }
 
-int	p_err_cd(char *command)
+int	p_err_cd(char *command, t_data *data)
 {
 	if (errno == EACCES)
 		return (p_err_arg(ERR_PERM, command));
@@ -40,7 +40,8 @@ int	p_err_cd(char *command)
 		return (p_err_arg(ERR_ACCESS_FILE, command));
 	if (errno == ENOTDIR)
 		return (p_err_arg(ERR_NOTDIR, command));
-	return (perror("minishell: cd"), 1);
+	return (perror("minishell: cd"),
+		rage_quit(data, ERR_CHDIR, true, NULL), 1);
 }
 
 int	ft_cd(t_data *data, char **command)
@@ -55,7 +56,7 @@ int	ft_cd(t_data *data, char **command)
 		rage_quit(data, ERR_CHDIR, true, NULL);
 	replace_home(data, command);
 	if (command[1] && chdir(command[1]) == -1)
-		return (p_err_cd(command[1]));
+		return (p_err_cd(command[1], data));
 	replace_pwd_env(data);
 	return (0);
 }
