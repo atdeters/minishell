@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/05/05 17:24:34 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:12:06 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,26 @@ char	*make_parent_dir(t_data *data, char **command)
 	return (command[1]);
 }
 
+char	*make_last_dir(t_data *data, char **command)
+{
+	t_env_lst	*tmp;
+	char		*old;
+
+	tmp = data->env_lst;
+	while (tmp && ft_strcmp(tmp->filed, "OLDPWD"))
+		tmp = tmp->next;
+	if (tmp)
+	{
+		old = ft_strdup(tmp->value);
+		if (!old)
+			return (NULL);
+		free(command[1]);
+		command[1] = old;
+		return (old);
+	}
+	return (command[1]);
+}
+
 int	ft_cd(t_data *data, char **command)
 {
 	if (count_opts(command) > 2)
@@ -76,6 +96,8 @@ int	ft_cd(t_data *data, char **command)
 	if (!command[1] && chdir(data->home_path) == -1)
 		rage_quit(data, ERR_CHDIR, true, NULL);
 	replace_home(data, command);
+	if (!ft_strcmp(command[1], "-") && !make_last_dir(data, command))
+		rage_quit(data, ERR_MALLOC, true, NULL);
 	if (!ft_strcmp(command[1], "..") && !make_parent_dir(data, command))
 		rage_quit(data, ERR_MALLOC, true, NULL);
 	if (command[1] && chdir(command[1]) == -1)
