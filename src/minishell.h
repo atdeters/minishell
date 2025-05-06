@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/04/08 14:08:37 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:19:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,11 @@
 
 ////* EXT LIBRARIES
 # include <errno.h>
-# include <limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
-# include <signal.h>
 # include <stdbool.h>
-# include <stdio.h>
-# include <stdlib.h>
 # include <sys/ioctl.h>
 # include <sys/wait.h>
-# include <unistd.h>
 
 ////* INT LIBRARIES
 # include "./libft/libft.h"
