@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 18:31:37 by adeters           #+#    #+#             */
-/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/06 19:10:43 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int	ft_cd(t_data *data, char **command)
 	}
 	if (!command[1] && chdir(data->home_path) == -1)
 		rage_quit(data, ERR_CHDIR, true, NULL);
+	else if (!command[1])
+		return (replace_pwd_env(data), 0);
 	replace_home(data, command);
 	if (!ft_strcmp(command[1], "-") && !make_last_dir(data, command))
 		rage_quit(data, ERR_MALLOC, true, NULL);
@@ -102,6 +104,5 @@ int	ft_cd(t_data *data, char **command)
 		rage_quit(data, ERR_MALLOC, true, NULL);
 	if (command[1] && chdir(command[1]) == -1)
 		return (p_err_cd(command[1], data));
-	replace_pwd_env(data);
-	return (0);
+	return (replace_pwd_env(data), 0);
 }
