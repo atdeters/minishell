@@ -1,4 +1,9 @@
 #! /bin/bash
 
-# The number in the part (NR % 3 == 0) decides how many files will be in one line
-ls src | grep .c | awk '{printf "%s ", $0; if (NR % 1 == 0) print "\\"}' > files_sorted
+# Variables
+SRC='src'			# directory with your files you want to sort
+FPL='1'				# number of files per line
+OUT='files_sorted'	# filename for the output of the sorted files
+
+# Script
+ls $SRC | grep .c | awk -v n=$FPL '{printf "%s ", $0; if (NR % n == 0) print "\\"}' > $OUT
