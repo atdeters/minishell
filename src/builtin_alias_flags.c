@@ -6,11 +6,11 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:42:22 by andreas           #+#    #+#             */
-/*   Updated: 2025/03/27 16:10:34 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 bool	has_flag_rm_alias(char **command)
 {

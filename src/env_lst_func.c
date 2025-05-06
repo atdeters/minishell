@@ -6,11 +6,11 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 16:17:55 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/02/25 15:01:24 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 t_env_lst	*ft_env_lstnew(char *f, char *v)
 {

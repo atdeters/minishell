@@ -6,11 +6,11 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 18:58:19 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/28 19:02:04 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	free_all_com(t_data *data)
 {

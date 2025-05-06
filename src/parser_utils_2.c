@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:14:50 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/03/21 19:37:50 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 static void	check_type_in(t_token *head, t_token *tail, t_parsed **new,
 		int flag)

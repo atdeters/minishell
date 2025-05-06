@@ -6,11 +6,11 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:16:04 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/04/04 16:03:15 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 static int	check_for_special(char **word, char **res, char **start_w,
 		t_data *data)

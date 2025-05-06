@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 19:54:03 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/04/08 14:07:09 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 static bool	is_word_char(int i, char *input, int *flag)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_lst_helpers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreas <andreas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 02:24:17 by andreas           #+#    #+#             */
-/*   Updated: 2025/03/09 02:24:27 by andreas          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int	count_env_list_nodes(t_env_lst *lst)
 {

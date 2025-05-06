@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/05/06 13:19:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:21:38 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <sys/wait.h>
 
 ////* INT LIBRARIES
-# include "./libft/libft.h"
+# include "../src/libft/libft.h"
 # include "config.h"
 # include "errmsg.h"
 

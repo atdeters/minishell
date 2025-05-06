@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils_4.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 15:23:35 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/04/03 17:08:13 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 static int	check_p_and_c(int p_type, char *p_value, int c_type, char *c_value)
 {

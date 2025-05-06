@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_alias_helpers3.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:26:10 by adeters           #+#    #+#             */
-/*   Updated: 2025/03/21 17:15:09 by vsenniko         ###   ########.fr       */
+/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 // Also needs to return true in bonus for the && or || or ;
 bool	needs_expand(char *current, t_token *tmp)
