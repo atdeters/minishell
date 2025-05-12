@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-/*   Updated: 2025/05/06 13:22:01 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/12 17:27:41 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	handle_pipeline(t_data *data)
 	execute(data);
 	close_all(data);
 	wait_all(data);
+	// unlink the hdf files
 	free_all_com(data);
 	signal(SIGINT, sig_handle_basic);
 	return (0);

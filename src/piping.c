@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 19:45:30 by adeters           #+#    #+#             */
-/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/12 17:26:33 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,17 @@ int	wait_all(t_data *data)
 int	cool_dup(t_data *data, int fd_in, int fd_out)
 {
 	if (fd_in != 0 && dup2(fd_in, STDIN_FILENO) == -1)
+	{
+		close (fd_out);
+		close (fd_in);
 		rage_quit(data, ERR_DUP2, false, NULL);
+	}
 	if (fd_out != 1 && dup2(fd_out, STDOUT_FILENO) == -1)
+	{
+		close (fd_out);
+		close (fd_in);
 		rage_quit(data, ERR_DUP2, false, NULL);
+	}
 	if (data->parsed_lst->out_mode != OUT_MODE_PIPE && fd_out != 1)
 		close (fd_out);
 	if (data->parsed_lst->in_mode != IN_MODE_PIPE && fd_in != 0)

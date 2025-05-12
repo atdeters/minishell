@@ -6,7 +6,7 @@
 /*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:48:17 by adeters           #+#    #+#             */
-/*   Updated: 2025/05/06 13:21:38 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/12 17:21:57 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdbool.h>
 # include <sys/ioctl.h>
 # include <sys/wait.h>
+# include <signal.h>
 
 ////* INT LIBRARIES
 # include "../src/libft/libft.h"
