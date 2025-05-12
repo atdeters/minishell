@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing_utils_3.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:24:53 by vsenniko          #+#    #+#             */
-/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/09 16:45:23 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ int	handle_special_char(char *input, t_token **current, int *i, t_data *data)
 	else if (input[*i] == '<' && input[*i + 1] != '<')
 		*current = create_token(REDIR_IN, NULL);
 	else if (input[*i] == '<' && input[*i + 1] == '<')
-		handle_delim(data, current, i, &word);
+	{
+		*i += 1;
+		*current = create_token(DELIMITER, NULL);
+	}
 	else if (input[*i] == '>' && input[*i + 1] != '>')
 		*current = create_token(REDIR_OUT, NULL);
 	else if (input[*i] == '>' && input[*i + 1] == '>')

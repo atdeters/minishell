@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexing.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 19:16:55 by adeters           #+#    #+#             */
-/*   Updated: 2025/05/06 13:21:13 by adeters          ###   ########.fr       */
+/*   Updated: 2025/05/09 16:43:57 by vsenniko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,8 @@
  * @param i Current position in the input string
  * @param data Shell data structure containing error handling info
  * @return 1 on success, 0 on failure
- * 
- * Used to be a part of process_token between if and else:
- * 
- * 		else if (input[*i] == '\'')
- * 		{
- * 		if (!handle_single_quote(i, input, current))
- * 			return (0);
- * 		}
- * 		else if (input[*i] == '"')
- * 		{
- * 			if (!handle_double_quotes(i, input, current))
- * 				return (0);
- * 		}
  */
+
 static int	process_token(char *input, t_token **current, int *i, t_data *data)
 {
 	if (input[*i] == '|' || input[*i] == '<' || input[*i] == '>')
@@ -53,6 +41,42 @@ static int	process_token(char *input, t_token **current, int *i, t_data *data)
 			return (0);
 		}
 	}
+	return (1);
+}
+
+static int	check_replace(t_token **lst)
+{
+	t_token	*token;
+	t_token	*tmp;
+
+	token = *lst;
+	while (token)
+	{
+		if (token->type == DELIMITER && token->next)
+		{
+			token->value = ft_strdup(token->next->value);
+			if (!token->value)
+				return (0);
+			free(token->next->value);
+			tmp = token->next;
+			token->next = tmp->next;
+			if (token->next)
+				token->next->prev = token;
+			free(tmp);
+		}
+		else if (token->type == DELIMITER && !token->next)
+			return (0);
+		token = token->next;
+	}
+	return (1);
+}
+
+static int	provide_check_and_delim(t_token **lst, t_data *data)
+{
+	if (!check_replace(lst))
+		return (0);
+	if (!check_patern(data))
+		return (0);
 	return (1);
 }
 
@@ -80,7 +104,7 @@ int	lexing(char *input, t_token **list, t_data *data)
 		if (input[i])
 			i++;
 	}
-	if (!check_patern(data))
+	if (!provide_check_and_delim(list, data))
 		return (data->error = ERR_PARS, 0);
 	return (1);
 }
