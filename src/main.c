@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsenniko <vsenniko@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adeters <adeters@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 14:14:52 by adeters           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/05/12 17:27:41 by adeters          ###   ########.fr       */
-=======
-/*   Updated: 2025/05/09 16:41:45 by vsenniko         ###   ########.fr       */
->>>>>>> 6f703c6e94f01818d7dadf554111d762e7bcd23c
+/*   Updated: 2025/05/12 17:36:23 by adeters          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +26,18 @@ int	cmd_abort(t_data *data, bool mute)
 		data->exit_status = p_err(data->error);
 	free_all_com(data);
 	return (data->error);
+}
+
+void	unlink_hdfs(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (data->hdf_arr && data->hdf_arr[i])
+	{
+		unlink(data->hdf_arr[i]);
+		i++;
+	}
 }
 
 int	handle_pipeline(t_data *data)
@@ -55,7 +63,7 @@ int	handle_pipeline(t_data *data)
 	execute(data);
 	close_all(data);
 	wait_all(data);
-	// unlink the hdf files
+	unlink_hdfs(data);
 	free_all_com(data);
 	signal(SIGINT, sig_handle_basic);
 	return (0);
